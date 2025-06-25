@@ -30,7 +30,7 @@ namespace Prototipo_MarZel
 
 
         }
-        SqlConnection conexion = new SqlConnection("server=ROBBER\\SQLEXPRESS; database=MarZel; integrated security=true");
+        SqlConnection conexion = new SqlConnection("server=LEGION5I\\SQLEXPRESS; database=MarZel; integrated security=true");
         private void FRM_MAIN_Load(object sender, EventArgs e)
         {
             Panel fondo = new Panel();
@@ -59,6 +59,11 @@ namespace Prototipo_MarZel
             {
                 MessageBox.Show("Error al cargar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+        }
+
+        private void TP_INICIO_Click(object sender, EventArgs e)
+        {
 
         }
     }

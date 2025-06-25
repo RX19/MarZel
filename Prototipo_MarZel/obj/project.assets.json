@@ -202,23 +202,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Roberto\\.nuget\\packages\\": {},
+    "C:\\Users\\rusbe\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Roberto\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Prototipo_MarZel.csproj",
+      "projectUniqueName": "C:\\Users\\rusbe\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Prototipo_MarZel.csproj",
       "projectName": "Prototipo_MarZel",
-      "projectPath": "C:\\Users\\Roberto\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Prototipo_MarZel.csproj",
-      "packagesPath": "C:\\Users\\Roberto\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Roberto\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\obj\\",
+      "projectPath": "C:\\Users\\rusbe\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Prototipo_MarZel.csproj",
+      "packagesPath": "C:\\Users\\rusbe\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rusbe\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Roberto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rusbe\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
