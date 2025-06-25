@@ -30,7 +30,7 @@ namespace Prototipo_MarZel
 
 
         }
-        SqlConnection conexion = new SqlConnection("server=LEGION5IAAAAAAAA\\SQLEXPRESS; database=MarZel; integrated security=true");
+        SqlConnection conexion = new SqlConnection("server=LEGION5I\\SQLEXPRESS; database=MarZel; integrated security=true");
         private void FRM_MAIN_Load(object sender, EventArgs e)
         {
             Panel fondo = new Panel();
