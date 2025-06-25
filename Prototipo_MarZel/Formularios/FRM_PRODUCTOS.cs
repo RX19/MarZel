@@ -35,6 +35,7 @@ namespace Prototipo_MarZel
             {
                 MessageBox.Show("Error al cargar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            this.ControlBox = false;
 
         }
     }

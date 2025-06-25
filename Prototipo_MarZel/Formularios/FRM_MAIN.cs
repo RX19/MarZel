@@ -28,7 +28,17 @@ namespace Prototipo_MarZel
                 Accent.LightBlue200,  // Detalles como sliders, checkboxes
                 TextShade.WHITE);       // Texto blanco en fondo oscuro
 
+        }
 
+        private void CargarFormularioEnPanel(Form formHijo)
+        {
+            PANEL_PRDUCTOS.Controls.Clear(); // Limpia lo anterior
+            formHijo.TopLevel = false; // Lo hace hijo, no ventana independiente
+            formHijo.FormBorderStyle = FormBorderStyle.None;
+            formHijo.Dock = DockStyle.Fill; // Ocupa todo el panel
+            PANEL_PRDUCTOS.Controls.Add(formHijo);
+            PANEL_PRDUCTOS.Tag = formHijo;
+            formHijo.Show();
         }
         SqlConnection conexion = new SqlConnection("server=ROBBER\\SQLEXPRESS; database=MarZel; integrated security=true");
         private void FRM_MAIN_Load(object sender, EventArgs e)
@@ -38,28 +48,11 @@ namespace Prototipo_MarZel
             fondo.BackColor = Color.FromArgb(55, 71, 79); // Gris metálico
             this.Controls.Add(fondo);
             fondo.SendToBack(); // Lo envía al fondo, detrás de los demás controles
+            this.WindowState = FormWindowState.Maximized;
+            CargarFormularioEnPanel(frm_productos);
 
 
         }
 
-        private void materialCard1_Paint(object sender, PaintEventArgs e)
-        {
-            try
-            {
-                conexion.Open();
-                string query = "SELECT * FROM Productos";
-                SqlCommand comando = new SqlCommand(query, conexion);
-                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
-                DataTable tabla = new DataTable();
-                adaptador.Fill(tabla);
-                dgv_productos.DataSource = tabla;
-                conexion.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
     }
 }

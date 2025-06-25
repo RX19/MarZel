@@ -26,3 +26,4 @@ C:\Users\Roberto\source\repos\RX19\MarZel\Prototipo_MarZel\obj\Debug\net8.0-wind
 C:\Users\Roberto\source\repos\RX19\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototip.931ADDB1.Up2Date
 C:\Users\Roberto\source\repos\RX19\MarZel\Prototipo_MarZel\bin\Debug\net8.0-windows\MaterialSkin.dll
 C:\Users\Roberto\source\repos\RX19\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.Properties.Resources.resources
+C:\Users\Roberto\source\repos\RX19\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.Formularios.FRM_LOGIN.resources

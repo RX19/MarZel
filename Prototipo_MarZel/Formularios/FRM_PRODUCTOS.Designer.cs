@@ -35,10 +35,11 @@
             // dgv_productos
             // 
             dgv_productos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_productos.Location = new Point(12, 250);
+            dgv_productos.Dock = DockStyle.Right;
+            dgv_productos.Location = new Point(355, 64);
             dgv_productos.Name = "dgv_productos";
             dgv_productos.RowHeadersWidth = 51;
-            dgv_productos.Size = new Size(776, 188);
+            dgv_productos.Size = new Size(442, 383);
             dgv_productos.TabIndex = 0;
             // 
             // FRM_PRODUCTOS

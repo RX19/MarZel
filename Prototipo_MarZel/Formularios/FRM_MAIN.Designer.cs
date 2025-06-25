@@ -31,13 +31,10 @@
             MTBC_MENU = new MaterialSkin.Controls.MaterialTabControl();
             TP_INICIO = new TabPage();
             TP_PRODUCTOS = new TabPage();
-            materialCard1 = new MaterialSkin.Controls.MaterialCard();
-            dgv_productos = new DataGridView();
             TP_FACTURACION = new TabPage();
+            PANEL_PRDUCTOS = new Panel();
             MTBC_MENU.SuspendLayout();
             TP_PRODUCTOS.SuspendLayout();
-            materialCard1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgv_productos).BeginInit();
             SuspendLayout();
             // 
             // MTBC_MENU
@@ -69,7 +66,7 @@
             // TP_PRODUCTOS
             // 
             TP_PRODUCTOS.BackColor = Color.WhiteSmoke;
-            TP_PRODUCTOS.Controls.Add(materialCard1);
+            TP_PRODUCTOS.Controls.Add(PANEL_PRDUCTOS);
             TP_PRODUCTOS.ForeColor = SystemColors.Control;
             TP_PRODUCTOS.Location = new Point(4, 29);
             TP_PRODUCTOS.Name = "TP_PRODUCTOS";
@@ -77,33 +74,6 @@
             TP_PRODUCTOS.Size = new Size(786, 334);
             TP_PRODUCTOS.TabIndex = 2;
             TP_PRODUCTOS.Text = "Productos";
-            // 
-            // materialCard1
-            // 
-            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard1.Controls.Add(dgv_productos);
-            materialCard1.Depth = 0;
-            materialCard1.Dock = DockStyle.Fill;
-            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(3, 3);
-            materialCard1.Margin = new Padding(14);
-            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialCard1.Name = "materialCard1";
-            materialCard1.Padding = new Padding(14);
-            materialCard1.Size = new Size(780, 328);
-            materialCard1.TabIndex = 0;
-            materialCard1.Paint += materialCard1_Paint;
-            // 
-            // dgv_productos
-            // 
-            dgv_productos.BackgroundColor = SystemColors.ActiveCaption;
-            dgv_productos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_productos.Dock = DockStyle.Right;
-            dgv_productos.Location = new Point(381, 14);
-            dgv_productos.Name = "dgv_productos";
-            dgv_productos.RowHeadersWidth = 51;
-            dgv_productos.Size = new Size(385, 300);
-            dgv_productos.TabIndex = 0;
             // 
             // TP_FACTURACION
             // 
@@ -115,6 +85,14 @@
             TP_FACTURACION.Size = new Size(786, 334);
             TP_FACTURACION.TabIndex = 1;
             TP_FACTURACION.Text = "Facturacion";
+            // 
+            // PANEL_PRDUCTOS
+            // 
+            PANEL_PRDUCTOS.Dock = DockStyle.Fill;
+            PANEL_PRDUCTOS.Location = new Point(3, 3);
+            PANEL_PRDUCTOS.Name = "PANEL_PRDUCTOS";
+            PANEL_PRDUCTOS.Size = new Size(780, 328);
+            PANEL_PRDUCTOS.TabIndex = 0;
             // 
             // FRM_MAIN
             // 
@@ -134,8 +112,6 @@
             Load += FRM_MAIN_Load;
             MTBC_MENU.ResumeLayout(false);
             TP_PRODUCTOS.ResumeLayout(false);
-            materialCard1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgv_productos).EndInit();
             ResumeLayout(false);
         }
 
@@ -144,7 +120,6 @@
         private TabPage TP_INICIO;
         private TabPage TP_FACTURACION;
         private TabPage TP_PRODUCTOS;
-        private MaterialSkin.Controls.MaterialCard materialCard1;
-        private DataGridView dgv_productos;
+        private Panel PANEL_PRDUCTOS;
     }
 }
