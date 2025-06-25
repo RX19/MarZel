@@ -8,5 +8,6 @@ namespace Prototipo_MarZel.Recursos
 {
     internal class Conexion
     {
+        //Prueba de Commit (Ultima)
     }
 }
