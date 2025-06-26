@@ -7,7 +7,7 @@ namespace Prototipo_MarZel
         public override DataTable ObtenerTodos()
         {
             ConexionBD conexion = new ConexionBD();
-            string query = "SELECT * FROM TBL_Productos";
+            string query = "SELECT * FROM "+Tabla;
             return conexion.EjecutarConsulta(query);
         }
     }
