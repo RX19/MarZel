@@ -1,13 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
 
-namespace Prototipo_MarZel.Recursos
+namespace Prototipo_MarZel
 {
-    internal class Conexion
+    public class ConexionBD
     {
-        //Prueba de Commit (Ultima)
+        private readonly string cadenaConexion = "server=ROBBER\\SQLEXPRESS; database=MarZel; integrated security=true";
+
+        public SqlConnection AbrirConexion()
+        {
+            SqlConnection conexion = new SqlConnection(cadenaConexion);
+            conexion.Open();
+            return conexion;
+        }
+
+        public DataTable EjecutarConsulta(string query)
+        {
+            using (SqlConnection conexion = AbrirConexion())
+            {
+                SqlCommand comando = new SqlCommand(query, conexion);
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                DataTable tabla = new DataTable();
+                adaptador.Fill(tabla);
+                return tabla;
+            }
+        }
+
+        public int EjecutarComando(string query, SqlParameter[] parametros)
+        {
+            using (SqlConnection conexion = AbrirConexion())
+            {
+                SqlCommand comando = new SqlCommand(query, conexion);
+                if (parametros != null)
+                    comando.Parameters.AddRange(parametros);
+                return comando.ExecuteNonQuery(); 
+            }
+        }
     }
 }

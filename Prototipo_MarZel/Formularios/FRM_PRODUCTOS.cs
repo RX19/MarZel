@@ -17,26 +17,22 @@ namespace Prototipo_MarZel
         {
             InitializeComponent();
         }
-        SqlConnection   conexion = new SqlConnection("server=LAPTOP-BLTEG90B\\SQLEXPRESS; database=MarZel; integrated security=true");
+       
         private void FRM_PRODUCTOS_Load(object sender, EventArgs e)
         {
             try
             {
-                conexion.Open();
-                string query = "SELECT * FROM TBL_Productos";
-                SqlCommand comando = new SqlCommand(query, conexion);
-                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
-                DataTable tabla = new DataTable();
-                adaptador.Fill(tabla);
+                ConexionBD conexionBD = new ConexionBD();
+                DataTable tabla = conexionBD.EjecutarConsulta("SELECT * FROM TBL_Productos");
                 dgv_productos.DataSource = tabla;
-                conexion.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            this.ControlBox = false;
 
+            this.ControlBox = false;
         }
+
     }
 }
