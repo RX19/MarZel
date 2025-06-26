@@ -28,10 +28,4 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Recursos\Modelos\" />
-    <Folder Include="Recursos\Controlador\" />
-    <Folder Include="Recursos\Vistas\" />
-  </ItemGroup>
-
 </Project>

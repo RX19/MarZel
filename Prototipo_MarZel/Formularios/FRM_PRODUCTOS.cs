@@ -13,6 +13,7 @@ namespace Prototipo_MarZel
 {
     public partial class FRM_PRODUCTOS : MaterialSkin.Controls.MaterialForm
     {
+        ProductoController productoController = new ProductoController();
         public FRM_PRODUCTOS()
         {
             InitializeComponent();
@@ -25,8 +26,7 @@ namespace Prototipo_MarZel
         {
             try
             {
-                ConexionBD conexionBD = new ConexionBD();
-                DataTable tabla = conexionBD.EjecutarConsulta("SELECT * FROM TBL_Productos");
+                DataTable tabla = productoController.ObtenerProductos();
                 dgv_productos.DataSource = tabla;
             }
             catch (Exception ex)
