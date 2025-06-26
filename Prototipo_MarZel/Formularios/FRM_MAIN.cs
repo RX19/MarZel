@@ -43,7 +43,9 @@ namespace Prototipo_MarZel
             fondo.SendToBack();
             this.WindowState = FormWindowState.Maximized;
             CargarFormularioEnPanel(frm_productos);
-
+            //this.ControlBox = false;         // Quita los tres botones (cerrar, minimizar, maximizar)
+            this.MaximizeBox = false;        // Impide maximizar
+           // this.MinimizeBox = false;        // Impide minimizar
 
         }
 
