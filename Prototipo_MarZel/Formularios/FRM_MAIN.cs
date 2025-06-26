@@ -33,7 +33,7 @@ namespace Prototipo_MarZel
             PANEL_PRDUCTOS.Tag = formHijo;
             formHijo.Show();
         }
-        SqlConnection conexion = new SqlConnection("server=ROBBER\\SQLEXPRESS; database=MarZel; integrated security=true");
+        SqlConnection conexion = new SqlConnection("server=LAPTOP-BLTEG90B\\SQLEXPRESS; database=MarZel; integrated security=true");
         private void FRM_MAIN_Load(object sender, EventArgs e)
         {
             Panel fondo = new Panel();
