@@ -14,6 +14,7 @@ namespace Prototipo_MarZel
     public partial class FRM_PRODUCTOS : MaterialSkin.Controls.MaterialForm
     {
         ProductoController productoController = new ProductoController();
+        CategoriaController CategoriaController = new CategoriaController();
         public FRM_PRODUCTOS()
         {
             InitializeComponent();
@@ -27,7 +28,9 @@ namespace Prototipo_MarZel
             try
             {
                 DataTable tabla = productoController.ObtenerProductos();
+                DataTable lista = CategoriaController.ObtenerProductos();
                 dgv_productos.DataSource = tabla;
+                CBX_CATEGORIA.DataSource = lista;
             }
             catch (Exception ex)
             {
@@ -51,6 +54,16 @@ namespace Prototipo_MarZel
                 TXT_PC.Text = fila.Cells["Precio_Completo"].Value?.ToString();
                 TXT_CANTIDAD.Text = fila.Cells["Cantidad"].Value?.ToString();
             }
+        }
+
+        private void BTN_Limpiar_Click(object sender, EventArgs e)
+        {
+            TXT_CODIGO_BARRA.Text = "";
+            TXT_DESC.Text = "";
+            TXT_ISV.Text = "";
+            TXT_PU.Text = "";
+            TXT_PC.Text = "";
+            TXT_CANTIDAD.Text = "";
         }
     }
 }

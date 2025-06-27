@@ -30,6 +30,8 @@
         {
             dgv_productos = new DataGridView();
             MTC_Conetnido = new MaterialSkin.Controls.MaterialCard();
+            CBX_CATEGORIA = new MaterialSkin.Controls.MaterialComboBox();
+            LBL_Categoria = new MaterialSkin.Controls.MaterialLabel();
             LBL_PC = new MaterialSkin.Controls.MaterialLabel();
             LBL_PU = new MaterialSkin.Controls.MaterialLabel();
             LBL_CANTIDAD = new MaterialSkin.Controls.MaterialLabel();
@@ -42,6 +44,9 @@
             TXT_ISV = new MaterialSkin.Controls.MaterialTextBox();
             TXT_DESC = new MaterialSkin.Controls.MaterialTextBox();
             TXT_CODIGO_BARRA = new MaterialSkin.Controls.MaterialTextBox();
+            BTN_Limpiar = new MaterialSkin.Controls.MaterialButton();
+            BTN_AGREGAR = new MaterialSkin.Controls.MaterialButton();
+            BTN_MODIFICAR = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)dgv_productos).BeginInit();
             MTC_Conetnido.SuspendLayout();
             SuspendLayout();
@@ -52,10 +57,11 @@
             dgv_productos.BorderStyle = BorderStyle.Fixed3D;
             dgv_productos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_productos.Dock = DockStyle.Left;
-            dgv_productos.Location = new Point(3, 64);
+            dgv_productos.Location = new Point(3, 48);
+            dgv_productos.Margin = new Padding(3, 2, 3, 2);
             dgv_productos.Name = "dgv_productos";
             dgv_productos.RowHeadersWidth = 51;
-            dgv_productos.Size = new Size(1081, 801);
+            dgv_productos.Size = new Size(661, 586);
             dgv_productos.TabIndex = 0;
             dgv_productos.CellClick += dgv_productos_CellClick;
             // 
@@ -63,6 +69,8 @@
             // 
             MTC_Conetnido.BackColor = Color.FromArgb(255, 255, 255);
             MTC_Conetnido.BorderStyle = BorderStyle.Fixed3D;
+            MTC_Conetnido.Controls.Add(CBX_CATEGORIA);
+            MTC_Conetnido.Controls.Add(LBL_Categoria);
             MTC_Conetnido.Controls.Add(LBL_PC);
             MTC_Conetnido.Controls.Add(LBL_PU);
             MTC_Conetnido.Controls.Add(LBL_CANTIDAD);
@@ -77,20 +85,54 @@
             MTC_Conetnido.Controls.Add(TXT_CODIGO_BARRA);
             MTC_Conetnido.Depth = 0;
             MTC_Conetnido.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            MTC_Conetnido.Location = new Point(1243, 78);
-            MTC_Conetnido.Margin = new Padding(14);
+            MTC_Conetnido.Location = new Point(679, 48);
+            MTC_Conetnido.Margin = new Padding(12, 10, 12, 10);
             MTC_Conetnido.MouseState = MaterialSkin.MouseState.HOVER;
             MTC_Conetnido.Name = "MTC_Conetnido";
-            MTC_Conetnido.Padding = new Padding(14);
-            MTC_Conetnido.Size = new Size(540, 534);
+            MTC_Conetnido.Padding = new Padding(12, 10, 12, 10);
+            MTC_Conetnido.Size = new Size(473, 402);
             MTC_Conetnido.TabIndex = 1;
+            // 
+            // CBX_CATEGORIA
+            // 
+            CBX_CATEGORIA.AutoResize = false;
+            CBX_CATEGORIA.BackColor = Color.FromArgb(255, 255, 255);
+            CBX_CATEGORIA.Depth = 0;
+            CBX_CATEGORIA.DrawMode = DrawMode.OwnerDrawVariable;
+            CBX_CATEGORIA.DropDownHeight = 174;
+            CBX_CATEGORIA.DropDownStyle = ComboBoxStyle.DropDownList;
+            CBX_CATEGORIA.DropDownWidth = 121;
+            CBX_CATEGORIA.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            CBX_CATEGORIA.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            CBX_CATEGORIA.FormattingEnabled = true;
+            CBX_CATEGORIA.IntegralHeight = false;
+            CBX_CATEGORIA.ItemHeight = 43;
+            CBX_CATEGORIA.Location = new Point(307, 122);
+            CBX_CATEGORIA.MaxDropDownItems = 4;
+            CBX_CATEGORIA.MouseState = MaterialSkin.MouseState.OUT;
+            CBX_CATEGORIA.Name = "CBX_CATEGORIA";
+            CBX_CATEGORIA.Size = new Size(133, 49);
+            CBX_CATEGORIA.StartIndex = 0;
+            CBX_CATEGORIA.TabIndex = 13;
+            // 
+            // LBL_Categoria
+            // 
+            LBL_Categoria.AutoSize = true;
+            LBL_Categoria.Depth = 0;
+            LBL_Categoria.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            LBL_Categoria.Location = new Point(307, 91);
+            LBL_Categoria.MouseState = MaterialSkin.MouseState.HOVER;
+            LBL_Categoria.Name = "LBL_Categoria";
+            LBL_Categoria.Size = new Size(69, 19);
+            LBL_Categoria.TabIndex = 12;
+            LBL_Categoria.Text = "Categoria";
             // 
             // LBL_PC
             // 
             LBL_PC.AutoSize = true;
             LBL_PC.Depth = 0;
             LBL_PC.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LBL_PC.Location = new Point(351, 447);
+            LBL_PC.Location = new Point(307, 335);
             LBL_PC.MouseState = MaterialSkin.MouseState.HOVER;
             LBL_PC.Name = "LBL_PC";
             LBL_PC.Size = new Size(21, 19);
@@ -102,7 +144,7 @@
             LBL_PU.AutoSize = true;
             LBL_PU.Depth = 0;
             LBL_PU.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LBL_PU.Location = new Point(91, 449);
+            LBL_PU.Location = new Point(80, 337);
             LBL_PU.MouseState = MaterialSkin.MouseState.HOVER;
             LBL_PU.Name = "LBL_PU";
             LBL_PU.Size = new Size(21, 19);
@@ -114,7 +156,7 @@
             LBL_CANTIDAD.AutoSize = true;
             LBL_CANTIDAD.Depth = 0;
             LBL_CANTIDAD.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LBL_CANTIDAD.Location = new Point(28, 293);
+            LBL_CANTIDAD.Location = new Point(24, 220);
             LBL_CANTIDAD.MouseState = MaterialSkin.MouseState.HOVER;
             LBL_CANTIDAD.Name = "LBL_CANTIDAD";
             LBL_CANTIDAD.Size = new Size(65, 19);
@@ -126,7 +168,7 @@
             LVL_ISV.AutoSize = true;
             LVL_ISV.Depth = 0;
             LVL_ISV.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LVL_ISV.Location = new Point(28, 203);
+            LVL_ISV.Location = new Point(24, 152);
             LVL_ISV.MouseState = MaterialSkin.MouseState.HOVER;
             LVL_ISV.Name = "LVL_ISV";
             LVL_ISV.Size = new Size(25, 19);
@@ -138,7 +180,7 @@
             LBL_DESCRIPCION.AutoSize = true;
             LBL_DESCRIPCION.Depth = 0;
             LBL_DESCRIPCION.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LBL_DESCRIPCION.Location = new Point(28, 121);
+            LBL_DESCRIPCION.Location = new Point(24, 91);
             LBL_DESCRIPCION.MouseState = MaterialSkin.MouseState.HOVER;
             LBL_DESCRIPCION.Name = "LBL_DESCRIPCION";
             LBL_DESCRIPCION.Size = new Size(84, 19);
@@ -150,7 +192,7 @@
             LBL_CODIGO_BARRA.AutoSize = true;
             LBL_CODIGO_BARRA.Depth = 0;
             LBL_CODIGO_BARRA.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LBL_CODIGO_BARRA.Location = new Point(223, 33);
+            LBL_CODIGO_BARRA.Location = new Point(195, 25);
             LBL_CODIGO_BARRA.MouseState = MaterialSkin.MouseState.HOVER;
             LBL_CODIGO_BARRA.Name = "LBL_CODIGO_BARRA";
             LBL_CODIGO_BARRA.Size = new Size(114, 19);
@@ -164,13 +206,14 @@
             TXT_PC.Depth = 0;
             TXT_PC.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_PC.LeadingIcon = null;
-            TXT_PC.Location = new Point(378, 447);
+            TXT_PC.Location = new Point(331, 335);
+            TXT_PC.Margin = new Padding(3, 2, 3, 2);
             TXT_PC.MaxLength = 50;
             TXT_PC.MouseState = MaterialSkin.MouseState.OUT;
             TXT_PC.Multiline = false;
             TXT_PC.Name = "TXT_PC";
             TXT_PC.ReadOnly = true;
-            TXT_PC.Size = new Size(125, 50);
+            TXT_PC.Size = new Size(109, 50);
             TXT_PC.TabIndex = 5;
             TXT_PC.Text = "";
             TXT_PC.TrailingIcon = null;
@@ -182,13 +225,14 @@
             TXT_PU.Depth = 0;
             TXT_PU.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_PU.LeadingIcon = null;
-            TXT_PU.Location = new Point(121, 447);
+            TXT_PU.Location = new Point(106, 335);
+            TXT_PU.Margin = new Padding(3, 2, 3, 2);
             TXT_PU.MaxLength = 50;
             TXT_PU.MouseState = MaterialSkin.MouseState.OUT;
             TXT_PU.Multiline = false;
             TXT_PU.Name = "TXT_PU";
             TXT_PU.ReadOnly = true;
-            TXT_PU.Size = new Size(125, 50);
+            TXT_PU.Size = new Size(109, 50);
             TXT_PU.TabIndex = 4;
             TXT_PU.Text = "";
             TXT_PU.TrailingIcon = null;
@@ -200,13 +244,14 @@
             TXT_CANTIDAD.Depth = 0;
             TXT_CANTIDAD.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_CANTIDAD.LeadingIcon = null;
-            TXT_CANTIDAD.Location = new Point(141, 291);
+            TXT_CANTIDAD.Location = new Point(123, 218);
+            TXT_CANTIDAD.Margin = new Padding(3, 2, 3, 2);
             TXT_CANTIDAD.MaxLength = 50;
             TXT_CANTIDAD.MouseState = MaterialSkin.MouseState.OUT;
             TXT_CANTIDAD.Multiline = false;
             TXT_CANTIDAD.Name = "TXT_CANTIDAD";
             TXT_CANTIDAD.ReadOnly = true;
-            TXT_CANTIDAD.Size = new Size(186, 50);
+            TXT_CANTIDAD.Size = new Size(163, 50);
             TXT_CANTIDAD.TabIndex = 3;
             TXT_CANTIDAD.Text = "";
             TXT_CANTIDAD.TrailingIcon = null;
@@ -218,13 +263,14 @@
             TXT_ISV.Depth = 0;
             TXT_ISV.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_ISV.LeadingIcon = null;
-            TXT_ISV.Location = new Point(141, 203);
+            TXT_ISV.Location = new Point(123, 152);
+            TXT_ISV.Margin = new Padding(3, 2, 3, 2);
             TXT_ISV.MaxLength = 50;
             TXT_ISV.MouseState = MaterialSkin.MouseState.OUT;
             TXT_ISV.Multiline = false;
             TXT_ISV.Name = "TXT_ISV";
             TXT_ISV.ReadOnly = true;
-            TXT_ISV.Size = new Size(186, 50);
+            TXT_ISV.Size = new Size(163, 50);
             TXT_ISV.TabIndex = 2;
             TXT_ISV.Text = "";
             TXT_ISV.TrailingIcon = null;
@@ -236,13 +282,14 @@
             TXT_DESC.Depth = 0;
             TXT_DESC.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_DESC.LeadingIcon = null;
-            TXT_DESC.Location = new Point(141, 121);
+            TXT_DESC.Location = new Point(123, 91);
+            TXT_DESC.Margin = new Padding(3, 2, 3, 2);
             TXT_DESC.MaxLength = 50;
             TXT_DESC.MouseState = MaterialSkin.MouseState.OUT;
             TXT_DESC.Multiline = false;
             TXT_DESC.Name = "TXT_DESC";
             TXT_DESC.ReadOnly = true;
-            TXT_DESC.Size = new Size(186, 50);
+            TXT_DESC.Size = new Size(163, 50);
             TXT_DESC.TabIndex = 1;
             TXT_DESC.Text = "";
             TXT_DESC.TrailingIcon = null;
@@ -255,31 +302,96 @@
             TXT_CODIGO_BARRA.DetectUrls = false;
             TXT_CODIGO_BARRA.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_CODIGO_BARRA.LeadingIcon = null;
-            TXT_CODIGO_BARRA.Location = new Point(351, 17);
+            TXT_CODIGO_BARRA.Location = new Point(307, 13);
+            TXT_CODIGO_BARRA.Margin = new Padding(3, 2, 3, 2);
             TXT_CODIGO_BARRA.MaxLength = 50;
             TXT_CODIGO_BARRA.MouseState = MaterialSkin.MouseState.OUT;
             TXT_CODIGO_BARRA.Multiline = false;
             TXT_CODIGO_BARRA.Name = "TXT_CODIGO_BARRA";
             TXT_CODIGO_BARRA.ReadOnly = true;
-            TXT_CODIGO_BARRA.Size = new Size(152, 50);
+            TXT_CODIGO_BARRA.Size = new Size(133, 50);
             TXT_CODIGO_BARRA.TabIndex = 0;
             TXT_CODIGO_BARRA.Text = "";
             TXT_CODIGO_BARRA.TrailingIcon = null;
             // 
+            // BTN_Limpiar
+            // 
+            BTN_Limpiar.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            BTN_Limpiar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            BTN_Limpiar.Depth = 0;
+            BTN_Limpiar.HighEmphasis = true;
+            BTN_Limpiar.Icon = null;
+            BTN_Limpiar.Location = new Point(679, 487);
+            BTN_Limpiar.Margin = new Padding(4, 6, 4, 6);
+            BTN_Limpiar.MouseState = MaterialSkin.MouseState.HOVER;
+            BTN_Limpiar.Name = "BTN_Limpiar";
+            BTN_Limpiar.NoAccentTextColor = Color.Empty;
+            BTN_Limpiar.Size = new Size(79, 36);
+            BTN_Limpiar.TabIndex = 2;
+            BTN_Limpiar.Text = "Limpiar";
+            BTN_Limpiar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            BTN_Limpiar.UseAccentColor = false;
+            BTN_Limpiar.UseVisualStyleBackColor = true;
+            BTN_Limpiar.Click += BTN_Limpiar_Click;
+            // 
+            // BTN_AGREGAR
+            // 
+            BTN_AGREGAR.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            BTN_AGREGAR.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            BTN_AGREGAR.Depth = 0;
+            BTN_AGREGAR.HighEmphasis = true;
+            BTN_AGREGAR.Icon = null;
+            BTN_AGREGAR.Location = new Point(876, 487);
+            BTN_AGREGAR.Margin = new Padding(4, 6, 4, 6);
+            BTN_AGREGAR.MouseState = MaterialSkin.MouseState.HOVER;
+            BTN_AGREGAR.Name = "BTN_AGREGAR";
+            BTN_AGREGAR.NoAccentTextColor = Color.Empty;
+            BTN_AGREGAR.Size = new Size(88, 36);
+            BTN_AGREGAR.TabIndex = 3;
+            BTN_AGREGAR.Text = "Agregar";
+            BTN_AGREGAR.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            BTN_AGREGAR.UseAccentColor = false;
+            BTN_AGREGAR.UseVisualStyleBackColor = true;
+            // 
+            // BTN_MODIFICAR
+            // 
+            BTN_MODIFICAR.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            BTN_MODIFICAR.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            BTN_MODIFICAR.Depth = 0;
+            BTN_MODIFICAR.HighEmphasis = true;
+            BTN_MODIFICAR.Icon = null;
+            BTN_MODIFICAR.Location = new Point(1012, 487);
+            BTN_MODIFICAR.Margin = new Padding(4, 6, 4, 6);
+            BTN_MODIFICAR.MouseState = MaterialSkin.MouseState.HOVER;
+            BTN_MODIFICAR.Name = "BTN_MODIFICAR";
+            BTN_MODIFICAR.NoAccentTextColor = Color.Empty;
+            BTN_MODIFICAR.Size = new Size(99, 36);
+            BTN_MODIFICAR.TabIndex = 4;
+            BTN_MODIFICAR.Text = "MODIFICAR";
+            BTN_MODIFICAR.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            BTN_MODIFICAR.UseAccentColor = false;
+            BTN_MODIFICAR.UseVisualStyleBackColor = true;
+            // 
             // FRM_PRODUCTOS
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1870, 868);
+            ClientSize = new Size(1317, 636);
+            Controls.Add(BTN_MODIFICAR);
+            Controls.Add(BTN_AGREGAR);
+            Controls.Add(BTN_Limpiar);
             Controls.Add(MTC_Conetnido);
             Controls.Add(dgv_productos);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FRM_PRODUCTOS";
+            Padding = new Padding(3, 48, 3, 2);
             Text = "Menu Productos";
             Load += FRM_PRODUCTOS_Load;
             ((System.ComponentModel.ISupportInitialize)dgv_productos).EndInit();
             MTC_Conetnido.ResumeLayout(false);
             MTC_Conetnido.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -298,5 +410,10 @@
         private MaterialSkin.Controls.MaterialLabel LBL_CANTIDAD;
         private MaterialSkin.Controls.MaterialLabel LVL_ISV;
         private MaterialSkin.Controls.MaterialLabel LBL_PC;
+        private MaterialSkin.Controls.MaterialLabel LBL_Categoria;
+        private MaterialSkin.Controls.MaterialComboBox CBX_CATEGORIA;
+        private MaterialSkin.Controls.MaterialButton BTN_Limpiar;
+        private MaterialSkin.Controls.MaterialButton BTN_AGREGAR;
+        private MaterialSkin.Controls.MaterialButton BTN_MODIFICAR;
     }
 }
