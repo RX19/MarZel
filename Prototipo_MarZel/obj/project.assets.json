@@ -202,19 +202,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\USUARIO\\.nuget\\packages\\": {}
+    "C:\\Users\\mmara\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\USUARIO\\Source\\Repos\\RX19\\MarZel\\Prototipo_MarZel\\Prototipo_MarZel.csproj",
+      "projectUniqueName": "C:\\Users\\mmara\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Prototipo_MarZel.csproj",
       "projectName": "Prototipo_MarZel",
-      "projectPath": "C:\\Users\\USUARIO\\Source\\Repos\\RX19\\MarZel\\Prototipo_MarZel\\Prototipo_MarZel.csproj",
-      "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\USUARIO\\Source\\Repos\\RX19\\MarZel\\Prototipo_MarZel\\obj\\",
+      "projectPath": "C:\\Users\\mmara\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Prototipo_MarZel.csproj",
+      "packagesPath": "C:\\Users\\mmara\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mmara\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\USUARIO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mmara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -234,7 +239,13 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -268,7 +279,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
