@@ -86,8 +86,8 @@ CREATE TABLE TBL_ProductosOrden (
     Cantidad INT,
     Costo_Precio DECIMAL(10, 2),
     PRIMARY KEY (ID_Orden, ID_Producto),
-    FOREIGN KEY (ID_Orden) REFERENCES Orden(ID_Orden),
-    FOREIGN KEY (ID_Producto) REFERENCES Productos(ID_Producto)
+    FOREIGN KEY (ID_Orden) REFERENCES TBL_Orden(ID_Orden),
+    FOREIGN KEY (ID_Producto) REFERENCES TBL_Productos(ID_Producto)
 );
 
 -- Tabla de Factura
@@ -102,7 +102,7 @@ CREATE TABLE TBL_Factura (
     ISV DECIMAL(10, 2),
     Total DECIMAL(10, 2),
     ID_Orden INT,
-    FOREIGN KEY (ID_Orden) REFERENCES Orden(ID_Orden)
+    FOREIGN KEY (ID_Orden) REFERENCES TBL_Orden(ID_Orden)
 );
 
 --Inserts de Panas
