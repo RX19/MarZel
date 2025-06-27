@@ -15,20 +15,20 @@ namespace Prototipo_MarZel
             skinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             skinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             skinManager.ColorScheme = new ColorScheme(
-                Primary.BlueGrey800,  
-                Primary.BlueGrey900,  
-                Primary.BlueGrey500,  
-                Accent.LightBlue200,  
-                TextShade.WHITE);       
+                Primary.BlueGrey800,
+                Primary.BlueGrey900,
+                Primary.BlueGrey500,
+                Accent.LightBlue200,
+                TextShade.WHITE);
 
         }
 
         private void CargarFormularioEnPanel(Form formHijo)
         {
-            PANEL_PRDUCTOS.Controls.Clear(); 
-            formHijo.TopLevel = false; 
+            PANEL_PRDUCTOS.Controls.Clear();
+            formHijo.TopLevel = false;
             formHijo.FormBorderStyle = FormBorderStyle.None;
-            formHijo.Dock = DockStyle.Fill; 
+            formHijo.Dock = DockStyle.Fill;
             PANEL_PRDUCTOS.Controls.Add(formHijo);
             PANEL_PRDUCTOS.Tag = formHijo;
             formHijo.Show();
@@ -37,16 +37,20 @@ namespace Prototipo_MarZel
         {
             Panel fondo = new Panel();
             fondo.Dock = DockStyle.Fill;
-            fondo.BackColor = Color.FromArgb(55, 71, 79); 
+            fondo.BackColor = Color.FromArgb(55, 71, 79);
             this.Controls.Add(fondo);
             fondo.SendToBack();
             this.WindowState = FormWindowState.Maximized;
             CargarFormularioEnPanel(frm_productos);
             //this.ControlBox = false;         // Quita los tres botones (cerrar, minimizar, maximizar)
             this.MaximizeBox = false;        // Impide maximizar
-           // this.MinimizeBox = false;        // Impide minimizar
+                                             // this.MinimizeBox = false;        // Impide minimizar
 
         }
 
+        private void TP_INICIO_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

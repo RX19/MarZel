@@ -31,8 +31,8 @@
             MTBC_MENU = new MaterialSkin.Controls.MaterialTabControl();
             TP_INICIO = new TabPage();
             TP_PRODUCTOS = new TabPage();
-            TP_FACTURACION = new TabPage();
             PANEL_PRDUCTOS = new Panel();
+            TP_FACTURACION = new TabPage();
             MTBC_MENU.SuspendLayout();
             TP_PRODUCTOS.SuspendLayout();
             SuspendLayout();
@@ -62,6 +62,7 @@
             TP_INICIO.Size = new Size(786, 334);
             TP_INICIO.TabIndex = 0;
             TP_INICIO.Text = "Inicio";
+            TP_INICIO.Click += TP_INICIO_Click;
             // 
             // TP_PRODUCTOS
             // 
@@ -75,6 +76,14 @@
             TP_PRODUCTOS.TabIndex = 2;
             TP_PRODUCTOS.Text = "Productos";
             // 
+            // PANEL_PRDUCTOS
+            // 
+            PANEL_PRDUCTOS.Dock = DockStyle.Fill;
+            PANEL_PRDUCTOS.Location = new Point(3, 3);
+            PANEL_PRDUCTOS.Name = "PANEL_PRDUCTOS";
+            PANEL_PRDUCTOS.Size = new Size(780, 328);
+            PANEL_PRDUCTOS.TabIndex = 0;
+            // 
             // TP_FACTURACION
             // 
             TP_FACTURACION.BackColor = Color.WhiteSmoke;
@@ -85,14 +94,6 @@
             TP_FACTURACION.Size = new Size(786, 334);
             TP_FACTURACION.TabIndex = 1;
             TP_FACTURACION.Text = "Facturacion";
-            // 
-            // PANEL_PRDUCTOS
-            // 
-            PANEL_PRDUCTOS.Dock = DockStyle.Fill;
-            PANEL_PRDUCTOS.Location = new Point(3, 3);
-            PANEL_PRDUCTOS.Name = "PANEL_PRDUCTOS";
-            PANEL_PRDUCTOS.Size = new Size(780, 328);
-            PANEL_PRDUCTOS.TabIndex = 0;
             // 
             // FRM_MAIN
             // 
