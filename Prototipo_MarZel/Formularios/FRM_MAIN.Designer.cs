@@ -83,6 +83,7 @@
             PANEL_PRDUCTOS.Name = "PANEL_PRDUCTOS";
             PANEL_PRDUCTOS.Size = new Size(780, 328);
             PANEL_PRDUCTOS.TabIndex = 0;
+            PANEL_PRDUCTOS.Paint += PANEL_PRDUCTOS_Paint;
             // 
             // TP_FACTURACION
             // 

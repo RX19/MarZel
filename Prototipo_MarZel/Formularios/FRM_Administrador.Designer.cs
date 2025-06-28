@@ -1,6 +1,6 @@
 ﻿namespace Prototipo_MarZel.Formularios
 {
-    partial class FRM_Administrador
+    partial class FRM_ADMINISTRADOR
     {
         /// <summary>
         /// Required designer variable.
@@ -28,50 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
-            tabPage1 = new TabPage();
-            materialTabControl1.SuspendLayout();
             SuspendLayout();
             // 
-            // materialTabControl1
-            // 
-            materialTabControl1.Controls.Add(tabPage1);
-            materialTabControl1.Depth = 0;
-            materialTabControl1.Dock = DockStyle.Fill;
-            materialTabControl1.Location = new Point(3, 64);
-            materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialTabControl1.Multiline = true;
-            materialTabControl1.Name = "materialTabControl1";
-            materialTabControl1.SelectedIndex = 0;
-            materialTabControl1.Size = new Size(794, 383);
-            materialTabControl1.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            tabPage1.Location = new Point(4, 29);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(786, 350);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "Gestión de Usuarios";
-            tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // FRM_Administrador
+            // FRM_ADMINISTRADOR
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(materialTabControl1);
-            Name = "FRM_Administrador";
+            Name = "FRM_ADMINISTRADOR";
             Text = "Administrador";
             Load += FRM_Administrador_Load;
-            materialTabControl1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
-        private TabPage tabPage1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private TabPage tabPage2;
+        private MaterialSkin.Controls.MaterialRadioButton materialRadioButton1;
     }
 }

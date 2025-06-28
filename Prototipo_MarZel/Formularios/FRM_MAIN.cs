@@ -1,4 +1,5 @@
 using MaterialSkin;
+using Prototipo_MarZel.Formularios;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -7,6 +8,7 @@ namespace Prototipo_MarZel
     public partial class FRM_MAIN : MaterialSkin.Controls.MaterialForm
     {
         FRM_PRODUCTOS frm_productos = new FRM_PRODUCTOS();
+        FRM_ADMINISTRADOR frm_administrador = new FRM_ADMINISTRADOR();
         public FRM_MAIN()
         {
             InitializeComponent();
@@ -44,11 +46,17 @@ namespace Prototipo_MarZel
             CargarFormularioEnPanel(frm_productos);
             //this.ControlBox = false;         // Quita los tres botones (cerrar, minimizar, maximizar)
             this.MaximizeBox = false;        // Impide maximizar
-                                             // this.MinimizeBox = false;        // Impide minimizar
-
+            this.Hide();                                 // this.MinimizeBox = false;        // Impide minimizar
+            frm_administrador.ShowDialog();
+            Application.Exit();
         }
 
         private void TP_INICIO_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PANEL_PRDUCTOS_Paint(object sender, PaintEventArgs e)
         {
 
         }
