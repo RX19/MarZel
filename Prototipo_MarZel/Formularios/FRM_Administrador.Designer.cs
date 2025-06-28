@@ -45,6 +45,9 @@
             materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            materialCheckbox1 = new MaterialSkin.Controls.MaterialCheckbox();
+            materialCheckbox2 = new MaterialSkin.Controls.MaterialCheckbox();
+            materialCheckbox3 = new MaterialSkin.Controls.MaterialCheckbox();
             P_CREAR_USUARIO.SuspendLayout();
             SuspendLayout();
             // 
@@ -71,6 +74,9 @@
             // P_CREAR_USUARIO
             // 
             P_CREAR_USUARIO.BackColor = Color.FromArgb(255, 255, 255);
+            P_CREAR_USUARIO.Controls.Add(materialCheckbox3);
+            P_CREAR_USUARIO.Controls.Add(materialCheckbox2);
+            P_CREAR_USUARIO.Controls.Add(materialCheckbox1);
             P_CREAR_USUARIO.Controls.Add(BTN_CREAR);
             P_CREAR_USUARIO.Controls.Add(materialLabel1);
             P_CREAR_USUARIO.Controls.Add(CB_TIPO_USUARIO);
@@ -93,7 +99,7 @@
             P_CREAR_USUARIO.MouseState = MaterialSkin.MouseState.HOVER;
             P_CREAR_USUARIO.Name = "P_CREAR_USUARIO";
             P_CREAR_USUARIO.Padding = new Padding(14);
-            P_CREAR_USUARIO.Size = new Size(753, 477);
+            P_CREAR_USUARIO.Size = new Size(753, 546);
             P_CREAR_USUARIO.TabIndex = 1;
             P_CREAR_USUARIO.Click += BTN_CREAR_Click;
             // 
@@ -104,7 +110,7 @@
             BTN_CREAR.Depth = 0;
             BTN_CREAR.HighEmphasis = true;
             BTN_CREAR.Icon = null;
-            BTN_CREAR.Location = new Point(412, 423);
+            BTN_CREAR.Location = new Point(504, 490);
             BTN_CREAR.Margin = new Padding(4, 6, 4, 6);
             BTN_CREAR.MouseState = MaterialSkin.MouseState.HOVER;
             BTN_CREAR.Name = "BTN_CREAR";
@@ -326,11 +332,59 @@
             materialLabel2.TabIndex = 0;
             materialLabel2.Text = "Nombre";
             // 
+            // materialCheckbox1
+            // 
+            materialCheckbox1.AutoSize = true;
+            materialCheckbox1.Depth = 0;
+            materialCheckbox1.Location = new Point(36, 442);
+            materialCheckbox1.Margin = new Padding(0);
+            materialCheckbox1.MouseLocation = new Point(-1, -1);
+            materialCheckbox1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCheckbox1.Name = "materialCheckbox1";
+            materialCheckbox1.ReadOnly = false;
+            materialCheckbox1.Ripple = true;
+            materialCheckbox1.Size = new Size(176, 37);
+            materialCheckbox1.TabIndex = 15;
+            materialCheckbox1.Text = "Gestión de Usuarios";
+            materialCheckbox1.UseVisualStyleBackColor = true;
+            // 
+            // materialCheckbox2
+            // 
+            materialCheckbox2.AutoSize = true;
+            materialCheckbox2.Depth = 0;
+            materialCheckbox2.Location = new Point(266, 442);
+            materialCheckbox2.Margin = new Padding(0);
+            materialCheckbox2.MouseLocation = new Point(-1, -1);
+            materialCheckbox2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCheckbox2.Name = "materialCheckbox2";
+            materialCheckbox2.ReadOnly = false;
+            materialCheckbox2.Ripple = true;
+            materialCheckbox2.Size = new Size(105, 37);
+            materialCheckbox2.TabIndex = 16;
+            materialCheckbox2.Text = "Inventario";
+            materialCheckbox2.UseVisualStyleBackColor = true;
+            // 
+            // materialCheckbox3
+            // 
+            materialCheckbox3.AutoSize = true;
+            materialCheckbox3.Depth = 0;
+            materialCheckbox3.Location = new Point(431, 442);
+            materialCheckbox3.Margin = new Padding(0);
+            materialCheckbox3.MouseLocation = new Point(-1, -1);
+            materialCheckbox3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCheckbox3.Name = "materialCheckbox3";
+            materialCheckbox3.ReadOnly = false;
+            materialCheckbox3.Ripple = true;
+            materialCheckbox3.Size = new Size(97, 37);
+            materialCheckbox3.TabIndex = 17;
+            materialCheckbox3.Text = "Reportes";
+            materialCheckbox3.UseVisualStyleBackColor = true;
+            // 
             // FRM_ADMINISTRADOR
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(948, 588);
+            ClientSize = new Size(974, 657);
             Controls.Add(P_CREAR_USUARIO);
             Controls.Add(BTN_PANEL_CREAR_USUARIO);
             Name = "FRM_ADMINISTRADOR";
@@ -362,5 +416,8 @@
         private MaterialSkin.Controls.MaterialTextBox TXT_APELLIDO;
         private MaterialSkin.Controls.MaterialTextBox TXT_NOMBRE;
         private MaterialSkin.Controls.MaterialButton BTN_CREAR;
+        private MaterialSkin.Controls.MaterialCheckbox materialCheckbox3;
+        private MaterialSkin.Controls.MaterialCheckbox materialCheckbox2;
+        private MaterialSkin.Controls.MaterialCheckbox materialCheckbox1;
     }
 }
