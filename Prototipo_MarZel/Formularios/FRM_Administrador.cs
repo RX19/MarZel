@@ -29,6 +29,14 @@ namespace Prototipo_MarZel.Formularios
 
         }
 
-        
+        private void materialLabel2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialLabel6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
