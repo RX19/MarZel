@@ -22,30 +22,29 @@ namespace Prototipo_MarZel.Formularios
 
         private void FRM_Administrador_Load(object sender, EventArgs e)
         {
-
+            P_CREAR_USUARIO.Visible = false;
         }
 
-        private void materialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialLabel2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialLabel6_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void BTN_CREAR_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(TXT_NOMBRE.Text) ||
+                string.IsNullOrWhiteSpace(TXT_APELLIDO.Text) ||
+                string.IsNullOrWhiteSpace(TXT_CORREO.Text) ||
+                string.IsNullOrWhiteSpace(TXT_NOMBRE_USUARIO.Text) ||
+                string.IsNullOrWhiteSpace(TXT_CONTRASEÑA.Text) ||
+                string.IsNullOrWhiteSpace(TXT_CELULAR.Text) ||
+                CB_TIPO_USUARIO.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor completa todos los campos antes de continuar.", "Campos requeridos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
             string nombre = TXT_NOMBRE.Text.Trim();
             string apellido = TXT_APELLIDO.Text.Trim();
             string correo = TXT_CORREO.Text.Trim();
-            string nombreUsuario= TXT_NOMBRE_USUARIO.Text.Trim();
+            string nombreUsuario = TXT_NOMBRE_USUARIO.Text.Trim();
             string contraseña = TXT_CONTRASEÑA.Text.Trim();
             string celular = TXT_CELULAR.Text.Trim();
 
@@ -65,8 +64,8 @@ namespace Prototipo_MarZel.Formularios
                 new SqlParameter("@Usuario", nombreUsuario),
                 new SqlParameter("@Contraseña", contraseña),
                 new SqlParameter("@Celular", celular),
-                new SqlParameter("@ID_Tipo_Usuario", idTipoUsuario), 
-                new SqlParameter("@Estado", 1) 
+                new SqlParameter("@ID_Tipo_Usuario", idTipoUsuario),
+                new SqlParameter("@Estado", 1)
             };
 
             string query = @"
@@ -88,5 +87,9 @@ namespace Prototipo_MarZel.Formularios
 
         }
 
+        private void BTN_PANEL_CREAR_USUARIO_Click(object sender, EventArgs e)
+        {
+            P_CREAR_USUARIO.Visible = true;
+        }
     }
 }

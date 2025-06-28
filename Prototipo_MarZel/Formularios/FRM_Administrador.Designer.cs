@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            materialButton1 = new MaterialSkin.Controls.MaterialButton();
-            materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            BTN_PANEL_CREAR_USUARIO = new MaterialSkin.Controls.MaterialButton();
+            P_CREAR_USUARIO = new MaterialSkin.Controls.MaterialCard();
             BTN_CREAR = new MaterialSkin.Controls.MaterialButton();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             CB_TIPO_USUARIO = new MaterialSkin.Controls.MaterialComboBox();
@@ -45,56 +45,57 @@
             materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
-            materialCard1.SuspendLayout();
+            P_CREAR_USUARIO.SuspendLayout();
             SuspendLayout();
             // 
-            // materialButton1
+            // BTN_PANEL_CREAR_USUARIO
             // 
-            materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton1.Depth = 0;
-            materialButton1.HighEmphasis = true;
-            materialButton1.Icon = null;
-            materialButton1.Location = new Point(28, 94);
-            materialButton1.Margin = new Padding(4, 6, 4, 6);
-            materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton1.Name = "materialButton1";
-            materialButton1.NoAccentTextColor = Color.Empty;
-            materialButton1.Size = new Size(132, 36);
-            materialButton1.TabIndex = 0;
-            materialButton1.Text = "Crear Usuario";
-            materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton1.UseAccentColor = false;
-            materialButton1.UseVisualStyleBackColor = true;
+            BTN_PANEL_CREAR_USUARIO.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            BTN_PANEL_CREAR_USUARIO.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            BTN_PANEL_CREAR_USUARIO.Depth = 0;
+            BTN_PANEL_CREAR_USUARIO.HighEmphasis = true;
+            BTN_PANEL_CREAR_USUARIO.Icon = null;
+            BTN_PANEL_CREAR_USUARIO.Location = new Point(28, 94);
+            BTN_PANEL_CREAR_USUARIO.Margin = new Padding(4, 6, 4, 6);
+            BTN_PANEL_CREAR_USUARIO.MouseState = MaterialSkin.MouseState.HOVER;
+            BTN_PANEL_CREAR_USUARIO.Name = "BTN_PANEL_CREAR_USUARIO";
+            BTN_PANEL_CREAR_USUARIO.NoAccentTextColor = Color.Empty;
+            BTN_PANEL_CREAR_USUARIO.Size = new Size(132, 36);
+            BTN_PANEL_CREAR_USUARIO.TabIndex = 0;
+            BTN_PANEL_CREAR_USUARIO.Text = "Crear Usuario";
+            BTN_PANEL_CREAR_USUARIO.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            BTN_PANEL_CREAR_USUARIO.UseAccentColor = false;
+            BTN_PANEL_CREAR_USUARIO.UseVisualStyleBackColor = true;
+            BTN_PANEL_CREAR_USUARIO.Click += BTN_PANEL_CREAR_USUARIO_Click;
             // 
-            // materialCard1
+            // P_CREAR_USUARIO
             // 
-            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard1.Controls.Add(BTN_CREAR);
-            materialCard1.Controls.Add(materialLabel1);
-            materialCard1.Controls.Add(CB_TIPO_USUARIO);
-            materialCard1.Controls.Add(TXT_CELULAR);
-            materialCard1.Controls.Add(TXT_CONTRASEÑA);
-            materialCard1.Controls.Add(TXT_NOMBRE_USUARIO);
-            materialCard1.Controls.Add(TXT_CORREO);
-            materialCard1.Controls.Add(TXT_APELLIDO);
-            materialCard1.Controls.Add(TXT_NOMBRE);
-            materialCard1.Controls.Add(materialLabel7);
-            materialCard1.Controls.Add(materialLabel6);
-            materialCard1.Controls.Add(materialLabel5);
-            materialCard1.Controls.Add(materialLabel4);
-            materialCard1.Controls.Add(materialLabel3);
-            materialCard1.Controls.Add(materialLabel2);
-            materialCard1.Depth = 0;
-            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(178, 94);
-            materialCard1.Margin = new Padding(14);
-            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialCard1.Name = "materialCard1";
-            materialCard1.Padding = new Padding(14);
-            materialCard1.Size = new Size(753, 477);
-            materialCard1.TabIndex = 1;
-            materialCard1.Click += BTN_CREAR_Click;
+            P_CREAR_USUARIO.BackColor = Color.FromArgb(255, 255, 255);
+            P_CREAR_USUARIO.Controls.Add(BTN_CREAR);
+            P_CREAR_USUARIO.Controls.Add(materialLabel1);
+            P_CREAR_USUARIO.Controls.Add(CB_TIPO_USUARIO);
+            P_CREAR_USUARIO.Controls.Add(TXT_CELULAR);
+            P_CREAR_USUARIO.Controls.Add(TXT_CONTRASEÑA);
+            P_CREAR_USUARIO.Controls.Add(TXT_NOMBRE_USUARIO);
+            P_CREAR_USUARIO.Controls.Add(TXT_CORREO);
+            P_CREAR_USUARIO.Controls.Add(TXT_APELLIDO);
+            P_CREAR_USUARIO.Controls.Add(TXT_NOMBRE);
+            P_CREAR_USUARIO.Controls.Add(materialLabel7);
+            P_CREAR_USUARIO.Controls.Add(materialLabel6);
+            P_CREAR_USUARIO.Controls.Add(materialLabel5);
+            P_CREAR_USUARIO.Controls.Add(materialLabel4);
+            P_CREAR_USUARIO.Controls.Add(materialLabel3);
+            P_CREAR_USUARIO.Controls.Add(materialLabel2);
+            P_CREAR_USUARIO.Depth = 0;
+            P_CREAR_USUARIO.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            P_CREAR_USUARIO.Location = new Point(178, 94);
+            P_CREAR_USUARIO.Margin = new Padding(14);
+            P_CREAR_USUARIO.MouseState = MaterialSkin.MouseState.HOVER;
+            P_CREAR_USUARIO.Name = "P_CREAR_USUARIO";
+            P_CREAR_USUARIO.Padding = new Padding(14);
+            P_CREAR_USUARIO.Size = new Size(753, 477);
+            P_CREAR_USUARIO.TabIndex = 1;
+            P_CREAR_USUARIO.Click += BTN_CREAR_Click;
             // 
             // BTN_CREAR
             // 
@@ -276,7 +277,6 @@
             materialLabel6.Size = new Size(82, 19);
             materialLabel6.TabIndex = 4;
             materialLabel6.Text = "Contraseña";
-            materialLabel6.Click += materialLabel6_Click;
             // 
             // materialLabel5
             // 
@@ -325,20 +325,19 @@
             materialLabel2.Size = new Size(57, 19);
             materialLabel2.TabIndex = 0;
             materialLabel2.Text = "Nombre";
-            materialLabel2.Click += materialLabel2_Click;
             // 
             // FRM_ADMINISTRADOR
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(948, 588);
-            Controls.Add(materialCard1);
-            Controls.Add(materialButton1);
+            Controls.Add(P_CREAR_USUARIO);
+            Controls.Add(BTN_PANEL_CREAR_USUARIO);
             Name = "FRM_ADMINISTRADOR";
             Text = "Administrador";
             Load += FRM_Administrador_Load;
-            materialCard1.ResumeLayout(false);
-            materialCard1.PerformLayout();
+            P_CREAR_USUARIO.ResumeLayout(false);
+            P_CREAR_USUARIO.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -347,8 +346,8 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private TabPage tabPage2;
         private MaterialSkin.Controls.MaterialRadioButton materialRadioButton1;
-        private MaterialSkin.Controls.MaterialButton materialButton1;
-        private MaterialSkin.Controls.MaterialCard materialCard1;
+        private MaterialSkin.Controls.MaterialButton BTN_PANEL_CREAR_USUARIO;
+        private MaterialSkin.Controls.MaterialCard P_CREAR_USUARIO;
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
         private MaterialSkin.Controls.MaterialLabel materialLabel5;
