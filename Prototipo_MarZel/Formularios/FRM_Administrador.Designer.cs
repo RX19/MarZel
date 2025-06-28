@@ -30,21 +30,21 @@
         {
             materialButton1 = new MaterialSkin.Controls.MaterialButton();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
-            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
-            materialTextBox1 = new MaterialSkin.Controls.MaterialTextBox();
-            materialTextBox2 = new MaterialSkin.Controls.MaterialTextBox();
-            materialTextBox3 = new MaterialSkin.Controls.MaterialTextBox();
-            materialTextBox4 = new MaterialSkin.Controls.MaterialTextBox();
-            materialTextBox5 = new MaterialSkin.Controls.MaterialTextBox();
-            materialTextBox6 = new MaterialSkin.Controls.MaterialTextBox();
-            materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
+            BTN_CREAR = new MaterialSkin.Controls.MaterialButton();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            materialButton2 = new MaterialSkin.Controls.MaterialButton();
+            CB_TIPO_USUARIO = new MaterialSkin.Controls.MaterialComboBox();
+            TXT_CELULAR = new MaterialSkin.Controls.MaterialTextBox();
+            TXT_CONTRASEÑA = new MaterialSkin.Controls.MaterialTextBox();
+            TXT_NOMBRE_USUARIO = new MaterialSkin.Controls.MaterialTextBox();
+            TXT_CORREO = new MaterialSkin.Controls.MaterialTextBox();
+            TXT_APELLIDO = new MaterialSkin.Controls.MaterialTextBox();
+            TXT_NOMBRE = new MaterialSkin.Controls.MaterialTextBox();
+            materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             materialCard1.SuspendLayout();
             SuspendLayout();
             // 
@@ -70,15 +70,15 @@
             // materialCard1
             // 
             materialCard1.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard1.Controls.Add(materialButton2);
+            materialCard1.Controls.Add(BTN_CREAR);
             materialCard1.Controls.Add(materialLabel1);
-            materialCard1.Controls.Add(materialComboBox1);
-            materialCard1.Controls.Add(materialTextBox6);
-            materialCard1.Controls.Add(materialTextBox5);
-            materialCard1.Controls.Add(materialTextBox4);
-            materialCard1.Controls.Add(materialTextBox3);
-            materialCard1.Controls.Add(materialTextBox2);
-            materialCard1.Controls.Add(materialTextBox1);
+            materialCard1.Controls.Add(CB_TIPO_USUARIO);
+            materialCard1.Controls.Add(TXT_CELULAR);
+            materialCard1.Controls.Add(TXT_CONTRASEÑA);
+            materialCard1.Controls.Add(TXT_NOMBRE_USUARIO);
+            materialCard1.Controls.Add(TXT_CORREO);
+            materialCard1.Controls.Add(TXT_APELLIDO);
+            materialCard1.Controls.Add(TXT_NOMBRE);
             materialCard1.Controls.Add(materialLabel7);
             materialCard1.Controls.Add(materialLabel6);
             materialCard1.Controls.Add(materialLabel5);
@@ -94,55 +94,176 @@
             materialCard1.Padding = new Padding(14);
             materialCard1.Size = new Size(753, 477);
             materialCard1.TabIndex = 1;
+            materialCard1.Click += BTN_CREAR_Click;
             // 
-            // materialLabel2
+            // BTN_CREAR
             // 
-            materialLabel2.AutoSize = true;
-            materialLabel2.Depth = 0;
-            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(36, 17);
-            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel2.Name = "materialLabel2";
-            materialLabel2.Size = new Size(57, 19);
-            materialLabel2.TabIndex = 0;
-            materialLabel2.Text = "Nombre";
-            materialLabel2.Click += materialLabel2_Click;
+            BTN_CREAR.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            BTN_CREAR.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            BTN_CREAR.Depth = 0;
+            BTN_CREAR.HighEmphasis = true;
+            BTN_CREAR.Icon = null;
+            BTN_CREAR.Location = new Point(412, 423);
+            BTN_CREAR.Margin = new Padding(4, 6, 4, 6);
+            BTN_CREAR.MouseState = MaterialSkin.MouseState.HOVER;
+            BTN_CREAR.Name = "BTN_CREAR";
+            BTN_CREAR.NoAccentTextColor = Color.Empty;
+            BTN_CREAR.Size = new Size(67, 36);
+            BTN_CREAR.TabIndex = 14;
+            BTN_CREAR.Text = "Crear";
+            BTN_CREAR.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            BTN_CREAR.UseAccentColor = false;
+            BTN_CREAR.UseVisualStyleBackColor = true;
+            BTN_CREAR.Click += BTN_CREAR_Click;
             // 
-            // materialLabel3
+            // materialLabel1
             // 
-            materialLabel3.AutoSize = true;
-            materialLabel3.Depth = 0;
-            materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel3.Location = new Point(36, 117);
-            materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel3.Name = "materialLabel3";
-            materialLabel3.Size = new Size(58, 19);
-            materialLabel3.TabIndex = 1;
-            materialLabel3.Text = "Apellido";
+            materialLabel1.AutoSize = true;
+            materialLabel1.Depth = 0;
+            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel1.Location = new Point(36, 326);
+            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel1.Name = "materialLabel1";
+            materialLabel1.Size = new Size(112, 19);
+            materialLabel1.TabIndex = 13;
+            materialLabel1.Text = "Tipo de Usuario";
             // 
-            // materialLabel4
+            // CB_TIPO_USUARIO
             // 
-            materialLabel4.AutoSize = true;
-            materialLabel4.Depth = 0;
-            materialLabel4.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel4.Location = new Point(36, 219);
-            materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel4.Name = "materialLabel4";
-            materialLabel4.Size = new Size(47, 19);
-            materialLabel4.TabIndex = 2;
-            materialLabel4.Text = "Correo";
+            CB_TIPO_USUARIO.AutoResize = false;
+            CB_TIPO_USUARIO.BackColor = Color.FromArgb(255, 255, 255);
+            CB_TIPO_USUARIO.Depth = 0;
+            CB_TIPO_USUARIO.DrawMode = DrawMode.OwnerDrawVariable;
+            CB_TIPO_USUARIO.DropDownHeight = 174;
+            CB_TIPO_USUARIO.DropDownStyle = ComboBoxStyle.DropDownList;
+            CB_TIPO_USUARIO.DropDownWidth = 121;
+            CB_TIPO_USUARIO.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            CB_TIPO_USUARIO.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            CB_TIPO_USUARIO.FormattingEnabled = true;
+            CB_TIPO_USUARIO.IntegralHeight = false;
+            CB_TIPO_USUARIO.ItemHeight = 43;
+            CB_TIPO_USUARIO.Items.AddRange(new object[] { "Administrador", "Vendedor" });
+            CB_TIPO_USUARIO.Location = new Point(36, 367);
+            CB_TIPO_USUARIO.MaxDropDownItems = 4;
+            CB_TIPO_USUARIO.MouseState = MaterialSkin.MouseState.OUT;
+            CB_TIPO_USUARIO.Name = "CB_TIPO_USUARIO";
+            CB_TIPO_USUARIO.Size = new Size(151, 49);
+            CB_TIPO_USUARIO.StartIndex = 0;
+            CB_TIPO_USUARIO.TabIndex = 12;
             // 
-            // materialLabel5
+            // TXT_CELULAR
             // 
-            materialLabel5.AutoSize = true;
-            materialLabel5.Depth = 0;
-            materialLabel5.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel5.Location = new Point(321, 17);
-            materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel5.Name = "materialLabel5";
-            materialLabel5.Size = new Size(136, 19);
-            materialLabel5.TabIndex = 3;
-            materialLabel5.Text = "Nombre de Usuario";
+            TXT_CELULAR.AnimateReadOnly = false;
+            TXT_CELULAR.BorderStyle = BorderStyle.None;
+            TXT_CELULAR.Depth = 0;
+            TXT_CELULAR.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            TXT_CELULAR.LeadingIcon = null;
+            TXT_CELULAR.Location = new Point(321, 251);
+            TXT_CELULAR.MaxLength = 50;
+            TXT_CELULAR.MouseState = MaterialSkin.MouseState.OUT;
+            TXT_CELULAR.Multiline = false;
+            TXT_CELULAR.Name = "TXT_CELULAR";
+            TXT_CELULAR.Size = new Size(250, 50);
+            TXT_CELULAR.TabIndex = 11;
+            TXT_CELULAR.Text = "";
+            TXT_CELULAR.TrailingIcon = null;
+            // 
+            // TXT_CONTRASEÑA
+            // 
+            TXT_CONTRASEÑA.AnimateReadOnly = false;
+            TXT_CONTRASEÑA.BorderStyle = BorderStyle.None;
+            TXT_CONTRASEÑA.Depth = 0;
+            TXT_CONTRASEÑA.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            TXT_CONTRASEÑA.LeadingIcon = null;
+            TXT_CONTRASEÑA.Location = new Point(321, 153);
+            TXT_CONTRASEÑA.MaxLength = 50;
+            TXT_CONTRASEÑA.MouseState = MaterialSkin.MouseState.OUT;
+            TXT_CONTRASEÑA.Multiline = false;
+            TXT_CONTRASEÑA.Name = "TXT_CONTRASEÑA";
+            TXT_CONTRASEÑA.Size = new Size(250, 50);
+            TXT_CONTRASEÑA.TabIndex = 10;
+            TXT_CONTRASEÑA.Text = "";
+            TXT_CONTRASEÑA.TrailingIcon = null;
+            // 
+            // TXT_NOMBRE_USUARIO
+            // 
+            TXT_NOMBRE_USUARIO.AnimateReadOnly = false;
+            TXT_NOMBRE_USUARIO.BorderStyle = BorderStyle.None;
+            TXT_NOMBRE_USUARIO.Depth = 0;
+            TXT_NOMBRE_USUARIO.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            TXT_NOMBRE_USUARIO.LeadingIcon = null;
+            TXT_NOMBRE_USUARIO.Location = new Point(321, 44);
+            TXT_NOMBRE_USUARIO.MaxLength = 50;
+            TXT_NOMBRE_USUARIO.MouseState = MaterialSkin.MouseState.OUT;
+            TXT_NOMBRE_USUARIO.Multiline = false;
+            TXT_NOMBRE_USUARIO.Name = "TXT_NOMBRE_USUARIO";
+            TXT_NOMBRE_USUARIO.Size = new Size(250, 50);
+            TXT_NOMBRE_USUARIO.TabIndex = 9;
+            TXT_NOMBRE_USUARIO.Text = "";
+            TXT_NOMBRE_USUARIO.TrailingIcon = null;
+            // 
+            // TXT_CORREO
+            // 
+            TXT_CORREO.AnimateReadOnly = false;
+            TXT_CORREO.BorderStyle = BorderStyle.None;
+            TXT_CORREO.Depth = 0;
+            TXT_CORREO.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            TXT_CORREO.LeadingIcon = null;
+            TXT_CORREO.Location = new Point(36, 251);
+            TXT_CORREO.MaxLength = 50;
+            TXT_CORREO.MouseState = MaterialSkin.MouseState.OUT;
+            TXT_CORREO.Multiline = false;
+            TXT_CORREO.Name = "TXT_CORREO";
+            TXT_CORREO.Size = new Size(244, 50);
+            TXT_CORREO.TabIndex = 8;
+            TXT_CORREO.Text = "";
+            TXT_CORREO.TrailingIcon = null;
+            // 
+            // TXT_APELLIDO
+            // 
+            TXT_APELLIDO.AnimateReadOnly = false;
+            TXT_APELLIDO.BorderStyle = BorderStyle.None;
+            TXT_APELLIDO.Depth = 0;
+            TXT_APELLIDO.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            TXT_APELLIDO.LeadingIcon = null;
+            TXT_APELLIDO.Location = new Point(36, 153);
+            TXT_APELLIDO.MaxLength = 50;
+            TXT_APELLIDO.MouseState = MaterialSkin.MouseState.OUT;
+            TXT_APELLIDO.Multiline = false;
+            TXT_APELLIDO.Name = "TXT_APELLIDO";
+            TXT_APELLIDO.Size = new Size(244, 50);
+            TXT_APELLIDO.TabIndex = 7;
+            TXT_APELLIDO.Text = "";
+            TXT_APELLIDO.TrailingIcon = null;
+            // 
+            // TXT_NOMBRE
+            // 
+            TXT_NOMBRE.AnimateReadOnly = false;
+            TXT_NOMBRE.BorderStyle = BorderStyle.None;
+            TXT_NOMBRE.Depth = 0;
+            TXT_NOMBRE.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            TXT_NOMBRE.LeadingIcon = null;
+            TXT_NOMBRE.Location = new Point(36, 44);
+            TXT_NOMBRE.MaxLength = 50;
+            TXT_NOMBRE.MouseState = MaterialSkin.MouseState.OUT;
+            TXT_NOMBRE.Multiline = false;
+            TXT_NOMBRE.Name = "TXT_NOMBRE";
+            TXT_NOMBRE.Size = new Size(244, 50);
+            TXT_NOMBRE.TabIndex = 6;
+            TXT_NOMBRE.Text = "";
+            TXT_NOMBRE.TrailingIcon = null;
+            // 
+            // materialLabel7
+            // 
+            materialLabel7.AutoSize = true;
+            materialLabel7.Depth = 0;
+            materialLabel7.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel7.Location = new Point(321, 219);
+            materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel7.Name = "materialLabel7";
+            materialLabel7.Size = new Size(50, 19);
+            materialLabel7.TabIndex = 5;
+            materialLabel7.Text = "Celular";
             // 
             // materialLabel6
             // 
@@ -157,172 +278,54 @@
             materialLabel6.Text = "Contraseña";
             materialLabel6.Click += materialLabel6_Click;
             // 
-            // materialLabel7
+            // materialLabel5
             // 
-            materialLabel7.AutoSize = true;
-            materialLabel7.Depth = 0;
-            materialLabel7.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel7.Location = new Point(321, 219);
-            materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel7.Name = "materialLabel7";
-            materialLabel7.Size = new Size(50, 19);
-            materialLabel7.TabIndex = 5;
-            materialLabel7.Text = "Celular";
+            materialLabel5.AutoSize = true;
+            materialLabel5.Depth = 0;
+            materialLabel5.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel5.Location = new Point(321, 17);
+            materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel5.Name = "materialLabel5";
+            materialLabel5.Size = new Size(136, 19);
+            materialLabel5.TabIndex = 3;
+            materialLabel5.Text = "Nombre de Usuario";
             // 
-            // materialTextBox1
+            // materialLabel4
             // 
-            materialTextBox1.AnimateReadOnly = false;
-            materialTextBox1.BorderStyle = BorderStyle.None;
-            materialTextBox1.Depth = 0;
-            materialTextBox1.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTextBox1.LeadingIcon = null;
-            materialTextBox1.Location = new Point(36, 44);
-            materialTextBox1.MaxLength = 50;
-            materialTextBox1.MouseState = MaterialSkin.MouseState.OUT;
-            materialTextBox1.Multiline = false;
-            materialTextBox1.Name = "materialTextBox1";
-            materialTextBox1.Size = new Size(244, 50);
-            materialTextBox1.TabIndex = 6;
-            materialTextBox1.Text = "";
-            materialTextBox1.TrailingIcon = null;
+            materialLabel4.AutoSize = true;
+            materialLabel4.Depth = 0;
+            materialLabel4.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel4.Location = new Point(36, 219);
+            materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel4.Name = "materialLabel4";
+            materialLabel4.Size = new Size(47, 19);
+            materialLabel4.TabIndex = 2;
+            materialLabel4.Text = "Correo";
             // 
-            // materialTextBox2
+            // materialLabel3
             // 
-            materialTextBox2.AnimateReadOnly = false;
-            materialTextBox2.BorderStyle = BorderStyle.None;
-            materialTextBox2.Depth = 0;
-            materialTextBox2.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTextBox2.LeadingIcon = null;
-            materialTextBox2.Location = new Point(36, 153);
-            materialTextBox2.MaxLength = 50;
-            materialTextBox2.MouseState = MaterialSkin.MouseState.OUT;
-            materialTextBox2.Multiline = false;
-            materialTextBox2.Name = "materialTextBox2";
-            materialTextBox2.Size = new Size(244, 50);
-            materialTextBox2.TabIndex = 7;
-            materialTextBox2.Text = "";
-            materialTextBox2.TrailingIcon = null;
+            materialLabel3.AutoSize = true;
+            materialLabel3.Depth = 0;
+            materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel3.Location = new Point(36, 117);
+            materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel3.Name = "materialLabel3";
+            materialLabel3.Size = new Size(58, 19);
+            materialLabel3.TabIndex = 1;
+            materialLabel3.Text = "Apellido";
             // 
-            // materialTextBox3
+            // materialLabel2
             // 
-            materialTextBox3.AnimateReadOnly = false;
-            materialTextBox3.BorderStyle = BorderStyle.None;
-            materialTextBox3.Depth = 0;
-            materialTextBox3.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTextBox3.LeadingIcon = null;
-            materialTextBox3.Location = new Point(36, 251);
-            materialTextBox3.MaxLength = 50;
-            materialTextBox3.MouseState = MaterialSkin.MouseState.OUT;
-            materialTextBox3.Multiline = false;
-            materialTextBox3.Name = "materialTextBox3";
-            materialTextBox3.Size = new Size(244, 50);
-            materialTextBox3.TabIndex = 8;
-            materialTextBox3.Text = "";
-            materialTextBox3.TrailingIcon = null;
-            // 
-            // materialTextBox4
-            // 
-            materialTextBox4.AnimateReadOnly = false;
-            materialTextBox4.BorderStyle = BorderStyle.None;
-            materialTextBox4.Depth = 0;
-            materialTextBox4.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTextBox4.LeadingIcon = null;
-            materialTextBox4.Location = new Point(321, 44);
-            materialTextBox4.MaxLength = 50;
-            materialTextBox4.MouseState = MaterialSkin.MouseState.OUT;
-            materialTextBox4.Multiline = false;
-            materialTextBox4.Name = "materialTextBox4";
-            materialTextBox4.Size = new Size(250, 50);
-            materialTextBox4.TabIndex = 9;
-            materialTextBox4.Text = "";
-            materialTextBox4.TrailingIcon = null;
-            // 
-            // materialTextBox5
-            // 
-            materialTextBox5.AnimateReadOnly = false;
-            materialTextBox5.BorderStyle = BorderStyle.None;
-            materialTextBox5.Depth = 0;
-            materialTextBox5.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTextBox5.LeadingIcon = null;
-            materialTextBox5.Location = new Point(321, 153);
-            materialTextBox5.MaxLength = 50;
-            materialTextBox5.MouseState = MaterialSkin.MouseState.OUT;
-            materialTextBox5.Multiline = false;
-            materialTextBox5.Name = "materialTextBox5";
-            materialTextBox5.Size = new Size(250, 50);
-            materialTextBox5.TabIndex = 10;
-            materialTextBox5.Text = "";
-            materialTextBox5.TrailingIcon = null;
-            // 
-            // materialTextBox6
-            // 
-            materialTextBox6.AnimateReadOnly = false;
-            materialTextBox6.BorderStyle = BorderStyle.None;
-            materialTextBox6.Depth = 0;
-            materialTextBox6.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTextBox6.LeadingIcon = null;
-            materialTextBox6.Location = new Point(321, 251);
-            materialTextBox6.MaxLength = 50;
-            materialTextBox6.MouseState = MaterialSkin.MouseState.OUT;
-            materialTextBox6.Multiline = false;
-            materialTextBox6.Name = "materialTextBox6";
-            materialTextBox6.Size = new Size(250, 50);
-            materialTextBox6.TabIndex = 11;
-            materialTextBox6.Text = "";
-            materialTextBox6.TrailingIcon = null;
-            // 
-            // materialComboBox1
-            // 
-            materialComboBox1.AutoResize = false;
-            materialComboBox1.BackColor = Color.FromArgb(255, 255, 255);
-            materialComboBox1.Depth = 0;
-            materialComboBox1.DrawMode = DrawMode.OwnerDrawVariable;
-            materialComboBox1.DropDownHeight = 174;
-            materialComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            materialComboBox1.DropDownWidth = 121;
-            materialComboBox1.Font = new Font("Roboto Medium", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialComboBox1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialComboBox1.FormattingEnabled = true;
-            materialComboBox1.IntegralHeight = false;
-            materialComboBox1.ItemHeight = 43;
-            materialComboBox1.Location = new Point(36, 367);
-            materialComboBox1.MaxDropDownItems = 4;
-            materialComboBox1.MouseState = MaterialSkin.MouseState.OUT;
-            materialComboBox1.Name = "materialComboBox1";
-            materialComboBox1.Size = new Size(151, 49);
-            materialComboBox1.StartIndex = 0;
-            materialComboBox1.TabIndex = 12;
-            // 
-            // materialLabel1
-            // 
-            materialLabel1.AutoSize = true;
-            materialLabel1.Depth = 0;
-            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(36, 326);
-            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(112, 19);
-            materialLabel1.TabIndex = 13;
-            materialLabel1.Text = "Tipo de Usuario";
-            // 
-            // materialButton2
-            // 
-            materialButton2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton2.Depth = 0;
-            materialButton2.HighEmphasis = true;
-            materialButton2.Icon = null;
-            materialButton2.Location = new Point(412, 423);
-            materialButton2.Margin = new Padding(4, 6, 4, 6);
-            materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton2.Name = "materialButton2";
-            materialButton2.NoAccentTextColor = Color.Empty;
-            materialButton2.Size = new Size(158, 36);
-            materialButton2.TabIndex = 14;
-            materialButton2.Text = "Crear";
-            materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton2.UseAccentColor = false;
-            materialButton2.UseVisualStyleBackColor = true;
+            materialLabel2.AutoSize = true;
+            materialLabel2.Depth = 0;
+            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel2.Location = new Point(36, 17);
+            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel2.Name = "materialLabel2";
+            materialLabel2.Size = new Size(57, 19);
+            materialLabel2.TabIndex = 0;
+            materialLabel2.Text = "Nombre";
+            materialLabel2.Click += materialLabel2_Click;
             // 
             // FRM_ADMINISTRADOR
             // 
@@ -352,13 +355,13 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel4;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
-        private MaterialSkin.Controls.MaterialComboBox materialComboBox1;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox6;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox5;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox4;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox3;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox2;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox1;
-        private MaterialSkin.Controls.MaterialButton materialButton2;
+        private MaterialSkin.Controls.MaterialComboBox CB_TIPO_USUARIO;
+        private MaterialSkin.Controls.MaterialTextBox TXT_CELULAR;
+        private MaterialSkin.Controls.MaterialTextBox TXT_CONTRASEÑA;
+        private MaterialSkin.Controls.MaterialTextBox TXT_NOMBRE_USUARIO;
+        private MaterialSkin.Controls.MaterialTextBox TXT_CORREO;
+        private MaterialSkin.Controls.MaterialTextBox TXT_APELLIDO;
+        private MaterialSkin.Controls.MaterialTextBox TXT_NOMBRE;
+        private MaterialSkin.Controls.MaterialButton BTN_CREAR;
     }
 }
