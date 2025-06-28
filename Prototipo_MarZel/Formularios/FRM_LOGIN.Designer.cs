@@ -1,5 +1,4 @@
-﻿
-namespace Prototipo_MarZel.Formularios
+﻿namespace Prototipo_MarZel.Formularios
 {
     partial class FRM_LOGIN
     {
@@ -30,133 +29,160 @@ namespace Prototipo_MarZel.Formularios
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_LOGIN));
-            PicBox_Login = new PictureBox();
-            USR_TXB_LOGIN = new MaterialSkin.Controls.MaterialTextBox();
-            PSW_TXB_LOGIN = new MaterialSkin.Controls.MaterialTextBox();
-            BTN_LOGIN = new MaterialSkin.Controls.MaterialButton();
-            SHW_CHK_LOGIN = new MaterialSkin.Controls.MaterialCheckbox();
-            ((System.ComponentModel.ISupportInitialize)PicBox_Login).BeginInit();
+            TXT_USUARIO = new MaterialSkin.Controls.MaterialTextBox2();
+            TXT_PASSWORD = new MaterialSkin.Controls.MaterialTextBox2();
+            pictureBox1 = new PictureBox();
+            materialButton1 = new MaterialSkin.Controls.MaterialButton();
+            linkLabel1 = new LinkLabel();
+            materialCheckbox1 = new MaterialSkin.Controls.MaterialCheckbox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // PicBox_Login
+            // TXT_USUARIO
             // 
-            PicBox_Login.Image = (Image)resources.GetObject("PicBox_Login.Image");
-            PicBox_Login.Location = new Point(5, 68);
-            PicBox_Login.Name = "PicBox_Login";
-            PicBox_Login.Size = new Size(343, 377);
-            PicBox_Login.SizeMode = PictureBoxSizeMode.StretchImage;
-            PicBox_Login.TabIndex = 0;
-            PicBox_Login.TabStop = false;
+            TXT_USUARIO.AnimateReadOnly = false;
+            TXT_USUARIO.BackgroundImageLayout = ImageLayout.None;
+            TXT_USUARIO.CharacterCasing = CharacterCasing.Normal;
+            TXT_USUARIO.Depth = 0;
+            TXT_USUARIO.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            TXT_USUARIO.HideSelection = true;
+            TXT_USUARIO.Hint = "Usuario";
+            TXT_USUARIO.LeadingIcon = null;
+            TXT_USUARIO.Location = new Point(493, 164);
+            TXT_USUARIO.MaxLength = 32767;
+            TXT_USUARIO.MouseState = MaterialSkin.MouseState.OUT;
+            TXT_USUARIO.Name = "TXT_USUARIO";
+            TXT_USUARIO.PasswordChar = '\0';
+            TXT_USUARIO.PrefixSuffixText = null;
+            TXT_USUARIO.ReadOnly = false;
+            TXT_USUARIO.RightToLeft = RightToLeft.No;
+            TXT_USUARIO.SelectedText = "";
+            TXT_USUARIO.SelectionLength = 0;
+            TXT_USUARIO.SelectionStart = 0;
+            TXT_USUARIO.ShortcutsEnabled = true;
+            TXT_USUARIO.Size = new Size(309, 48);
+            TXT_USUARIO.TabIndex = 0;
+            TXT_USUARIO.TabStop = false;
+            TXT_USUARIO.TextAlign = HorizontalAlignment.Left;
+            TXT_USUARIO.TrailingIcon = null;
+            TXT_USUARIO.UseSystemPasswordChar = false;
             // 
-            // USR_TXB_LOGIN
+            // TXT_PASSWORD
             // 
-            USR_TXB_LOGIN.AnimateReadOnly = false;
-            USR_TXB_LOGIN.BorderStyle = BorderStyle.None;
-            USR_TXB_LOGIN.Depth = 0;
-            USR_TXB_LOGIN.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            USR_TXB_LOGIN.Hint = "Usuario";
-            USR_TXB_LOGIN.LeadingIcon = null;
-            USR_TXB_LOGIN.Location = new Point(413, 133);
-            USR_TXB_LOGIN.MaxLength = 50;
-            USR_TXB_LOGIN.MouseState = MaterialSkin.MouseState.OUT;
-            USR_TXB_LOGIN.Multiline = false;
-            USR_TXB_LOGIN.Name = "USR_TXB_LOGIN";
-            USR_TXB_LOGIN.Size = new Size(220, 50);
-            USR_TXB_LOGIN.TabIndex = 3;
-            USR_TXB_LOGIN.Text = "";
-            USR_TXB_LOGIN.TrailingIcon = null;
+            TXT_PASSWORD.AnimateReadOnly = false;
+            TXT_PASSWORD.BackgroundImageLayout = ImageLayout.None;
+            TXT_PASSWORD.CharacterCasing = CharacterCasing.Normal;
+            TXT_PASSWORD.Depth = 0;
+            TXT_PASSWORD.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            TXT_PASSWORD.HideSelection = true;
+            TXT_PASSWORD.Hint = "Contraseña";
+            TXT_PASSWORD.LeadingIcon = null;
+            TXT_PASSWORD.Location = new Point(493, 247);
+            TXT_PASSWORD.MaxLength = 32767;
+            TXT_PASSWORD.MouseState = MaterialSkin.MouseState.OUT;
+            TXT_PASSWORD.Name = "TXT_PASSWORD";
+            TXT_PASSWORD.PasswordChar = '●';
+            TXT_PASSWORD.PrefixSuffixText = null;
+            TXT_PASSWORD.ReadOnly = false;
+            TXT_PASSWORD.RightToLeft = RightToLeft.No;
+            TXT_PASSWORD.SelectedText = "";
+            TXT_PASSWORD.SelectionLength = 0;
+            TXT_PASSWORD.SelectionStart = 0;
+            TXT_PASSWORD.ShortcutsEnabled = true;
+            TXT_PASSWORD.Size = new Size(309, 48);
+            TXT_PASSWORD.TabIndex = 1;
+            TXT_PASSWORD.TabStop = false;
+            TXT_PASSWORD.TextAlign = HorizontalAlignment.Left;
+            TXT_PASSWORD.TrailingIcon = null;
+            TXT_PASSWORD.UseSystemPasswordChar = false;
             // 
-            // PSW_TXB_LOGIN
+            // pictureBox1
             // 
-            PSW_TXB_LOGIN.AnimateReadOnly = false;
-            PSW_TXB_LOGIN.BorderStyle = BorderStyle.None;
-            PSW_TXB_LOGIN.Depth = 0;
-            PSW_TXB_LOGIN.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            PSW_TXB_LOGIN.Hint = "Contraseña";
-            PSW_TXB_LOGIN.LeadingIcon = null;
-            PSW_TXB_LOGIN.Location = new Point(413, 219);
-            PSW_TXB_LOGIN.MaxLength = 50;
-            PSW_TXB_LOGIN.MouseState = MaterialSkin.MouseState.OUT;
-            PSW_TXB_LOGIN.Multiline = false;
-            PSW_TXB_LOGIN.Name = "PSW_TXB_LOGIN";
-            PSW_TXB_LOGIN.Password = true;
-            PSW_TXB_LOGIN.Size = new Size(220, 50);
-            PSW_TXB_LOGIN.TabIndex = 4;
-            PSW_TXB_LOGIN.Text = "";
-            PSW_TXB_LOGIN.TrailingIcon = null;
-            PSW_TXB_LOGIN.TextChanged += PSW_TXB_LOGIN_TextChanged;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(6, 76);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(481, 372);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
             // 
-            // BTN_LOGIN
+            // materialButton1
             // 
-            BTN_LOGIN.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            BTN_LOGIN.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            BTN_LOGIN.Depth = 0;
-            BTN_LOGIN.HighEmphasis = true;
-            BTN_LOGIN.Icon = null;
-            BTN_LOGIN.Location = new Point(470, 356);
-            BTN_LOGIN.Margin = new Padding(4, 6, 4, 6);
-            BTN_LOGIN.MouseState = MaterialSkin.MouseState.HOVER;
-            BTN_LOGIN.Name = "BTN_LOGIN";
-            BTN_LOGIN.NoAccentTextColor = Color.Empty;
-            BTN_LOGIN.Size = new Size(104, 36);
-            BTN_LOGIN.TabIndex = 5;
-            BTN_LOGIN.Text = " COMENZAR";
-            BTN_LOGIN.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            BTN_LOGIN.UseAccentColor = false;
-            BTN_LOGIN.UseVisualStyleBackColor = true;
-            BTN_LOGIN.Click += materialButton1_Click;
+            materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton1.Depth = 0;
+            materialButton1.HighEmphasis = true;
+            materialButton1.Icon = null;
+            materialButton1.Location = new Point(593, 364);
+            materialButton1.Margin = new Padding(4, 6, 4, 6);
+            materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton1.Name = "materialButton1";
+            materialButton1.NoAccentTextColor = Color.Empty;
+            materialButton1.Size = new Size(101, 36);
+            materialButton1.TabIndex = 0;
+            materialButton1.Text = "Comenzar";
+            materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton1.UseAccentColor = false;
+            materialButton1.UseVisualStyleBackColor = true;
+            materialButton1.Click += materialButton1_Click;
             // 
-            // SHW_CHK_LOGIN
+            // linkLabel1
             // 
-            SHW_CHK_LOGIN.AutoSize = true;
-            SHW_CHK_LOGIN.Depth = 0;
-            SHW_CHK_LOGIN.Location = new Point(413, 300);
-            SHW_CHK_LOGIN.Margin = new Padding(0);
-            SHW_CHK_LOGIN.MouseLocation = new Point(-1, -1);
-            SHW_CHK_LOGIN.MouseState = MaterialSkin.MouseState.HOVER;
-            SHW_CHK_LOGIN.Name = "SHW_CHK_LOGIN";
-            SHW_CHK_LOGIN.ReadOnly = false;
-            SHW_CHK_LOGIN.Ripple = true;
-            SHW_CHK_LOGIN.Size = new Size(175, 37);
-            SHW_CHK_LOGIN.TabIndex = 6;
-            SHW_CHK_LOGIN.Text = "Mostrar Contraseña";
-            SHW_CHK_LOGIN.UseVisualStyleBackColor = true;
-            SHW_CHK_LOGIN.CheckedChanged += SHW_CHK_LOGIN_CheckedChanged;
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(538, 413);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(206, 25);
+            linkLabel1.TabIndex = 4;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Olvidaste tu contraseña?";
+            linkLabel1.Visible = false;
+            // 
+            // materialCheckbox1
+            // 
+            materialCheckbox1.AutoSize = true;
+            materialCheckbox1.Depth = 0;
+            materialCheckbox1.Location = new Point(493, 311);
+            materialCheckbox1.Margin = new Padding(0);
+            materialCheckbox1.MouseLocation = new Point(-1, -1);
+            materialCheckbox1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCheckbox1.Name = "materialCheckbox1";
+            materialCheckbox1.ReadOnly = false;
+            materialCheckbox1.Ripple = true;
+            materialCheckbox1.Size = new Size(233, 37);
+            materialCheckbox1.TabIndex = 5;
+            materialCheckbox1.Text = "Mostrar/Ocultar Contraseña";
+            materialCheckbox1.UseVisualStyleBackColor = true;
+            materialCheckbox1.CheckedChanged += materialCheckbox1_CheckedChanged;
             // 
             // FRM_LOGIN
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(696, 453);
-            Controls.Add(SHW_CHK_LOGIN);
-            Controls.Add(BTN_LOGIN);
-            Controls.Add(PSW_TXB_LOGIN);
-            Controls.Add(USR_TXB_LOGIN);
-            Controls.Add(PicBox_Login);
-            ForeColor = Color.Black;
+            ClientSize = new Size(808, 466);
+            Controls.Add(materialCheckbox1);
+            Controls.Add(linkLabel1);
+            Controls.Add(materialButton1);
+            Controls.Add(pictureBox1);
+            Controls.Add(TXT_PASSWORD);
+            Controls.Add(TXT_USUARIO);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FRM_LOGIN";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "INICIO DE SESION";
             Load += FRM_LOGIN_Load;
-            ((System.ComponentModel.ISupportInitialize)PicBox_Login).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
-        private void FRM_LOGIN_Load(object sender, EventArgs e)
-        {
-            BeginInvoke((Action)(() => BTN_LOGIN.Focus()));
-
-        }
-
         #endregion
 
-        private PictureBox PicBox_Login;
-        private MaterialSkin.Controls.MaterialTextBox USR_TXB_LOGIN;
-        private MaterialSkin.Controls.MaterialTextBox PSW_TXB_LOGIN;
-        private MaterialSkin.Controls.MaterialButton BTN_LOGIN;
-        private MaterialSkin.Controls.MaterialCheckbox SHW_CHK_LOGIN;
+        private MaterialSkin.Controls.MaterialTextBox2 TXT_USUARIO;
+        private MaterialSkin.Controls.MaterialTextBox2 TXT_PASSWORD;
+        private PictureBox pictureBox1;
+        private MaterialSkin.Controls.MaterialButton materialButton1;
+        private LinkLabel linkLabel1;
+        private MaterialSkin.Controls.MaterialCheckbox materialCheckbox1;
     }
 }
