@@ -26,6 +26,19 @@ namespace Prototipo_MarZel
             //this.ControlBox = false;         // Quita los tres botones (cerrar, minimizar, maximizar)
             this.MaximizeBox = false;        // Impide maximizar
             this.Hide();
+            try
+            {
+                DataTable categoria = CategoriaController.ObtenerProductos();
+
+                foreach (DataRow fila in categoria.Rows)
+                {
+                    CBX_CATEGORIA.Items.Add(fila["Descripcion"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar las categorías: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
         private async Task FadeOutAsync(Form form)
@@ -55,12 +68,13 @@ namespace Prototipo_MarZel
                 DataTable tabla = productoController.ObtenerProductosPorDescripcion();
                 DataTable lista = CategoriaController.ObtenerProductos();
                 DVC_PRODUCTOS.DataSource = tabla;
-                //CBX_CATEGORIA.DataSource = lista;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            DVC_PRODUCTOS.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
         }
 
         private void DVC_PRODUCTOS_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -41,7 +41,7 @@
             LBL_PU = new MaterialSkin.Controls.MaterialLabel();
             TXT_CANTIDAD = new MaterialSkin.Controls.MaterialTextBox();
             LBL_CANTIDAD = new MaterialSkin.Controls.MaterialLabel();
-            materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
+            CBX_CATEGORIA = new MaterialSkin.Controls.MaterialComboBox();
             LBL_CATEGORIA = new MaterialSkin.Controls.MaterialLabel();
             TXT_ISV = new MaterialSkin.Controls.MaterialTextBox();
             LBL_ISV = new MaterialSkin.Controls.MaterialLabel();
@@ -141,7 +141,7 @@
             MC_FORM.Controls.Add(LBL_PU);
             MC_FORM.Controls.Add(TXT_CANTIDAD);
             MC_FORM.Controls.Add(LBL_CANTIDAD);
-            MC_FORM.Controls.Add(materialComboBox1);
+            MC_FORM.Controls.Add(CBX_CATEGORIA);
             MC_FORM.Controls.Add(LBL_CATEGORIA);
             MC_FORM.Controls.Add(TXT_ISV);
             MC_FORM.Controls.Add(LBL_ISV);
@@ -166,7 +166,7 @@
             BTN_WARD.Depth = 0;
             BTN_WARD.HighEmphasis = true;
             BTN_WARD.Icon = null;
-            BTN_WARD.Location = new Point(575, 515);
+            BTN_WARD.Location = new Point(750, 515);
             BTN_WARD.Margin = new Padding(4, 6, 4, 6);
             BTN_WARD.MouseState = MaterialSkin.MouseState.HOVER;
             BTN_WARD.Name = "BTN_WARD";
@@ -185,7 +185,7 @@
             BTN_CANCEL.Depth = 0;
             BTN_CANCEL.HighEmphasis = true;
             BTN_CANCEL.Icon = null;
-            BTN_CANCEL.Location = new Point(275, 515);
+            BTN_CANCEL.Location = new Point(389, 515);
             BTN_CANCEL.Margin = new Padding(4, 6, 4, 6);
             BTN_CANCEL.MouseState = MaterialSkin.MouseState.HOVER;
             BTN_CANCEL.Name = "BTN_CANCEL";
@@ -284,27 +284,27 @@
             LBL_CANTIDAD.TabIndex = 8;
             LBL_CANTIDAD.Text = "Cantidad";
             // 
-            // materialComboBox1
+            // CBX_CATEGORIA
             // 
-            materialComboBox1.AutoResize = false;
-            materialComboBox1.BackColor = Color.FromArgb(255, 255, 255);
-            materialComboBox1.Depth = 0;
-            materialComboBox1.DrawMode = DrawMode.OwnerDrawVariable;
-            materialComboBox1.DropDownHeight = 174;
-            materialComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            materialComboBox1.DropDownWidth = 121;
-            materialComboBox1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialComboBox1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialComboBox1.FormattingEnabled = true;
-            materialComboBox1.IntegralHeight = false;
-            materialComboBox1.ItemHeight = 43;
-            materialComboBox1.Location = new Point(113, 225);
-            materialComboBox1.MaxDropDownItems = 4;
-            materialComboBox1.MouseState = MaterialSkin.MouseState.OUT;
-            materialComboBox1.Name = "materialComboBox1";
-            materialComboBox1.Size = new Size(151, 49);
-            materialComboBox1.StartIndex = 0;
-            materialComboBox1.TabIndex = 7;
+            CBX_CATEGORIA.AutoResize = false;
+            CBX_CATEGORIA.BackColor = Color.FromArgb(255, 255, 255);
+            CBX_CATEGORIA.Depth = 0;
+            CBX_CATEGORIA.DrawMode = DrawMode.OwnerDrawVariable;
+            CBX_CATEGORIA.DropDownHeight = 174;
+            CBX_CATEGORIA.DropDownStyle = ComboBoxStyle.DropDownList;
+            CBX_CATEGORIA.DropDownWidth = 121;
+            CBX_CATEGORIA.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            CBX_CATEGORIA.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            CBX_CATEGORIA.FormattingEnabled = true;
+            CBX_CATEGORIA.IntegralHeight = false;
+            CBX_CATEGORIA.ItemHeight = 43;
+            CBX_CATEGORIA.Location = new Point(113, 225);
+            CBX_CATEGORIA.MaxDropDownItems = 4;
+            CBX_CATEGORIA.MouseState = MaterialSkin.MouseState.OUT;
+            CBX_CATEGORIA.Name = "CBX_CATEGORIA";
+            CBX_CATEGORIA.Size = new Size(151, 49);
+            CBX_CATEGORIA.StartIndex = 0;
+            CBX_CATEGORIA.TabIndex = 7;
             // 
             // LBL_CATEGORIA
             // 
@@ -488,7 +488,7 @@
         private MaterialSkin.Controls.MaterialLabel LBL_DESC;
         private MaterialSkin.Controls.MaterialTextBox TXT_DESC;
         private MaterialSkin.Controls.MaterialLabel LBL_CANTIDAD;
-        private MaterialSkin.Controls.MaterialComboBox materialComboBox1;
+        private MaterialSkin.Controls.MaterialComboBox CBX_CATEGORIA;
         private MaterialSkin.Controls.MaterialLabel LBL_CATEGORIA;
         private MaterialSkin.Controls.MaterialTextBox TXT_ISV;
         private MaterialSkin.Controls.MaterialLabel LBL_ISV;
