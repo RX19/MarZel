@@ -1,4 +1,5 @@
 using MaterialSkin;
+using MaterialSkin.Controls;
 using Prototipo_MarZel.Formularios;
 using System.Data;
 using System.Data.SqlClient;
@@ -24,17 +25,26 @@ namespace Prototipo_MarZel
                 TextShade.WHITE);
 
         }
-
-        private void CargarFormularioEnPanel(Form formHijo)
+        private async Task FadeOutAsync(Form form)
         {
-            PANEL_PRDUCTOS.Controls.Clear();
-            formHijo.TopLevel = false;
-            formHijo.FormBorderStyle = FormBorderStyle.None;
-            formHijo.Dock = DockStyle.Fill;
-            PANEL_PRDUCTOS.Controls.Add(formHijo);
-            PANEL_PRDUCTOS.Tag = formHijo;
-            formHijo.Show();
+            for (double i = 1.0; i >= 0; i -= 0.05)
+            {
+                form.Opacity = i;
+                await Task.Delay(15); // Ajusta la velocidad
+            }
+            form.Hide();
         }
+
+        private async Task FadeInAsync(Form form)
+        {
+            form.Show();
+            for (double i = 0; i <= 1.0; i += 0.05)
+            {
+                form.Opacity = i;
+                await Task.Delay(15);
+            }
+        }
+
         private void FRM_MAIN_Load(object sender, EventArgs e)
         {
             Panel fondo = new Panel();
@@ -43,22 +53,59 @@ namespace Prototipo_MarZel
             this.Controls.Add(fondo);
             fondo.SendToBack();
             this.WindowState = FormWindowState.Maximized;
-            CargarFormularioEnPanel(frm_productos);
-            //this.ControlBox = false;         // Quita los tres botones (cerrar, minimizar, maximizar)
-            this.MaximizeBox = false;        // Impide maximizar
-            this.Hide();                                 // this.MinimizeBox = false;        // Impide minimizar
-            frm_administrador.ShowDialog();
-            Application.Exit();
+            //CargarFormularioEnPanel(frm_productos);
+            //this.ControlBox = false;         
+            this.MaximizeBox = false;        
+            this.Hide();    
+            // this.MinimizeBox = false;        
+            //frm_administrador.ShowDialog();
+            //Application.Exit();
         }
 
-        private void TP_INICIO_Click(object sender, EventArgs e)
+        private async void MTBC_MENU_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (MTBC_MENU.SelectedTab == TP_PRODUCTOS)
+            {
+                // En lugar de Hide(), solo reduce la visibilidad
+                for (double i = 1.0; i >= 0.2; i -= 0.05)
+                {
+                    this.Opacity = i;
+                    await Task.Delay(15);
+                }
+
+                frm_productos.ShowDialog();
+
+                for (double i = 0.2; i <= 1.0; i += 0.05)
+                {
+                    this.Opacity = i;
+                    await Task.Delay(15);
+                }
+                this.Opacity = 1.0;
+                MTBC_MENU.SelectedTab = TP_INICIO;
+            }
+
+            if (MTBC_MENU.SelectedTab == TP_ADMIN)
+            {
+                // En lugar de Hide(), solo reduce la visibilidad
+                for (double i = 1.0; i >= 0.2; i -= 0.05)
+                {
+                    this.Opacity = i;
+                    await Task.Delay(15);
+                }
+
+                frm_administrador.ShowDialog();
+
+                for (double i = 0.2; i <= 1.0; i += 0.05)
+                {
+                    this.Opacity = i;
+                    await Task.Delay(15);
+                }
+                this.Opacity = 1.0;
+                MTBC_MENU.SelectedTab = TP_INICIO;
+            }
 
         }
 
-        private void PANEL_PRDUCTOS_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
     }
 }

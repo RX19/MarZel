@@ -118,3 +118,4 @@ C:\Users\mmara\source\repos\RX19\MarZel\Prototipo_MarZel\obj\Debug\net8.0-window
 C:\Users\Roberto\source\repos\RX19\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.Formularios.REGISTRAR_VENTAS.resources
 C:\Users\gmayo\source\repos\RX19\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.Formularios.FRM_ADMINISTRADOR.resources
 C:\Users\gmayo\source\repos\RX19\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.Formularios.REGISTRAR_VENTAS.resources
+C:\Users\Roberto\source\repos\RX19\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.Formularios.FRM_ADMINISTRADOR.resources

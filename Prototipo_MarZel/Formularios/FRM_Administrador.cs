@@ -20,11 +20,33 @@ namespace Prototipo_MarZel.Formularios
         public FRM_ADMINISTRADOR()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
+            //this.ControlBox = false;         // Quita los tres botones (cerrar, minimizar, maximizar)
+            this.MaximizeBox = false;        // Impide maximizar
+            this.Hide();
         }
-
-        private void FRM_Administrador_Load(object sender, EventArgs e)
+        private async Task FadeOutAsync(Form form)
+        {
+            for (double i = 1.0; i >= 0; i -= 0.05)
+            {
+                form.Opacity = i;
+                await Task.Delay(15);
+            }
+        }
+        private async Task FadeInAsync(Form form)
+        {
+            form.Opacity = 0;
+            for (double i = 0; i <= 1.0; i += 0.05)
+            {
+                form.Opacity = i;
+                await Task.Delay(15);
+            }
+        }
+        private async void FRM_Administrador_Load(object sender, EventArgs e)
         {
             P_CREAR_USUARIO.Visible = false;
+            await FadeInAsync(this);
+            this.Opacity = 1.0;
         }
 
 

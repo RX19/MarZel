@@ -31,10 +31,9 @@
             MTBC_MENU = new MaterialSkin.Controls.MaterialTabControl();
             TP_INICIO = new TabPage();
             TP_PRODUCTOS = new TabPage();
-            PANEL_PRDUCTOS = new Panel();
             TP_FACTURACION = new TabPage();
+            TP_ADMIN = new TabPage();
             MTBC_MENU.SuspendLayout();
-            TP_PRODUCTOS.SuspendLayout();
             SuspendLayout();
             // 
             // MTBC_MENU
@@ -42,6 +41,7 @@
             MTBC_MENU.Controls.Add(TP_INICIO);
             MTBC_MENU.Controls.Add(TP_PRODUCTOS);
             MTBC_MENU.Controls.Add(TP_FACTURACION);
+            MTBC_MENU.Controls.Add(TP_ADMIN);
             MTBC_MENU.Depth = 0;
             MTBC_MENU.Dock = DockStyle.Fill;
             MTBC_MENU.Location = new Point(3, 80);
@@ -51,6 +51,7 @@
             MTBC_MENU.SelectedIndex = 0;
             MTBC_MENU.Size = new Size(794, 367);
             MTBC_MENU.TabIndex = 1;
+            MTBC_MENU.SelectedIndexChanged += MTBC_MENU_SelectedIndexChanged;
             // 
             // TP_INICIO
             // 
@@ -62,12 +63,10 @@
             TP_INICIO.Size = new Size(786, 334);
             TP_INICIO.TabIndex = 0;
             TP_INICIO.Text = "Inicio";
-            TP_INICIO.Click += TP_INICIO_Click;
             // 
             // TP_PRODUCTOS
             // 
             TP_PRODUCTOS.BackColor = Color.WhiteSmoke;
-            TP_PRODUCTOS.Controls.Add(PANEL_PRDUCTOS);
             TP_PRODUCTOS.ForeColor = SystemColors.Control;
             TP_PRODUCTOS.Location = new Point(4, 29);
             TP_PRODUCTOS.Name = "TP_PRODUCTOS";
@@ -75,15 +74,6 @@
             TP_PRODUCTOS.Size = new Size(786, 334);
             TP_PRODUCTOS.TabIndex = 2;
             TP_PRODUCTOS.Text = "Productos";
-            // 
-            // PANEL_PRDUCTOS
-            // 
-            PANEL_PRDUCTOS.Dock = DockStyle.Fill;
-            PANEL_PRDUCTOS.Location = new Point(3, 3);
-            PANEL_PRDUCTOS.Name = "PANEL_PRDUCTOS";
-            PANEL_PRDUCTOS.Size = new Size(780, 328);
-            PANEL_PRDUCTOS.TabIndex = 0;
-            PANEL_PRDUCTOS.Paint += PANEL_PRDUCTOS_Paint;
             // 
             // TP_FACTURACION
             // 
@@ -95,6 +85,15 @@
             TP_FACTURACION.Size = new Size(786, 334);
             TP_FACTURACION.TabIndex = 1;
             TP_FACTURACION.Text = "Facturacion";
+            // 
+            // TP_ADMIN
+            // 
+            TP_ADMIN.Location = new Point(4, 29);
+            TP_ADMIN.Name = "TP_ADMIN";
+            TP_ADMIN.Size = new Size(786, 334);
+            TP_ADMIN.TabIndex = 3;
+            TP_ADMIN.Text = "Usuarios";
+            TP_ADMIN.UseVisualStyleBackColor = true;
             // 
             // FRM_MAIN
             // 
@@ -113,7 +112,6 @@
             TransparencyKey = SystemColors.ActiveCaptionText;
             Load += FRM_MAIN_Load;
             MTBC_MENU.ResumeLayout(false);
-            TP_PRODUCTOS.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -122,6 +120,6 @@
         private TabPage TP_INICIO;
         private TabPage TP_FACTURACION;
         private TabPage TP_PRODUCTOS;
-        private Panel PANEL_PRDUCTOS;
+        private TabPage TP_ADMIN;
     }
 }
