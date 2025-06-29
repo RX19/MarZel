@@ -66,7 +66,6 @@ namespace Prototipo_MarZel
         {
             if (MTBC_MENU.SelectedTab == TP_PRODUCTOS)
             {
-                // En lugar de Hide(), solo reduce la visibilidad
                 for (double i = 1.0; i >= 0.2; i -= 0.05)
                 {
                     this.Opacity = i;
@@ -86,7 +85,6 @@ namespace Prototipo_MarZel
 
             if (MTBC_MENU.SelectedTab == TP_ADMIN)
             {
-                // En lugar de Hide(), solo reduce la visibilidad
                 for (double i = 1.0; i >= 0.2; i -= 0.05)
                 {
                     this.Opacity = i;
