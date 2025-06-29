@@ -10,5 +10,21 @@ namespace Prototipo_MarZel
             string query = "SELECT * FROM "+Tabla;
             return conexion.EjecutarConsulta(query);
         }
+
+        public override DataTable ObtenerProductos()
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = "select TBL_Productos.Descripcion as Producto, TBL_Categoria_Producto.ID " +
+                "as Categoria from TBL_Productos \r\ninner join TBL_Categoria_Producto on " +
+                "TBL_Productos.ID_Categoria_Producto = TBL_Categoria_Producto.ID";
+            return conexion.EjecutarConsulta(query);
+        }
+        public override DataTable ObtenerProducto(string filtro)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = "Select Codigo_Barra,Descripcion,ID_Categoria_Producto" +
+                ", ISV,Cantidad,Precio_Unitario,Precio_Completo from "+Tabla+" where Descripcion = "+"'"+filtro+"'";
+            return conexion.EjecutarConsulta(query);
+        }
     }
 }

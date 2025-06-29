@@ -15,7 +15,14 @@ namespace Prototipo_MarZel
         {
             return productoDAO.ObtenerTodos();
         }
+        public DataTable ObtenerProductosPorDescripcion()
+        {
+            return productoDAO.ObtenerProductos();
+        }
+        public DataTable ObtenerProducto(string filtro)
+        {
+            return productoDAO.ObtenerProducto(filtro);
+        }
 
- 
     }
 }

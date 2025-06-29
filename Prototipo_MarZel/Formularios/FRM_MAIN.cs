@@ -53,13 +53,7 @@ namespace Prototipo_MarZel
             this.Controls.Add(fondo);
             fondo.SendToBack();
             this.WindowState = FormWindowState.Maximized;
-            //CargarFormularioEnPanel(frm_productos);
-            //this.ControlBox = false;         
             this.MaximizeBox = false;        
-            this.Hide();    
-            // this.MinimizeBox = false;        
-            //frm_administrador.ShowDialog();
-            //Application.Exit();
         }
 
         private async void MTBC_MENU_SelectedIndexChanged(object sender, EventArgs e)
@@ -71,9 +65,9 @@ namespace Prototipo_MarZel
                     this.Opacity = i;
                     await Task.Delay(15);
                 }
-
+                this.Visible = false;
                 frm_productos.ShowDialog();
-
+                this.Visible = true;
                 for (double i = 0.2; i <= 1.0; i += 0.05)
                 {
                     this.Opacity = i;
@@ -90,9 +84,9 @@ namespace Prototipo_MarZel
                     this.Opacity = i;
                     await Task.Delay(15);
                 }
-
+                this.Visible = false;
                 frm_administrador.ShowDialog();
-
+                this.Visible = true;
                 for (double i = 0.2; i <= 1.0; i += 0.05)
                 {
                     this.Opacity = i;

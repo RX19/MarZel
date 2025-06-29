@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.Design.AxImporter;
 
 
 namespace Prototipo_MarZel
@@ -47,10 +48,31 @@ namespace Prototipo_MarZel
 
         private async void FRM_PRODUCTOS_Load(object sender, EventArgs e)
         {
-
             await FadeInAsync(this);
             this.Opacity = 1.0;
+            try
+            {
+                DataTable tabla = productoController.ObtenerProductosPorDescripcion();
+                DataTable lista = CategoriaController.ObtenerProductos();
+                DVC_PRODUCTOS.DataSource = tabla;
+                //CBX_CATEGORIA.DataSource = lista;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        private void DVC_PRODUCTOS_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow fila = DVC_PRODUCTOS.Rows[e.RowIndex];
+            DataTable tabla_express = productoController.ObtenerProducto(fila.Cells["Producto"].Value?.ToString());
+            TXT_CODIGO_B.Text = tabla_express.Rows[0]["Codigo_Barra"].ToString();
+            TXT_DESC.Text = tabla_express.Rows[0]["Descripcion"].ToString();
+            TXT_ISV.Text = tabla_express.Rows[0]["ISV"].ToString();
+            TXT_CANTIDAD.Text = tabla_express.Rows[0]["Cantidad"].ToString();
+            TXT_PU.Text = tabla_express.Rows[0]["Precio_Unitario"].ToString();
+            TXT_PC.Text = tabla_express.Rows[0]["Precio_Completo"].ToString();
+        }
     }
 }

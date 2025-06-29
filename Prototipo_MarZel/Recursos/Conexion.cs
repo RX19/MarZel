@@ -18,6 +18,8 @@ namespace Prototipo_MarZel
 
         public DataTable EjecutarConsulta(string query)
         {
+            //Habilitar para debugar, acabo de perder 2 horas porque mandaba un query mal :v
+            //MessageBox.Show(query, "Consulta SQL");
             using (SqlConnection conexion = AbrirConexion())
             {
                 SqlCommand comando = new SqlCommand(query, conexion);
