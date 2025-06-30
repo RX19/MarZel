@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.FormClosed += FRM_Administrador_FormClosed;
             BTN_PANEL_CREAR_USUARIO = new MaterialSkin.Controls.MaterialButton();
             P_CREAR_USUARIO = new MaterialSkin.Controls.MaterialCard();
             BTN_CREAR = new MaterialSkin.Controls.MaterialButton();
