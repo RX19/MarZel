@@ -68,7 +68,7 @@ namespace Prototipo_MarZel
                     soloCategoria.Add(row["Categoria"].ToString());
                 }
                 CBX_CATEGORIA.DataSource = soloCategoria.Distinct().ToList();
-
+                CBX_CATEGORIA.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -77,27 +77,47 @@ namespace Prototipo_MarZel
 
             DVC_PRODUCTOS.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
-
-
-        private void DVC_PRODUCTOS_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void FRM_PRODUCTOS_FormClosed(object sender, FormClosedEventArgs e)
         {
+            Application.Exit();
+        }
+
+
+        public void LimpiarCampos()
+        {
+            TXT_CODIGO_B.Text = string.Empty;
+            TXT_DESC.Text = string.Empty;
+            TXT_ISV.Text = string.Empty;
+            TXT_CANTIDAD.Text = string.Empty;
+            TXT_PU.Text = string.Empty;
+            TXT_PC.Text = string.Empty;
+            CBX_CATEGORIA.SelectedIndex = -1;
+            CBX_CATEGORIA.Invalidate();
+            CBX_CATEGORIA.Update();
+
+        }
+
+        private async void DVC_PRODUCTOS_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            LimpiarCampos();
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow fila = DVC_PRODUCTOS.Rows[e.RowIndex];
                 string nombreProducto = fila.Cells["Producto"].Value?.ToString();
                 DataTable tabla_express = productoController.ObtenerProducto(nombreProducto);
-
+                DataRow datos = tabla_express.Rows[0];
+                TXT_CODIGO_B.Text = datos["Codigo_Barra"].ToString();
+                TXT_DESC.Text = datos["Descripcion"].ToString();
+                TXT_ISV.Text = datos["ISV"].ToString();
+                TXT_CANTIDAD.Text = datos["Cantidad"].ToString();
+                TXT_PU.Text = datos["Precio_Unitario"].ToString();
+                TXT_PC.Text = datos["Precio_Completo"].ToString();
+                string categoria = datos["Categoria"].ToString();
                 if (tabla_express.Rows.Count > 0)
                 {
-                    DataRow datos = tabla_express.Rows[0];
-                    TXT_CODIGO_B.Text = datos["Codigo_Barra"].ToString();
-                    TXT_DESC.Text = datos["Descripcion"].ToString();
-                    TXT_ISV.Text = datos["ISV"].ToString();
-                    TXT_CANTIDAD.Text = datos["Cantidad"].ToString();
-                    TXT_PU.Text = datos["Precio_Unitario"].ToString();
-                    TXT_PC.Text = datos["Precio_Completo"].ToString();
-                    string categoria = datos["Categoria"].ToString();
                     int index = CBX_CATEGORIA.FindStringExact(categoria.Trim());
+                    //:v
+                    //MessageBox.Show("qwerty "+index);
                     if (index >= 0)
                     {
                         CBX_CATEGORIA.SelectedIndex = index;
@@ -122,10 +142,16 @@ namespace Prototipo_MarZel
                         MessageBox.Show("No se encontró la categoría.");
                     }
                     */
+                    CBX_CATEGORIA.Invalidate();
+                    CBX_CATEGORIA.Update();
 
                 }
             }
         }
 
+        private void BTN_CANCEL_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
     }
 }

@@ -196,6 +196,7 @@
             BTN_CANCEL.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             BTN_CANCEL.UseAccentColor = false;
             BTN_CANCEL.UseVisualStyleBackColor = true;
+            BTN_CANCEL.Click += BTN_CANCEL_Click;
             // 
             // TXT_PC
             // 
@@ -463,6 +464,7 @@
             DrawerTabControl = MTBC_MENU;
             Name = "FRM_PRODUCTOS";
             Text = "Productos";
+            FormClosed += FRM_PRODUCTOS_FormClosed;
             Load += FRM_PRODUCTOS_Load;
             MTBC_MENU.ResumeLayout(false);
             TP_MODIFICAR.ResumeLayout(false);
