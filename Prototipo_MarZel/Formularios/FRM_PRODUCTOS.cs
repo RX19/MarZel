@@ -79,10 +79,22 @@ namespace Prototipo_MarZel
         }
         private void FRM_PRODUCTOS_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            DialogResult resultado = MessageBox.Show(
+                "¿Desea volver al menú principal?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (resultado == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            else
+            {
+                Application.Exit();
+            }
         }
-
-
         public void LimpiarCampos()
         {
             TXT_CODIGO_B.Text = string.Empty;
