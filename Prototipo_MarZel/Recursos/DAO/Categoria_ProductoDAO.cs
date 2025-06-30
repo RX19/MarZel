@@ -11,5 +11,13 @@ namespace Prototipo_MarZel
             string query = "SELECT Descripcion FROM " + Tabla;
             return conexion.EjecutarConsulta(query);
         }
+        public override DataTable ObtenerPorId(string desc)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"SELECT ID 
+                             FROM " + Tabla + 
+                             " WHERE Descripcion = "+"'"+desc+"'";
+            return conexion.EjecutarConsulta(query);
+        }
     }
 }

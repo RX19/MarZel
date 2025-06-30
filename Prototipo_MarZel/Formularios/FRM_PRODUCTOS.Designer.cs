@@ -391,7 +391,7 @@
             TXT_CODIGO_B.Name = "TXT_CODIGO_B";
             TXT_CODIGO_B.PasswordChar = '\0';
             TXT_CODIGO_B.PrefixSuffixText = null;
-            TXT_CODIGO_B.ReadOnly = false;
+            TXT_CODIGO_B.ReadOnly = true;
             TXT_CODIGO_B.RightToLeft = RightToLeft.No;
             TXT_CODIGO_B.SelectedText = "";
             TXT_CODIGO_B.SelectionLength = 0;
@@ -436,6 +436,7 @@
             DVC_PRODUCTOS.BackgroundColor = SystemColors.ActiveCaption;
             DVC_PRODUCTOS.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DVC_PRODUCTOS.Dock = DockStyle.Fill;
+            DVC_PRODUCTOS.EditMode = DataGridViewEditMode.EditProgrammatically;
             DVC_PRODUCTOS.Location = new Point(14, 14);
             DVC_PRODUCTOS.Name = "DVC_PRODUCTOS";
             DVC_PRODUCTOS.RowHeadersWidth = 51;

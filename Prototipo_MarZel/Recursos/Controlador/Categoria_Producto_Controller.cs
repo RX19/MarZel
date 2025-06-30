@@ -16,6 +16,10 @@ namespace Prototipo_MarZel
         {
             return CategoriaDAO.ObtenerTodos();
         }
+        public DataTable ObtenerCategoriaPorId(string desc)
+        {
+            return CategoriaDAO.ObtenerPorId(desc);
+        }
 
 
     }
