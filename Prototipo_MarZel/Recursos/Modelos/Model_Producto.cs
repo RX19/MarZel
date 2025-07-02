@@ -8,6 +8,7 @@ namespace Prototipo_MarZel
         public abstract DataTable ObtenerTodos();
         public abstract DataTable ObtenerProductos();
         public abstract DataTable ObtenerProducto(string filtro);
+        public abstract DataTable ModificarProducto(string codigo,string desc,int id,decimal PU, decimal PC);
         // Pendiente : Insertar, Actualizar, Eliminar...
     }
 }

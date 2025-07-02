@@ -7,7 +7,7 @@ namespace Prototipo_MarZel
         public override DataTable ObtenerTodos()
         {
             ConexionBD conexion = new ConexionBD();
-            string query = "SELECT * FROM "+Tabla;
+            string query = "SELECT * FROM " + Tabla;
             return conexion.EjecutarConsulta(query);
         }
 
@@ -36,9 +36,24 @@ namespace Prototipo_MarZel
             P.Precio_Completo
         FROM " + Tabla + @" P
         INNER JOIN TBL_Categoria_Producto C ON P.ID_Categoria_Producto = C.ID
-        WHERE P.Descripcion = "+"'"+filtro+"'";
+        WHERE P.Descripcion = " + "'" + filtro + "'";
             return conexion.EjecutarConsulta(query);
         }
 
+        public override DataTable ModificarProducto(string codigo, string desc, int id, decimal PU, decimal PC)
+        {
+            {
+                ConexionBD conexion = new ConexionBD();
+                string query = @"UPDATE " + Tabla +" "+
+                                "SET [Descripcion] =" +"'"+ desc +"'"+
+                                ",[ID_Categoria_Producto] =" + id +
+                                ",[Precio_Unitario] =" + PU +
+                                ",[Precio_Completo] =" + PC +" "+
+                                "WHERE Codigo_Barra =" + "'" + codigo + "'";
+               // MessageBox.Show(query, "Consulta SQL");
+                return conexion.EjecutarConsulta(query);
+            }
+
+        }
     }
 }

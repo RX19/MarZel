@@ -17,7 +17,7 @@ namespace Prototipo_MarZel
             FRM_LOGIN loginForm = new FRM_LOGIN();
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
-                Application.Run(new FRM_MAIN());
+                Application.Run(new FRM_MAIN(loginForm.usuario));
             }
             else
             {

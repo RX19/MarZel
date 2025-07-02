@@ -14,11 +14,13 @@ namespace Prototipo_MarZel.Formularios
     public partial class FRM_LOGIN : MaterialSkin.Controls.MaterialForm
     {
         private readonly LoginController loginController = new LoginController();
-
+        public string usuario;
+        private string contrasena;
         public FRM_LOGIN()
         {
             InitializeComponent();
         }
+
 
         private async void FRM_LOGIN_Load(object sender, EventArgs e)
         {
@@ -34,21 +36,21 @@ namespace Prototipo_MarZel.Formularios
 
         private void materialButton1_Click(object sender, EventArgs e)
         {
-            string usuario = TXT_USUARIO.Text.Trim();
-            string contrasena = TXT_PASSWORD.Text;
+            usuario = TXT_USUARIO.Text.Trim();
+            contrasena = TXT_PASSWORD.Text;
 
             bool loginExitoso = loginController.Login(usuario, contrasena);
 
             if (loginExitoso)
             {
-                MessageBox.Show("Bienvenido, " + usuario, "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Bienvenido, " + usuario, "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             else
             {
                 MessageBox.Show("Usuario o contraseña incorrectos", "Error de Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.DialogResult = DialogResult.Cancel;
+                //this.DialogResult = DialogResult.Cancel;
             }
         }
 
