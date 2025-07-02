@@ -33,7 +33,6 @@
             TXT_PASSWORD = new MaterialSkin.Controls.MaterialTextBox2();
             pictureBox1 = new PictureBox();
             materialButton1 = new MaterialSkin.Controls.MaterialButton();
-            linkLabel1 = new LinkLabel();
             materialCheckbox1 = new MaterialSkin.Controls.MaterialCheckbox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -48,7 +47,8 @@
             TXT_USUARIO.HideSelection = true;
             TXT_USUARIO.Hint = "Usuario";
             TXT_USUARIO.LeadingIcon = null;
-            TXT_USUARIO.Location = new Point(493, 164);
+            TXT_USUARIO.Location = new Point(384, 73);
+            TXT_USUARIO.Margin = new Padding(2, 2, 2, 2);
             TXT_USUARIO.MaxLength = 32767;
             TXT_USUARIO.MouseState = MaterialSkin.MouseState.OUT;
             TXT_USUARIO.Name = "TXT_USUARIO";
@@ -60,7 +60,7 @@
             TXT_USUARIO.SelectionLength = 0;
             TXT_USUARIO.SelectionStart = 0;
             TXT_USUARIO.ShortcutsEnabled = true;
-            TXT_USUARIO.Size = new Size(309, 48);
+            TXT_USUARIO.Size = new Size(216, 48);
             TXT_USUARIO.TabIndex = 0;
             TXT_USUARIO.TabStop = false;
             TXT_USUARIO.TextAlign = HorizontalAlignment.Left;
@@ -77,7 +77,8 @@
             TXT_PASSWORD.HideSelection = true;
             TXT_PASSWORD.Hint = "Contraseña";
             TXT_PASSWORD.LeadingIcon = null;
-            TXT_PASSWORD.Location = new Point(493, 247);
+            TXT_PASSWORD.Location = new Point(384, 144);
+            TXT_PASSWORD.Margin = new Padding(2, 2, 2, 2);
             TXT_PASSWORD.MaxLength = 32767;
             TXT_PASSWORD.MouseState = MaterialSkin.MouseState.OUT;
             TXT_PASSWORD.Name = "TXT_PASSWORD";
@@ -89,7 +90,7 @@
             TXT_PASSWORD.SelectionLength = 0;
             TXT_PASSWORD.SelectionStart = 0;
             TXT_PASSWORD.ShortcutsEnabled = true;
-            TXT_PASSWORD.Size = new Size(309, 48);
+            TXT_PASSWORD.Size = new Size(216, 48);
             TXT_PASSWORD.TabIndex = 1;
             TXT_PASSWORD.TabStop = false;
             TXT_PASSWORD.TextAlign = HorizontalAlignment.Left;
@@ -99,9 +100,10 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(6, 76);
+            pictureBox1.Location = new Point(6, 73);
+            pictureBox1.Margin = new Padding(2, 2, 2, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(481, 372);
+            pictureBox1.Size = new Size(337, 223);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
@@ -113,8 +115,8 @@
             materialButton1.Depth = 0;
             materialButton1.HighEmphasis = true;
             materialButton1.Icon = null;
-            materialButton1.Location = new Point(593, 364);
-            materialButton1.Margin = new Padding(4, 6, 4, 6);
+            materialButton1.Location = new Point(440, 260);
+            materialButton1.Margin = new Padding(3, 4, 3, 4);
             materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton1.Name = "materialButton1";
             materialButton1.NoAccentTextColor = Color.Empty;
@@ -126,22 +128,11 @@
             materialButton1.UseVisualStyleBackColor = true;
             materialButton1.Click += materialButton1_Click;
             // 
-            // linkLabel1
-            // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(538, 413);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(206, 25);
-            linkLabel1.TabIndex = 4;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Olvidaste tu contraseña?";
-            linkLabel1.Visible = false;
-            // 
             // materialCheckbox1
             // 
             materialCheckbox1.AutoSize = true;
             materialCheckbox1.Depth = 0;
-            materialCheckbox1.Location = new Point(493, 311);
+            materialCheckbox1.Location = new Point(367, 210);
             materialCheckbox1.Margin = new Padding(0);
             materialCheckbox1.MouseLocation = new Point(-1, -1);
             materialCheckbox1.MouseState = MaterialSkin.MouseState.HOVER;
@@ -156,18 +147,19 @@
             // 
             // FRM_LOGIN
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(808, 466);
+            ClientSize = new Size(623, 309);
             Controls.Add(materialCheckbox1);
-            Controls.Add(linkLabel1);
             Controls.Add(materialButton1);
             Controls.Add(pictureBox1);
             Controls.Add(TXT_PASSWORD);
             Controls.Add(TXT_USUARIO);
+            Margin = new Padding(2, 2, 2, 2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FRM_LOGIN";
+            Padding = new Padding(2, 38, 2, 2);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "INICIO DE SESION";
             Load += FRM_LOGIN_Load;
@@ -182,7 +174,6 @@
         private MaterialSkin.Controls.MaterialTextBox2 TXT_PASSWORD;
         private PictureBox pictureBox1;
         private MaterialSkin.Controls.MaterialButton materialButton1;
-        private LinkLabel linkLabel1;
         private MaterialSkin.Controls.MaterialCheckbox materialCheckbox1;
     }
 }
