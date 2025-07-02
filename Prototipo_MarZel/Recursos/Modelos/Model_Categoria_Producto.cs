@@ -11,6 +11,7 @@ namespace Prototipo_MarZel.Recursos.Modelos
     {
         public static String Tabla = "TBL_Categoria_Producto";
         public abstract DataTable ObtenerTodos();
+        public abstract DataTable ObtenerPorId(string id);
         // Pendiente : Insertar, Actualizar, Eliminar...
     }
 }

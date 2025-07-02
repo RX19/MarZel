@@ -26,19 +26,6 @@ namespace Prototipo_MarZel
             //this.ControlBox = false;         // Quita los tres botones (cerrar, minimizar, maximizar)
             this.MaximizeBox = false;        // Impide maximizar
             this.Hide();
-            try
-            {
-                DataTable categoria = CategoriaController.ObtenerProductos();
-
-                foreach (DataRow fila in categoria.Rows)
-                {
-                    CBX_CATEGORIA.Items.Add(fila["Descripcion"].ToString());
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar las categorías: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
         }
         private async Task FadeOutAsync(Form form)
@@ -65,28 +52,118 @@ namespace Prototipo_MarZel
             this.Opacity = 1.0;
             try
             {
-                DataTable tabla = productoController.ObtenerProductosPorDescripcion();
-                DataTable lista = CategoriaController.ObtenerProductos();
-                DVC_PRODUCTOS.DataSource = tabla;
+                // Obtener y filtrar productos
+                DataTable tablaCompleta = productoController.ObtenerProductosPorDescripcion();
+                DataTable soloProductos = new DataTable();
+                soloProductos.Columns.Add("Producto", typeof(string));
+                foreach (DataRow row in tablaCompleta.Rows)
+                {
+                    soloProductos.Rows.Add(row["Producto"]);
+                }
+                DVC_PRODUCTOS.DataSource = soloProductos;
+                // Obtener categorías para el ComboBox
+                List<String> soloCategoria = new List<string>();
+                foreach (DataRow row in tablaCompleta.Rows)
+                {
+                    soloCategoria.Add(row["Categoria"].ToString());
+                }
+                CBX_CATEGORIA.DataSource = soloCategoria.Distinct().ToList();
+                CBX_CATEGORIA.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
             DVC_PRODUCTOS.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+        private void FRM_PRODUCTOS_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show(
+                "¿Desea volver al menú principal?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (resultado == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            else
+            {
+                Application.Exit();
+            }
+        }
+        public void LimpiarCampos()
+        {
+            TXT_CODIGO_B.Text = string.Empty;
+            TXT_DESC.Text = string.Empty;
+            TXT_ISV.Text = string.Empty;
+            TXT_CANTIDAD.Text = string.Empty;
+            TXT_PU.Text = string.Empty;
+            TXT_PC.Text = string.Empty;
+            CBX_CATEGORIA.SelectedIndex = -1;
+            CBX_CATEGORIA.Invalidate();
+            CBX_CATEGORIA.Update();
 
         }
 
-        private void DVC_PRODUCTOS_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void DVC_PRODUCTOS_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow fila = DVC_PRODUCTOS.Rows[e.RowIndex];
-            DataTable tabla_express = productoController.ObtenerProducto(fila.Cells["Producto"].Value?.ToString());
-            TXT_CODIGO_B.Text = tabla_express.Rows[0]["Codigo_Barra"].ToString();
-            TXT_DESC.Text = tabla_express.Rows[0]["Descripcion"].ToString();
-            TXT_ISV.Text = tabla_express.Rows[0]["ISV"].ToString();
-            TXT_CANTIDAD.Text = tabla_express.Rows[0]["Cantidad"].ToString();
-            TXT_PU.Text = tabla_express.Rows[0]["Precio_Unitario"].ToString();
-            TXT_PC.Text = tabla_express.Rows[0]["Precio_Completo"].ToString();
+            LimpiarCampos();
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow fila = DVC_PRODUCTOS.Rows[e.RowIndex];
+                string nombreProducto = fila.Cells["Producto"].Value?.ToString();
+                DataTable tabla_express = productoController.ObtenerProducto(nombreProducto);
+                DataRow datos = tabla_express.Rows[0];
+                TXT_CODIGO_B.Text = datos["Codigo_Barra"].ToString();
+                TXT_DESC.Text = datos["Descripcion"].ToString();
+                TXT_ISV.Text = datos["ISV"].ToString();
+                TXT_CANTIDAD.Text = datos["Cantidad"].ToString();
+                TXT_PU.Text = datos["Precio_Unitario"].ToString();
+                TXT_PC.Text = datos["Precio_Completo"].ToString();
+                string categoria = datos["Categoria"].ToString();
+                if (tabla_express.Rows.Count > 0)
+                {
+                    int index = CBX_CATEGORIA.FindStringExact(categoria.Trim());
+                    //:v
+                    //MessageBox.Show("qwerty "+index);
+                    if (index >= 0)
+                    {
+                        CBX_CATEGORIA.SelectedIndex = index;
+                        //debugado de panas :v
+                        //MessageBox.Show("Categoria seleccionada: " + categoria, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        CBX_CATEGORIA.SelectedIndex = -1;
+                    }
+                    //debugado de panas 2 :v
+                    /*
+                    DataTable dt = CategoriaController.ObtenerCategoriaPorId(CBX_CATEGORIA.Text);
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        string idCategoria = dt.Rows[0]["ID"].ToString();
+                        MessageBox.Show("ID de categoría: " + idCategoria);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró la categoría.");
+                    }
+                    */
+                    CBX_CATEGORIA.Invalidate();
+                    CBX_CATEGORIA.Update();
+
+                }
+            }
+        }
+
+        private void BTN_CANCEL_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
         }
     }
 }
