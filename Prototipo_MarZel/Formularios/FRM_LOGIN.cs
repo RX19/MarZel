@@ -20,8 +20,10 @@ namespace Prototipo_MarZel.Formularios
             InitializeComponent();
         }
 
-        private void FRM_LOGIN_Load(object sender, EventArgs e)
+        private async void FRM_LOGIN_Load(object sender, EventArgs e)
         {
+
+            //await Transiciones.FadeInAsync(this);
             materialButton1.Focus();
         }
 
@@ -40,12 +42,16 @@ namespace Prototipo_MarZel.Formularios
             if (loginExitoso)
             {
                 MessageBox.Show("Bienvenido, " + usuario, "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             else
             {
                 MessageBox.Show("Usuario o contraseña incorrectos", "Error de Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.DialogResult = DialogResult.Cancel;
             }
         }
+
         private void materialCheckbox1_CheckedChanged(object sender, EventArgs e)
         {
             if (materialCheckbox1.Checked)
