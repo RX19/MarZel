@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Data.SqlClient;
 
 namespace Prototipo_MarZel
 {
@@ -40,19 +41,26 @@ namespace Prototipo_MarZel
             return conexion.EjecutarConsulta(query);
         }
 
-        public override DataTable ModificarProducto(string codigo, string desc, int id, decimal PU, decimal PC)
+        public override void ModificarProducto(string codigo, string desc, int id, decimal PU, decimal PC)
         {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"UPDATE " + Tabla + @"
+                    SET [Descripcion] = @desc,
+                        [ID_Categoria_Producto] = @id,
+                        [Precio_Unitario] = @pu,
+                        [Precio_Completo] = @pc
+                    WHERE Codigo_Barra = @codigo";
+
+            SqlParameter[] parametros =
             {
-                ConexionBD conexion = new ConexionBD();
-                string query = @"UPDATE " + Tabla +" "+
-                                "SET [Descripcion] =" +"'"+ desc +"'"+
-                                ",[ID_Categoria_Producto] =" + id +
-                                ",[Precio_Unitario] =" + PU +
-                                ",[Precio_Completo] =" + PC +" "+
-                                "WHERE Codigo_Barra =" + "'" + codigo + "'";
-               // MessageBox.Show(query, "Consulta SQL");
-                return conexion.EjecutarConsulta(query);
-            }
+                new SqlParameter("@desc", desc),
+                new SqlParameter("@id", id),
+                new SqlParameter("@pu", PU),
+                new SqlParameter("@pc", PC),
+                new SqlParameter("@codigo", codigo)
+            };
+
+            conexion.EjecutarComando(query, parametros);
 
         }
     }

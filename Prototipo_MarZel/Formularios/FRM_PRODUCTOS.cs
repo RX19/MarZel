@@ -46,7 +46,8 @@ namespace Prototipo_MarZel
             }
         }
 
-        public void CargarDatos() {
+        public void CargarDatos()
+        {
             try
             {
                 // Obtener y filtrar productos
@@ -176,21 +177,25 @@ namespace Prototipo_MarZel
             if (dt.Rows.Count > 0)
             {
                 string idCategoria = dt.Rows[0]["ID"].ToString();
-                DataTable Modificado = productoController.ModificarProducto(
+
+                productoController.ModificarProducto(
                     TXT_CODIGO_B.Text,
                     TXT_DESC.Text,
                     Convert.ToInt32(idCategoria),
                     Convert.ToDecimal(TXT_PU.Text),
                     Convert.ToDecimal(TXT_PC.Text)
                 );
+
                 CargarDatos();
                 LimpiarCampos();
                 MessageBox.Show("Producto modificado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }   
+            }
             else
             {
                 MessageBox.Show("Por favor seleccione datos correctos");
             }
         }
+
+
     }
 }

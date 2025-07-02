@@ -23,9 +23,9 @@ namespace Prototipo_MarZel
         {
             return productoDAO.ObtenerProducto(filtro);
         }
-        public DataTable ModificarProducto(string codigo, string desc, int id, decimal PU, decimal PC)
+        public void ModificarProducto(string codigo, string desc, int id, decimal PU, decimal PC)
         {
-            return productoDAO.ModificarProducto(codigo, desc, id, PU, PC);
+            productoDAO.ModificarProducto(codigo, desc, id, PU, PC);
         }
 
     }

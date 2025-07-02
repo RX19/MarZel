@@ -62,7 +62,7 @@
             MTBC_MENU.Multiline = true;
             MTBC_MENU.Name = "MTBC_MENU";
             MTBC_MENU.SelectedIndex = 0;
-            MTBC_MENU.Size = new Size(962, 523);
+            MTBC_MENU.Size = new Size(1259, 672);
             MTBC_MENU.TabIndex = 1;
             MTBC_MENU.SelectedIndexChanged += MTBC_MENU_SelectedIndexChanged;
             // 
@@ -74,7 +74,7 @@
             TP_INICIO.Location = new Point(4, 29);
             TP_INICIO.Name = "TP_INICIO";
             TP_INICIO.Padding = new Padding(3);
-            TP_INICIO.Size = new Size(954, 490);
+            TP_INICIO.Size = new Size(1251, 639);
             TP_INICIO.TabIndex = 0;
             TP_INICIO.Text = "Inicio";
             // 
@@ -92,7 +92,7 @@
             materialCard1.Controls.Add(PB_Foto);
             materialCard1.Depth = 0;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(3, 3);
+            materialCard1.Location = new Point(121, 75);
             materialCard1.Margin = new Padding(14);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
@@ -244,7 +244,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveBorder;
-            ClientSize = new Size(968, 606);
+            ClientSize = new Size(1265, 755);
             Controls.Add(MTBC_MENU);
             DrawerTabControl = MTBC_MENU;
             ForeColor = SystemColors.Desktop;
