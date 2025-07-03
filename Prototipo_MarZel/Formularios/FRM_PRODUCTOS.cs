@@ -46,10 +46,8 @@ namespace Prototipo_MarZel
             }
         }
 
-        private async void FRM_PRODUCTOS_Load(object sender, EventArgs e)
+        public void CargarDatos()
         {
-            await FadeInAsync(this);
-            this.Opacity = 1.0;
             try
             {
                 // Obtener y filtrar productos
@@ -74,7 +72,13 @@ namespace Prototipo_MarZel
             {
                 MessageBox.Show("Error al cargar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
 
+        private async void FRM_PRODUCTOS_Load(object sender, EventArgs e)
+        {
+            await FadeInAsync(this);
+            this.Opacity = 1.0;
+            CargarDatos();
             DVC_PRODUCTOS.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
         private void FRM_PRODUCTOS_FormClosed(object sender, FormClosedEventArgs e)
@@ -154,6 +158,7 @@ namespace Prototipo_MarZel
                         MessageBox.Show("No se encontró la categoría.");
                     }
                     */
+
                     CBX_CATEGORIA.Invalidate();
                     CBX_CATEGORIA.Update();
 
@@ -165,5 +170,32 @@ namespace Prototipo_MarZel
         {
             LimpiarCampos();
         }
+
+        private void BTN_WARD_Click(object sender, EventArgs e)
+        {
+            DataTable dt = CategoriaController.ObtenerCategoriaPorId(CBX_CATEGORIA.Text);
+            if (dt.Rows.Count > 0)
+            {
+                string idCategoria = dt.Rows[0]["ID"].ToString();
+
+                productoController.ModificarProducto(
+                    TXT_CODIGO_B.Text,
+                    TXT_DESC.Text,
+                    Convert.ToInt32(idCategoria),
+                    Convert.ToDecimal(TXT_PU.Text),
+                    Convert.ToDecimal(TXT_PC.Text)
+                );
+
+                CargarDatos();
+                LimpiarCampos();
+                MessageBox.Show("Producto modificado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Por favor seleccione datos correctos");
+            }
+        }
+
+
     }
 }

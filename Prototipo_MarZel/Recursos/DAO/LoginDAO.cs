@@ -1,4 +1,6 @@
+using System.Data;
 using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Prototipo_MarZel.Recursos.DAO
 {
@@ -20,6 +22,14 @@ namespace Prototipo_MarZel.Recursos.DAO
                     return count > 0;
                 }
             }
+
+        }
+
+        public DataTable ObtenerInformacionUsuario(string nombreUsuario)
+        {
+            string query = "SELECT Nombre, Apellido, Correo FROM TBL_Usuario WHERE Usuario = "+"'"+nombreUsuario+"'";
+            return conexion.EjecutarConsulta(query);
+            
         }
     }
 }

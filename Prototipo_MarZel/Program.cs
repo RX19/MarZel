@@ -1,3 +1,5 @@
+using Prototipo_MarZel.Formularios;
+
 namespace Prototipo_MarZel
 {
     internal static class Program
@@ -8,10 +10,19 @@ namespace Prototipo_MarZel
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new FRM_MAIN());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+
+            FRM_LOGIN loginForm = new FRM_LOGIN();
+            if (loginForm.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new FRM_MAIN(loginForm.usuario));
+            }
+            else
+            {
+                Application.Exit();
+            }
         }
     }
 }

@@ -1,8 +1,10 @@
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Prototipo_MarZel.Formularios;
+using Prototipo_MarZel.Recursos.Controlador;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Prototipo_MarZel
 {
@@ -10,7 +12,8 @@ namespace Prototipo_MarZel
     {
         FRM_PRODUCTOS frm_productos = new FRM_PRODUCTOS();
         FRM_ADMINISTRADOR frm_administrador = new FRM_ADMINISTRADOR();
-        public FRM_MAIN()
+        LoginController LoginController = new LoginController();
+        public FRM_MAIN(string usuario)
         {
             InitializeComponent();
             var skinManager = MaterialSkinManager.Instance;
@@ -23,6 +26,16 @@ namespace Prototipo_MarZel
                 Primary.BlueGrey500,
                 Accent.LightBlue200,
                 TextShade.WHITE);
+
+            string usuarioActual = usuario;
+
+            LBL_USUARIO.Text = usuarioActual;
+
+            DataTable tabla_express = LoginController.ObtenerInformacionUsuario(usuarioActual);
+            DataRow fila = tabla_express.Rows[0];
+            LBL_NOMBRE.Text = fila["Nombre"].ToString();
+            LBL_APELLIDO.Text = fila["Apellido"].ToString();
+            LBL_CORREO.Text = fila["Correo"].ToString();
 
         }
         private async Task FadeOutAsync(Form form)
@@ -54,8 +67,10 @@ namespace Prototipo_MarZel
             fondo.SendToBack();
             this.WindowState = FormWindowState.Maximized;
             this.MaximizeBox = false;
-            FRM_LOGIN frm_login = new FRM_LOGIN();
-            frm_login.ShowDialog();
+            
+          
+
+
         }
 
         private async void MTBC_MENU_SelectedIndexChanged(object sender, EventArgs e)
@@ -99,7 +114,6 @@ namespace Prototipo_MarZel
             }
 
         }
-
 
     }
 }

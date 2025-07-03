@@ -23,6 +23,10 @@ namespace Prototipo_MarZel
         {
             return productoDAO.ObtenerProducto(filtro);
         }
+        public void ModificarProducto(string codigo, string desc, int id, decimal PU, decimal PC)
+        {
+            productoDAO.ModificarProducto(codigo, desc, id, PU, PC);
+        }
 
     }
 }

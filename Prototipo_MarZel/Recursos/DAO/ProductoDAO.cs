@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Data.SqlClient;
 
 namespace Prototipo_MarZel
 {
@@ -7,7 +8,7 @@ namespace Prototipo_MarZel
         public override DataTable ObtenerTodos()
         {
             ConexionBD conexion = new ConexionBD();
-            string query = "SELECT * FROM "+Tabla;
+            string query = "SELECT * FROM " + Tabla;
             return conexion.EjecutarConsulta(query);
         }
 
@@ -36,9 +37,31 @@ namespace Prototipo_MarZel
             P.Precio_Completo
         FROM " + Tabla + @" P
         INNER JOIN TBL_Categoria_Producto C ON P.ID_Categoria_Producto = C.ID
-        WHERE P.Descripcion = "+"'"+filtro+"'";
+        WHERE P.Descripcion = " + "'" + filtro + "'";
             return conexion.EjecutarConsulta(query);
         }
 
+        public override void ModificarProducto(string codigo, string desc, int id, decimal PU, decimal PC)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"UPDATE " + Tabla + @"
+                    SET [Descripcion] = @desc,
+                        [ID_Categoria_Producto] = @id,
+                        [Precio_Unitario] = @pu,
+                        [Precio_Completo] = @pc
+                    WHERE Codigo_Barra = @codigo";
+
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@desc", desc),
+                new SqlParameter("@id", id),
+                new SqlParameter("@pu", PU),
+                new SqlParameter("@pc", PC),
+                new SqlParameter("@codigo", codigo)
+            };
+
+            conexion.EjecutarComando(query, parametros);
+
+        }
     }
 }
