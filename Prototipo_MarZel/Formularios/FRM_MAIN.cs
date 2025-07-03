@@ -53,7 +53,9 @@ namespace Prototipo_MarZel
             this.Controls.Add(fondo);
             fondo.SendToBack();
             this.WindowState = FormWindowState.Maximized;
-            this.MaximizeBox = false;        
+            this.MaximizeBox = false;
+            FRM_LOGIN frm_login = new FRM_LOGIN();
+            frm_login.ShowDialog();
         }
 
         private async void MTBC_MENU_SelectedIndexChanged(object sender, EventArgs e)
