@@ -11,7 +11,7 @@ namespace Prototipo_MarZel
     public partial class FRM_MAIN : MaterialSkin.Controls.MaterialForm
     {
         FRM_PRODUCTOS frm_productos = new FRM_PRODUCTOS();
-        FRM_ADMINISTRADOR frm_administrador = new FRM_ADMINISTRADOR();
+        FRM_USUARIOS frm_usuarios= new FRM_USUARIOS();
         LoginController LoginController = new LoginController();
         public FRM_MAIN(string usuario)
         {
@@ -102,7 +102,7 @@ namespace Prototipo_MarZel
                     await Task.Delay(15);
                 }
                 this.Visible = false;
-                frm_administrador.ShowDialog();
+                frm_usuarios.ShowDialog();
                 this.Visible = true;
                 for (double i = 0.2; i <= 1.0; i += 0.05)
                 {

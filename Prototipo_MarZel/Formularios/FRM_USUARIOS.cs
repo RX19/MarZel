@@ -15,9 +15,9 @@ using System.Windows.Forms;
 
 namespace Prototipo_MarZel.Formularios
 {
-    public partial class FRM_ADMINISTRADOR : MaterialSkin.Controls.MaterialForm
+    public partial class FRM_USUARIOS : MaterialSkin.Controls.MaterialForm
     {
-        public FRM_ADMINISTRADOR()
+        public FRM_USUARIOS()
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;

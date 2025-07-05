@@ -1,6 +1,6 @@
 ﻿namespace Prototipo_MarZel.Formularios
 {
-    partial class FRM_ADMINISTRADOR
+    partial class FRM_USUARIOS
     {
         /// <summary>
         /// Required designer variable.
