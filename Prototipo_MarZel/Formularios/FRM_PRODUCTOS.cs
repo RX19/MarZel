@@ -27,6 +27,7 @@ namespace Prototipo_MarZel
             this.MaximizeBox = false;        // Impide maximizar
             this.Hide();
 
+
         }
         private async Task FadeOutAsync(Form form)
         {
@@ -107,6 +108,7 @@ namespace Prototipo_MarZel
             TXT_CANTIDAD.Text = string.Empty;
             TXT_PU.Text = string.Empty;
             TXT_PC.Text = string.Empty;
+            TXT_BUSCA.Text = string.Empty;
             CBX_CATEGORIA.SelectedIndex = -1;
             CBX_CATEGORIA.Invalidate();
             CBX_CATEGORIA.Update();
@@ -196,6 +198,37 @@ namespace Prototipo_MarZel
             }
         }
 
+        private void TXT_BUSCA_TextChanged(object sender, EventArgs e)
+        {
+            string textoBusquedaP = TXT_BUSCA.Text.Trim();
+            if (string.IsNullOrWhiteSpace(textoBusquedaP))
+            {
+                LimpiarCampos();
+                return;
+            }
 
+            DataTable tabla_express = productoController.ObtenerProducto(textoBusquedaP);
+
+            if (tabla_express != null && tabla_express.Rows.Count > 0)
+            {
+                DataRow datos = tabla_express.Rows[0];
+                TXT_CODIGO_B.Text = datos["Codigo_Barra"].ToString();
+                TXT_DESC.Text = datos["Descripcion"].ToString();
+                TXT_ISV.Text = datos["ISV"].ToString();
+                TXT_CANTIDAD.Text = datos["Cantidad"].ToString();
+                TXT_PU.Text = datos["Precio_Unitario"].ToString();
+                TXT_PC.Text = datos["Precio_Completo"].ToString();
+
+                string categoria = datos["Categoria"].ToString();
+                int index = CBX_CATEGORIA.FindStringExact(categoria.Trim());
+                CBX_CATEGORIA.SelectedIndex = index >= 0 ? index : -1;
+                CBX_CATEGORIA.Invalidate();
+                CBX_CATEGORIA.Update();
+            }
+            else
+            {
+                LimpiarCampos();
+            }
+        }
     }
 }
