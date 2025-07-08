@@ -112,9 +112,9 @@ INSERT INTO TBL_Tipo_Usuario (ID, Descripcion) VALUES (1, 'Administrador');
 INSERT INTO TBL_Tipo_Usuario (ID, Descripcion) VALUES (2, 'Vendedor');
 
 -- Insertar usuarios
-INSERT INTO TBL_Usuario (ID_Usuario, Nombre, Apellido, Correo, Usuario, Contrasena, Celular, ID_Tipo_Usuario, Estado)
+INSERT INTO TBL_Usuario ( Nombre, Apellido, Correo, Usuario, Contrasena, Celular, ID_Tipo_Usuario, Estado)
 VALUES ('Carlos', 'Hernández', 'carlos@empresa.com', 'charlie', '1234', '88889999', 1, 1);
-INSERT INTO TBL_Usuario (ID_Usuario, Nombre, Apellido, Correo, Usuario, Contrasena, Celular, ID_Tipo_Usuario, Estado)
+INSERT INTO TBL_Usuario (Nombre, Apellido, Correo, Usuario, Contrasena, Celular, ID_Tipo_Usuario, Estado)
 VALUES ('María', 'López', 'maria@empresa.com', 'mlopez', 'abcd', '99998888', 2, 1);
 
 -- Insertar clientes
