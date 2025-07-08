@@ -146,6 +146,7 @@
             TXT_BUSCA.TextAlign = HorizontalAlignment.Left;
             TXT_BUSCA.TrailingIcon = null;
             TXT_BUSCA.UseSystemPasswordChar = false;
+            TXT_BUSCA.TextChanged += TXT_BUSCA_TextChanged;
             // 
             // MC_FORM
             // 

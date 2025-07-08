@@ -12,7 +12,7 @@ CREATE TABLE TBL_Tipo_Usuario (
 
 -- Tabla de Usuarios
 CREATE TABLE TBL_Usuario (
-    ID_Usuario INT PRIMARY KEY,
+    ID_Usuario INT IDENTITY(1,1) PRIMARY KEY,
     Nombre VARCHAR(100),
     Apellido VARCHAR(100),
     Correo VARCHAR(150),
@@ -113,9 +113,9 @@ INSERT INTO TBL_Tipo_Usuario (ID, Descripcion) VALUES (2, 'Vendedor');
 
 -- Insertar usuarios
 INSERT INTO TBL_Usuario (ID_Usuario, Nombre, Apellido, Correo, Usuario, Contrasena, Celular, ID_Tipo_Usuario, Estado)
-VALUES (1, 'Carlos', 'Hernández', 'carlos@empresa.com', 'charlie', '1234', '88889999', 1, 1);
+VALUES ('Carlos', 'Hernández', 'carlos@empresa.com', 'charlie', '1234', '88889999', 1, 1);
 INSERT INTO TBL_Usuario (ID_Usuario, Nombre, Apellido, Correo, Usuario, Contrasena, Celular, ID_Tipo_Usuario, Estado)
-VALUES (2, 'María', 'López', 'maria@empresa.com', 'mlopez', 'abcd', '99998888', 2, 1);
+VALUES ('María', 'López', 'maria@empresa.com', 'mlopez', 'abcd', '99998888', 2, 1);
 
 -- Insertar clientes
 INSERT INTO TBL_Cliente (ID, RTN, Nombre, Direccion, Celular, C_Compras)

@@ -27,17 +27,18 @@ namespace Prototipo_MarZel
             ConexionBD conexion = new ConexionBD();
 
             string query = @"
-        SELECT 
-            P.Codigo_Barra,
-            P.Descripcion,
-            C.Descripcion AS Categoria,
-            P.ISV,
-            P.Cantidad,
-            P.Precio_Unitario,
-            P.Precio_Completo
-        FROM " + Tabla + @" P
-        INNER JOIN TBL_Categoria_Producto C ON P.ID_Categoria_Producto = C.ID
-        WHERE P.Descripcion = " + "'" + filtro + "'";
+                            SELECT 
+                                P.Codigo_Barra,
+                                P.Descripcion,
+                                C.Descripcion AS Categoria,
+                                P.ISV,
+                                P.Cantidad,
+                                P.Precio_Unitario,
+                                P.Precio_Completo
+                            FROM " + Tabla + @" P
+                            INNER JOIN TBL_Categoria_Producto C ON P.ID_Categoria_Producto = C.ID
+                            WHERE P.Descripcion LIKE "+"'"+filtro+"'"+ " OR P.Codigo_Barra LIKE "+"'"+filtro+"'";
+
             return conexion.EjecutarConsulta(query);
         }
 
