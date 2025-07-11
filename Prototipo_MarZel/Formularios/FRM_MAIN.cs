@@ -13,6 +13,7 @@ namespace Prototipo_MarZel
         FRM_PRODUCTOS frm_productos = new FRM_PRODUCTOS();
         FRM_USUARIOS frm_usuarios = new FRM_USUARIOS();
         LoginController LoginController = new LoginController();
+        FRM_CLIENTES frm_clientes = new FRM_CLIENTES();
         private ProductoController productoController = new ProductoController();
 
         public FRM_MAIN(string usuario)
@@ -69,8 +70,9 @@ namespace Prototipo_MarZel
             fondo.SendToBack();
             this.WindowState = FormWindowState.Maximized;
             this.MaximizeBox = false;
-            
-          
+            this.Hide();
+            frm_clientes.ShowDialog();
+
 
 
         }
