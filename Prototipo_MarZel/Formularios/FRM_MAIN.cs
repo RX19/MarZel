@@ -11,8 +11,10 @@ namespace Prototipo_MarZel
     public partial class FRM_MAIN : MaterialSkin.Controls.MaterialForm
     {
         FRM_PRODUCTOS frm_productos = new FRM_PRODUCTOS();
-        FRM_USUARIOS frm_usuarios= new FRM_USUARIOS();
+        FRM_USUARIOS frm_usuarios = new FRM_USUARIOS();
         LoginController LoginController = new LoginController();
+        private ProductoController productoController = new ProductoController();
+
         public FRM_MAIN(string usuario)
         {
             InitializeComponent();
@@ -77,6 +79,24 @@ namespace Prototipo_MarZel
         {
             if (MTBC_MENU.SelectedTab == TP_PRODUCTOS)
             {
+                // Verificar productos sin existencia
+                DataTable productos = productoController.ObtenerProductosPorDescripcion();
+                var productosSinExistencia = new List<string>();
+                foreach (DataRow row in productos.Rows)
+                {
+                    if (row["Cantidad"] != DBNull.Value && Convert.ToInt32(row["Cantidad"]) == 0)
+                    {
+                        productosSinExistencia.Add(row["Producto"].ToString());
+                    }
+                }
+
+                if (productosSinExistencia.Count > 0)
+                {
+                    string mensaje = "Los siguientes productos se quedaron sin existencia:\n\n" +
+                                     string.Join("\n", productosSinExistencia);
+                    MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
                 for (double i = 1.0; i >= 0.2; i -= 0.05)
                 {
                     this.Opacity = i;
