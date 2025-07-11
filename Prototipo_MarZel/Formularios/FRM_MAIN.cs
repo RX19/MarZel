@@ -70,8 +70,6 @@ namespace Prototipo_MarZel
             fondo.SendToBack();
             this.WindowState = FormWindowState.Maximized;
             this.MaximizeBox = false;
-            this.Hide();
-            frm_clientes.ShowDialog();
 
 
 
