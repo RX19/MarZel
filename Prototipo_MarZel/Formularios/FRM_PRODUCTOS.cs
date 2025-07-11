@@ -55,9 +55,10 @@ namespace Prototipo_MarZel
                 DataTable tablaCompleta = productoController.ObtenerProductosPorDescripcion();
                 DataTable soloProductos = new DataTable();
                 soloProductos.Columns.Add("Producto", typeof(string));
+                soloProductos.Columns.Add("Cantidad", typeof(int));
                 foreach (DataRow row in tablaCompleta.Rows)
                 {
-                    soloProductos.Rows.Add(row["Producto"]);
+                    soloProductos.Rows.Add(row["Producto"], row["Cantidad"]);
                 }
                 DVC_PRODUCTOS.DataSource = soloProductos;
                 // Obtener categorías para el ComboBox

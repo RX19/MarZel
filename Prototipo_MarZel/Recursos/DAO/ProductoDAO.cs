@@ -17,7 +17,8 @@ namespace Prototipo_MarZel
             ConexionBD conexion = new ConexionBD();
             string query = @"SELECT 
                                 TBL_Productos.Descripcion as Producto,
-                                TBL_Categoria_Producto.Descripcion as Categoria 
+                                TBL_Categoria_Producto.Descripcion as Categoria,
+                                TBL_Productos.Cantidad
                             FROM TBL_Productos  
                             INNER JOIN TBL_Categoria_Producto ON TBL_Productos.ID_Categoria_Producto = TBL_Categoria_Producto.ID";
             return conexion.EjecutarConsulta(query);
