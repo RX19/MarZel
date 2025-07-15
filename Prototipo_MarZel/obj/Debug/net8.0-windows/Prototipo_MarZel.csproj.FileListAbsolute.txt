@@ -185,3 +185,4 @@ C:\Users\mmaradiaga\Source\Repos\MarZel\Prototipo_MarZel\obj\Debug\net8.0-window
 C:\Users\mmaradiaga\Source\Repos\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.genruntimeconfig.cache
 C:\Users\mmaradiaga\Source\Repos\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\ref\Prototipo_MarZel.dll
 C:\Users\mmaradiaga\Source\Repos\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.Formularios.FRM_PROVEEDORES.resources
+C:\Users\mmaradiaga\Source\Repos\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.Formularios.FRM_GESTIONAR_PROVEEDOR.resources

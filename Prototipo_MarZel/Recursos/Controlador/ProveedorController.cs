@@ -11,5 +11,15 @@ namespace Prototipo_MarZel
             return dao.ObtenerProveedores();
         }
 
+        public bool VerificarRTN(string rtn)
+        {
+            return dao.ExisteRTN(rtn);
+        }
+
+        public void AgregarProveedor(Proveedor proveedor)
+        { 
+            dao.AgregarProveedor(proveedor);
+        }
+
     }
 }

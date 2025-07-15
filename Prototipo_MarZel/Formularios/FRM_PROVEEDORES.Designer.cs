@@ -52,6 +52,7 @@
             btnAgregarProveedor.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnAgregarProveedor.UseAccentColor = false;
             btnAgregarProveedor.UseVisualStyleBackColor = true;
+            btnAgregarProveedor.Click += btnAgregarProveedor_Click;
             // 
             // btnEditarProveedor
             // 

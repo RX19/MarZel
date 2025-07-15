@@ -10,7 +10,8 @@ namespace Prototipo_MarZel
         public List<Proveedor> ObtenerProveedores()
         {
             List<Proveedor> lista_proveedores = new();
-            string query = "SELECT * FROM TBL_PROVEEDORES";
+            string query = @"SELECT  * 
+                             FROM    TBL_PROVEEDORES";
             using SqlConnection con = conexion.AbrirConexion();
             using SqlCommand cmd = new SqlCommand(query, con);
             using SqlDataReader dr = cmd.ExecuteReader();
@@ -29,6 +30,35 @@ namespace Prototipo_MarZel
             }
             return lista_proveedores;
 
+        }
+
+        public bool ExisteRTN (string rtn)
+        {
+            string query = @"SELECT  1 
+                             FROM    TBL_PROVEEDORES 
+                             WHERE RTN = @RTN";
+            using SqlConnection con = conexion.AbrirConexion();
+            using SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@RTN", rtn);
+            return cmd.ExecuteScalar() != null;
+        }
+
+        public void AgregarProveedor(Proveedor proveedor)
+        {
+            string query = @"INSERT INTO TBL_PROVEEDORES (
+                                RTN, NOMBRE, DIRECCION, CELULAR, CANT_COMPRAS, IMPORTE
+                             ) VALUES (
+                                @RTN, @NOMBRE, @DIRECCION, @CELULAR, @CANT_COMPRAS, @IMPORTE
+                             )";
+            using SqlConnection con = conexion.AbrirConexion();
+            using SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@RTN", proveedor.RTN);
+            cmd.Parameters.AddWithValue("@NOMBRE", proveedor.NOMBRE);
+            cmd.Parameters.AddWithValue("@DIRECCION", proveedor.DIRECCION);
+            cmd.Parameters.AddWithValue("@CELULAR", proveedor.CELULAR);
+            cmd.Parameters.AddWithValue("@CANT_COMPRAS", proveedor.CANT_COMPRAS);
+            cmd.Parameters.AddWithValue("@IMPORTE", proveedor.IMPORTE);
+            cmd.ExecuteNonQuery();
         }
     }
 }

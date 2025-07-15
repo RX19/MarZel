@@ -19,6 +19,9 @@
     <Compile Update="Formularios\FRM_PRODUCTOS.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Formularios\FRM_GESTIONAR_PROVEEDOR.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Formularios\REGISTRAR_VENTAS.cs">
       <SubType>Form</SubType>
     </Compile>

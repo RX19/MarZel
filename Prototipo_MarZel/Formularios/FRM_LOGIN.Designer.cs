@@ -43,12 +43,12 @@
             TXT_USUARIO.BackgroundImageLayout = ImageLayout.None;
             TXT_USUARIO.CharacterCasing = CharacterCasing.Normal;
             TXT_USUARIO.Depth = 0;
-            TXT_USUARIO.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            TXT_USUARIO.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             TXT_USUARIO.HideSelection = true;
             TXT_USUARIO.Hint = "Usuario";
             TXT_USUARIO.LeadingIcon = null;
             TXT_USUARIO.Location = new Point(384, 73);
-            TXT_USUARIO.Margin = new Padding(2, 2, 2, 2);
+            TXT_USUARIO.Margin = new Padding(2);
             TXT_USUARIO.MaxLength = 32767;
             TXT_USUARIO.MouseState = MaterialSkin.MouseState.OUT;
             TXT_USUARIO.Name = "TXT_USUARIO";
@@ -78,7 +78,7 @@
             TXT_PASSWORD.Hint = "Contraseña";
             TXT_PASSWORD.LeadingIcon = null;
             TXT_PASSWORD.Location = new Point(384, 144);
-            TXT_PASSWORD.Margin = new Padding(2, 2, 2, 2);
+            TXT_PASSWORD.Margin = new Padding(2);
             TXT_PASSWORD.MaxLength = 32767;
             TXT_PASSWORD.MouseState = MaterialSkin.MouseState.OUT;
             TXT_PASSWORD.Name = "TXT_PASSWORD";
@@ -101,7 +101,7 @@
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(6, 73);
-            pictureBox1.Margin = new Padding(2, 2, 2, 2);
+            pictureBox1.Margin = new Padding(2);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(337, 223);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -155,7 +155,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(TXT_PASSWORD);
             Controls.Add(TXT_USUARIO);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FRM_LOGIN";
