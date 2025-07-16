@@ -26,5 +26,10 @@ namespace Prototipo_MarZel
             dao.ActualizarProveedor(proveedor);
         }
 
+        public void EliminarProveedor(int idProveedor)
+        {
+            dao.EliminarProveedor(idProveedor);
+        }
+
     }
 }

@@ -12,24 +12,12 @@ namespace Prototipo_MarZel.Formularios
 {
     public partial class FRM_PROVEEDORES : MaterialSkin.Controls.MaterialForm
     {
-        FRM_GESTIONAR_PROVEEDOR frm_gestionar_proveedor = new FRM_GESTIONAR_PROVEEDOR();
-
         private readonly ProveedorController proveedorController = new ProveedorController();
         private List<Proveedor> listaProveedores = new List<Proveedor>();
+
         public FRM_PROVEEDORES()
         {
             InitializeComponent();
-            this.Hide();
-        }
-
-        private async Task FadeInAsync(Form form)
-        {
-            form.Opacity = 0;
-            for (double i = 0; i <= 1.0; i += 0.05)
-            {
-                form.Opacity = i;
-                await Task.Delay(15);
-            }
         }
 
         public void CargarProveedores()
@@ -39,23 +27,17 @@ namespace Prototipo_MarZel.Formularios
             dgvProveedores.DataSource = listaProveedores;
         }
 
-        private async void FRM_PROVEEDORES_Load(object sender, EventArgs e)
+        private void FRM_PROVEEDORES_Load(object sender, EventArgs e)
         {
-            await FadeInAsync(this);
-            this.Opacity = 1.0;
             CargarProveedores();
         }
 
         private void btnAgregarProveedor_Click(object sender, EventArgs e)
         {
-            frm_gestionar_proveedor.ShowDialog();
-            if (frm_gestionar_proveedor.DialogResult == DialogResult.OK)
+            FRM_GESTIONAR_PROVEEDOR frm_gestionar_proveedor = new FRM_GESTIONAR_PROVEEDOR();
+
+            if (frm_gestionar_proveedor.ShowDialog() == DialogResult.OK)
                 CargarProveedores();
-        }
-
-        private void dgvProveedores_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void btnEditarProveedor_Click(object sender, EventArgs e)
@@ -63,11 +45,30 @@ namespace Prototipo_MarZel.Formularios
             if (dgvProveedores.CurrentRow == null) return;
 
             Proveedor proveedorSeleccionado = (Proveedor)dgvProveedores.CurrentRow.DataBoundItem;
-            frm_gestionar_proveedor = new FRM_GESTIONAR_PROVEEDOR(proveedorSeleccionado);
-            
+            FRM_GESTIONAR_PROVEEDOR frm_gestionar_proveedor = new FRM_GESTIONAR_PROVEEDOR(proveedorSeleccionado);
+
             if (frm_gestionar_proveedor.ShowDialog() == DialogResult.OK)
                 CargarProveedores();
+
+        }
+
+        private void btnEliminarProveedor_Click(object sender, EventArgs e)
+        {
+            
+            if (dgvProveedores.CurrentRow == null) return;
+            
+            Proveedor proveedorSeleccionado = (Proveedor)dgvProveedores.CurrentRow.DataBoundItem;
+            DialogResult resultado = MessageBox.Show(
+                $"¿Está seguro que desea eliminar al proveedor {proveedorSeleccionado.NOMBRE}?", 
+                "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (resultado == DialogResult.Yes)
+            {
+                proveedorController.EliminarProveedor(proveedorSeleccionado.ID_PROVEEDOR);
+                CargarProveedores();
+            }
             
         }
+
     }
 }

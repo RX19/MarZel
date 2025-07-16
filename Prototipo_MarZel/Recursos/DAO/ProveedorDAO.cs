@@ -32,7 +32,7 @@ namespace Prototipo_MarZel
 
         }
 
-        public bool ExisteRTN (string rtn)
+        public bool ExisteRTN(string rtn)
         {
             using SqlConnection con = conexion.AbrirConexion();
             string query = @"SELECT  1 
@@ -80,6 +80,16 @@ namespace Prototipo_MarZel
             cmd.Parameters.AddWithValue("@CANT_COMPRAS", proveedor.CANT_COMPRAS);
             cmd.Parameters.AddWithValue("@IMPORTE", proveedor.IMPORTE);
             cmd.Parameters.AddWithValue("@ID_PROVEEDOR", proveedor.ID_PROVEEDOR);
+            cmd.ExecuteNonQuery();
+        }
+
+        public void EliminarProveedor(int idProveedor)
+        {
+            using SqlConnection con = conexion.AbrirConexion();
+            string query = @"DELETE FROM TBL_PROVEEDORES 
+                             WHERE ID_PROVEEDOR = @ID_PROVEEDOR";
+            using SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@ID_PROVEEDOR", idProveedor);
             cmd.ExecuteNonQuery();
         }
 

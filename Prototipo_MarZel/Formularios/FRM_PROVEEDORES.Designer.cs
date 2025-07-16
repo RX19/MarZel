@@ -31,6 +31,8 @@
             btnAgregarProveedor = new MaterialSkin.Controls.MaterialButton();
             btnEditarProveedor = new MaterialSkin.Controls.MaterialButton();
             dgvProveedores = new DataGridView();
+            btnEliminarProveedor = new MaterialSkin.Controls.MaterialButton();
+            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)dgvProveedores).BeginInit();
             SuspendLayout();
             // 
@@ -41,8 +43,8 @@
             btnAgregarProveedor.Depth = 0;
             btnAgregarProveedor.HighEmphasis = true;
             btnAgregarProveedor.Icon = null;
-            btnAgregarProveedor.Location = new Point(571, 133);
-            btnAgregarProveedor.Margin = new Padding(5, 8, 5, 8);
+            btnAgregarProveedor.Location = new Point(336, 100);
+            btnAgregarProveedor.Margin = new Padding(4, 6, 4, 6);
             btnAgregarProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             btnAgregarProveedor.Name = "btnAgregarProveedor";
             btnAgregarProveedor.NoAccentTextColor = Color.Empty;
@@ -61,8 +63,8 @@
             btnEditarProveedor.Depth = 0;
             btnEditarProveedor.HighEmphasis = true;
             btnEditarProveedor.Icon = null;
-            btnEditarProveedor.Location = new Point(790, 133);
-            btnEditarProveedor.Margin = new Padding(5, 8, 5, 8);
+            btnEditarProveedor.Location = new Point(526, 100);
+            btnEditarProveedor.Margin = new Padding(4, 6, 4, 6);
             btnEditarProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             btnEditarProveedor.Name = "btnEditarProveedor";
             btnEditarProveedor.NoAccentTextColor = Color.Empty;
@@ -82,26 +84,56 @@
             dgvProveedores.BackgroundColor = SystemColors.InactiveCaption;
             dgvProveedores.BorderStyle = BorderStyle.None;
             dgvProveedores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProveedores.Location = new Point(49, 267);
-            dgvProveedores.Margin = new Padding(3, 4, 3, 4);
+            dgvProveedores.Location = new Point(43, 200);
             dgvProveedores.Name = "dgvProveedores";
             dgvProveedores.ReadOnly = true;
             dgvProveedores.RowHeadersWidth = 51;
-            dgvProveedores.Size = new Size(1466, 600);
+            dgvProveedores.Size = new Size(1283, 450);
             dgvProveedores.TabIndex = 2;
-            dgvProveedores.CellContentClick += dgvProveedores_CellContentClick;
+            // 
+            // btnEliminarProveedor
+            // 
+            btnEliminarProveedor.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnEliminarProveedor.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnEliminarProveedor.Depth = 0;
+            btnEliminarProveedor.HighEmphasis = true;
+            btnEliminarProveedor.Icon = null;
+            btnEliminarProveedor.Location = new Point(700, 100);
+            btnEliminarProveedor.Margin = new Padding(4, 6, 4, 6);
+            btnEliminarProveedor.MouseState = MaterialSkin.MouseState.HOVER;
+            btnEliminarProveedor.Name = "btnEliminarProveedor";
+            btnEliminarProveedor.NoAccentTextColor = Color.Empty;
+            btnEliminarProveedor.Size = new Size(176, 36);
+            btnEliminarProveedor.TabIndex = 3;
+            btnEliminarProveedor.Text = "Eliminar Proveedor";
+            btnEliminarProveedor.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnEliminarProveedor.UseAccentColor = false;
+            btnEliminarProveedor.UseVisualStyleBackColor = true;
+            btnEliminarProveedor.Click += btnEliminarProveedor_Click;
+            // 
+            // materialLabel1
+            // 
+            materialLabel1.AutoSize = true;
+            materialLabel1.Depth = 0;
+            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel1.Location = new Point(195, 158);
+            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel1.Name = "materialLabel1";
+            materialLabel1.Size = new Size(107, 19);
+            materialLabel1.TabIndex = 4;
+            materialLabel1.Text = "materialLabel1";
             // 
             // FRM_PROVEEDORES
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1561, 960);
+            ClientSize = new Size(1200, 590);
+            Controls.Add(materialLabel1);
+            Controls.Add(btnEliminarProveedor);
             Controls.Add(dgvProveedores);
             Controls.Add(btnEditarProveedor);
             Controls.Add(btnAgregarProveedor);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "FRM_PROVEEDORES";
-            Padding = new Padding(3, 85, 3, 4);
             Text = "FRM_PROVEEDORES";
             WindowState = FormWindowState.Maximized;
             Load += FRM_PROVEEDORES_Load;
@@ -115,5 +147,7 @@
         private MaterialSkin.Controls.MaterialButton btnAgregarProveedor;
         private MaterialSkin.Controls.MaterialButton btnEditarProveedor;
         private DataGridView dgvProveedores;
+        private MaterialSkin.Controls.MaterialButton btnEliminarProveedor;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
     }
 }

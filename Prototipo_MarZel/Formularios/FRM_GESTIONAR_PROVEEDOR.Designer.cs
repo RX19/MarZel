@@ -174,7 +174,6 @@
             Name = "FRM_GESTIONAR_PROVEEDOR";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "GESTIONAR PROVEEDOR";
-            Load += GESTIONAR_PROVEEDOR_Load;
             ResumeLayout(false);
             PerformLayout();
         }

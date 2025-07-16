@@ -15,10 +15,12 @@ namespace Prototipo_MarZel.Formularios
     {
         ProveedorController proveedorController = new ProveedorController();
         private Proveedor? proveedorActual = null; 
+        
         public FRM_GESTIONAR_PROVEEDOR()
         {
             InitializeComponent();
         }
+        
         public FRM_GESTIONAR_PROVEEDOR(Proveedor proveedor)
         {
             InitializeComponent();
@@ -27,11 +29,6 @@ namespace Prototipo_MarZel.Formularios
             txtNombre.Text = proveedor.NOMBRE;
             txtDireccion.Text = proveedor.DIRECCION;
             txtCelular.Text = proveedor.CELULAR;
-        }
-
-        private void GESTIONAR_PROVEEDOR_Load(object sender, EventArgs e)
-        {
-            
         }
 
         private bool verificarCampos()
@@ -45,69 +42,73 @@ namespace Prototipo_MarZel.Formularios
                 MessageBox.Show("El Campo R.T.N. es obligatorio. Por favor, complete el campo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             } 
-            else if (nombre == string.Empty) 
+
+            if (nombre == string.Empty) 
             {
                 MessageBox.Show("El Campo Nombre es obligatorio. Por favor, complete el campo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            else if (proveedorController.VerificarRTN(rtn))
+
+            if (proveedorActual == null)
             {
-                MessageBox.Show("El R.T.N. ingresado ya existe. Por favor, ingrese un R.T.N. diferente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+                if (proveedorController.VerificarRTN(rtn))
+                {
+                    MessageBox.Show("El R.T.N. ingresado ya existe. Por favor, ingrese un R.T.N. diferente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }      
+            } 
             else
             {
-                return true;
+                if (rtn != proveedorActual.RTN && proveedorController.VerificarRTN(rtn))
+                {
+                    MessageBox.Show("El R.T.N. ingresado ya existe. Por favor, ingrese un R.T.N. diferente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
+
+            return true;
 
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (verificarCampos())
-            {
-                DialogResult result = MessageBox.Show(
-                    "¿Desea guardar los cambios?", "Confirmación", 
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result != DialogResult.Yes)return;
-
-                if (proveedorActual == null)
-                {
-                    Proveedor nuevoProveedor = new Proveedor
-                    {
-                        RTN = txtRTN.Text.Trim(),
-                        NOMBRE = txtNombre.Text.Trim(),
-                        DIRECCION = txtDireccion.Text.Trim(),
-                        CELULAR = txtCelular.Text.Trim(),
-                        CANT_COMPRAS = 0,
-                        IMPORTE = 0.00m
-                    };
-
-                    proveedorController.AgregarProveedor(nuevoProveedor);
-
-                } else {
-
-                    proveedorActual.RTN = txtRTN.Text.Trim();
-                    proveedorActual.NOMBRE = txtNombre.Text.Trim();
-                    proveedorActual.DIRECCION = txtDireccion.Text.Trim();
-                    proveedorActual.CELULAR = txtCelular.Text.Trim();
-                    
-                    proveedorController.ActualizarProveedor(proveedorActual);
-
-                }
-                
-                MessageBox.Show("Proveedor guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.DialogResult = DialogResult.OK;
-                this.txtRTN.Clear();
-                this.txtNombre.Clear();
-                this.txtDireccion.Clear();
-                this.txtCelular.Clear();
-                this.txtRTN.Focus();
-                this.Close();
-                
-            }
+            if (!verificarCampos()) return;
             
+            DialogResult result = MessageBox.Show(
+                "¿Desea guardar los cambios?", "Confirmación", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result != DialogResult.Yes)return;
+
+            if (proveedorActual == null)
+            {
+                Proveedor nuevoProveedor = new Proveedor
+                {
+                    RTN = txtRTN.Text.Trim(),
+                    NOMBRE = txtNombre.Text.Trim(),
+                    DIRECCION = txtDireccion.Text.Trim(),
+                    CELULAR = txtCelular.Text.Trim(),
+                    CANT_COMPRAS = 0,
+                    IMPORTE = 0.00m
+                };
+
+                proveedorController.AgregarProveedor(nuevoProveedor);
+
+            } else {
+
+                proveedorActual.RTN = txtRTN.Text.Trim();
+                proveedorActual.NOMBRE = txtNombre.Text.Trim();
+                proveedorActual.DIRECCION = txtDireccion.Text.Trim();
+                proveedorActual.CELULAR = txtCelular.Text.Trim();
+                    
+                proveedorController.ActualizarProveedor(proveedorActual);
+
+            }
+                
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+                
         }
+
     }
 }
