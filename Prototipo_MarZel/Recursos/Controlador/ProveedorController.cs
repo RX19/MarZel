@@ -31,5 +31,10 @@ namespace Prototipo_MarZel
             dao.EliminarProveedor(idProveedor);
         }
 
+        public List<Proveedor> BuscarProveedor(string texto)
+        {
+            return dao.BuscarProveedor(texto);
+        }
+
     }
 }

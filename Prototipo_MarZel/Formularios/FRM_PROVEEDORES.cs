@@ -14,6 +14,7 @@ namespace Prototipo_MarZel.Formularios
     {
         private readonly ProveedorController proveedorController = new ProveedorController();
         private List<Proveedor> listaProveedores = new List<Proveedor>();
+        private List<Proveedor> listaResultadoProveedor = new List<Proveedor>();
 
         public FRM_PROVEEDORES()
         {
@@ -25,6 +26,18 @@ namespace Prototipo_MarZel.Formularios
             listaProveedores = proveedorController.ObtenerProveedores();
             dgvProveedores.DataSource = null;
             dgvProveedores.DataSource = listaProveedores;
+            dgvProveedores.Columns["ID_PROVEEDOR"].Visible = false;
+            dgvProveedores.ClearSelection();
+            txtBuscar.Clear();
+        }
+
+        public void ResultadosProveedor(String texto)
+        {
+            listaResultadoProveedor = proveedorController.BuscarProveedor(texto);
+            dgvProveedores.DataSource = null;
+            dgvProveedores.DataSource = listaResultadoProveedor;
+            dgvProveedores.Columns["ID_PROVEEDOR"].Visible = false;
+            dgvProveedores.ClearSelection();
         }
 
         private void FRM_PROVEEDORES_Load(object sender, EventArgs e)
@@ -54,12 +67,12 @@ namespace Prototipo_MarZel.Formularios
 
         private void btnEliminarProveedor_Click(object sender, EventArgs e)
         {
-            
+
             if (dgvProveedores.CurrentRow == null) return;
-            
+
             Proveedor proveedorSeleccionado = (Proveedor)dgvProveedores.CurrentRow.DataBoundItem;
             DialogResult resultado = MessageBox.Show(
-                $"¿Está seguro que desea eliminar al proveedor {proveedorSeleccionado.NOMBRE}?", 
+                $"¿Está seguro que desea eliminar al proveedor {proveedorSeleccionado.NOMBRE}?",
                 "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (resultado == DialogResult.Yes)
@@ -67,8 +80,21 @@ namespace Prototipo_MarZel.Formularios
                 proveedorController.EliminarProveedor(proveedorSeleccionado.ID_PROVEEDOR);
                 CargarProveedores();
             }
-            
+
         }
 
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            string texto = txtBuscar.Text.Trim();
+            
+            if (string.IsNullOrEmpty(texto))
+            {
+                CargarProveedores();
+            }
+            else
+            {
+                ResultadosProveedor(texto);
+            }
+        }
     }
 }

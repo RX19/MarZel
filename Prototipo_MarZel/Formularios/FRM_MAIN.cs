@@ -14,8 +14,7 @@ namespace Prototipo_MarZel
         FRM_USUARIOS frm_usuarios = new FRM_USUARIOS();
         LoginController LoginController = new LoginController();
         FRM_CLIENTES frm_clientes = new FRM_CLIENTES();
-        FRM_PROVEEDORES frm_proveedores = new FRM_PROVEEDORES();
-
+        
         private ProductoController productoController = new ProductoController();
 
         public FRM_MAIN(string usuario)
@@ -143,6 +142,7 @@ namespace Prototipo_MarZel
                     await Task.Delay(15);
                 }
                 this.Visible = false;
+                FRM_PROVEEDORES frm_proveedores = new FRM_PROVEEDORES();
                 frm_proveedores.ShowDialog();
                 this.Visible = true;
                 for (double i = 0.2; i <= 1.0; i += 0.05)

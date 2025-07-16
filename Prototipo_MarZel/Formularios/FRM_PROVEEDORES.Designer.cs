@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             btnAgregarProveedor = new MaterialSkin.Controls.MaterialButton();
             btnEditarProveedor = new MaterialSkin.Controls.MaterialButton();
             dgvProveedores = new DataGridView();
             btnEliminarProveedor = new MaterialSkin.Controls.MaterialButton();
-            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            lblBuscar = new MaterialSkin.Controls.MaterialLabel();
+            txtBuscar = new MaterialSkin.Controls.MaterialTextBox();
             ((System.ComponentModel.ISupportInitialize)dgvProveedores).BeginInit();
             SuspendLayout();
             // 
@@ -43,7 +45,7 @@
             btnAgregarProveedor.Depth = 0;
             btnAgregarProveedor.HighEmphasis = true;
             btnAgregarProveedor.Icon = null;
-            btnAgregarProveedor.Location = new Point(336, 100);
+            btnAgregarProveedor.Location = new Point(566, 123);
             btnAgregarProveedor.Margin = new Padding(4, 6, 4, 6);
             btnAgregarProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             btnAgregarProveedor.Name = "btnAgregarProveedor";
@@ -63,7 +65,7 @@
             btnEditarProveedor.Depth = 0;
             btnEditarProveedor.HighEmphasis = true;
             btnEditarProveedor.Icon = null;
-            btnEditarProveedor.Location = new Point(526, 100);
+            btnEditarProveedor.Location = new Point(766, 123);
             btnEditarProveedor.Margin = new Padding(4, 6, 4, 6);
             btnEditarProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             btnEditarProveedor.Name = "btnEditarProveedor";
@@ -80,14 +82,27 @@
             // 
             dgvProveedores.AllowUserToAddRows = false;
             dgvProveedores.AllowUserToDeleteRows = false;
+            dgvProveedores.AllowUserToResizeColumns = false;
+            dgvProveedores.AllowUserToResizeRows = false;
             dgvProveedores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProveedores.BackgroundColor = SystemColors.InactiveCaption;
             dgvProveedores.BorderStyle = BorderStyle.None;
-            dgvProveedores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvProveedores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvProveedores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvProveedores.Location = new Point(43, 200);
             dgvProveedores.Name = "dgvProveedores";
             dgvProveedores.ReadOnly = true;
+            dgvProveedores.RowHeadersVisible = false;
             dgvProveedores.RowHeadersWidth = 51;
+            dgvProveedores.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dgvProveedores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProveedores.Size = new Size(1283, 450);
             dgvProveedores.TabIndex = 2;
             // 
@@ -98,7 +113,7 @@
             btnEliminarProveedor.Depth = 0;
             btnEliminarProveedor.HighEmphasis = true;
             btnEliminarProveedor.Icon = null;
-            btnEliminarProveedor.Location = new Point(700, 100);
+            btnEliminarProveedor.Location = new Point(950, 123);
             btnEliminarProveedor.Margin = new Padding(4, 6, 4, 6);
             btnEliminarProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             btnEliminarProveedor.Name = "btnEliminarProveedor";
@@ -111,24 +126,43 @@
             btnEliminarProveedor.UseVisualStyleBackColor = true;
             btnEliminarProveedor.Click += btnEliminarProveedor_Click;
             // 
-            // materialLabel1
+            // lblBuscar
             // 
-            materialLabel1.AutoSize = true;
-            materialLabel1.Depth = 0;
-            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(195, 158);
-            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(107, 19);
-            materialLabel1.TabIndex = 4;
-            materialLabel1.Text = "materialLabel1";
+            lblBuscar.AutoSize = true;
+            lblBuscar.Depth = 0;
+            lblBuscar.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblBuscar.Location = new Point(112, 132);
+            lblBuscar.MouseState = MaterialSkin.MouseState.HOVER;
+            lblBuscar.Name = "lblBuscar";
+            lblBuscar.Size = new Size(54, 19);
+            lblBuscar.TabIndex = 4;
+            lblBuscar.Text = "Buscar:";
+            // 
+            // txtBuscar
+            // 
+            txtBuscar.AnimateReadOnly = false;
+            txtBuscar.BorderStyle = BorderStyle.None;
+            txtBuscar.Depth = 0;
+            txtBuscar.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtBuscar.LeadingIcon = null;
+            txtBuscar.Location = new Point(172, 116);
+            txtBuscar.MaxLength = 50;
+            txtBuscar.MouseState = MaterialSkin.MouseState.OUT;
+            txtBuscar.Multiline = false;
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.Size = new Size(350, 50);
+            txtBuscar.TabIndex = 5;
+            txtBuscar.Text = "";
+            txtBuscar.TrailingIcon = null;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
             // FRM_PROVEEDORES
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1200, 590);
-            Controls.Add(materialLabel1);
+            Controls.Add(txtBuscar);
+            Controls.Add(lblBuscar);
             Controls.Add(btnEliminarProveedor);
             Controls.Add(dgvProveedores);
             Controls.Add(btnEditarProveedor);
@@ -148,6 +182,7 @@
         private MaterialSkin.Controls.MaterialButton btnEditarProveedor;
         private DataGridView dgvProveedores;
         private MaterialSkin.Controls.MaterialButton btnEliminarProveedor;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialLabel lblBuscar;
+        private MaterialSkin.Controls.MaterialTextBox txtBuscar;
     }
 }

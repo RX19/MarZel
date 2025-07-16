@@ -93,5 +93,36 @@ namespace Prototipo_MarZel
             cmd.ExecuteNonQuery();
         }
 
+        public List<Proveedor> BuscarProveedor(String texto)
+        {
+            List<Proveedor> lista_proveedores = new();
+
+            using SqlConnection con = conexion.AbrirConexion();
+            string query = @"SELECT  * 
+                             FROM    TBL_PROVEEDORES 
+                             WHERE   RTN LIKE @Texto OR 
+                                     NOMBRE LIKE @Texto";
+
+            using SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@Texto", $"%{texto}%");
+            using SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                lista_proveedores.Add(new Proveedor
+                {
+                    ID_PROVEEDOR = dr.GetInt32(dr.GetOrdinal("ID_PROVEEDOR")),
+                    RTN = dr.GetString(dr.GetOrdinal("RTN")),
+                    NOMBRE = dr.GetString(dr.GetOrdinal("NOMBRE")),
+                    DIRECCION = dr.GetString(dr.GetOrdinal("DIRECCION")),
+                    CELULAR = dr.GetString(dr.GetOrdinal("CELULAR")),
+                    CANT_COMPRAS = dr.GetInt32(dr.GetOrdinal("CANT_COMPRAS")),
+                    IMPORTE = dr.GetDecimal(dr.GetOrdinal("IMPORTE"))
+                });
+            }
+
+            return lista_proveedores;
+
+        }
+
     }
 }
