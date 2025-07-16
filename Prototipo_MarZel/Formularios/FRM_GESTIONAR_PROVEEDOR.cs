@@ -14,27 +14,24 @@ namespace Prototipo_MarZel.Formularios
     public partial class FRM_GESTIONAR_PROVEEDOR : MaterialSkin.Controls.MaterialForm
     {
         ProveedorController proveedorController = new ProveedorController();
-
+        private Proveedor? proveedorActual = null; 
         public FRM_GESTIONAR_PROVEEDOR()
         {
             InitializeComponent();
-            this.Hide();
+        }
+        public FRM_GESTIONAR_PROVEEDOR(Proveedor proveedor)
+        {
+            InitializeComponent();
+            proveedorActual = proveedor;
+            txtRTN.Text = proveedor.RTN;
+            txtNombre.Text = proveedor.NOMBRE;
+            txtDireccion.Text = proveedor.DIRECCION;
+            txtCelular.Text = proveedor.CELULAR;
         }
 
-        private async Task FadeInAsync(Form form)
+        private void GESTIONAR_PROVEEDOR_Load(object sender, EventArgs e)
         {
-            form.Opacity = 0;
-            for (double i = 0; i <= 1.0; i += 0.05)
-            {
-                form.Opacity = i;
-                await Task.Delay(15);
-            }
-        }
-
-        private async void GESTIONAR_PROVEEDOR_Load(object sender, EventArgs e)
-        {
-            await FadeInAsync(this);
-            this.Opacity = 1.0;
+            
         }
 
         private bool verificarCampos()
@@ -73,7 +70,9 @@ namespace Prototipo_MarZel.Formularios
                     "¿Desea guardar los cambios?", "Confirmación", 
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (result == DialogResult.Yes)
+                if (result != DialogResult.Yes)return;
+
+                if (proveedorActual == null)
                 {
                     Proveedor nuevoProveedor = new Proveedor
                     {
@@ -85,11 +84,28 @@ namespace Prototipo_MarZel.Formularios
                         IMPORTE = 0.00m
                     };
 
-                    MessageBox.Show("Proveedor guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     proveedorController.AgregarProveedor(nuevoProveedor);
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+
+                } else {
+
+                    proveedorActual.RTN = txtRTN.Text.Trim();
+                    proveedorActual.NOMBRE = txtNombre.Text.Trim();
+                    proveedorActual.DIRECCION = txtDireccion.Text.Trim();
+                    proveedorActual.CELULAR = txtCelular.Text.Trim();
+                    
+                    proveedorController.ActualizarProveedor(proveedorActual);
+
                 }
+                
+                MessageBox.Show("Proveedor guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
+                this.txtRTN.Clear();
+                this.txtNombre.Clear();
+                this.txtDireccion.Clear();
+                this.txtCelular.Clear();
+                this.txtRTN.Focus();
+                this.Close();
+                
             }
             
         }

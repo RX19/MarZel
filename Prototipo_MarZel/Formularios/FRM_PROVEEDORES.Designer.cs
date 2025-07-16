@@ -41,8 +41,8 @@
             btnAgregarProveedor.Depth = 0;
             btnAgregarProveedor.HighEmphasis = true;
             btnAgregarProveedor.Icon = null;
-            btnAgregarProveedor.Location = new Point(500, 100);
-            btnAgregarProveedor.Margin = new Padding(4, 6, 4, 6);
+            btnAgregarProveedor.Location = new Point(571, 133);
+            btnAgregarProveedor.Margin = new Padding(5, 8, 5, 8);
             btnAgregarProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             btnAgregarProveedor.Name = "btnAgregarProveedor";
             btnAgregarProveedor.NoAccentTextColor = Color.Empty;
@@ -61,8 +61,8 @@
             btnEditarProveedor.Depth = 0;
             btnEditarProveedor.HighEmphasis = true;
             btnEditarProveedor.Icon = null;
-            btnEditarProveedor.Location = new Point(691, 100);
-            btnEditarProveedor.Margin = new Padding(4, 6, 4, 6);
+            btnEditarProveedor.Location = new Point(790, 133);
+            btnEditarProveedor.Margin = new Padding(5, 8, 5, 8);
             btnEditarProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             btnEditarProveedor.Name = "btnEditarProveedor";
             btnEditarProveedor.NoAccentTextColor = Color.Empty;
@@ -72,6 +72,7 @@
             btnEditarProveedor.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnEditarProveedor.UseAccentColor = false;
             btnEditarProveedor.UseVisualStyleBackColor = true;
+            btnEditarProveedor.Click += btnEditarProveedor_Click;
             // 
             // dgvProveedores
             // 
@@ -81,21 +82,26 @@
             dgvProveedores.BackgroundColor = SystemColors.InactiveCaption;
             dgvProveedores.BorderStyle = BorderStyle.None;
             dgvProveedores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProveedores.Location = new Point(43, 200);
+            dgvProveedores.Location = new Point(49, 267);
+            dgvProveedores.Margin = new Padding(3, 4, 3, 4);
             dgvProveedores.Name = "dgvProveedores";
             dgvProveedores.ReadOnly = true;
-            dgvProveedores.Size = new Size(1283, 450);
+            dgvProveedores.RowHeadersWidth = 51;
+            dgvProveedores.Size = new Size(1466, 600);
             dgvProveedores.TabIndex = 2;
+            dgvProveedores.CellContentClick += dgvProveedores_CellContentClick;
             // 
             // FRM_PROVEEDORES
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1366, 720);
+            ClientSize = new Size(1561, 960);
             Controls.Add(dgvProveedores);
             Controls.Add(btnEditarProveedor);
             Controls.Add(btnAgregarProveedor);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FRM_PROVEEDORES";
+            Padding = new Padding(3, 85, 3, 4);
             Text = "FRM_PROVEEDORES";
             WindowState = FormWindowState.Maximized;
             Load += FRM_PROVEEDORES_Load;

@@ -21,5 +21,10 @@ namespace Prototipo_MarZel
             dao.AgregarProveedor(proveedor);
         }
 
+        public void ActualizarProveedor(Proveedor proveedor)
+        {
+            dao.ActualizarProveedor(proveedor);
+        }
+
     }
 }

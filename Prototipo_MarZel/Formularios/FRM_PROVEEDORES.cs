@@ -13,7 +13,7 @@ namespace Prototipo_MarZel.Formularios
     public partial class FRM_PROVEEDORES : MaterialSkin.Controls.MaterialForm
     {
         FRM_GESTIONAR_PROVEEDOR frm_gestionar_proveedor = new FRM_GESTIONAR_PROVEEDOR();
-        
+
         private readonly ProveedorController proveedorController = new ProveedorController();
         private List<Proveedor> listaProveedores = new List<Proveedor>();
         public FRM_PROVEEDORES()
@@ -46,27 +46,28 @@ namespace Prototipo_MarZel.Formularios
             CargarProveedores();
         }
 
-        private async void btnAgregarProveedor_Click(object sender, EventArgs e)
+        private void btnAgregarProveedor_Click(object sender, EventArgs e)
         {
-            for (double i = 1.0; i >= 0.2; i -= 0.05)
-            {
-                this.Opacity = i;
-                await Task.Delay(15);
-            }
-            this.Visible = false;
             frm_gestionar_proveedor.ShowDialog();
-            this.Visible = true;
-            for (double i = 0.2; i <= 1.0; i += 0.05)
-            {
-                this.Opacity = i;
-                await Task.Delay(15);
-            }
-            this.Opacity = 1.0;
-
             if (frm_gestionar_proveedor.DialogResult == DialogResult.OK)
-            {
                 CargarProveedores();
-            }
+        }
+
+        private void dgvProveedores_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnEditarProveedor_Click(object sender, EventArgs e)
+        {
+            if (dgvProveedores.CurrentRow == null) return;
+
+            Proveedor proveedorSeleccionado = (Proveedor)dgvProveedores.CurrentRow.DataBoundItem;
+            frm_gestionar_proveedor = new FRM_GESTIONAR_PROVEEDOR(proveedorSeleccionado);
+            
+            if (frm_gestionar_proveedor.ShowDialog() == DialogResult.OK)
+                CargarProveedores();
+            
         }
     }
 }
