@@ -154,6 +154,26 @@ namespace Prototipo_MarZel
                 MTBC_MENU.SelectedTab = TP_INICIO;
             }
 
+            if (MTBC_MENU.SelectedTab == TP_COMPRAS)
+            {
+                for (double i = 1.0; i >= 0.2; i -= 0.05)
+                {
+                    this.Opacity = i;
+                    await Task.Delay(15);
+                }
+                this.Visible = false;
+                FRM_COMPRAS frm_compras = new FRM_COMPRAS();
+                frm_compras.ShowDialog();
+                this.Visible = true;
+                for (double i = 0.2; i <= 1.0; i += 0.05)
+                {
+                    this.Opacity = i;
+                    await Task.Delay(15);
+                }
+                this.Opacity = 1.0;
+                MTBC_MENU.SelectedTab = TP_COMPRAS;
+            }
+
         }
 
     }

@@ -12,8 +12,8 @@ namespace Prototipo_MarZel.Formularios
 {
     public partial class FRM_PROVEEDORES : MaterialSkin.Controls.MaterialForm
     {
-        private readonly ProveedorController proveedorController = new ProveedorController();
         private List<Proveedor> listaProveedores = new List<Proveedor>();
+        private readonly ProveedorController proveedorController = new ProveedorController();
         private List<Proveedor> listaResultadoProveedor = new List<Proveedor>();
 
         public FRM_PROVEEDORES()
@@ -43,6 +43,20 @@ namespace Prototipo_MarZel.Formularios
         private void FRM_PROVEEDORES_Load(object sender, EventArgs e)
         {
             CargarProveedores();
+
+            //----------------------------------------------------------------
+            //Diseño del formulario para diferentes tamaños de pantalla.
+                int positionx = (this.Width-974)/2;
+                dgvProveedores.Width = this.Width - 100;
+                dgvProveedores.Height = this.Height - 250;
+            
+                dgvProveedores.Location = new Point(50, 200);
+                lblBuscar.Location = new Point(positionx, 124);
+                txtBuscar.Location = new Point(positionx+69, 108);
+                btnAgregarProveedor.Location = new Point(positionx+434, 115);  
+                btnEditarProveedor.Location = new Point(positionx+624, 115);
+                btnEliminarProveedor.Location = new Point(positionx+798, 115);
+            //----------------------------------------------------------------
         }
 
         private void btnAgregarProveedor_Click(object sender, EventArgs e)

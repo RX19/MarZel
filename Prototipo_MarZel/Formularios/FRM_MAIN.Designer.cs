@@ -44,6 +44,7 @@
             TP_FACTURACION = new TabPage();
             TP_ADMIN = new TabPage();
             TP_PROVEEDORES = new TabPage();
+            TP_COMPRAS = new TabPage();
             MTBC_MENU.SuspendLayout();
             TP_INICIO.SuspendLayout();
             materialCard1.SuspendLayout();
@@ -57,6 +58,7 @@
             MTBC_MENU.Controls.Add(TP_FACTURACION);
             MTBC_MENU.Controls.Add(TP_ADMIN);
             MTBC_MENU.Controls.Add(TP_PROVEEDORES);
+            MTBC_MENU.Controls.Add(TP_COMPRAS);
             MTBC_MENU.Depth = 0;
             MTBC_MENU.Dock = DockStyle.Fill;
             MTBC_MENU.Location = new Point(3, 60);
@@ -257,6 +259,16 @@
             TP_PROVEEDORES.Text = "Proveedores";
             TP_PROVEEDORES.UseVisualStyleBackColor = true;
             // 
+            // TP_COMPRAS
+            // 
+            TP_COMPRAS.Location = new Point(4, 24);
+            TP_COMPRAS.Name = "TP_COMPRAS";
+            TP_COMPRAS.Padding = new Padding(3);
+            TP_COMPRAS.Size = new Size(1093, 476);
+            TP_COMPRAS.TabIndex = 5;
+            TP_COMPRAS.Text = "Compras";
+            TP_COMPRAS.UseVisualStyleBackColor = true;
+            // 
             // FRM_MAIN
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -299,5 +311,6 @@
         private MaterialSkin.Controls.MaterialLabel LBL_CORREO;
         private MaterialSkin.Controls.MaterialLabel LBL_APELLIDO;
         private TabPage TP_PROVEEDORES;
+        private TabPage TP_COMPRAS;
     }
 }

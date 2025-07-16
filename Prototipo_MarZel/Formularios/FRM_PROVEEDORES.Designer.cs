@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             btnAgregarProveedor = new MaterialSkin.Controls.MaterialButton();
             btnEditarProveedor = new MaterialSkin.Controls.MaterialButton();
             dgvProveedores = new DataGridView();
@@ -45,7 +45,7 @@
             btnAgregarProveedor.Depth = 0;
             btnAgregarProveedor.HighEmphasis = true;
             btnAgregarProveedor.Icon = null;
-            btnAgregarProveedor.Location = new Point(566, 123);
+            btnAgregarProveedor.Location = new Point(566, 115);
             btnAgregarProveedor.Margin = new Padding(4, 6, 4, 6);
             btnAgregarProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             btnAgregarProveedor.Name = "btnAgregarProveedor";
@@ -65,7 +65,7 @@
             btnEditarProveedor.Depth = 0;
             btnEditarProveedor.HighEmphasis = true;
             btnEditarProveedor.Icon = null;
-            btnEditarProveedor.Location = new Point(766, 123);
+            btnEditarProveedor.Location = new Point(766, 115);
             btnEditarProveedor.Margin = new Padding(4, 6, 4, 6);
             btnEditarProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             btnEditarProveedor.Name = "btnEditarProveedor";
@@ -87,23 +87,23 @@
             dgvProveedores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProveedores.BackgroundColor = SystemColors.InactiveCaption;
             dgvProveedores.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvProveedores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvProveedores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvProveedores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvProveedores.Location = new Point(43, 200);
+            dgvProveedores.Location = new Point(50, 200);
             dgvProveedores.Name = "dgvProveedores";
             dgvProveedores.ReadOnly = true;
             dgvProveedores.RowHeadersVisible = false;
             dgvProveedores.RowHeadersWidth = 51;
             dgvProveedores.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dgvProveedores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvProveedores.Size = new Size(1283, 450);
+            dgvProveedores.Size = new Size(1200, 450);
             dgvProveedores.TabIndex = 2;
             // 
             // btnEliminarProveedor
@@ -113,7 +113,7 @@
             btnEliminarProveedor.Depth = 0;
             btnEliminarProveedor.HighEmphasis = true;
             btnEliminarProveedor.Icon = null;
-            btnEliminarProveedor.Location = new Point(950, 123);
+            btnEliminarProveedor.Location = new Point(950, 115);
             btnEliminarProveedor.Margin = new Padding(4, 6, 4, 6);
             btnEliminarProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             btnEliminarProveedor.Name = "btnEliminarProveedor";
@@ -131,7 +131,7 @@
             lblBuscar.AutoSize = true;
             lblBuscar.Depth = 0;
             lblBuscar.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblBuscar.Location = new Point(112, 132);
+            lblBuscar.Location = new Point(106, 124);
             lblBuscar.MouseState = MaterialSkin.MouseState.HOVER;
             lblBuscar.Name = "lblBuscar";
             lblBuscar.Size = new Size(54, 19);
@@ -145,7 +145,7 @@
             txtBuscar.Depth = 0;
             txtBuscar.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtBuscar.LeadingIcon = null;
-            txtBuscar.Location = new Point(172, 116);
+            txtBuscar.Location = new Point(174, 108);
             txtBuscar.MaxLength = 50;
             txtBuscar.MouseState = MaterialSkin.MouseState.OUT;
             txtBuscar.Multiline = false;
@@ -160,14 +160,16 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1200, 590);
+            ClientSize = new Size(1300, 700);
             Controls.Add(txtBuscar);
             Controls.Add(lblBuscar);
             Controls.Add(btnEliminarProveedor);
             Controls.Add(dgvProveedores);
             Controls.Add(btnEditarProveedor);
             Controls.Add(btnAgregarProveedor);
+            MaximizeBox = false;
             Name = "FRM_PROVEEDORES";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FRM_PROVEEDORES";
             WindowState = FormWindowState.Maximized;
             Load += FRM_PROVEEDORES_Load;
