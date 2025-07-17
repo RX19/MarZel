@@ -1,311 +1,312 @@
--- Crear la base de datos
-CREATE DATABASE MarZel;
+-- CREAR LA BASE DE DATOS
+CREATE DATABASE MARZEL;
 GO
-USE MarZel;
+USE MARZEL;
 GO
-/****** Object:  Table TBL_EstadosUsuario ******/
-create table TBL_EstadosUsuario(
-	IdEstadoUsuario int identity(1,1) not null,
-	Descripcion varchar(25) not null,
+/****** OBJECT:  TABLE TBL_ESTADOS_USUARIO ******/
+CREATE TABLE TBL_ESTADOS_USUARIO(
+	ID_ESTADO INT IDENTITY(1,1) NOT NULL,
+	DESCRIPCION VARCHAR(25) NOT NULL,
 );
 
 --PK
-alter table TBL_EstadosUsuario add constraint PK_EstadosUsuario
-primary key(IdEstadoUsuario);
+ALTER TABLE TBL_ESTADOS_USUARIO ADD CONSTRAINT PK_ESTADOS_USUARIO
+PRIMARY KEY(ID_ESTADO);
 
-/****** Object:  Table TBL_TiposUsuario ******/
-create table TBL_TiposUsuario(
-	IdTipoUsuario int identity(1,1) not null,
-	Descripcion varchar(25) not null,
+/****** OBJECT:  TABLE TBL_TIPOS_USUARIO ******/
+CREATE TABLE TBL_TIPOS_USUARIO(
+	ID_TIPO INT IDENTITY(1,1) NOT NULL,
+	DESCRIPCION VARCHAR(25) NOT NULL,
 );
 
 --PK
-alter table TBL_TiposUsuario add constraint PK_TiposUsuario
-primary key(IdTipoUsuario);
+ALTER TABLE TBL_TIPOS_USUARIO ADD CONSTRAINT PK_TIPOS_USUARIO
+PRIMARY KEY(ID_TIPO);
 
-/****** Object:  Table TBL_Usuarios ******/
-create table TBL_Usuarios(
-	IdUsuario int identity(1,1) not null,
-	Identidad varchar(13) not null,
-	Nombre varchar(50) not null,
-	Correo varchar(50) not null,
-	Usuario varchar(50) not null,
-	Contrasena varchar(50) not null,
-	Celular varchar(8) not null,
-	IdTipoUsuario int not null,
-	IdEstadoUsuario int not null,
+/****** OBJECT:  TABLE TBL_USUARIOS ******/
+CREATE TABLE TBL_USUARIOS(
+	ID_USUARIO INT IDENTITY(1,1) NOT NULL,
+	IDENTIDAD VARCHAR(13) NOT NULL,
+	NOMBRE VARCHAR(50) NOT NULL,
+	CORREO VARCHAR(50) NOT NULL,
+	USUARIO VARCHAR(50) NOT NULL,
+	CONTRASENA VARCHAR(50) NOT NULL,
+	CELULAR VARCHAR(8) NOT NULL,
+	ID_TIPO INT NOT NULL,
+	ID_ESTADO INT NOT NULL,
 );
 
 --PK
-alter table TBL_Usuarios add constraint PK_Usuarios
-primary key(IdUsuario);
+ALTER TABLE TBL_USUARIOS ADD CONSTRAINT PK_USUARIOS
+PRIMARY KEY(ID_USUARIO);
 
 --UQ
-alter table TBL_Usuarios add constraint UQ_Usuarios_Identidad
-unique(Identidad);
+ALTER TABLE TBL_USUARIOS ADD CONSTRAINT UQ_USUARIOS_IDENTIDAD
+UNIQUE(IDENTIDAD);
 
-alter table TBL_Usuarios add constraint UQ_Usuarios_Correo
-unique(Correo);
+ALTER TABLE TBL_USUARIOS ADD CONSTRAINT UQ_USUARIOS_CORREO
+UNIQUE(CORREO);
 
-alter table TBL_Usuarios add constraint UQ_Usuarios_Usuario
-unique(Usuario);
+ALTER TABLE TBL_USUARIOS ADD CONSTRAINT UQ_USUARIOS_USUARIO
+UNIQUE(USUARIO);
 
 --FK
-alter table TBL_Usuarios add constraint FK_Usuarios_TiposUsuario
-foreign key(IdTipoUsuario) references TBL_TiposUsuario(IdTipoUsuario);
+ALTER TABLE TBL_USUARIOS ADD CONSTRAINT FK_USUARIOS_TIPOS_USUARIO
+FOREIGN KEY(ID_TIPO) REFERENCES TBL_TIPOS_USUARIO(ID_TIPO);
 
-alter table TBL_Usuarios add constraint FK_Usuarios_EstadosUsuario
-foreign key(IdEstadoUsuario) references TBL_EstadosUsuario(IdEstadoUsuario);
+ALTER TABLE TBL_USUARIOS ADD CONSTRAINT FK_USUARIOS_ESTADOS_USUARIO
+FOREIGN KEY(ID_ESTADO) REFERENCES TBL_ESTADOS_USUARIO(ID_ESTADO);
 
-/****** Object:  Table TBL_Proveedores ******/
-create table TBL_Proveedores(
-	IdProveedor int identity(1,1) not null,
-	Rtn varchar(14) not null,
-	Nombre varchar(50) not null,
-	Direccion varchar(50) null,
-	Celular varchar(8) null,
-	CantCompras int null,
-	Importe decimal(9, 2) null
+/****** OBJECT:  TABLE TBL_PROVEEDORES ******/
+CREATE TABLE TBL_PROVEEDORES(
+	ID_PROVEEDOR INT IDENTITY(1,1) NOT NULL,
+	RTN VARCHAR(14) NOT NULL,
+	NOMBRE VARCHAR(50) NOT NULL,
+	DIRECCION VARCHAR(50) NULL,
+	CELULAR VARCHAR(8) NULL,
+	CANT_COMPRAS INT NULL,
+	IMPORTE DECIMAL(9, 2) NULL
 ); 
 
 --PK
-alter table TBL_Proveedores add constraint PK_Proveedores
-primary key(IdProveedor);
+ALTER TABLE TBL_PROVEEDORES ADD CONSTRAINT PK_PROVEEDORES
+PRIMARY KEY(ID_PROVEEDOR);
 
 --UQ
-alter table TBL_Proveedores add constraint UQ_Proveedores_Rtn
-unique(Rtn);
+ALTER TABLE TBL_PROVEEDORES ADD CONSTRAINT UQ_PROVEEDORES_RTN
+UNIQUE(RTN);
 
-/****** Object:  Table TBL_Compras ******/
-create table TBL_Compras(
-	IdCompra int identity(1,1) not null,
-	IdProveedor int not null,
-	Fecha date not null,
-	Factura varchar(25) not null,
-	Subtotal decimal(9, 2) not null,
-	Gravado decimal(9, 2) not null,
-	ISV decimal(9, 2) not null,
-	Exento decimal(9, 2) not null,
-	Total decimal(9, 2) not null
+/****** OBJECT:  TABLE TBL_COMPRAS ******/
+CREATE TABLE TBL_COMPRAS(
+	ID_COMPRA INT IDENTITY(1,1) NOT NULL,
+	ID_PROVEEDOR INT NOT NULL,
+	FECHA DATE NOT NULL,
+	FACTURA VARCHAR(25) NOT NULL,
+	SUBTOTAL DECIMAL(9, 2) NOT NULL,
+	GRAVADO DECIMAL(9, 2) NOT NULL,
+	ISV DECIMAL(9, 2) NOT NULL,
+	EXENTO DECIMAL(9, 2) NOT NULL,
+	TOTAL DECIMAL(9, 2) NOT NULL
 );
 
 --PK
-alter table TBL_Compras add constraint PK_Compras
-primary key(IdCompra);
+ALTER TABLE TBL_COMPRAS ADD CONSTRAINT PK_COMPRAS
+PRIMARY KEY(ID_COMPRA);
 
 --UQ
-alter table TBL_Compras add constraint UQ_Compras_Factura
-unique(Factura);
+ALTER TABLE TBL_COMPRAS ADD CONSTRAINT UQ_COMPRAS_FACTURA
+UNIQUE(FACTURA);
 
 --FK
-alter table TBL_Compras add constraint FK_Compras_Proveedores
-foreign key(IdProveedor) references TBL_Proveedores(IdProveedor);
+ALTER TABLE TBL_COMPRAS ADD CONSTRAINT FK_COMPRAS_PROVEEDORES
+FOREIGN KEY(ID_PROVEEDOR) REFERENCES TBL_PROVEEDORES(ID_PROVEEDOR);
 
-/****** Object:  Table TBL_CategoriasProducto ******/
-create table TBL_CategoriasProducto(
-	IdCategoria int identity(1,1) not null,
-	Descripcion varchar(25) not null
+/****** OBJECT:  TABLE TBL_CATEGORIAS_PRODUCTO ******/
+CREATE TABLE TBL_CATEGORIAS_PRODUCTO(
+	ID_CATEGORIA INT IDENTITY(1,1) NOT NULL,
+	DESCRIPCION VARCHAR(25) NOT NULL
 );
 
 --PK
-alter table TBL_CategoriasProducto add constraint PK_CategoriasProducto
-primary key(IdCategoria);
+ALTER TABLE TBL_CATEGORIAS_PRODUCTO ADD CONSTRAINT PK_CATEGORIAS_PRODUCTO
+PRIMARY KEY(ID_CATEGORIA);
 
-/****** Object:  Table TBL_TiposISV ******/
-create table TBL_TiposISV(
-	IdISV int identity(1,1) not null,
-	Descripcion varchar(25) not null,
+/****** OBJECT:  TABLE TBL_TIPOS_ISV ******/
+CREATE TABLE TBL_TIPOS_ISV(
+	ID_ISV INT IDENTITY(1,1) NOT NULL,
+	DESCRIPCION VARCHAR(2) NOT NULL,
 );
 
 --PK
-alter table TBL_TiposISV add constraint PK_TiposISV
-primary key(IdISV);
+ALTER TABLE TBL_TIPOS_ISV ADD CONSTRAINT PK_TIPOS_ISV
+PRIMARY KEY(ID_ISV);
 
-/****** Object:  Table TBL_Productos ******/
-create table TBL_Productos(
-	IdProducto int identity(1,1) not null,
-	CodigoBarra varchar(25) not null,
-	Descripcion varchar(100) not null,
-	IdISV int not null,
-	PrecioCompleto decimal(9, 2) null,
-	PrecioUnitario decimal(9, 2) null,
-	IdCategoria int not null,
-	Existencia int not null,
+/****** OBJECT:  TABLE TBL_PRODUCTOS ******/
+CREATE TABLE TBL_PRODUCTOS(
+	ID_PRODUCTO INT IDENTITY(1,1) NOT NULL,
+	CODIGO_BARRA VARCHAR(25) NOT NULL,
+	DESCRIPCION VARCHAR(100) NOT NULL,
+	ID_ISV INT NOT NULL,
+	PRECIO_COMPLETO DECIMAL(9, 2) NULL,
+	PRECIO_UNITARIO DECIMAL(9, 2) NULL,
+	ID_CATEGORIA INT NOT NULL,
+	EXISTENCIA INT NOT NULL,
 );
 
 --PK
-alter table TBL_Productos add constraint PK_Productos
-primary key(IdProducto);
+ALTER TABLE TBL_PRODUCTOS ADD CONSTRAINT PK_PRODUCTOS
+PRIMARY KEY(ID_PRODUCTO);
 
 --UQ
-alter table TBL_Productos add constraint UQ_Productos_CodigoBarra
-unique(CodigoBarra);
+ALTER TABLE TBL_PRODUCTOS ADD CONSTRAINT UQ_PRODUCTOS_CODIGO_BARRA
+UNIQUE(CODIGO_BARRA);
 
 --FK
-alter table TBL_Productos add constraint FK_Productos_TiposISV
-foreign key(IdISV) references TBL_TiposISV(IdISV);
+ALTER TABLE TBL_PRODUCTOS ADD CONSTRAINT FK_PRODUCTOS_TIPOS_ISV
+FOREIGN KEY(ID_ISV) REFERENCES TBL_TIPOS_ISV(ID_ISV);
 
-alter table TBL_Productos add constraint FK_Productos_CategoriasProducto
-foreign key(IdCategoria) references TBL_CategoriasProducto(IdCategoria);
+ALTER TABLE TBL_PRODUCTOS ADD CONSTRAINT FK_PRODUCTOS_CATEGORIAS_PRODUCTO
+FOREIGN KEY(ID_CATEGORIA) REFERENCES TBL_CATEGORIAS_PRODUCTO(ID_CATEGORIA);
 
-/****** Object:  Table TBL_DetallesCompra ******/
-create table TBL_DetallesCompra(
-	IdCompra int not null,
-	IdProducto int not null,
-	Cantidad int not null,
-	Costo decimal(9, 2) not null,
-	Descuento decimal(9, 2) not null,
-	Importe decimal(9, 2) not null,
+/****** OBJECT:  TABLE TBL_DETALLES_COMPRA ******/
+CREATE TABLE TBL_DETALLES_COMPRA(
+	ID_COMPRA INT NOT NULL,
+	ID_PRODUCTO INT NOT NULL,
+	CANTIDAD INT NOT NULL,
+	COSTO DECIMAL(9, 2) NOT NULL,
+	DESCUENTO DECIMAL(9, 2) NOT NULL,
+	IMPORTE DECIMAL(9, 2) NOT NULL,
 );
 
 --PK
-alter table TBL_DetallesCompra add constraint PK_DetallesCompra
-primary key(IdCompra, IdProducto);
+ALTER TABLE TBL_DETALLES_COMPRA ADD CONSTRAINT PK_DETALLES_COMPRA
+PRIMARY KEY(ID_COMPRA, ID_PRODUCTO);
 
 --FK
-alter table TBL_DetallesCompra add constraint FK_DetallesCompra_Compras
-foreign key(IdCompra) references TBL_Compras(IdCompra);
+ALTER TABLE TBL_DETALLES_COMPRA ADD CONSTRAINT FK_DETALLES_COMPRA_COMPRAS
+FOREIGN KEY(ID_COMPRA) REFERENCES TBL_COMPRAS(ID_COMPRA);
 
-alter table TBL_DetallesCompra add constraint FK_DetallesCompra_Productos
-foreign key(IdProducto) references TBL_Productos(IdProducto);
+ALTER TABLE TBL_DETALLES_COMPRA ADD CONSTRAINT FK_DETALLES_COMPRA_PRODUCTOS
+FOREIGN KEY(ID_PRODUCTO) REFERENCES TBL_PRODUCTOS(ID_PRODUCTO);
 
-/****** Object:  Table TBL_Clientes ******/
-create table TBL_Clientes(
-	IdCliente int identity(1,1) not null,
-	Rtn varchar(14) not null,
-	Nombre varchar(50) not null,
-	Direccion varchar(50) null,
-	Celular varchar(8) null,
-	CantCompras int null,
-	Importe decimal(9, 2) null
+/****** OBJECT:  TABLE TBL_CLIENTES ******/
+CREATE TABLE TBL_CLIENTES(
+	ID_CLIENTE INT IDENTITY(1,1) NOT NULL,
+	RTN VARCHAR(14) NOT NULL,
+	NOMBRE VARCHAR(50) NOT NULL,
+	DIRECCION VARCHAR(50) NULL,
+	CELULAR VARCHAR(8) NULL,
+	CANT_COMPRAS INT NULL,
+	IMPORTE DECIMAL(9, 2) NULL
 );
 
 --PK
-alter table TBL_Clientes add constraint PK_Clientes
-primary key(IdCliente);
+ALTER TABLE TBL_CLIENTES ADD CONSTRAINT PK_CLIENTES
+PRIMARY KEY(ID_CLIENTE);
 
 --UQ
-alter table TBL_Clientes add constraint UQ_Clientes_Rtn
-unique(Rtn);
+ALTER TABLE TBL_CLIENTES ADD CONSTRAINT UQ_CLIENTES_RTN
+UNIQUE(RTN);
 
-/****** Object:  Table TBL_Ventas ******/
-create table TBL_Ventas(
-	IdVenta int identity(1,1) not null,
-	IdUsuario int not null,
-	IdCliente int not null,
-	Fecha date not null,
-	Factura varchar(25) not null,
-	Subtotal decimal(9, 2) not null,
-	Gravado decimal(9, 2) not null,
-	ISV decimal(9, 2) not null,
-	Exento decimal(9, 2) not null,
-	Total decimal(9, 2) not null,
+/****** OBJECT:  TABLE TBL_VENTAS ******/
+CREATE TABLE TBL_VENTAS(
+	ID_VENTA INT IDENTITY(1,1) NOT NULL,
+	ID_USUARIO INT NOT NULL,
+	ID_CLIENTE INT NOT NULL,
+	FECHA DATE NOT NULL,
+	FACTURA VARCHAR(25) NOT NULL,
+	SUBTOTAL DECIMAL(9, 2) NOT NULL,
+	GRAVADO DECIMAL(9, 2) NOT NULL,
+	ISV DECIMAL(9, 2) NOT NULL,
+	EXENTO DECIMAL(9, 2) NOT NULL,
+	TOTAL DECIMAL(9, 2) NOT NULL,
 );
 
 --PK
-alter table TBL_Ventas add constraint PK_Ventas
-primary key(IdVenta);
+ALTER TABLE TBL_VENTAS ADD CONSTRAINT PK_VENTAS
+PRIMARY KEY(ID_VENTA);
 
 --UQ
-alter table TBL_Ventas add constraint UQ_Ventas_Factura
-unique(Factura);
+ALTER TABLE TBL_VENTAS ADD CONSTRAINT UQ_VENTAS_FACTURA
+UNIQUE(FACTURA);
 
 --FK
-alter table TBL_Ventas add constraint FK_Ventas_Usuarios
-foreign key(IdUsuario) references TBL_Usuarios(IdUsuario);
+ALTER TABLE TBL_VENTAS ADD CONSTRAINT FK_VENTAS_USUARIOS
+FOREIGN KEY(ID_USUARIO) REFERENCES TBL_USUARIOS(ID_USUARIO);
 
-alter table TBL_Ventas add constraint FK_Ventas_Clientes
-foreign key(IdCliente) references TBL_Clientes(IdCliente);
+ALTER TABLE TBL_VENTAS ADD CONSTRAINT FK_VENTAS_CLIENTES
+FOREIGN KEY(ID_CLIENTE) REFERENCES TBL_CLIENTES(ID_CLIENTE);
 
-/****** Object:  Table TBL_DetallesVenta ******/
-create table TBL_DetallesVenta(
-	IdVenta int not null,
-	IdProducto int not null,
-	Cantidad int not null,
-	Costo decimal(9, 2) not null,
-	Descuento decimal(9, 2) not null,
-	Importe decimal(9, 2) not null,
+/****** OBJECT:  TABLE TBL_DETALLES_VENTA ******/
+CREATE TABLE TBL_DETALLES_VENTA(
+	ID_VENTA INT NOT NULL,
+	ID_PRODUCTO INT NOT NULL,
+	CANTIDAD INT NOT NULL,
+	COSTO DECIMAL(9, 2) NOT NULL,
+	DESCUENTO DECIMAL(9, 2) NOT NULL,
+	IMPORTE DECIMAL(9, 2) NOT NULL,
 );
 
 --PK
-alter table TBL_DetallesVenta add constraint PK_DetallesVenta
-primary key(IdVenta, IdProducto);
+ALTER TABLE TBL_DETALLES_VENTA ADD CONSTRAINT PK_DETALLES_VENTA
+PRIMARY KEY(ID_VENTA, ID_PRODUCTO);
 
 --FK
-alter table TBL_DetallesVenta add constraint FK_DetallesVenta_Ventas
-foreign key(IdVenta) references TBL_Ventas(IdVenta);
+ALTER TABLE TBL_DETALLES_VENTA ADD CONSTRAINT FK_DETALLES_VENTA_VENTAS
+FOREIGN KEY(ID_VENTA) REFERENCES TBL_VENTAS(ID_VENTA);
 
-alter table TBL_DetallesVenta add constraint FK_DetallesVenta_Productos
-foreign key(IdProducto) references TBL_Productos(IdProducto);
-
--- TBL_TIPOS_ISV
-INSERT INTO TBL_TIPOSISV (DESCRIPCION)
-VALUES 
-('15% General'),
-('18% Servicios');
-
--- TBL_CATEGORIAS_PRODUCTO
-INSERT INTO TBL_CategoriasProducto(DESCRIPCION)
-VALUES 
-('Electrónica'),
-('Papelería');
-
--- TBL_TIPOS_USUARIO
-INSERT INTO TBL_TiposUsuario(DESCRIPCION)
-VALUES 
-('Administrador'),
-('Cajero');
+ALTER TABLE TBL_DETALLES_VENTA ADD CONSTRAINT FK_DETALLES_VENTA_PRODUCTOS
+FOREIGN KEY(ID_PRODUCTO) REFERENCES TBL_PRODUCTOS(ID_PRODUCTO);
 
 -- TBL_ESTADOS_USUARIO
-INSERT INTO TBL_EstadosUsuario(DESCRIPCION)
+INSERT INTO TBL_ESTADOS_USUARIO(DESCRIPCION)
 VALUES 
-('Activo'),
-('Inactivo');
+('ACTIVO'),
+('INACTIVO');
+
+-- TBL_TIPOS_USUARIO
+INSERT INTO TBL_TIPOS_USUARIO(DESCRIPCION)
+VALUES 
+('ADMINISTRADOR'),
+('CAJERO');
+
+-- TBL_USUARIOS (ID_TIPO = 1 y 2; ID_ESTADO = 1)
+INSERT INTO TBL_USUARIOS (IDENTIDAD, NOMBRE, CORREO, USUARIO, CONTRASENA, CELULAR, ID_TIPO, ID_ESTADO)
+VALUES 
+('0801199901234', 'CARLOS PÉREZ', 'CARLOS@EMPRESA.COM', 'CPEREZ', '1234', '99887755', 1, 1),
+('0801199705678', 'ANA TORRES', 'ANA@EMPRESA.COM', 'ATORRES', '5678', '88776644', 2, 1),
+('0319199812345', 'FEDERICO RIVERA', 'FEDE@EMPRESA.COM', '0', '0', '98745632', 1, 1);
 
 -- TBL_PROVEEDORES
-INSERT INTO TBL_PROVEEDORES (RTN, NOMBRE, DIRECCION, CELULAR, CANTCOMPRAS, IMPORTE)
+INSERT INTO TBL_PROVEEDORES (RTN, NOMBRE, DIRECCION, CELULAR, CANT_COMPRAS, IMPORTE)
 VALUES 
-('08011990000123', 'Distribuidora Latina', 'Col. Kennedy', '99887766', 5, 12500.50),
-('08011985000234', 'Proveedora Mundial', 'Centro', '88776655', 2, 5200.00);
+('08011990000123', 'DISTRIBUIDORA LATINA', 'COL. KENNEDY', '99887766', 5, 12500.50),
+('08011985000234', 'PROVEEDORA MUNDIAL', 'CENTRO', '88776655', 2, 5200.00);
 
--- TBL_PRODUCTOS (ID_ISV=1 y 2, ID_CATEGORIA=1 y 2)
-INSERT INTO TBL_PRODUCTOS (CODIGOBARRA, DESCRIPCION, IDISV, PRECIOCOMPLETO, PRECIOUNITARIO, IDCATEGORIA, EXISTENCIA)
+-- TBL_COMPRAS (ID_PROVEEDOR = 1 Y 2)
+INSERT INTO TBL_COMPRAS (ID_PROVEEDOR, FECHA, FACTURA, SUBTOTAL, GRAVADO, ISV, EXENTO, TOTAL)
 VALUES 
-('1234567890123', 'Impresora Epson L3250', 1, 4500.00, 4000.00, 1, 10),
-('3210987654321', 'Resma de papel A4', 2, 150.00, 130.00, 2, 100);
+(1, '2025-07-10', 'F-2025-0001', 4000.00, 4000.00, 600.00, 0.00, 4600.00),
+(2, '2025-07-11', 'F-2025-0002', 1300.00, 1300.00, 195.00, 0.00, 1495.00);
 
--- TBL_USUARIOS (ID_TIPO=1 y 2, ID_ESTADO=1)
-INSERT INTO TBL_USUARIOS (IDENTIDAD, NOMBRE, CORREO, USUARIO, CONTRASENA, CELULAR, IdTipoUsuario, IdEstadoUsuario)
+-- TBL_CATEGORIAS_PRODUCTO
+INSERT INTO TBL_CATEGORIAS_PRODUCTO(DESCRIPCION)
 VALUES 
-('0801199901234', 'Carlos Pérez', 'carlos@empresa.com', 'cperez', '1234', '99887755', 1, 1),
-('0801199705678', 'Ana Torres', 'ana@empresa.com', 'atorres', '5678', '88776644', 2, 1);
+('ELECTRÓNICA'),
+('PAPELERÍA');
 
--- TBL_CLIENTES
-INSERT INTO TBL_CLIENTES (RTN, NOMBRE, DIRECCION, CELULAR, CANTCOMPRAS, IMPORTE)
+-- TBL_TIPOS_ISV
+INSERT INTO TBL_TIPOS_ISV (DESCRIPCION)
 VALUES 
-('08011991001234', 'Javier Medina', 'Col. Miraflores', '98765432', 3, 3500.00),
-('08011992004567', 'María López', 'Barrio Abajo', '91234567', 1, 1250.00);
+('15'),
+('E');
 
--- TBL_COMPRAS (ID_PROVEEDOR=1 y 2)
-INSERT INTO TBL_COMPRAS (IDPROVEEDOR, FECHA, FACTURA, SUBTOTAL, GRAVADO, ISV, EXENTO, TOTAL)
+-- TBL_PRODUCTOS (ID_ISV=1 Y 2, ID_CATEGORIA=1 Y 2)
+INSERT INTO TBL_PRODUCTOS (CODIGO_BARRA, DESCRIPCION, ID_ISV, PRECIO_COMPLETO, PRECIO_UNITARIO, ID_CATEGORIA, EXISTENCIA)
 VALUES 
-(1, '2025-07-10', 'F-0001-2025', 4000.00, 4000.00, 600.00, 0.00, 4600.00),
-(2, '2025-07-11', 'F-0002-2025', 1300.00, 1300.00, 195.00, 0.00, 1495.00);
+('1234567890123', 'IMPRESORA EPSON L3250', 1, 4500.00, 4000.00, 1, 10),
+('3210987654321', 'RESMA DE PAPEL A4', 2, 150.00, 130.00, 2, 100);
 
--- TBL_DETALLES_COMPRA (ID_COMPRA=1 y 2, ID_PRODUCTO=1 y 2)
-INSERT INTO TBL_DETALLESCOMPRA (IDCOMPRA, IDPRODUCTO, CANTIDAD, COSTO, DESCUENTO, IMPORTE)
+-- TBL_DETALLES_COMPRA (ID_COMPRA = 1 Y 2, ID_PRODUCTO = 1 Y 2)
+INSERT INTO TBL_DETALLES_COMPRA (ID_COMPRA, ID_PRODUCTO, CANTIDAD, COSTO, DESCUENTO, IMPORTE)
 VALUES 
 (1, 1, 1, 4000.00, 0.00, 4000.00),
 (2, 2, 10, 130.00, 0.00, 1300.00);
 
--- TBL_VENTAS (ID_USUARIO=1 y 2, ID_CLIENTE=1 y 2)
-INSERT INTO TBL_VENTAS (IDUSUARIO, IDCLIENTE, FECHA, FACTURA, SUBTOTAL, GRAVADO, ISV, EXENTO, TOTAL)
+-- TBL_CLIENTES
+INSERT INTO TBL_CLIENTES (RTN, NOMBRE, DIRECCION, CELULAR, CANT_COMPRAS, IMPORTE)
+VALUES 
+('08011991001234', 'JAVIER MEDINA', 'COL. MIRAFLORES', '98765432', 3, 3500.00),
+('08011992004567', 'MARÍA LÓPEZ', 'BARRIO ABAJO', '91234567', 1, 1250.00);
+
+-- TBL_VENTAS (ID_USUARIO=1 Y 2, ID_CLIENTE=1 Y 2)
+INSERT INTO TBL_VENTAS (ID_USUARIO, ID_CLIENTE, FECHA, FACTURA, SUBTOTAL, GRAVADO, ISV, EXENTO, TOTAL)
 VALUES 
 (1, 1, '2025-07-12', 'V-0001-2025', 4000.00, 4000.00, 600.00, 0.00, 4600.00),
 (2, 2, '2025-07-13', 'V-0002-2025', 1300.00, 1300.00, 195.00, 0.00, 1495.00);
 
 -- TBL_DETALLES_VENTA
-INSERT INTO TBL_DETALLESVENTA (IDVENTA, IDPRODUCTO, CANTIDAD, COSTO, DESCUENTO, IMPORTE)
+INSERT INTO TBL_DETALLES_VENTA (ID_VENTA, ID_PRODUCTO, CANTIDAD, COSTO, DESCUENTO, IMPORTE)
 VALUES 
 (1, 1, 1, 4000.00, 0.00, 4000.00),
 (2, 2, 10, 130.00, 0.00, 1300.00);
