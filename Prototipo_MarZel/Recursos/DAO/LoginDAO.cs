@@ -10,7 +10,7 @@ namespace Prototipo_MarZel.Recursos.DAO
 
         public bool ValidarUsuario(string nombreUsuario, string contrasena)
         {
-            string query = "SELECT COUNT(*) FROM TBL_Usuarios WHERE Usuario = @usuario AND Contrasena = @contrasena";
+            string query = "SELECT COUNT(*) FROM TBL_USUARIOS WHERE USUARIO = @usuario AND CONTRASENA = @contrasena";
             using (SqlConnection conn = conexion.AbrirConexion())
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))

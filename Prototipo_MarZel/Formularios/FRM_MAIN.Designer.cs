@@ -45,6 +45,7 @@
             TP_ADMIN = new TabPage();
             TP_PROVEEDORES = new TabPage();
             TP_COMPRAS = new TabPage();
+            BTN_PRUEBA = new MaterialSkin.Controls.MaterialButton();
             MTBC_MENU.SuspendLayout();
             TP_INICIO.SuspendLayout();
             materialCard1.SuspendLayout();
@@ -74,6 +75,7 @@
             // TP_INICIO
             // 
             TP_INICIO.BackColor = Color.WhiteSmoke;
+            TP_INICIO.Controls.Add(BTN_PRUEBA);
             TP_INICIO.Controls.Add(materialCard1);
             TP_INICIO.ForeColor = SystemColors.Control;
             TP_INICIO.Location = new Point(4, 24);
@@ -269,6 +271,26 @@
             TP_COMPRAS.Text = "Compras";
             TP_COMPRAS.UseVisualStyleBackColor = true;
             // 
+            // BTN_PRUEBA
+            // 
+            BTN_PRUEBA.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            BTN_PRUEBA.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            BTN_PRUEBA.Depth = 0;
+            BTN_PRUEBA.HighEmphasis = true;
+            BTN_PRUEBA.Icon = null;
+            BTN_PRUEBA.Location = new Point(842, 78);
+            BTN_PRUEBA.Margin = new Padding(4, 6, 4, 6);
+            BTN_PRUEBA.MouseState = MaterialSkin.MouseState.HOVER;
+            BTN_PRUEBA.Name = "BTN_PRUEBA";
+            BTN_PRUEBA.NoAccentTextColor = Color.Empty;
+            BTN_PRUEBA.Size = new Size(158, 36);
+            BTN_PRUEBA.TabIndex = 1;
+            BTN_PRUEBA.Text = "pRUEBA CORREO";
+            BTN_PRUEBA.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            BTN_PRUEBA.UseAccentColor = false;
+            BTN_PRUEBA.UseVisualStyleBackColor = true;
+            BTN_PRUEBA.Click += BTN_PRUEBA_Click;
+            // 
             // FRM_MAIN
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -288,6 +310,7 @@
             Load += FRM_MAIN_Load;
             MTBC_MENU.ResumeLayout(false);
             TP_INICIO.ResumeLayout(false);
+            TP_INICIO.PerformLayout();
             materialCard1.ResumeLayout(false);
             materialCard1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)PB_Foto).EndInit();
@@ -312,5 +335,6 @@
         private MaterialSkin.Controls.MaterialLabel LBL_APELLIDO;
         private TabPage TP_PROVEEDORES;
         private TabPage TP_COMPRAS;
+        private MaterialSkin.Controls.MaterialButton BTN_PRUEBA;
     }
 }

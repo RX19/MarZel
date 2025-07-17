@@ -14,7 +14,7 @@ namespace Prototipo_MarZel
         FRM_USUARIOS frm_usuarios = new FRM_USUARIOS();
         LoginController LoginController = new LoginController();
         FRM_CLIENTES frm_clientes = new FRM_CLIENTES();
-        
+
         private ProductoController productoController = new ProductoController();
 
         public FRM_MAIN(string usuario)
@@ -176,5 +176,20 @@ namespace Prototipo_MarZel
 
         }
 
+        private void BTN_PRUEBA_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string texto = "Este es un correo de prueba desde el botón.";
+                string destinatario = "ingrese correo :v";//LBL_CORREO.Text; // Correo Prueba
+
+                CorreoHelper.EnviarCorreo(texto, destinatario);
+                MessageBox.Show("Correo enviado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al enviar el correo:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
