@@ -181,7 +181,7 @@ namespace Prototipo_MarZel
             try
             {
                 string texto = "Este es un correo de prueba desde el botón.";
-                string destinatario = "ingrese correo :v";//LBL_CORREO.Text; // Correo Prueba
+                string destinatario = "e1a8lbyje@mozmail.com";//LBL_CORREO.Text; // Correo Prueba
 
                 CorreoHelper.EnviarCorreo(texto, destinatario);
                 MessageBox.Show("Correo enviado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -20,7 +20,7 @@ namespace Prototipo_MarZel
                                 TBL_Categoria_Producto.Descripcion as Categoria,
                                 TBL_Productos.Cantidad
                             FROM TBL_Productos  
-                            INNER JOIN TBL_Categoria_Producto ON TBL_Productos.ID_Categoria_Producto = TBL_Categoria_Producto.ID";
+                            INNER JOIN TBL_CategoriasProducto ON TBL_Productos.ID_CategoriasProducto = TBL_CategoriasProducto.ID";
             return conexion.EjecutarConsulta(query);
         }
         public override DataTable ObtenerProducto(string filtro)

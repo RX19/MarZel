@@ -19,12 +19,12 @@ namespace Prototipo_MarZel
             {
                 lista_proveedores.Add(new Proveedor
                 {
-                    ID_PROVEEDOR = dr.GetInt32(dr.GetOrdinal("ID_PROVEEDOR")),
+                    ID_PROVEEDOR = dr.GetInt32(dr.GetOrdinal("IDPROVEEDOR")),
                     RTN = dr.GetString(dr.GetOrdinal("RTN")),
                     NOMBRE = dr.GetString(dr.GetOrdinal("NOMBRE")),
                     DIRECCION = dr.GetString(dr.GetOrdinal("DIRECCION")),
                     CELULAR = dr.GetString(dr.GetOrdinal("CELULAR")),
-                    CANT_COMPRAS = dr.GetInt32(dr.GetOrdinal("CANT_COMPRAS")),
+                    CANT_COMPRAS = dr.GetInt32(dr.GetOrdinal("CANTCOMPRAS")),
                     IMPORTE = dr.GetDecimal(dr.GetOrdinal("IMPORTE"))
                 });
             }
@@ -110,12 +110,12 @@ namespace Prototipo_MarZel
             {
                 lista_proveedores.Add(new Proveedor
                 {
-                    ID_PROVEEDOR = dr.GetInt32(dr.GetOrdinal("ID_PROVEEDOR")),
+                    ID_PROVEEDOR = dr.GetInt32(dr.GetOrdinal("IDPROVEEDOR")),
                     RTN = dr.GetString(dr.GetOrdinal("RTN")),
                     NOMBRE = dr.GetString(dr.GetOrdinal("NOMBRE")),
                     DIRECCION = dr.GetString(dr.GetOrdinal("DIRECCION")),
                     CELULAR = dr.GetString(dr.GetOrdinal("CELULAR")),
-                    CANT_COMPRAS = dr.GetInt32(dr.GetOrdinal("CANT_COMPRAS")),
+                    CANT_COMPRAS = dr.GetInt32(dr.GetOrdinal("CANTCOMPRAS")),
                     IMPORTE = dr.GetDecimal(dr.GetOrdinal("IMPORTE"))
                 });
             }
