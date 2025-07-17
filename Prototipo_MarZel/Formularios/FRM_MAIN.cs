@@ -38,7 +38,6 @@ namespace Prototipo_MarZel
             DataTable tabla_express = LoginController.ObtenerInformacionUsuario(usuarioActual);
             DataRow fila = tabla_express.Rows[0];
             LBL_NOMBRE.Text = fila["Nombre"].ToString();
-            //LBL_APELLIDO.Text = fila["Apellido"].ToString();
             LBL_CORREO.Text = fila["Correo"].ToString();
 
         }
@@ -85,7 +84,7 @@ namespace Prototipo_MarZel
                 var productosSinExistencia = new List<string>();
                 foreach (DataRow row in productos.Rows)
                 {
-                    if (row["Cantidad"] != DBNull.Value && Convert.ToInt32(row["Cantidad"]) == 0)
+                    if (row["EXISTENCIA"] != DBNull.Value && Convert.ToInt32(row["EXISTENCIA"]) == 0)
                     {
                         productosSinExistencia.Add(row["Producto"].ToString());
                     }

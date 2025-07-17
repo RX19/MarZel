@@ -15,13 +15,14 @@ namespace Prototipo_MarZel.Recursos.Controlador
 
         public bool CrearUsuario(Model_Usuario u)
         {
-            if (string.IsNullOrWhiteSpace(u.Nombre) ||
-                string.IsNullOrWhiteSpace(u.Apellido) ||
-                string.IsNullOrWhiteSpace(u.Correo) ||
-                string.IsNullOrWhiteSpace(u.NombreUsuario) ||
-                string.IsNullOrWhiteSpace(u.Contrasena) ||
-                string.IsNullOrWhiteSpace(u.Celular) ||
-                u.IdTipoUsuario == 0)
+            if (string.IsNullOrWhiteSpace(u.IDENTIDAD) ||
+                string.IsNullOrWhiteSpace(u.NOMBRE) ||
+                string.IsNullOrWhiteSpace(u.CORREO) ||
+                string.IsNullOrWhiteSpace(u.USUARIO) ||
+                string.IsNullOrWhiteSpace(u.CONTRASENA) ||
+                string.IsNullOrWhiteSpace(u.CELULAR) ||
+                u.ID_TIPO == 0 ||
+                u.ID_ESTADO == 0)
             {
                 return false;
             }

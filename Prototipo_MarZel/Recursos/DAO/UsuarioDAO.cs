@@ -15,20 +15,20 @@ namespace Prototipo_MarZel.Recursos.DAO
         public int Guardar(Model_Usuario u)
         {
             string query = @"
-                INSERT INTO TBL_Usuario 
-                (Nombre, Apellido, Correo, Usuario, Contrasena, Celular, ID_Tipo_Usuario, Estado)
-                VALUES (@Nombre, @Apellido, @Correo, @Usuario, @Contrasena, @Celular, @ID_Tipo_Usuario, @Estado)";
+                INSERT INTO TBL_USUARIOS
+                (IDENTIDAD, NOMBRE, CORREO, USUARIO, CONTRASENA, CELULAR, ID_TIPO, ID_ESTADO)
+                VALUES (@Identidad, @Nombre, @Correo, @Usuario, @Contrasena, @Celular, @ID_Tipo, @Id_Estado)";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@Nombre", u.Nombre),
-                new SqlParameter("@Apellido", u.Apellido),
-                new SqlParameter("@Correo", u.Correo),
-                new SqlParameter("@Usuario", u.NombreUsuario),
-                new SqlParameter("@Contrasena", u.Contrasena),
-                new SqlParameter("@Celular", u.Celular),
-                new SqlParameter("@ID_Tipo_Usuario", u.IdTipoUsuario),
-                new SqlParameter("@Estado", u.Estado)
+                new SqlParameter("@Identidad", u.IDENTIDAD),
+                new SqlParameter("@Nombre", u.NOMBRE),
+                new SqlParameter("@Correo", u.CORREO),
+                new SqlParameter("@Usuario", u.USUARIO),
+                new SqlParameter("@Contrasena", u.CONTRASENA),
+                new SqlParameter("@Celular", u.CELULAR),
+                new SqlParameter("@ID_Tipo_Usuario", u.ID_TIPO),
+                new SqlParameter("@Estado", u.ID_ESTADO)
             };
 
             return conexion.EjecutarComando(query, parametros);

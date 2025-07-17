@@ -77,13 +77,13 @@ namespace Prototipo_MarZel.Formularios
 
             Model_Usuario nuevo = new Model_Usuario
             {
-                Nombre = TXT_NOMBRE.Text.Trim(),
-                Apellido = TXT_APELLIDO.Text.Trim(),
-                Correo = TXT_CORREO.Text.Trim(),
-                NombreUsuario = TXT_NOMBRE_USUARIO.Text.Trim(),
-                Contrasena = TXT_CONTRASEÑA.Text.Trim(),
-                Celular = TXT_CELULAR.Text.Trim(),
-                IdTipoUsuario = idTipoUsuario
+                IDENTIDAD = TXT_IDENTIDAD.Text.Trim(),
+                NOMBRE = TXT_NOMBRE.Text.Trim(),
+                CORREO = TXT_CORREO.Text.Trim(),
+                USUARIO = TXT_NOMBRE_USUARIO.Text.Trim(),
+                CONTRASENA = TXT_CONTRASEÑA.Text.Trim(),
+                CELULAR = TXT_CELULAR.Text.Trim(),
+                ID_TIPO = idTipoUsuario
             };
 
             UsuarioController ctrl = new UsuarioController();
@@ -103,5 +103,6 @@ namespace Prototipo_MarZel.Formularios
         {
             P_CREAR_USUARIO.Visible = true;
         }
+
     }
 }
