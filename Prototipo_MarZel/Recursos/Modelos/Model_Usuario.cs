@@ -8,13 +8,13 @@ namespace Prototipo_MarZel.Recursos.Modelos
 {
     public class Model_Usuario
     {
-        public int ID_USUARIO { get; set; }
-        public string IDENTIDAD { get; set; }
-        public string NOMBRE { get; set; }
-        public string CORREO { get; set; }
-        public string USUARIO { get; set; }
-        public string CONTRASENA { get; set; }
-        public string CELULAR { get; set; }
+        public int ID_USUARIO { get; set; } 
+        public string IDENTIDAD { get; set; } = string.Empty;
+        public string NOMBRE { get; set; } = string.Empty;
+        public string CORREO { get; set; } = string.Empty;
+        public string USUARIO { get; set; } = string.Empty;
+        public string CONTRASENA { get; set; } = string.Empty;
+        public string CELULAR { get; set; } = string.Empty;
         public int ID_TIPO { get; set; }
         public int ID_ESTADO { get; set; }
 

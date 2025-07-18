@@ -13,7 +13,7 @@ namespace Prototipo_MarZel.Formularios
 {
     public partial class FRM_GESTIONAR_PROVEEDOR : MaterialSkin.Controls.MaterialForm
     {
-        ProveedorController proveedorController = new ProveedorController();
+        Proveedor_Controller Proveedor_Controller = new Proveedor_Controller();
         private Proveedor? proveedorActual = null; 
         
         public FRM_GESTIONAR_PROVEEDOR()
@@ -31,7 +31,7 @@ namespace Prototipo_MarZel.Formularios
             txtCelular.Text = proveedor.CELULAR;
         }
 
-        private bool verificarCampos()
+        private bool Verificar_Campos()
         {
 
             string rtn = txtRTN.Text.Trim();
@@ -51,7 +51,7 @@ namespace Prototipo_MarZel.Formularios
 
             if (proveedorActual == null)
             {
-                if (proveedorController.VerificarRTN(rtn))
+                if (Proveedor_Controller.Existe_RTN(rtn))
                 {
                     MessageBox.Show("El R.T.N. ingresado ya existe. Por favor, ingrese un R.T.N. diferente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -59,7 +59,7 @@ namespace Prototipo_MarZel.Formularios
             } 
             else
             {
-                if (rtn != proveedorActual.RTN && proveedorController.VerificarRTN(rtn))
+                if (rtn != proveedorActual.RTN && Proveedor_Controller.Existe_RTN(rtn))
                 {
                     MessageBox.Show("El R.T.N. ingresado ya existe. Por favor, ingrese un R.T.N. diferente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -72,7 +72,7 @@ namespace Prototipo_MarZel.Formularios
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (!verificarCampos()) return;
+            if (!Verificar_Campos()) return;
             
             DialogResult result = MessageBox.Show(
                 "¿Desea guardar los cambios?", "Confirmación", 
@@ -92,7 +92,7 @@ namespace Prototipo_MarZel.Formularios
                     IMPORTE = 0.00m
                 };
 
-                proveedorController.AgregarProveedor(nuevoProveedor);
+                Proveedor_Controller.Agregar_Proveedor(nuevoProveedor);
 
             } else {
 
@@ -100,8 +100,8 @@ namespace Prototipo_MarZel.Formularios
                 proveedorActual.NOMBRE = txtNombre.Text.Trim();
                 proveedorActual.DIRECCION = txtDireccion.Text.Trim();
                 proveedorActual.CELULAR = txtCelular.Text.Trim();
-                    
-                proveedorController.ActualizarProveedor(proveedorActual);
+
+                Proveedor_Controller.Actualizar_Proveedor(proveedorActual);
 
             }
                 

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             txtBuscar = new MaterialSkin.Controls.MaterialTextBox();
             lblBuscar = new MaterialSkin.Controls.MaterialLabel();
             dgvCompras = new DataGridView();
@@ -75,14 +75,14 @@
             dgvCompras.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCompras.BackgroundColor = SystemColors.InactiveCaption;
             dgvCompras.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = SystemColors.Control;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvCompras.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvCompras.Location = new Point(50, 200);
             dgvCompras.Name = "dgvCompras";
@@ -112,6 +112,7 @@
             btnEditarCompra.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnEditarCompra.UseAccentColor = false;
             btnEditarCompra.UseVisualStyleBackColor = true;
+            btnEditarCompra.Click += btnEditarCompra_Click;
             // 
             // btnAgregarCompra
             // 
@@ -131,6 +132,7 @@
             btnAgregarCompra.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnAgregarCompra.UseAccentColor = false;
             btnAgregarCompra.UseVisualStyleBackColor = true;
+            btnAgregarCompra.Click += btnAgregarCompra_Click;
             // 
             // FRM_COMPRAS
             // 
@@ -144,6 +146,7 @@
             Controls.Add(btnAgregarCompra);
             MaximizeBox = false;
             Name = "FRM_COMPRAS";
+            Sizable = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FRM_COMPRAS";
             WindowState = FormWindowState.Maximized;

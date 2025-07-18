@@ -13,16 +13,16 @@ namespace Prototipo_MarZel.Formularios
     public partial class FRM_COMPRAS : MaterialSkin.Controls.MaterialForm
     {
         private List<Compra> listaCompras = new List<Compra>();
-        private readonly CompraController compraController = new CompraController();
+        private readonly Compra_Controller Compra_Controller = new Compra_Controller();
 
         public FRM_COMPRAS()
         {
             InitializeComponent();
         }
 
-        public void CargarCompras()
+        public void Cargar_Compras()
         {
-            listaCompras = compraController.ObtenerCompras();
+            listaCompras = Compra_Controller.Obtener_Compras();
             dgvCompras.DataSource = null;
             dgvCompras.DataSource = listaCompras;
             dgvCompras.Columns["ID_COMPRA"].Visible = false;
@@ -35,7 +35,7 @@ namespace Prototipo_MarZel.Formularios
 
         private void FRM_COMPRAS_Load(object sender, EventArgs e)
         {
-            CargarCompras();
+            Cargar_Compras();
 
             //----------------------------------------------------------------
             //Diseño del formulario para diferentes tamaños de pantalla.
@@ -49,6 +49,25 @@ namespace Prototipo_MarZel.Formularios
             btnAgregarCompra.Location = new Point(positionx + 434, 115);
             btnEditarCompra.Location = new Point(positionx + 601, 115);
             //----------------------------------------------------------------
+        }
+
+        private void btnAgregarCompra_Click(object sender, EventArgs e)
+        {
+            FRM_GESTIONAR_COMPRA frm_gestionar_compra = new FRM_GESTIONAR_COMPRA();
+
+            if (frm_gestionar_compra.ShowDialog() == DialogResult.OK)
+                Cargar_Compras();
+        }
+
+        private void btnEditarCompra_Click(object sender, EventArgs e)
+        {
+            if (dgvCompras.CurrentRow == null) return;
+
+            int Id_Compra = Convert.ToInt32(dgvCompras.CurrentRow.Cells["ID_COMPRA"].Value);
+            FRM_GESTIONAR_COMPRA frm_gestionar_compra = new FRM_GESTIONAR_COMPRA(Id_Compra);
+
+            if (frm_gestionar_compra.ShowDialog() == DialogResult.OK)
+                Cargar_Compras();
         }
     }
 }

@@ -3,11 +3,11 @@ using System.Data.SqlClient;
 
 namespace Prototipo_MarZel
 {
-    public class CompraDAO
+    public class Compra_DAO
     {
         private readonly ConexionBD conexion = new ConexionBD();
 
-        public List<Compra> ObtenerCompras()
+        public List<Compra> Obtener_Compras()
         {
             List<Compra> lista_compras = new();
             using SqlConnection con = conexion.AbrirConexion();
@@ -20,7 +20,7 @@ namespace Prototipo_MarZel
             using SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                lista_compras.Add(new Compra
+                var compra = new Compra
                 {
                     ID_COMPRA = dr.GetInt32(dr.GetOrdinal("ID_COMPRA")),
                     ID_PROVEEDOR = dr.GetInt32(dr.GetOrdinal("ID_PROVEEDOR")),
@@ -32,11 +32,10 @@ namespace Prototipo_MarZel
                     ISV = dr.GetDecimal(dr.GetOrdinal("ISV")),
                     EXENTO = dr.GetDecimal(dr.GetOrdinal("EXENTO")),
                     TOTAL = dr.GetDecimal(dr.GetOrdinal("TOTAL"))
-                });
+                };
+                lista_compras.Add(compra);
             }
             return lista_compras;
-
         }
-
     }
 }

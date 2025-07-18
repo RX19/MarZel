@@ -14,4 +14,11 @@ namespace Prototipo_MarZel.Recursos.Modelos
         public abstract DataTable ObtenerPorId(string id);
         // Pendiente : Insertar, Actualizar, Eliminar...
     }
+
+    public class Categoria_Producto
+    {
+        public int ID_CATEGORIA { get; set; }
+
+        public string DESCRIPCION { get; set; } = string.Empty;
+    }
 }

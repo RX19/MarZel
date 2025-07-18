@@ -24,6 +24,5 @@ namespace Prototipo_MarZel
         public decimal EXENTO { get; set; }
         
         public decimal TOTAL { get; set; }
-
     }
 }

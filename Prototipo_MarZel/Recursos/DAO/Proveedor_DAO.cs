@@ -3,11 +3,11 @@ using System.Data.SqlClient;
 
 namespace Prototipo_MarZel
 {
-    public class ProveedorDAO
+    public class Proveedor_DAO
     {
         private readonly ConexionBD conexion = new ConexionBD();
 
-        public List<Proveedor> ObtenerProveedores()
+        public List<Proveedor> Obtener_Proveedores()
         {
             List<Proveedor> lista_proveedores = new();
             using SqlConnection con = conexion.AbrirConexion();
@@ -17,7 +17,7 @@ namespace Prototipo_MarZel
             using SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                lista_proveedores.Add(new Proveedor
+                var proveedor = new Proveedor
                 {
                     ID_PROVEEDOR = dr.GetInt32(dr.GetOrdinal("ID_PROVEEDOR")),
                     RTN = dr.GetString(dr.GetOrdinal("RTN")),
@@ -26,13 +26,13 @@ namespace Prototipo_MarZel
                     CELULAR = dr.GetString(dr.GetOrdinal("CELULAR")),
                     CANT_COMPRAS = dr.GetInt32(dr.GetOrdinal("CANT_COMPRAS")),
                     IMPORTE = dr.GetDecimal(dr.GetOrdinal("IMPORTE"))
-                });
+                };
+                lista_proveedores.Add(proveedor);
             }
             return lista_proveedores;
-
         }
 
-        public bool ExisteRTN(string rtn)
+        public bool Existe_RTN(string rtn)
         {
             using SqlConnection con = conexion.AbrirConexion();
             string query = @"SELECT  1 
@@ -43,7 +43,7 @@ namespace Prototipo_MarZel
             return cmd.ExecuteScalar() != null;
         }
 
-        public void AgregarProveedor(Proveedor proveedor)
+        public void Agregar_Proveedor(Proveedor proveedor)
         {
             using SqlConnection con = conexion.AbrirConexion();
             string query = @"INSERT INTO TBL_PROVEEDORES (
@@ -61,7 +61,7 @@ namespace Prototipo_MarZel
             cmd.ExecuteNonQuery();
         }
 
-        public void ActualizarProveedor(Proveedor proveedor)
+        public void Actualizar_Proveedor(Proveedor proveedor)
         {
             using SqlConnection con = conexion.AbrirConexion();
             string query = @"UPDATE  TBL_PROVEEDORES 
@@ -83,17 +83,17 @@ namespace Prototipo_MarZel
             cmd.ExecuteNonQuery();
         }
 
-        public void EliminarProveedor(int idProveedor)
+        public void Eliminar_Proveedor(int id_proveedor)
         {
             using SqlConnection con = conexion.AbrirConexion();
             string query = @"DELETE FROM TBL_PROVEEDORES 
                              WHERE ID_PROVEEDOR = @ID_PROVEEDOR";
             using SqlCommand cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@ID_PROVEEDOR", idProveedor);
+            cmd.Parameters.AddWithValue("@ID_PROVEEDOR", id_proveedor);
             cmd.ExecuteNonQuery();
         }
 
-        public List<Proveedor> BuscarProveedor(String texto)
+        public List<Proveedor> Buscar_Proveedor(String texto)
         {
             List<Proveedor> lista_proveedores = new();
 
@@ -108,7 +108,7 @@ namespace Prototipo_MarZel
             using SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                lista_proveedores.Add(new Proveedor
+                var proveedor = new Proveedor
                 {
                     ID_PROVEEDOR = dr.GetInt32(dr.GetOrdinal("ID_PROVEEDOR")),
                     RTN = dr.GetString(dr.GetOrdinal("RTN")),
@@ -117,12 +117,10 @@ namespace Prototipo_MarZel
                     CELULAR = dr.GetString(dr.GetOrdinal("CELULAR")),
                     CANT_COMPRAS = dr.GetInt32(dr.GetOrdinal("CANT_COMPRAS")),
                     IMPORTE = dr.GetDecimal(dr.GetOrdinal("IMPORTE"))
-                });
+                };
+                lista_proveedores.Add(proveedor);
             }
-
             return lista_proveedores;
-
         }
-
     }
 }
