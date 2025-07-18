@@ -9,7 +9,7 @@ namespace Prototipo_MarZel.Recursos.Modelos
 {
     public abstract class CategoriaBase
     {
-        public static String Tabla = "TBL_Categoria_Producto";
+        public static String Tabla = "TBL_CategoriasProducto";
         public abstract DataTable ObtenerTodos();
         public abstract DataTable ObtenerPorId(string id);
         // Pendiente : Insertar, Actualizar, Eliminar...

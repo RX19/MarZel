@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Prototipo_MarZel
 {
@@ -16,11 +17,11 @@ namespace Prototipo_MarZel
         {
             ConexionBD conexion = new ConexionBD();
             string query = @"SELECT 
-                                TBL_Productos.Descripcion as Producto,
-                                TBL_Categoria_Producto.Descripcion as Categoria,
-                                TBL_Productos.Cantidad
-                            FROM TBL_Productos  
-                            INNER JOIN TBL_Categoria_Producto ON TBL_Productos.ID_Categoria_Producto = TBL_Categoria_Producto.ID";
+                                TBL_PRODUCTOS.DESCRIPCION AS PRODUCTO,
+                                TBL_CATEGORIAS_PRODUCTO.DESCRIPCION AS CATEGORIA,
+                                TBL_PRODUCTOS.EXISTENCIA
+                            FROM TBL_PRODUCTOS  
+                            INNER JOIN TBL_CATEGORIAS_PRODUCTO ON TBL_PRODUCTOS.ID_CATEGORIA = TBL_CATEGORIAS_PRODUCTO.ID_CATEGORIA";
             return conexion.EjecutarConsulta(query);
         }
         public override DataTable ObtenerProducto(string filtro)
@@ -29,16 +30,16 @@ namespace Prototipo_MarZel
 
             string query = @"
                             SELECT 
-                                P.Codigo_Barra,
-                                P.Descripcion,
-                                C.Descripcion AS Categoria,
-                                P.ISV,
-                                P.Cantidad,
-                                P.Precio_Unitario,
-                                P.Precio_Completo
+                                P.CODIGO_BARRA,
+                                P.DESCRIPCION,
+                                C.DESCRIPCION AS CATEGORIA,
+                                P.ID_ISV,
+                                P.EXISTENCIA,
+                                P.PRECIO_UNITARIO,
+                                P.PRECIO_COMPLETO
                             FROM " + Tabla + @" P
-                            INNER JOIN TBL_Categoria_Producto C ON P.ID_Categoria_Producto = C.ID
-                            WHERE P.Descripcion LIKE "+"'"+filtro+"'"+ " OR P.Codigo_Barra LIKE "+"'"+filtro+"'";
+                            INNER JOIN TBL_CATEGORIAS_PRODUCTO C ON P.ID_CATEGORIA = C.ID_CATEGORIA
+                            WHERE P.DESCRIPCION LIKE " + "'" + filtro + "'" + " OR P.CODIGO_BARRA LIKE " + "'" + filtro + "'";
 
             return conexion.EjecutarConsulta(query);
         }
@@ -47,11 +48,11 @@ namespace Prototipo_MarZel
         {
             ConexionBD conexion = new ConexionBD();
             string query = @"UPDATE " + Tabla + @"
-                    SET [Descripcion] = @desc,
-                        [ID_Categoria_Producto] = @id,
-                        [Precio_Unitario] = @pu,
-                        [Precio_Completo] = @pc
-                    WHERE Codigo_Barra = @codigo";
+                    SET [DESCRIPCION] = @desc,
+                        [ID_CATEGORIA] = @id,
+                        [PRECIO_UNITARIO] = @pu,
+                        [PRECIO_COMPLETO] = @pc
+                    WHERE CODIGO_BARRA = @codigo";
 
             SqlParameter[] parametros =
             {

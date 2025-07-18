@@ -14,6 +14,7 @@ namespace Prototipo_MarZel
         FRM_USUARIOS frm_usuarios = new FRM_USUARIOS();
         LoginController LoginController = new LoginController();
         FRM_CLIENTES frm_clientes = new FRM_CLIENTES();
+
         private ProductoController productoController = new ProductoController();
 
         public FRM_MAIN(string usuario)
@@ -37,7 +38,6 @@ namespace Prototipo_MarZel
             DataTable tabla_express = LoginController.ObtenerInformacionUsuario(usuarioActual);
             DataRow fila = tabla_express.Rows[0];
             LBL_NOMBRE.Text = fila["Nombre"].ToString();
-            LBL_APELLIDO.Text = fila["Apellido"].ToString();
             LBL_CORREO.Text = fila["Correo"].ToString();
 
         }
@@ -84,7 +84,7 @@ namespace Prototipo_MarZel
                 var productosSinExistencia = new List<string>();
                 foreach (DataRow row in productos.Rows)
                 {
-                    if (row["Cantidad"] != DBNull.Value && Convert.ToInt32(row["Cantidad"]) == 0)
+                    if (row["EXISTENCIA"] != DBNull.Value && Convert.ToInt32(row["EXISTENCIA"]) == 0)
                     {
                         productosSinExistencia.Add(row["Producto"].ToString());
                     }
@@ -133,7 +133,62 @@ namespace Prototipo_MarZel
                 MTBC_MENU.SelectedTab = TP_INICIO;
             }
 
+            if (MTBC_MENU.SelectedTab == TP_PROVEEDORES)
+            {
+                for (double i = 1.0; i >= 0.2; i -= 0.05)
+                {
+                    this.Opacity = i;
+                    await Task.Delay(15);
+                }
+                this.Visible = false;
+                FRM_PROVEEDORES frm_proveedores = new FRM_PROVEEDORES();
+                frm_proveedores.ShowDialog();
+                this.Visible = true;
+                for (double i = 0.2; i <= 1.0; i += 0.05)
+                {
+                    this.Opacity = i;
+                    await Task.Delay(15);
+                }
+                this.Opacity = 1.0;
+                MTBC_MENU.SelectedTab = TP_INICIO;
+            }
+
+            if (MTBC_MENU.SelectedTab == TP_COMPRAS)
+            {
+                for (double i = 1.0; i >= 0.2; i -= 0.05)
+                {
+                    this.Opacity = i;
+                    await Task.Delay(15);
+                }
+                this.Visible = false;
+                FRM_COMPRAS frm_compras = new FRM_COMPRAS();
+                frm_compras.ShowDialog();
+                this.Visible = true;
+                for (double i = 0.2; i <= 1.0; i += 0.05)
+                {
+                    this.Opacity = i;
+                    await Task.Delay(15);
+                }
+                this.Opacity = 1.0;
+                MTBC_MENU.SelectedTab = TP_COMPRAS;
+            }
+
         }
 
+        private void BTN_PRUEBA_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string texto = "Este es un correo de prueba desde el botón.";
+                string destinatario = "e1a8lbyje@mozmail.com";//LBL_CORREO.Text; // Correo Prueba
+
+                CorreoHelper.EnviarCorreo(texto, destinatario);
+                MessageBox.Show("Correo enviado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al enviar el correo:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@ using static System.Windows.Forms.Design.AxImporter;
 
 
 namespace Prototipo_MarZel
-{
+{   
 
     public partial class FRM_PRODUCTOS : MaterialSkin.Controls.MaterialForm
     {
@@ -54,18 +54,18 @@ namespace Prototipo_MarZel
                 // Obtener y filtrar productos
                 DataTable tablaCompleta = productoController.ObtenerProductosPorDescripcion();
                 DataTable soloProductos = new DataTable();
-                soloProductos.Columns.Add("Producto", typeof(string));
-                soloProductos.Columns.Add("Cantidad", typeof(int));
+                soloProductos.Columns.Add("PRODUCTO", typeof(string));
+                soloProductos.Columns.Add("EXISTENCIA", typeof(int));
                 foreach (DataRow row in tablaCompleta.Rows)
                 {
-                    soloProductos.Rows.Add(row["Producto"], row["Cantidad"]);
+                    soloProductos.Rows.Add(row["PRODUCTO"], row["EXISTENCIA"]);
                 }
                 DVC_PRODUCTOS.DataSource = soloProductos;
                 // Obtener categorías para el ComboBox
                 List<String> soloCategoria = new List<string>();
                 foreach (DataRow row in tablaCompleta.Rows)
                 {
-                    soloCategoria.Add(row["Categoria"].ToString());
+                    soloCategoria.Add(row["CATEGORIA"].ToString());
                 }
                 CBX_CATEGORIA.DataSource = soloCategoria.Distinct().ToList();
                 CBX_CATEGORIA.SelectedIndex = -1;
@@ -122,16 +122,16 @@ namespace Prototipo_MarZel
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow fila = DVC_PRODUCTOS.Rows[e.RowIndex];
-                string nombreProducto = fila.Cells["Producto"].Value?.ToString();
+                string nombreProducto = fila.Cells["PRODUCTO"].Value?.ToString();
                 DataTable tabla_express = productoController.ObtenerProducto(nombreProducto);
                 DataRow datos = tabla_express.Rows[0];
-                TXT_CODIGO_B.Text = datos["Codigo_Barra"].ToString();
-                TXT_DESC.Text = datos["Descripcion"].ToString();
-                TXT_ISV.Text = datos["ISV"].ToString();
-                TXT_CANTIDAD.Text = datos["Cantidad"].ToString();
-                TXT_PU.Text = datos["Precio_Unitario"].ToString();
-                TXT_PC.Text = datos["Precio_Completo"].ToString();
-                string categoria = datos["Categoria"].ToString();
+                TXT_CODIGO_B.Text = datos["CODIGO_BARRA"].ToString();
+                TXT_DESC.Text = datos["DESCRIPCION"].ToString();
+                TXT_ISV.Text = datos["ID_ISV"].ToString();
+                TXT_CANTIDAD.Text = datos["EXISTENCIA"].ToString();
+                TXT_PU.Text = datos["PRECIO_UNITARIO"].ToString();
+                TXT_PC.Text = datos["PRECIO_COMPLETO"].ToString();
+                string categoria = datos["CATEGORIA"].ToString();
                 if (tabla_express.Rows.Count > 0)
                 {
                     int index = CBX_CATEGORIA.FindStringExact(categoria.Trim());
@@ -179,7 +179,7 @@ namespace Prototipo_MarZel
             DataTable dt = CategoriaController.ObtenerCategoriaPorId(CBX_CATEGORIA.Text);
             if (dt.Rows.Count > 0)
             {
-                string idCategoria = dt.Rows[0]["ID"].ToString();
+                string idCategoria = dt.Rows[0]["ID_PRODUCTO"].ToString();
 
                 productoController.ModificarProducto(
                     TXT_CODIGO_B.Text,
@@ -213,14 +213,14 @@ namespace Prototipo_MarZel
             if (tabla_express != null && tabla_express.Rows.Count > 0)
             {
                 DataRow datos = tabla_express.Rows[0];
-                TXT_CODIGO_B.Text = datos["Codigo_Barra"].ToString();
-                TXT_DESC.Text = datos["Descripcion"].ToString();
-                TXT_ISV.Text = datos["ISV"].ToString();
-                TXT_CANTIDAD.Text = datos["Cantidad"].ToString();
-                TXT_PU.Text = datos["Precio_Unitario"].ToString();
-                TXT_PC.Text = datos["Precio_Completo"].ToString();
+                TXT_CODIGO_B.Text = datos["CODIGO_BARRA"].ToString();
+                TXT_DESC.Text = datos["DESCRIPCION"].ToString();
+                TXT_ISV.Text = datos["ID_ISV"].ToString();
+                TXT_CANTIDAD.Text = datos["EXISTENCIA"].ToString();
+                TXT_PU.Text = datos["PRECIO_UNITARIO"].ToString();
+                TXT_PC.Text = datos["PRECIO_COMPLETO"].ToString();
 
-                string categoria = datos["Categoria"].ToString();
+                string categoria = datos["CATEGORIA"].ToString();
                 int index = CBX_CATEGORIA.FindStringExact(categoria.Trim());
                 CBX_CATEGORIA.SelectedIndex = index >= 0 ? index : -1;
                 CBX_CATEGORIA.Invalidate();
