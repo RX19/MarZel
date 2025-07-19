@@ -23,4 +23,14 @@ namespace Prototipo_MarZel
 
 
     }
+
+    public class Categoria_Producto_Controller
+    {
+        private readonly Categoria_Producto_DAO dao = new Categoria_Producto_DAO();
+
+        public List<Categoria_Producto> Cargar_Categorias()
+        {
+            return dao.Cargar_Categorias();
+        }
+    }
 }

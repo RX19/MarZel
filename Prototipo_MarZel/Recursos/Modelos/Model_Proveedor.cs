@@ -17,6 +17,5 @@ namespace Prototipo_MarZel
         public int CANT_COMPRAS { get; set; }
 
         public decimal IMPORTE { get; set; }
-
     }
 }

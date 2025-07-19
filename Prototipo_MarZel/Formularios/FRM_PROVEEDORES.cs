@@ -12,37 +12,37 @@ namespace Prototipo_MarZel.Formularios
 {
     public partial class FRM_PROVEEDORES : MaterialSkin.Controls.MaterialForm
     {
-        private List<Proveedor> listaProveedores = new List<Proveedor>();
-        private readonly ProveedorController proveedorController = new ProveedorController();
-        private List<Proveedor> listaResultadoProveedor = new List<Proveedor>();
+        private List<Proveedor> lista_Proveedores = new List<Proveedor>();
+        private readonly Proveedor_Controller Proveedor_Controller = new Proveedor_Controller();
+        private List<Proveedor> lista_Resultado_Proveedor = new List<Proveedor>();
 
         public FRM_PROVEEDORES()
         {
             InitializeComponent();
         }
 
-        public void CargarProveedores()
+        public void Cargar_Proveedores()
         {
-            listaProveedores = proveedorController.ObtenerProveedores();
+            lista_Proveedores = Proveedor_Controller.Obtener_Proveedores();
             dgvProveedores.DataSource = null;
-            dgvProveedores.DataSource = listaProveedores;
+            dgvProveedores.DataSource = lista_Proveedores;
             dgvProveedores.Columns["ID_PROVEEDOR"].Visible = false;
             dgvProveedores.ClearSelection();
             txtBuscar.Clear();
         }
 
-        public void ResultadosProveedor(String texto)
+        public void Resultados_Proveedor(String texto)
         {
-            listaResultadoProveedor = proveedorController.BuscarProveedor(texto);
+            lista_Resultado_Proveedor = Proveedor_Controller.Buscar_Proveedor(texto);
             dgvProveedores.DataSource = null;
-            dgvProveedores.DataSource = listaResultadoProveedor;
+            dgvProveedores.DataSource = lista_Resultado_Proveedor;
             dgvProveedores.Columns["ID_PROVEEDOR"].Visible = false;
             dgvProveedores.ClearSelection();
         }
 
         private void FRM_PROVEEDORES_Load(object sender, EventArgs e)
         {
-            CargarProveedores();
+            Cargar_Proveedores();
 
             //----------------------------------------------------------------
             //Diseño del formulario para diferentes tamaños de pantalla.
@@ -64,7 +64,7 @@ namespace Prototipo_MarZel.Formularios
             FRM_GESTIONAR_PROVEEDOR frm_gestionar_proveedor = new FRM_GESTIONAR_PROVEEDOR();
 
             if (frm_gestionar_proveedor.ShowDialog() == DialogResult.OK)
-                CargarProveedores();
+                Cargar_Proveedores();
         }
 
         private void btnEditarProveedor_Click(object sender, EventArgs e)
@@ -75,8 +75,7 @@ namespace Prototipo_MarZel.Formularios
             FRM_GESTIONAR_PROVEEDOR frm_gestionar_proveedor = new FRM_GESTIONAR_PROVEEDOR(proveedorSeleccionado);
 
             if (frm_gestionar_proveedor.ShowDialog() == DialogResult.OK)
-                CargarProveedores();
-
+                Cargar_Proveedores();
         }
 
         private void btnEliminarProveedor_Click(object sender, EventArgs e)
@@ -91,8 +90,8 @@ namespace Prototipo_MarZel.Formularios
 
             if (resultado == DialogResult.Yes)
             {
-                proveedorController.EliminarProveedor(proveedorSeleccionado.ID_PROVEEDOR);
-                CargarProveedores();
+                Proveedor_Controller.Eliminar_Proveedor(proveedorSeleccionado.ID_PROVEEDOR);
+                Cargar_Proveedores();
             }
 
         }
@@ -103,11 +102,11 @@ namespace Prototipo_MarZel.Formularios
             
             if (string.IsNullOrEmpty(texto))
             {
-                CargarProveedores();
+                Cargar_Proveedores();
             }
             else
             {
-                ResultadosProveedor(texto);
+                Resultados_Proveedor(texto);
             }
         }
     }
