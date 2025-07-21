@@ -67,4 +67,34 @@ namespace Prototipo_MarZel
 
         }
     }
+
+    public class Producto_DAO
+    {
+        private readonly ConexionBD conexion = new ConexionBD();
+        public Producto Cargar_Producto(string Codigo_Barra)
+        {
+            using SqlConnection con = conexion.AbrirConexion();
+            string query = @"
+                SELECT  *
+                FROM    TBL_PRODUCTOS
+                WHERE   CODIGO_BARRA = @CODIGO_BARRA
+            ";
+            using SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@CODIGO_BARRA", Codigo_Barra);
+            using SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                return new Producto
+                {
+                    CODIGO_BARRA = reader.GetString(reader.GetOrdinal("CODIGO_BARRA")),
+                    DESCRIPCION = reader.GetString(reader.GetOrdinal("DESCRIPCION")),
+                    ID_ISV = reader.GetInt32(reader.GetOrdinal("ID_ISV")),
+                    PRECIO_UNITARIO = reader.GetDecimal(reader.GetOrdinal("PRECIO_UNITARIO")),
+                    PRECIO_COMPLETO = reader.GetDecimal(reader.GetOrdinal("PRECIO_COMPLETO")),
+                    ID_CATEGORIA = reader.GetInt32(reader.GetOrdinal("ID_CATEGORIA"))
+                };
+            }
+            return null;
+        }
+    }
 }

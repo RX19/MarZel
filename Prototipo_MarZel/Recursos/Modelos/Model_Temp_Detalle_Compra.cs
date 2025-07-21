@@ -28,6 +28,6 @@ namespace Prototipo_MarZel
 
         public int? ID_CATEGORIA { get; set; }
 
-        public DateTime? FECHA_CRACION { get; set; }
+        public DateTime? FECHA_CREACION { get; set; }
     }
 }

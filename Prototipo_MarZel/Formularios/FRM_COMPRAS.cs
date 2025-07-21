@@ -63,8 +63,8 @@ namespace Prototipo_MarZel.Formularios
         {
             if (dgvCompras.CurrentRow == null) return;
 
-            int Id_Compra = Convert.ToInt32(dgvCompras.CurrentRow.Cells["ID_COMPRA"].Value);
-            FRM_GESTIONAR_COMPRA frm_gestionar_compra = new FRM_GESTIONAR_COMPRA(Id_Compra);
+            Compra CompraSeleccionada = (Compra)dgvCompras.CurrentRow.DataBoundItem;
+            FRM_GESTIONAR_COMPRA frm_gestionar_compra = new FRM_GESTIONAR_COMPRA(CompraSeleccionada);
 
             if (frm_gestionar_compra.ShowDialog() == DialogResult.OK)
                 Cargar_Compras();

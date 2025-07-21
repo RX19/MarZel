@@ -13,7 +13,7 @@ namespace Prototipo_MarZel.Formularios
 {
     public partial class FRM_GESTIONAR_COMPRA : MaterialSkin.Controls.MaterialForm
     {
-        private int ID_Compra = 0;
+        private Compra CompraActual = new Compra { ID_COMPRA = 0 };
 
         private readonly Categoria_Producto_Controller Categoria_Producto_Controller = new Categoria_Producto_Controller();
         private List<Categoria_Producto> Categorias = new List<Categoria_Producto>();
@@ -24,32 +24,18 @@ namespace Prototipo_MarZel.Formularios
         private readonly Temp_Compra_Controller Temp_Compra_Controller = new Temp_Compra_Controller();
         private List<Temp_Detalle_Compra> Detalles_Compra = new List<Temp_Detalle_Compra>();
 
+        private readonly Producto_Controller Producto_controller = new Producto_Controller();
+
         public FRM_GESTIONAR_COMPRA()
         {
             InitializeComponent();
         }
 
-        public FRM_GESTIONAR_COMPRA(int Id_Compra)
+        public FRM_GESTIONAR_COMPRA(Compra Compra)
         {
             InitializeComponent();
-            ID_Compra = Id_Compra;
+            CompraActual = Compra;
         }
-
-
-        /*public void Cargar_Compra()
-        {
-            Temp_Compra compra = Temp_Compra_Controller.Cargar_Compra();
-
-            if (compra != null)
-            {
-                txtSubtotal.Text = compra.SUBTOTAL.ToString();
-                txtGravado.Text = compra.GRAVADO.ToString();
-                txtISV.Text = compra.ISV.ToString();
-                txtExento.Text = compra.EXENTO.ToString();
-                txtTotal.Text = compra.TOTAL.ToString();
-            }
-        }*/
-
 
         private void Cargar_Categorias()
         {
@@ -81,23 +67,129 @@ namespace Prototipo_MarZel.Formularios
             dgvDetallesCompra.ClearSelection();
         }
 
+        public void Mostrar_Calculos(int Id_Compra)
+        {
+            Temp_Compra Compra = Temp_Compra_Controller.Mostrar_Calculos(Id_Compra);
+
+            if (Compra != null)
+            {
+                txtSubtotal.Text = Compra.SUBTOTAL.ToString();
+                txtGravado.Text = Compra.GRAVADO.ToString();
+                txtISV.Text = Compra.ISV.ToString();
+                txtExento.Text = Compra.EXENTO.ToString();
+                txtTotal.Text = Compra.TOTAL.ToString();
+            }
+        }
+
         private void FRM_GESTIONAR_COMPRA_Load(object sender, EventArgs e)
         {
             Temp_Compra_Controller Temp_Compra_Controller = new Temp_Compra_Controller();
             Temp_Compra_Controller.Eliminar_Registros_Temporales();
             Cargar_Categorias();
             Cargar_Tipos_ISV();
-
-            if (ID_Compra == 0)
-            {
-                Temp_Compra_Controller.Agregar_Compra();
-            }
-
-            //Cargar_Detalles(ID_Compra);
-            /*Cargar_Compra();*/
+            Temp_Compra_Controller.Agregar_Compra(CompraActual);
+            Temp_Compra_Controller.Capturar_Detalles(CompraActual.ID_COMPRA);
+            Cargar_Detalles(CompraActual.ID_COMPRA);
+            Mostrar_Calculos(CompraActual.ID_COMPRA);
+            txtDescuento.Text = "0.00";
+            txtImporte.Text = "0.00";
+            txtCodigoBarra.Focus();
         }
 
-        /*private bool Verificar_Campos()
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+        private void Limpiar_Campos()
+        {
+            txtDescripcion.Clear();
+            txtCantidad.Clear();
+            txtCosto.Clear();
+            txtDescuento.Text = "0.00";
+            txtImporte.Text = "0.00";
+            cmbTiposISV.SelectedIndex = 0;
+            txtPrecioCompleto.Clear();
+            txtPrecioUnitario.Clear();
+            cmbCategorias.SelectedIndex = 0;
+            dgvDetallesCompra.ClearSelection();
+            txtCodigoBarra.Focus();
+        }
+
+        private void txtCodigoBarra_TextChanged(object sender, EventArgs e)
+        {
+            if (Temp_Compra_Controller.Buscar_En_Detalles_Compra(txtCodigoBarra.Text))
+            {
+                Temp_Detalle_Compra Producto = Temp_Compra_Controller.Cargar_Producto(txtCodigoBarra.Text);
+
+                if (Producto != null)
+                {
+                    txtDescripcion.Text = Producto.DESCRIPCION;
+                    txtCosto.Text = Producto.COSTO.ToString();
+                    cmbTiposISV.SelectedValue = Producto.ID_ISV;
+                    txtPrecioCompleto.Text = Producto.PRECIO_COMPLETO.ToString();
+                    txtPrecioUnitario.Text = Producto.PRECIO_UNITARIO.ToString();
+                    cmbCategorias.SelectedValue = Producto.ID_CATEGORIA;
+                }
+            }
+            else
+            {
+
+                if (Temp_Compra_Controller.Buscar_En_Productos(txtCodigoBarra.Text))
+                {
+                    Producto Producto = Producto_controller.Cargar_Producto(txtCodigoBarra.Text);
+
+                    if (Producto != null)
+                    {
+                        txtDescripcion.Text = Producto.DESCRIPCION;
+                        cmbTiposISV.SelectedValue = Producto.ID_ISV;
+                        txtPrecioCompleto.Text = Producto.PRECIO_COMPLETO.ToString();
+                        txtPrecioUnitario.Text = Producto.PRECIO_UNITARIO.ToString();
+                        cmbCategorias.SelectedValue = Producto.ID_CATEGORIA;
+                    }
+                }
+                else
+                {
+                    Limpiar_Campos();
+                }
+            }
+        }
+
+        private void Calcular_Importe()
+        {
+            if (decimal.TryParse(txtCosto.Text, out decimal costo)
+            && decimal.TryParse(txtDescuento.Text, out decimal descuento)
+            && int.TryParse(txtCantidad.Text, out int cantidad))
+            {
+                decimal importe = (costo * cantidad) - descuento;
+                txtImporte.Text = importe.ToString("0.00");
+            }
+        }
+
+        private void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
+            Calcular_Importe();
+        }
+
+        private void txtCosto_TextChanged(object sender, EventArgs e)
+        {
+            Calcular_Importe();
+        }
+
+        private void txtDescuento_TextChanged(object sender, EventArgs e)
+        {
+            Calcular_Importe();
+        }
+
+        private bool Verificar_Campos()
         {
             if (string.IsNullOrWhiteSpace(txtCodigoBarra.Text))
             {
@@ -157,7 +249,7 @@ namespace Prototipo_MarZel.Formularios
 
             if (string.IsNullOrWhiteSpace(txtPrecioUnitario.Text) || !decimal.TryParse(txtPrecioUnitario.Text, out decimal precio_unit) || precio_unit == 0)
             {
-                MessageBox.Show("Debe ingresar un precio unitario válido mayor a 0.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); 
+                MessageBox.Show("Debe ingresar un precio unitario válido mayor a 0.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtPrecioUnitario.Focus();
                 return false;
             }
@@ -170,22 +262,6 @@ namespace Prototipo_MarZel.Formularios
             }
 
             return true;
-        }
-
-        private void Limpiar_Campos()
-        {
-            txtCodigoBarra.Clear();
-            txtDescripcion.Clear();
-            txtCantidad.Clear();
-            txtCosto.Clear();
-            txtDescuento.Clear();
-            txtImporte.Clear();
-            cmbTiposISV.SelectedIndex = 0;
-            txtPrecioCompleto.Clear();
-            txtPrecioUnitario.Clear();
-            cmbCategorias.SelectedIndex = 0;
-            dgvDetallesCompra.ClearSelection();
-            txtCodigoBarra.Focus();
         }
 
         private void txtAgregarDetalle_Click(object sender, EventArgs e)
@@ -207,8 +283,7 @@ namespace Prototipo_MarZel.Formularios
                 }
                 else
                 {
-                    MessageBox.Show("No esta en Temp ni en Productos ", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    Temp_Detalle_Compra Detalle_Compra = new Temp_Detalle_Compra
+                   Temp_Detalle_Compra Detalle_Compra = new Temp_Detalle_Compra
                     {
                         ID_COMPRA = 0,
                         ID_PRODUCTO = null,
@@ -222,13 +297,14 @@ namespace Prototipo_MarZel.Formularios
                         PRECIO_COMPLETO = decimal.Parse(txtPrecioCompleto.Text),
                         PRECIO_UNITARIO = decimal.Parse(txtPrecioUnitario.Text),
                         ID_CATEGORIA = (cmbCategorias.SelectedItem as Categoria_Producto).ID_CATEGORIA,
-                        FECHA_CRACION = DateTime.Now
+                        FECHA_CREACION = DateTime.Now
                     };
                     Temp_Compra_Controller.Agregar_Nuevo_Detalle(Detalle_Compra);
-                    Cargar_Detalles();
+                    Cargar_Detalles(CompraActual.ID_COMPRA);
+                    txtCodigoBarra.Clear();
                     Limpiar_Campos();
                 }
             }
-        }*/
+        }
     }
 }
