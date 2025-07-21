@@ -56,6 +56,7 @@
             txtRTN.TabIndex = 0;
             txtRTN.Text = "";
             txtRTN.TrailingIcon = null;
+            txtRTN.TextChanged += txtRTN_TextChanged;
             // 
             // txtNombre
             // 
@@ -174,6 +175,7 @@
             Name = "FRM_GESTIONAR_PROVEEDOR";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "GESTIONAR PROVEEDOR";
+            Load += FRM_GESTIONAR_PROVEEDOR_Load;
             ResumeLayout(false);
             PerformLayout();
         }

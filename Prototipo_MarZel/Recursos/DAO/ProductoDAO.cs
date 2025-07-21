@@ -96,5 +96,21 @@ namespace Prototipo_MarZel
             }
             return null;
         }
+
+        public int? Buscar_ID(string codigo_barra)
+        {
+            int? Id_Producto = null;
+            using SqlConnection con = conexion.AbrirConexion();
+            string query = @"
+                SELECT  ID_PRODUCTO
+                FROM    TBL_PRODUCTOS
+                WHERE   CODIGO_BARRA = @CODIGO_BARRA
+            ";
+            using SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@CODIGO_BARRA", codigo_barra);
+
+            object result = cmd.ExecuteScalar();
+            return result != null ? (int?)Convert.ToInt32(result) : null;
+        }
     }
 }

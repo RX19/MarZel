@@ -33,10 +33,15 @@ namespace Prototipo_MarZel
     public class Producto_Controller
     {
         private readonly Producto_DAO dao = new Producto_DAO();
-        
+
         public Producto Cargar_Producto(string Codigo_Barra)
         {
             return dao.Cargar_Producto(Codigo_Barra);
+        }
+
+        public int? Buscar_ID(string codigo_barra)
+        {
+            return dao.Buscar_ID(codigo_barra);
         }
     }
 }
