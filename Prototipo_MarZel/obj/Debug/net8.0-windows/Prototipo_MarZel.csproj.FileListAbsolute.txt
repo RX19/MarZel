@@ -247,3 +247,13 @@ C:\Users\mmaradiaga\Source\Repos\MarZel\Prototipo_MarZel\bin\Debug\net8.0-window
 C:\Users\mmaradiaga\Source\Repos\MarZel\Prototipo_MarZel\bin\Debug\net8.0-windows\System.Security.Cryptography.Pkcs.dll
 C:\Users\mmaradiaga\Source\Repos\MarZel\Prototipo_MarZel\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\mmaradiaga\Source\Repos\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.Formularios.FRM_GESTIONAR_COMPRA.resources
+C:\Users\gmayo\source\repos\RX19\MarZel\Prototipo_MarZel\bin\Debug\net8.0-windows\BouncyCastle.Cryptography.dll
+C:\Users\gmayo\source\repos\RX19\MarZel\Prototipo_MarZel\bin\Debug\net8.0-windows\MailKit.dll
+C:\Users\gmayo\source\repos\RX19\MarZel\Prototipo_MarZel\bin\Debug\net8.0-windows\MimeKit.dll
+C:\Users\gmayo\source\repos\RX19\MarZel\Prototipo_MarZel\bin\Debug\net8.0-windows\System.Security.Cryptography.Pkcs.dll
+C:\Users\gmayo\source\repos\RX19\MarZel\Prototipo_MarZel\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\gmayo\source\repos\RX19\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.Formularios.FRM_CLIENTES.resources
+C:\Users\gmayo\source\repos\RX19\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.Formularios.FRM_COMPRAS.resources
+C:\Users\gmayo\source\repos\RX19\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.Formularios.FRM_GESTIONAR_COMPRA.resources
+C:\Users\gmayo\source\repos\RX19\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.Formularios.FRM_GESTIONAR_PROVEEDOR.resources
+C:\Users\gmayo\source\repos\RX19\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.Formularios.FRM_PROVEEDORES.resources
