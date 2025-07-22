@@ -68,6 +68,8 @@
             materialTextBox21 = new MaterialSkin.Controls.MaterialTextBox2();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             TP_HISTORIAL = new TabPage();
+            materialCard2 = new MaterialSkin.Controls.MaterialCard();
+            DVC_HISTORIAL = new DataGridView();
             MTBC_MENU.SuspendLayout();
             TP_MODIFICAR.SuspendLayout();
             MC_BUSCAR.SuspendLayout();
@@ -76,6 +78,9 @@
             ((System.ComponentModel.ISupportInitialize)DVC_PRODUCTOS).BeginInit();
             TP_INSERTAR.SuspendLayout();
             materialCard1.SuspendLayout();
+            TP_HISTORIAL.SuspendLayout();
+            materialCard2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DVC_HISTORIAL).BeginInit();
             SuspendLayout();
             // 
             // MTBC_MENU
@@ -778,12 +783,36 @@
             // 
             // TP_HISTORIAL
             // 
+            TP_HISTORIAL.Controls.Add(materialCard2);
             TP_HISTORIAL.Location = new Point(4, 29);
             TP_HISTORIAL.Name = "TP_HISTORIAL";
             TP_HISTORIAL.Size = new Size(1372, 688);
             TP_HISTORIAL.TabIndex = 2;
             TP_HISTORIAL.Text = "Historial";
             TP_HISTORIAL.UseVisualStyleBackColor = true;
+            // 
+            // materialCard2
+            // 
+            materialCard2.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard2.Controls.Add(DVC_HISTORIAL);
+            materialCard2.Depth = 0;
+            materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard2.Location = new Point(10, 14);
+            materialCard2.Margin = new Padding(14);
+            materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard2.Name = "materialCard2";
+            materialCard2.Padding = new Padding(14);
+            materialCard2.Size = new Size(986, 408);
+            materialCard2.TabIndex = 0;
+            // 
+            // DVC_HISTORIAL
+            // 
+            DVC_HISTORIAL.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DVC_HISTORIAL.Location = new Point(17, 17);
+            DVC_HISTORIAL.Name = "DVC_HISTORIAL";
+            DVC_HISTORIAL.RowHeadersWidth = 51;
+            DVC_HISTORIAL.Size = new Size(952, 374);
+            DVC_HISTORIAL.TabIndex = 0;
             // 
             // FRM_PRODUCTOS
             // 
@@ -806,6 +835,9 @@
             TP_INSERTAR.ResumeLayout(false);
             materialCard1.ResumeLayout(false);
             materialCard1.PerformLayout();
+            TP_HISTORIAL.ResumeLayout(false);
+            materialCard2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)DVC_HISTORIAL).EndInit();
             ResumeLayout(false);
         }
 
@@ -851,5 +883,7 @@
         private MaterialSkin.Controls.MaterialButton materialButton2;
         private MaterialSkin.Controls.MaterialButton materialButton1;
         private TabPage TP_HISTORIAL;
+        private MaterialSkin.Controls.MaterialCard materialCard2;
+        private DataGridView DVC_HISTORIAL;
     }
 }
