@@ -71,8 +71,8 @@ namespace Prototipo_MarZel.Formularios
         {
             if (dgvProveedores.CurrentRow == null) return;
 
-            Proveedor proveedorSeleccionado = (Proveedor)dgvProveedores.CurrentRow.DataBoundItem;
-            FRM_GESTIONAR_PROVEEDOR frm_gestionar_proveedor = new FRM_GESTIONAR_PROVEEDOR(proveedorSeleccionado);
+            Proveedor ProveedorSeleccionado = (Proveedor)dgvProveedores.CurrentRow.DataBoundItem;
+            FRM_GESTIONAR_PROVEEDOR frm_gestionar_proveedor = new FRM_GESTIONAR_PROVEEDOR(ProveedorSeleccionado);
 
             if (frm_gestionar_proveedor.ShowDialog() == DialogResult.OK)
                 Cargar_Proveedores();

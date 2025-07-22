@@ -35,5 +35,15 @@ namespace Prototipo_MarZel
         {
             return dao.Buscar_Proveedor(texto);
         }
+
+        public Proveedor Cargar_Proveedor(string rtn)
+        {
+            return dao.Cargar_Proveedor(rtn);
+        }
+
+        public string Obtener_Nombre_Proveedor()
+        {
+            return dao.Obtener_Nombre_Proveedor();
+        }
     }
 }

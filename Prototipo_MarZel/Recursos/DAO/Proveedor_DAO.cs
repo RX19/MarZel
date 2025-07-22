@@ -122,5 +122,39 @@ namespace Prototipo_MarZel
             }
             return lista_proveedores;
         }
+
+        public Proveedor Cargar_Proveedor(string rtn)
+        {
+            using SqlConnection con = conexion.AbrirConexion();
+            string query = @"SELECT  * 
+                             FROM    TBL_PROVEEDORES 
+                             WHERE   RTN = @RTN";
+            using SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@RTN", rtn);
+            using SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                return new Proveedor
+                {
+                    ID_PROVEEDOR = dr.GetInt32(dr.GetOrdinal("ID_PROVEEDOR")),
+                    RTN = dr.GetString(dr.GetOrdinal("RTN")),
+                    NOMBRE = dr.GetString(dr.GetOrdinal("NOMBRE")),
+                    DIRECCION = dr.GetString(dr.GetOrdinal("DIRECCION")),
+                    CELULAR = dr.GetString(dr.GetOrdinal("CELULAR")),
+                    CANT_COMPRAS = dr.GetInt32(dr.GetOrdinal("CANT_COMPRAS")),
+                    IMPORTE = dr.GetDecimal(dr.GetOrdinal("IMPORTE"))
+                };
+            }
+            return null;
+        }
+
+        public string Obtener_Nombre_Proveedor()
+        {
+            using SqlConnection con = conexion.AbrirConexion();
+            string query = @"SELECT  NOMBRE 
+                             FROM    TBL_PROVEEDORES";
+            using SqlCommand cmd = new SqlCommand(query, con);
+            return cmd.ExecuteScalar()?.ToString() ?? string.Empty;
+        }
     }
 }
