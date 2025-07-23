@@ -23,4 +23,4 @@ jobs:
       run: nuget restore MarZel.sln
 
     - name: Build solution
-      run: msbuild MarZel.sln /p:Configuration=Release
+      run: msbuild Prototipo_MarZel.sln /p:Configuration=Release
