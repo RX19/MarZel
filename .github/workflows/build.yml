@@ -3,9 +3,9 @@ name: Build WinForms App (.NET Framework)
 on:
   workflow_dispatch:
   push:
-    branches: [main, dev, qa, produccion]
+    branches: [main, DEV, QA, produccion]
   pull_request:
-    branches: [main, dev, qa, produccion]
+    branches: [main, DEV, QA, produccion]
 
 jobs:
   build:
