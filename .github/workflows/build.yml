@@ -26,6 +26,6 @@ jobs:
       run: msbuild Prototipo_MarZel.sln /p:Configuration=Release
       
     - name: Show build logs on failure
-        if:failure()
+        if: failure()
       run: |
           echo "::error::Build failed. See logs above for details."
