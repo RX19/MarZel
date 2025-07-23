@@ -2,14 +2,22 @@
 
 namespace Prototipo_MarZel
 {
-    public abstract class ProductoBase
+    public abstract class Producto_Base
     {
-        public static String Tabla = "TBL_Productos";
+        public static String Tabla = "TBL_PRODUCTOS";
+
         public abstract DataTable ObtenerTodos();
+
         public abstract DataTable ObtenerProductos();
+
         public abstract DataTable ObtenerProducto(string filtro);
+
         public abstract void ModificarProducto(string codigo,string desc,int id,decimal PU, decimal PC);
         // Pendiente : Insertar, Actualizar, Eliminar...
+
+        public abstract DataTable Cargar_Producto(string Codigo_Barra);
+
+        public abstract int? Buscar_Id_Producto(string Codigo_Barra);
     }
 
     public class Producto

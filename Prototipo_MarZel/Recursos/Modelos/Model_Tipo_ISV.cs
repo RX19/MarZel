@@ -2,10 +2,10 @@
 
 namespace Prototipo_MarZel
 {
-    public class Tipo_ISV
+    public abstract class Tipo_ISV_Base
     {
-        public int ID_TIPO { get; set; }
+        public static String Tabla = "TBL_TIPOS_ISV";
 
-        public string DESCRIPCION { get; set; } = string.Empty;
+        public abstract DataTable Cargar_Tipos_ISV();
     }
 }

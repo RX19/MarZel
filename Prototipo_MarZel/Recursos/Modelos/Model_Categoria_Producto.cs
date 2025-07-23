@@ -7,18 +7,13 @@ using System.Threading.Tasks;
 
 namespace Prototipo_MarZel.Recursos.Modelos
 {
-    public abstract class CategoriaBase
+    public abstract class Categoria_Producto_Base
     {
-        public static String Tabla = "TBL_CategoriasProducto";
-        public abstract DataTable ObtenerTodos();
+        public static String Tabla = "TBL_CATEGORIAS_PRODUCTO";
+        
+        public abstract DataTable Cargar_Categorias();
+        
         public abstract DataTable ObtenerPorId(string id);
         // Pendiente : Insertar, Actualizar, Eliminar...
-    }
-
-    public class Categoria_Producto
-    {
-        public int ID_CATEGORIA { get; set; }
-
-        public string DESCRIPCION { get; set; } = string.Empty;
     }
 }

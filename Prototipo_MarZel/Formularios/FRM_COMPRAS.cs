@@ -12,7 +12,6 @@ namespace Prototipo_MarZel.Formularios
 {
     public partial class FRM_COMPRAS : MaterialSkin.Controls.MaterialForm
     {
-        private List<Compra> listaCompras = new List<Compra>();
         private readonly Compra_Controller Compra_Controller = new Compra_Controller();
 
         public FRM_COMPRAS()
@@ -22,9 +21,9 @@ namespace Prototipo_MarZel.Formularios
 
         public void Cargar_Compras()
         {
-            listaCompras = Compra_Controller.Obtener_Compras();
+            DataTable compras = Compra_Controller.Cargar_Compras();
             dgvCompras.DataSource = null;
-            dgvCompras.DataSource = listaCompras;
+            dgvCompras.DataSource = compras;
             dgvCompras.Columns["ID_COMPRA"].Visible = false;
             dgvCompras.Columns["ID_PROVEEDOR"].Visible = false;
             dgvCompras.Columns["SUBTOTAL"].Visible = false;
@@ -63,8 +62,8 @@ namespace Prototipo_MarZel.Formularios
         {
             if (dgvCompras.CurrentRow == null) return;
 
-            Compra CompraSeleccionada = (Compra)dgvCompras.CurrentRow.DataBoundItem;
-            FRM_GESTIONAR_COMPRA frm_gestionar_compra = new FRM_GESTIONAR_COMPRA(CompraSeleccionada);
+            int ID_Compra_Seleccionada = Compra_Controller.Cargar_Compras().Rows[dgvCompras.CurrentRow.Index].Field<int>("ID_COMPRA");
+            FRM_GESTIONAR_COMPRA frm_gestionar_compra = new FRM_GESTIONAR_COMPRA(ID_Compra_Seleccionada);
 
             if (frm_gestionar_compra.ShowDialog() == DialogResult.OK)
                 Cargar_Compras();
