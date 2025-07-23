@@ -26,5 +26,5 @@ jobs:
       run: msbuild Prototipo_MarZel.sln /p:Configuration=Release
     
     - name: Run unit tests
-      run: dotnet test  Prototipo_MarZel.csproj
+      run: dotnet test  Prototipo_MarZel/Prototipo_MarZel.csproj
 
