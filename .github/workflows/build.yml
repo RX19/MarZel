@@ -28,18 +28,3 @@ jobs:
     - name: Run unit tests
       run: dotnet test  Prototipo_MarZel/Prototipo_MarZel.csproj
 
-    - name: Configure Git user
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-    - name: Create and push changes to QA
-      env:
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        git checkout -b temp-build-qa
-        git add .
-        git commit -m "Build automatizado: Push a QA desde ${{ github.ref_name }}"
-        git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} temp-build-qa:QA --force
-    
-
