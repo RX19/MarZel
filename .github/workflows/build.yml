@@ -20,7 +20,7 @@ jobs:
       uses: microsoft/setup-msbuild@v2
 
     - name: Restore NuGet packages
-      run: nuget restore MarZel.sln
+      run: nuget restore Prototipo_MarZel.sln
 
     - name: Build solution
       run: msbuild Prototipo_MarZel.sln /p:Configuration=Release
