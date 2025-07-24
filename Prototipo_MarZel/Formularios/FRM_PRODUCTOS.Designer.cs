@@ -97,6 +97,7 @@
             MTBC_MENU.SelectedIndex = 0;
             MTBC_MENU.Size = new Size(1380, 721);
             MTBC_MENU.TabIndex = 0;
+            MTBC_MENU.SelectedIndexChanged += MTBC_MENU_SelectedIndexChanged_1;
             // 
             // TP_MODIFICAR
             // 
@@ -105,7 +106,7 @@
             TP_MODIFICAR.Controls.Add(MC_PANEL_DATOS);
             TP_MODIFICAR.Location = new Point(4, 29);
             TP_MODIFICAR.Name = "TP_MODIFICAR";
-            TP_MODIFICAR.Padding = new Padding(3, 3, 3, 3);
+            TP_MODIFICAR.Padding = new Padding(3);
             TP_MODIFICAR.Size = new Size(1372, 688);
             TP_MODIFICAR.TabIndex = 0;
             TP_MODIFICAR.Text = "Productos";
@@ -192,7 +193,7 @@
             BTN_WARD.HighEmphasis = true;
             BTN_WARD.Icon = null;
             BTN_WARD.Location = new Point(750, 515);
-            BTN_WARD.Margin = new Padding(5, 5, 5, 5);
+            BTN_WARD.Margin = new Padding(5);
             BTN_WARD.MouseState = MaterialSkin.MouseState.HOVER;
             BTN_WARD.Name = "BTN_WARD";
             BTN_WARD.NoAccentTextColor = Color.Empty;
@@ -212,7 +213,7 @@
             BTN_CANCEL.HighEmphasis = true;
             BTN_CANCEL.Icon = null;
             BTN_CANCEL.Location = new Point(389, 515);
-            BTN_CANCEL.Margin = new Padding(5, 5, 5, 5);
+            BTN_CANCEL.Margin = new Padding(5);
             BTN_CANCEL.MouseState = MaterialSkin.MouseState.HOVER;
             BTN_CANCEL.Name = "BTN_CANCEL";
             BTN_CANCEL.NoAccentTextColor = Color.Empty;
@@ -476,8 +477,8 @@
             TP_INSERTAR.Controls.Add(materialCard1);
             TP_INSERTAR.Location = new Point(4, 29);
             TP_INSERTAR.Name = "TP_INSERTAR";
-            TP_INSERTAR.Padding = new Padding(3, 3, 3, 3);
-            TP_INSERTAR.Size = new Size(1371, 688);
+            TP_INSERTAR.Padding = new Padding(3);
+            TP_INSERTAR.Size = new Size(1372, 688);
             TP_INSERTAR.TabIndex = 1;
             TP_INSERTAR.Text = "Agregar";
             TP_INSERTAR.UseVisualStyleBackColor = true;
@@ -517,7 +518,7 @@
             materialButton2.HighEmphasis = true;
             materialButton2.Icon = null;
             materialButton2.Location = new Point(718, 603);
-            materialButton2.Margin = new Padding(5, 5, 5, 5);
+            materialButton2.Margin = new Padding(5);
             materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton2.Name = "materialButton2";
             materialButton2.NoAccentTextColor = Color.Empty;
@@ -536,7 +537,7 @@
             materialButton1.HighEmphasis = true;
             materialButton1.Icon = null;
             materialButton1.Location = new Point(299, 603);
-            materialButton1.Margin = new Padding(5, 5, 5, 5);
+            materialButton1.Margin = new Padding(5);
             materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton1.Name = "materialButton1";
             materialButton1.NoAccentTextColor = Color.Empty;
@@ -813,7 +814,6 @@
             DVC_HISTORIAL.RowHeadersWidth = 51;
             DVC_HISTORIAL.Size = new Size(952, 373);
             DVC_HISTORIAL.TabIndex = 0;
-            DVC_HISTORIAL.CellContentClick += DVC_HISTORIAL_CellContentClick;
             // 
             // FRM_PRODUCTOS
             // 

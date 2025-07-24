@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prototipo_MarZel.Recursos.Controlador;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -237,5 +238,29 @@ namespace Prototipo_MarZel
 
         }
 
+
+        private Movimiento_Inventario_Controller movimientoController = new Movimiento_Inventario_Controller();
+
+        private void CargarHistorialMovimientos()
+        {
+            try
+            {
+                DataTable movimientos = movimientoController.ObtenerMovimientos();
+                DVC_HISTORIAL.DataSource = movimientos;
+                DVC_HISTORIAL.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar el historial de movimientos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MTBC_MENU_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (MTBC_MENU.SelectedTab == TP_HISTORIAL)
+            {
+                CargarHistorialMovimientos();
+            }
+        }
     }
 }
