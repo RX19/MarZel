@@ -13,7 +13,7 @@ using static System.Windows.Forms.Design.AxImporter;
 
 
 namespace Prototipo_MarZel
-{   
+{
 
     public partial class FRM_PRODUCTOS : MaterialSkin.Controls.MaterialForm
     {
@@ -231,5 +231,11 @@ namespace Prototipo_MarZel
                 LimpiarCampos();
             }
         }
+
+        private void DVC_HISTORIAL_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
     }
 }
