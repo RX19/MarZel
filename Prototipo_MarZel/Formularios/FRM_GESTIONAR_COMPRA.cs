@@ -1,4 +1,5 @@
-﻿using Prototipo_MarZel.Recursos.Modelos;
+﻿using Org.BouncyCastle.Asn1.X500;
+using Prototipo_MarZel.Recursos.Modelos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +20,8 @@ namespace Prototipo_MarZel.Formularios
         private readonly Tipo_ISV_Controller Tipo_ISV_Controller = new Tipo_ISV_Controller();
         private readonly Temp_Compra_Controller Temp_Compra_Controller = new Temp_Compra_Controller();
         private readonly Producto_Controller Producto_Controller = new Producto_Controller();
-        
+        private readonly Compra_Controller Compra_Controller = new Compra_Controller();
+
         public FRM_GESTIONAR_COMPRA()
         {
             InitializeComponent();
@@ -92,8 +94,9 @@ namespace Prototipo_MarZel.Formularios
             txtExento.Text = compra.Rows[0]["EXENTO"].ToString();
             txtTotal.Text = compra.Rows[0]["TOTAL"].ToString();
 
-            //Actualiza el proveedor.
+            //Actualiza el proveedor y demas campos.
             txtNombre.Text = compra.Rows[0]["NOMBRE"].ToString();
+            dtpFecha.Value = Convert.ToDateTime(compra.Rows[0]["FECHA"]);
             txtCodigoBarra.Clear();
             Limpiar_Campos();
         }
@@ -176,7 +179,7 @@ namespace Prototipo_MarZel.Formularios
             Calcular_Importe();
         }
 
-        private bool Verificar_Campos()
+        private bool Verificar_Campos_Detalles()
         {
             if (string.IsNullOrWhiteSpace(txtCodigoBarra.Text))
             {
@@ -253,7 +256,7 @@ namespace Prototipo_MarZel.Formularios
 
         private void txtAgregarDetalle_Click(object sender, EventArgs e)
         {
-            if (!Verificar_Campos()) return;
+            if (!Verificar_Campos_Detalles()) return;
 
             string Codigo_Barra = txtCodigoBarra.Text.Trim();
             int? Id_Producto = Producto_Controller.Buscar_Id_Producto(Codigo_Barra);
@@ -281,10 +284,87 @@ namespace Prototipo_MarZel.Formularios
         {
             DataTable Proveedor = Temp_Compra_Controller.Cargar_Compra(Id_Compra);
             string rtn = Proveedor.Rows[0]["RTN"].ToString();
-            
+
             FRM_GESTIONAR_PROVEEDOR frm_gestionar_proveedor = new FRM_GESTIONAR_PROVEEDOR(rtn, Id_Compra);
             if (frm_gestionar_proveedor.ShowDialog() == DialogResult.OK)
-               Cargar_Datos_Compra();
+                Cargar_Datos_Compra();
+        }
+
+        private bool Verificar_Campos_Compra()
+        {
+            string Nombre = txtNombre.Text.Trim();
+            string Factura = txtFactura.Text.Trim();
+
+            DataTable Detalles = Temp_Compra_Controller.Cargar_Detalles(Id_Compra);
+            if (Detalles.Rows.Count == 0)
+            {
+                MessageBox.Show("Debe ingresar al menos un producto.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCodigoBarra.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(Nombre))
+            {
+                MessageBox.Show("Debe ingresar un Proveedor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                FRM_GESTIONAR_PROVEEDOR frm_gestionar_proveedor = new FRM_GESTIONAR_PROVEEDOR(null, Id_Compra);
+                if (frm_gestionar_proveedor.ShowDialog() == DialogResult.OK)
+                    Cargar_Datos_Compra();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(Factura))
+            {
+                MessageBox.Show("Debe ingresar un número de factura.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtFactura.Focus();
+                return false;
+            }
+
+            if (Id_Compra == 0)
+            {
+                if (Temp_Compra_Controller.Existe_Factura(Factura))
+                {
+                    MessageBox.Show("La factura ingresada ya existe. Por favor, ingrese una factura diferente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtFactura.Focus();
+                    return false;
+                }
+            }
+            else
+            {
+                DataTable Compra = Temp_Compra_Controller.Cargar_Compra(Id_Compra);
+                if (Temp_Compra_Controller.Existe_Factura(Factura) && Factura != Compra.Rows[0]["Factura"].ToString())
+                {
+                    MessageBox.Show("La factura ingresada ya existe. Por favor, ingrese una factura diferente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtFactura.Focus();
+                    return false;
+                }
+            }
+
+
+            return true;
+        }
+
+        private void Completar_Compra()
+        {
+            string Factura = txtFactura.Text;
+            DateTime Fecha = dtpFecha.Value;
+            Temp_Compra_Controller.Completar_Compra(Id_Compra, Factura, Fecha);
+            Cargar_Datos_Compra();
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (!Verificar_Campos_Compra()) return;
+            Completar_Compra();
+
+            if (Id_Compra == 0)
+            {
+                Compra_Controller.Agregar_Compra(Id_Compra);
+            }
+        }
+
+        private void dtpFecha_ValueChanged(object sender, EventArgs e)
+        {
+            Completar_Compra();
         }
     }
 }

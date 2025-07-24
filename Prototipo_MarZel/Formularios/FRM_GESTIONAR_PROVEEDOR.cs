@@ -41,7 +41,14 @@ namespace Prototipo_MarZel.Formularios
             InitializeComponent();
             this.Id_Compra = Id_Compra;
             Elegir = true;
-            txtRTN.Text = RTN;
+            if (RTN == "N/A")
+            {
+                chkSinRTN.Checked = true;
+            }
+            else
+            {
+                txtRTN.Text = RTN;
+            }
         }
 
         private void FRM_GESTIONAR_PROVEEDOR_Load(object sender, EventArgs e)
@@ -164,6 +171,32 @@ namespace Prototipo_MarZel.Formularios
                     txtDireccion.Clear();
                     txtCelular.Clear();
                 }
+            }
+        }
+
+        private void chkSinRTN_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkSinRTN.Checked)
+            {
+                txtRTN.Text = "N/A";
+                txtNombre.Text = "N/A";
+                txtDireccion.Text = "N/A";
+                txtCelular.Text = "N/A";
+                txtRTN.Enabled = false;
+                txtNombre.Enabled = false;
+                txtDireccion.Enabled = false;
+                txtCelular.Enabled = false;
+            }
+            else
+            {
+                txtRTN.Clear();
+                txtNombre.Clear();
+                txtDireccion.Clear();
+                txtCelular.Clear();
+                txtRTN.Enabled = true;
+                txtNombre.Enabled = true;
+                txtDireccion.Enabled = true;
+                txtCelular.Enabled = true;
             }
         }
     }

@@ -64,5 +64,33 @@ namespace Prototipo_MarZel
         {
             Temp_Compra_DAO.Modificar_Proveedor(Id_Compra, Id_Proveedor, RTN, Nombre, Direccion, Celular);
         }
+
+        public bool Existe_Factura(string Factura)
+        {
+            return Temp_Compra_DAO.Existe_Factura(Factura);
+        }
+
+        public void Completar_Compra(int Id_Compra, string Factura, DateTime Fecha)
+        {
+            Temp_Compra_DAO.Completar_Compra(Id_Compra, Factura, Fecha);
+        }
+
+        public void Asignar_ID_Proveedor(int Id_Compra, int Id_Proveedor)
+        {
+            Temp_Compra_DAO.Asignar_ID_Proveedor(Id_Compra,Id_Proveedor);
+        }
+
+        public void Asignar_ID_Producto(int Id_Compra, int Id_Producto, string Codigo_Barra)
+        {
+            Temp_Compra_DAO.Asignar_ID_Producto(Id_Compra, Id_Producto, Codigo_Barra);
+        }
+
+        public void Modificar_Detalle(int Id_Compra, int? Id_Producto, string Codigo_Barra, string Descripcion, int Cantidad,
+            decimal Costo, decimal Descuento, decimal Importe, int Id_ISV, decimal Precio_Completo, decimal Precio_Unitario,
+            int Id_Categoria, DateTime Fecha_Creacion)
+        {
+            Temp_Compra_DAO.Modificar_Detalle(Id_Compra, Id_Producto, Codigo_Barra, Descripcion, Cantidad, Costo, Descuento,
+                Importe, Id_ISV, Precio_Completo, Precio_Unitario, Id_Categoria, Fecha_Creacion);
+        }
     }
 }

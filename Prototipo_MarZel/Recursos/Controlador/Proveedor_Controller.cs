@@ -37,6 +37,11 @@ namespace Prototipo_MarZel
             Proveedor_DAO.Modificar_Proveedor(Id_Proveedor, RTN, Nombre, Direccion, Celular);
         }
 
+        public void Modificar_Proveedor(int Id_Proveedor, string RTN, string Nombre, string Direccion, string Celular, int Cant_Compras, decimal Importe)
+        {
+            Proveedor_DAO.Modificar_Proveedor(Id_Proveedor, RTN, Nombre, Direccion, Celular, Cant_Compras, Importe);
+        }
+
         public DataTable Cargar_Proveedor(int Id_Proveedor)
         {
             return Proveedor_DAO.Cargar_Proveedor(Id_Proveedor);

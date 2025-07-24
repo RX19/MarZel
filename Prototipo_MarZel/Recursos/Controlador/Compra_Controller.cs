@@ -16,5 +16,12 @@ namespace Prototipo_MarZel
         {
             return Compra_DAO.Cargar_Compras();
         }
+
+        public void Agregar_Compra(int Id_Compra)
+        {
+            Compra_DAO.Guardar_Proveedor(Id_Compra);
+            Compra_DAO.Guardar_Compra(Id_Compra);
+            Compra_DAO.Procesar_Detalles(Id_Compra);
+        }
     }
 }

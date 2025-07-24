@@ -40,5 +40,12 @@ namespace Prototipo_MarZel
         {
             return Producto_DAO.Buscar_Id_Producto(Codigo_Barra);
         }
+
+        public void Agregar_Producto(string Codigo_Barra, string Descripcion, int Id_ISV, decimal Precio_Completo,
+            decimal Precio_Unitario, int Id_Categoria, int Existencia)
+        {
+            Producto_DAO.Agregar_Producto(Codigo_Barra, Descripcion, Id_ISV, Precio_Completo,
+            Precio_Unitario, Id_Categoria, Existencia);
+        }
     }
 }

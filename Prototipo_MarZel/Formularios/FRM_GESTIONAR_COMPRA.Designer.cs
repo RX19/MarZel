@@ -49,6 +49,7 @@
             txtNombre = new MaterialSkin.Controls.MaterialTextBox();
             dtpFecha = new DateTimePicker();
             btnGuardar = new MaterialSkin.Controls.MaterialButton();
+            txtFactura = new MaterialSkin.Controls.MaterialTextBox();
             ((System.ComponentModel.ISupportInitialize)dgvDetallesCompra).BeginInit();
             SuspendLayout();
             // 
@@ -378,7 +379,7 @@
             btnRTN.Depth = 0;
             btnRTN.HighEmphasis = true;
             btnRTN.Icon = null;
-            btnRTN.Location = new Point(22, 123);
+            btnRTN.Location = new Point(22, 131);
             btnRTN.Margin = new Padding(4, 6, 4, 6);
             btnRTN.MouseState = MaterialSkin.MouseState.HOVER;
             btnRTN.Name = "btnRTN";
@@ -396,6 +397,7 @@
             txtNombre.AnimateReadOnly = false;
             txtNombre.BorderStyle = BorderStyle.None;
             txtNombre.Depth = 0;
+            txtNombre.Enabled = false;
             txtNombre.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtNombre.Hint = "Nombre";
             txtNombre.LeadingIcon = null;
@@ -412,11 +414,12 @@
             // dtpFecha
             // 
             dtpFecha.Format = DateTimePickerFormat.Short;
-            dtpFecha.Location = new Point(406, 136);
+            dtpFecha.Location = new Point(554, 136);
             dtpFecha.Name = "dtpFecha";
-            dtpFecha.Size = new Size(134, 23);
+            dtpFecha.Size = new Size(96, 23);
             dtpFecha.TabIndex = 18;
             dtpFecha.Value = new DateTime(2025, 7, 21, 11, 24, 57, 0);
+            dtpFecha.ValueChanged += dtpFecha_ValueChanged;
             // 
             // btnGuardar
             // 
@@ -425,7 +428,7 @@
             btnGuardar.Depth = 0;
             btnGuardar.HighEmphasis = true;
             btnGuardar.Icon = null;
-            btnGuardar.Location = new Point(608, 497);
+            btnGuardar.Location = new Point(594, 497);
             btnGuardar.Margin = new Padding(4, 6, 4, 6);
             btnGuardar.MouseState = MaterialSkin.MouseState.HOVER;
             btnGuardar.Name = "btnGuardar";
@@ -436,12 +439,32 @@
             btnGuardar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnGuardar.UseAccentColor = false;
             btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
+            // 
+            // txtFactura
+            // 
+            txtFactura.AnimateReadOnly = false;
+            txtFactura.BorderStyle = BorderStyle.None;
+            txtFactura.Depth = 0;
+            txtFactura.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtFactura.Hint = "No. Factura";
+            txtFactura.LeadingIcon = null;
+            txtFactura.Location = new Point(395, 123);
+            txtFactura.MaxLength = 50;
+            txtFactura.MouseState = MaterialSkin.MouseState.OUT;
+            txtFactura.Multiline = false;
+            txtFactura.Name = "txtFactura";
+            txtFactura.Size = new Size(153, 50);
+            txtFactura.TabIndex = 20;
+            txtFactura.Text = "";
+            txtFactura.TrailingIcon = null;
             // 
             // FRM_GESTIONAR_COMPRA
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1213, 591);
+            Controls.Add(txtFactura);
             Controls.Add(btnGuardar);
             Controls.Add(dtpFecha);
             Controls.Add(txtNombre);
@@ -498,5 +521,6 @@
         private MaterialSkin.Controls.MaterialTextBox txtNombre;
         private DateTimePicker dtpFecha;
         private MaterialSkin.Controls.MaterialButton btnGuardar;
+        private MaterialSkin.Controls.MaterialTextBox txtFactura;
     }
 }

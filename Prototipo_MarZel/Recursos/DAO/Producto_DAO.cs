@@ -95,5 +95,28 @@ namespace Prototipo_MarZel
             DataTable resultado = conexion.EjecutarConsulta(query, parametros);
             return resultado.Rows.Count > 0 ? Convert.ToInt32(resultado.Rows[0]["ID_PRODUCTO"]) : (int?)null;
         }
+
+        public override void Agregar_Producto(string Codigo_Barra, string Descripcion, int Id_ISV, decimal Precio_Completo,
+            decimal Precio_Unitario, int Id_Categoria, int Existencia)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @$"
+                INSERT INTO TBL_PRODUCTOS (
+                    CODIGO_BARRA, DESCRIPCION, ID_ISV, PRECIO_COMPLETO, PRECIO_UNITARIO, ID_CATEGORIA, EXISTENCIA
+                ) VALUES (
+                    @CODIGO_BARRA, @DESCRIPCION, @ID_ISV, @PRECIO_COMPLETO, @PRECIO_UNITARIO, @ID_CATEGORIA, @EXISTENCIA
+                )";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@CODIGO_BARRA", Codigo_Barra),
+                new SqlParameter("@DESCRIPCION", Descripcion),
+                new SqlParameter("@ID_ISV", Id_ISV),
+                new SqlParameter("@PRECIO_COMPLETO", Precio_Completo),
+                new SqlParameter("@PRECIO_UNITARIO", Precio_Unitario),
+                new SqlParameter("@ID_CATEGORIA", Id_Categoria),
+                new SqlParameter("@EXISTENCIA", Existencia)
+            };
+            conexion.EjecutarComando(query, parametros);
+        }
     }
 }

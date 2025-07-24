@@ -89,6 +89,31 @@ namespace Prototipo_MarZel
             conexion.EjecutarComando(query, parametros);
         }
 
+        public override void Modificar_Proveedor(int Id_Proveedor, string RTN, string Nombre, string Direccion, string Celular, int Cant_Compras, decimal Importe)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                UPDATE TBL_PROVEEDORES 
+                SET RTN = @RTN,
+                    NOMBRE = @NOMBRE,
+                    DIRECCION = @DIRECCION,
+                    CELULAR = @CELULAR,
+                    CANT_COMPRAS = @CANT_COMPRAS,
+                    IMPORTE = @IMPORTE
+                WHERE ID_PROVEEDOR = @ID_PROVEEDOR";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@ID_PROVEEDOR", Id_Proveedor),
+                new SqlParameter("@RTN", RTN),
+                new SqlParameter("@NOMBRE", Nombre),
+                new SqlParameter("@DIRECCION", Direccion),
+                new SqlParameter("@CELULAR", Celular),
+                new SqlParameter("@CANT_COMPRAS", Cant_Compras),
+                new SqlParameter("@IMPORTE", Importe)
+            };
+            conexion.EjecutarComando(query, parametros);
+        }
+
         public override DataTable Cargar_Proveedor(int Id_Proveedor)
         {
             ConexionBD conexion = new ConexionBD();

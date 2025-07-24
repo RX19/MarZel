@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Org.BouncyCastle.Asn1.X500;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Prototipo_MarZel
@@ -26,15 +28,15 @@ namespace Prototipo_MarZel
         public override void Agregar_Compra(int Id_Compra)
         {
             ConexionBD conexion = new ConexionBD();
-            String query = string.Empty;
+            string query = string.Empty;
 
             if (Id_Compra == 0)
             {
                 query = @"
                 INSERT INTO TEMP_COMPRAS (
-                    ID_COMPRA, SUBTOTAL, GRAVADO, ISV, EXENTO, TOTAL
+                    ID_COMPRA, FECHA, SUBTOTAL, GRAVADO, ISV, EXENTO, TOTAL
                 ) VALUES (
-                    0, 0.00, 0.00, 0.00, 0.00, 0.00
+                    0, GETDATE(), 0.00, 0.00, 0.00, 0.00, 0.00
                 )";
             }
             else
@@ -310,6 +312,108 @@ namespace Prototipo_MarZel
                 new SqlParameter("@DIRECCION", Direccion),
                 new SqlParameter("@CELULAR", Celular),
                 new SqlParameter("@ID_COMPRA", Id_Compra)
+            };
+            conexion.EjecutarComando(query, parametros);
+        }
+
+        public override bool Existe_Factura(string Factura)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                SELECT  1 
+                FROM    TBL_COMPRAS 
+                WHERE FACTURA = @FACTURA";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@FACTURA", Factura)
+            };
+            DataTable resultado = conexion.EjecutarConsulta(query, parametros);
+            return resultado.Rows.Count > 0;
+        }
+
+        public override void Completar_Compra(int Id_Compra, string Factura, DateTime Fecha)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                UPDATE TEMP_COMPRAS
+                SET FACTURA = @FACTURA,
+                    FECHA = @FECHA
+                WHERE ID_COMPRA = @ID_COMPRA";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@FACTURA", Factura),
+                new SqlParameter("@FECHA", Fecha),
+                new SqlParameter("@ID_COMPRA", Id_Compra)
+            };
+            conexion.EjecutarComando(query, parametros);
+        }
+
+        public override void Asignar_ID_Proveedor(int Id_Compra, int Id_Proveedor)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                UPDATE TEMP_COMPRAS
+                SET ID_PROVEEDOR = @ID_PROVEEDOR
+                WHERE ID_COMPRA = @ID_COMPRA";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@ID_PROVEEDOR", Id_Proveedor),
+                new SqlParameter("@ID_COMPRA", Id_Compra)
+            };
+            conexion.EjecutarComando(query, parametros);
+        }
+
+        public override void Asignar_ID_Producto(int Id_Compra, int Id_Producto, string Codigo_Barra)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                UPDATE TEMP_DETALLES_COMPRA
+                SET     ID_PRODUCTO = @ID_PRODUCTO
+                WHERE   ID_COMPRA = @ID_COMPRA
+                AND     CODIGO_BARRA = @CODIGO_BARRA";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@ID_PRODUCTO", Id_Producto),
+                new SqlParameter("@ID_COMPRA", Id_Compra),
+                new SqlParameter("@CODIGO_BARRA", Codigo_Barra)
+            };
+            conexion.EjecutarComando(query, parametros);
+        }
+
+        public override void Modificar_Detalle(int Id_Compra, int? Id_Producto, string Codigo_Barra, string Descripcion, int Cantidad, decimal Costo,
+        decimal Descuento, decimal Importe, int Id_ISV, decimal Precio_Completo, decimal Precio_Unitario, int Id_Categoria, DateTime Fecha_Creacion)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                UPDATE  TEMP_DETALLES_COMPRA
+                SET     ID_PRODUCTO = @ID_PRODUCTO,
+                        DESCRIPCION = @DESCRIPCION,
+                        CANTIDAD = @CANTIDAD,
+                        COSTO = @COSTO,
+                        DESCUENTO = @DESCUENTO,
+                        IMPORTE = @IMPORTE, 
+                        ID_ISV = @ID_ISV,
+                        PRECIO_COMPLETO = @PRECIO_COMPLETO,
+                        PRECIO_UNITARIO = @PRECIO_UNITARIO,
+                        ID_CATEGORIA = @ID_CATEGORIA,
+                        FECHA_CREACION = @FECHA_CREACION
+                WHERE   ID_COMPRA = @ID_COMPRA
+                AND     CODIGO_BARRA = @CODIGO_BARRA";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@ID_PRODUCTO", (object)Id_Producto ?? DBNull.Value),
+                new SqlParameter("DESCRIPCION", Descripcion),
+                new SqlParameter("CANTIDAD", Cantidad),
+                new SqlParameter("COSTO", Costo),
+                new SqlParameter("DESCUENTO", Descuento),
+                new SqlParameter("IMPORTE", Importe),
+                new SqlParameter("ID_ISV", Id_ISV),
+                new SqlParameter("PRECIO_COMPLETO", Precio_Completo),
+                new SqlParameter("PRECIO_UNITARIO", Precio_Unitario),
+                new SqlParameter("ID_CATEGORIA", Id_Categoria),
+                new SqlParameter("FECHA_CREACION", Fecha_Creacion),
+                new SqlParameter("ID_COMPRA", Id_Compra),
+                new SqlParameter("@CODIGO_BARRA", Codigo_Barra)
             };
             conexion.EjecutarComando(query, parametros);
         }
