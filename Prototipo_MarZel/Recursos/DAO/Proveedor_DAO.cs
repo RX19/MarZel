@@ -102,79 +102,34 @@ namespace Prototipo_MarZel
             };
             return conexion.EjecutarConsulta(query, parametros);
         }
+
+        public override DataTable Cargar_Proveedor(string RTN)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @$"
+                SELECT  *
+                FROM    {Tabla}
+                WHERE   RTN = @RTN";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@RTN", RTN)
+            };
+            return conexion.EjecutarConsulta(query, parametros);
+        }
+
+        public override bool Existe_RTN(string RTN)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                SELECT  1 
+                FROM    TBL_PROVEEDORES 
+                WHERE RTN = @RTN";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@RTN", RTN)
+            };
+            DataTable resultado = conexion.EjecutarConsulta(query, parametros);
+            return resultado.Rows.Count > 0;
+        }
     }
 }
-        /*public bool Existe_RTN(string rtn)
-        {
-            using SqlConnection con = conexion.AbrirConexion();
-            string query = @"SELECT  1 
-                             FROM    TBL_PROVEEDORES 
-                             WHERE RTN = @RTN";
-            using SqlCommand cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@RTN", rtn);
-            return cmd.ExecuteScalar() != null;
-        }*/
-
-        /*public List<Proveedor> Buscar_Proveedor(String texto)
-        {
-            List<Proveedor> lista_proveedores = new();
-
-            using SqlConnection con = conexion.AbrirConexion();
-            string query = @"SELECT  * 
-                             FROM    TBL_PROVEEDORES 
-                             WHERE   RTN LIKE @Texto OR 
-                                     NOMBRE LIKE @Texto";
-
-            using SqlCommand cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@Texto", $"%{texto}%");
-            using SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                var proveedor = new Proveedor
-                {
-                    ID_PROVEEDOR = dr.GetInt32(dr.GetOrdinal("ID_PROVEEDOR")),
-                    RTN = dr.GetString(dr.GetOrdinal("RTN")),
-                    NOMBRE = dr.GetString(dr.GetOrdinal("NOMBRE")),
-                    DIRECCION = dr.GetString(dr.GetOrdinal("DIRECCION")),
-                    CELULAR = dr.GetString(dr.GetOrdinal("CELULAR")),
-                    CANT_COMPRAS = dr.GetInt32(dr.GetOrdinal("CANT_COMPRAS")),
-                    IMPORTE = dr.GetDecimal(dr.GetOrdinal("IMPORTE"))
-                };
-                lista_proveedores.Add(proveedor);
-            }
-            return lista_proveedores;
-        }*/
-
-        /*public Proveedor Cargar_Proveedor(string rtn)
-        {
-            using SqlConnection con = conexion.AbrirConexion();
-            string query = @"SELECT  * 
-                             FROM    TBL_PROVEEDORES 
-                             WHERE   RTN = @RTN";
-            using SqlCommand cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@RTN", rtn);
-            using SqlDataReader dr = cmd.ExecuteReader();
-            if (dr.Read())
-            {
-                return new Proveedor
-                {
-                    ID_PROVEEDOR = dr.GetInt32(dr.GetOrdinal("ID_PROVEEDOR")),
-                    RTN = dr.GetString(dr.GetOrdinal("RTN")),
-                    NOMBRE = dr.GetString(dr.GetOrdinal("NOMBRE")),
-                    DIRECCION = dr.GetString(dr.GetOrdinal("DIRECCION")),
-                    CELULAR = dr.GetString(dr.GetOrdinal("CELULAR")),
-                    CANT_COMPRAS = dr.GetInt32(dr.GetOrdinal("CANT_COMPRAS")),
-                    IMPORTE = dr.GetDecimal(dr.GetOrdinal("IMPORTE"))
-                };
-            }
-            return null;
-        }*/
-
-       /* public string Obtener_Nombre_Proveedor()
-        {
-            using SqlConnection con = conexion.AbrirConexion();
-            string query = @"SELECT  NOMBRE 
-                             FROM    TBL_PROVEEDORES";
-            using SqlCommand cmd = new SqlCommand(query, con);
-            return cmd.ExecuteScalar()?.ToString() ?? string.Empty;
-        }*/

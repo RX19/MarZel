@@ -20,5 +20,9 @@ namespace Prototipo_MarZel
         public abstract void Modificar_Proveedor(int Id_Proveedor, string RTN, string Nombre, string Direccion, string Celular);
 
         public abstract DataTable Cargar_Proveedor(int Id_Proveedor);
+
+        public abstract DataTable Cargar_Proveedor(string RTN);
+
+        public abstract bool Existe_RTN(string RTN);
     }
 }

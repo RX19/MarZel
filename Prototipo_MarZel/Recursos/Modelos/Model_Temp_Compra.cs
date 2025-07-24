@@ -23,5 +23,7 @@ namespace Prototipo_MarZel
         public abstract void Agregar_Detalle(int Id_Compra, int? Id_Producto, string Codigo_Barra, string Descripcion, int Cantidad,
             decimal Costo, decimal Descuento, decimal Importe, int Id_ISV, decimal Precio_Completo, decimal Precio_Unitario,
             int Id_Categoria, DateTime Fecha_Creacion);
+
+        public abstract void Modificar_Proveedor(int Id_Compra, int? Id_Proveedor, string RTN, string Nombre, string Direccion, string Celular);
     }
 }

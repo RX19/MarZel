@@ -41,24 +41,15 @@ namespace Prototipo_MarZel
         {
             return Proveedor_DAO.Cargar_Proveedor(Id_Proveedor);
         }
+
+        public DataTable Cargar_Proveedor(string RTN)
+        {
+            return Proveedor_DAO.Cargar_Proveedor(RTN);
+        }
+
+        public bool Existe_RTN(string RTN)
+        {
+            return Proveedor_DAO.Existe_RTN(RTN);
+        }
     }
 }
-        /*public bool Existe_RTN(string rtn)
-        {
-            return Proveedor_DAO.Existe_RTN(rtn);
-        }*/
-
-        /*public List<Proveedor> Buscar_Proveedor(string texto)
-        {
-            return Proveedor_DAO.Buscar_Proveedor(texto);
-        }*/
-
-        /*public Proveedor Cargar_Proveedor(string rtn)
-        {
-            return Proveedor_DAO.Cargar_Proveedor(rtn);
-        }*/
-
-        /*public string Obtener_Nombre_Proveedor()
-        {
-            return Proveedor_DAO.Obtener_Nombre_Proveedor();
-        }*/

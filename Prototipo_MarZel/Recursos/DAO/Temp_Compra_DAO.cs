@@ -209,7 +209,7 @@ namespace Prototipo_MarZel
 
             // Verificar si existe el detalle
             query = @"
-                SELECT  CANTIDAD, DESCUENTO, IMPORTE
+                SELECT  CANTIDAD, DESCUENTO, COSTO
                 FROM    TEMP_DETALLES_COMPRA
                 WHERE   ID_COMPRA = @ID_COMPRA 
                 AND     CODIGO_BARRA = @CODIGO_BARRA";
@@ -218,14 +218,14 @@ namespace Prototipo_MarZel
                 new SqlParameter("@ID_COMPRA", Id_Compra),
                 new SqlParameter("@CODIGO_BARRA", Codigo_Barra)
             };
-            
+
             DataTable resultado = conexion.EjecutarConsulta(query, parametros);
             if (resultado.Rows.Count > 0) 
             {
                 Cantidad += resultado.Rows[0].Field<int>("CANTIDAD");
                 Descuento += resultado.Rows[0].Field<decimal>("DESCUENTO");
-                Importe += resultado.Rows[0].Field<decimal>("IMPORTE");
-            
+                Importe = (Cantidad * Costo) - Descuento;
+
                 //Actualizar el detalle de la compra.
                 query = @"
                     UPDATE  TEMP_DETALLES_COMPRA
@@ -290,56 +290,28 @@ namespace Prototipo_MarZel
             }
 
         }
+
+        public override void Modificar_Proveedor(int Id_Compra, int? Id_Proveedor, string RTN, string Nombre, string Direccion, string Celular)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                UPDATE TEMP_COMPRAS
+                SET ID_PROVEEDOR = @ID_PROVEEDOR,
+                    RTN = @RTN,
+                    NOMBRE = @NOMBRE,
+                    DIRECCION = @DIRECCION,
+                    CELULAR = @CELULAR
+                WHERE ID_COMPRA = @ID_COMPRA";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@ID_PROVEEDOR", (object)Id_Proveedor ?? DBNull.Value),
+                new SqlParameter("@RTN", RTN),
+                new SqlParameter("@NOMBRE", Nombre),
+                new SqlParameter("@DIRECCION", Direccion),
+                new SqlParameter("@CELULAR", Celular),
+                new SqlParameter("@ID_COMPRA", Id_Compra)
+            };
+            conexion.EjecutarComando(query, parametros);
+        }
     }
 }
-        /*/ Actualiza los calculos de la compra almacenados en TEMP_COMPRAS
-        public Temp_Compra Cargar_Calculos()
-        {
-            
-        }
-
-        public Temp_Compra Cargar_Compra()
-        {
-            using SqlConnection con = conexion.AbrirConexion();
-            Temp_Compra? compra = null;
-            string query = @"
-                SELECT  ID_PROVEEDOR, RTN, NOMBRE, DIRECCION, CELULAR
-                FROM    TEMP_COMPRAS";
-            using SqlCommand cmd = new SqlCommand(query, con);
-            using SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
-            {
-                compra = new Temp_Compra
-                {
-                    ID_PROVEEDOR = reader.IsDBNull(0) ? null : reader.GetInt32(0),
-                    RTN = reader.IsDBNull(1) ? null : reader.GetString(1),
-                    NOMBRE = reader.IsDBNull(2) ? null : reader.GetString(2),
-                    DIRECCION = reader.IsDBNull(3) ? null : reader.GetString(3),
-                    CELULAR = reader.IsDBNull(4) ? null : reader.GetString(4)
-                };
-            }
-            return compra;
-        }
-
-        // Actualiza el proveedor en TEMP_COMPRAS
-        public void Actualizar_Proveedor(Temp_Compra compra)
-        {
-            using SqlConnection con = conexion.AbrirConexion();
-            string query = @"
-                UPDATE  TEMP_COMPRAS
-                SET     ID_PROVEEDOR = @ID_PROVEEDOR,
-                        RTN = @RTN,
-                        NOMBRE = @NOMBRE,
-                        DIRECCION = @DIRECCION,
-                        CELULAR = @CELULAR";
-
-            using SqlCommand cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@ID_PROVEEDOR", compra.ID_PROVEEDOR ?? (object)DBNull.Value);
-            cmd.Parameters.AddWithValue("@RTN", compra.RTN);
-            cmd.Parameters.AddWithValue("@NOMBRE", compra.NOMBRE);
-            cmd.Parameters.AddWithValue("@DIRECCION", compra.DIRECCION);
-            cmd.Parameters.AddWithValue("@CELULAR", compra.CELULAR);
-            cmd.ExecuteNonQuery();
-        }
-    }
-}*/

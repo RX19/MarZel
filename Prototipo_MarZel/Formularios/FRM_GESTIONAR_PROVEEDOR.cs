@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Asn1.X500;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,11 +15,10 @@ namespace Prototipo_MarZel.Formularios
     public partial class FRM_GESTIONAR_PROVEEDOR : MaterialSkin.Controls.MaterialForm
     {
         Proveedor_Controller Proveedor_Controller = new Proveedor_Controller();
+        Temp_Compra_Controller Temp_Compra_Controller = new Temp_Compra_Controller();
+        bool Elegir = false;
         int? Id_Proveedor = null;
-        //Temp_Compra_Controller Temp_Compra_Controller = new Temp_Compra_Controller();
-        //private Proveedor? proveedorActual = null;
-        //private Temp_Compra? compraActual = null;
-        //private Proveedor? proveedorSeleccionado = null;*/
+        int? Id_Compra = null;
 
         public FRM_GESTIONAR_PROVEEDOR()
         {
@@ -34,20 +34,20 @@ namespace Prototipo_MarZel.Formularios
             txtNombre.Text = Proveedor.Rows[0]["NOMBRE"].ToString();
             txtDireccion.Text = Proveedor.Rows[0]["DIRECCION"].ToString();
             txtCelular.Text = Proveedor.Rows[0]["CELULAR"].ToString();
-
-            //DataTable Proveedor = Proveedor_Controller.Cargar_Proveedor(rtn);
         }
 
-        public FRM_GESTIONAR_PROVEEDOR(string rtn)
+        public FRM_GESTIONAR_PROVEEDOR(string RTN, int Id_Compra)
         {
             InitializeComponent();
-            //DataTable Proveedor = Proveedor_Controller.Cargar_Proveedor(rtn);
+            this.Id_Compra = Id_Compra;
+            Elegir = true;
+            txtRTN.Text = RTN;
         }
 
         private void FRM_GESTIONAR_PROVEEDOR_Load(object sender, EventArgs e)
         {
-            /*if (elegir) { btnGuardar.Text = "ELEGIR"; }
-            else { btnGuardar.Text = "GUARDAR"; }*/
+            if (Elegir) { btnGuardar.Text = "ELEGIR"; chkSinRTN.Visible = true; }
+            else { btnGuardar.Text = "GUARDAR"; chkSinRTN.Visible = false; }
         }
 
         private bool Verificar_Campos()
@@ -68,98 +68,103 @@ namespace Prototipo_MarZel.Formularios
                 return false;
             }
 
-            /*if (proveedorActual == null && compraActual == null)
+            if (Id_Compra == null)
             {
-                if (Proveedor_Controller.Existe_RTN(rtn))
+                if (Id_Proveedor == null)
                 {
-                    MessageBox.Show("El R.T.N. ingresado ya existe. Por favor, ingrese un R.T.N. diferente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+                    if (Proveedor_Controller.Existe_RTN(rtn))
+                    {
+                        MessageBox.Show("El R.T.N. ingresado ya existe. Por favor, ingrese un R.T.N. diferente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+                else
+                {
+                    DataTable Proveedor = Proveedor_Controller.Cargar_Proveedor(Id_Proveedor.Value);
+                    if (Proveedor_Controller.Existe_RTN(rtn) && rtn != Proveedor.Rows[0]["RTN"].ToString())
+                    {
+                        MessageBox.Show("El R.T.N. ingresado ya existe. Por favor, ingrese un R.T.N. diferente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
                 }
             }
-            else
-            {
-                if ((rtn != null || rtn != proveedorSeleccionado.RTN) && Proveedor_Controller.Existe_RTN(rtn))
-                {
-                    MessageBox.Show("El R.T.N. ingresado ya existe. Por favor, ingrese un R.T.N. diferente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }*/
 
             return true;
         }
-   
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (!Verificar_Campos()) return;
-
-            DialogResult result = MessageBox.Show(
-            "¿Desea guardar los cambios?", "Confirmación",
-            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result != DialogResult.Yes) return;
 
             string RTN = txtRTN.Text.Trim();
             string Nombre = txtNombre.Text.Trim();
             string Direccion = txtDireccion.Text.Trim();
             string Celular = txtCelular.Text.Trim();
 
-            if (Id_Proveedor == null)
+            if (!Elegir)
             {
-                Proveedor_Controller.Agregar_Proveedor(RTN, Nombre, Direccion, Celular, 0, 0);
+                DialogResult result = MessageBox.Show(
+                "¿Desea guardar los cambios?", "Confirmación",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result != DialogResult.Yes) return;
+
+                if (Id_Proveedor == null)
+                {
+                    Proveedor_Controller.Agregar_Proveedor(RTN, Nombre, Direccion, Celular, 0, 0);
+                }
+                else
+                {
+                    Proveedor_Controller.Modificar_Proveedor(Id_Proveedor.Value, RTN, Nombre, Direccion, Celular);
+                }
             }
-            else
-            {
-                Proveedor_Controller.Modificar_Proveedor(Id_Proveedor.Value, RTN, Nombre, Direccion, Celular);
-            }
-            /*}
             else
             {
                 DialogResult result = MessageBox.Show(
                 "¿Desea cambiar de proveedor?", "Confirmación",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (result != DialogResult.Yes) return; 
-                
-                Temp_Compra compra = new Temp_Compra
-                {
-                    ID_PROVEEDOR = proveedorSeleccionado?.ID_PROVEEDOR,
-                    RTN = txtRTN.Text.Trim(),
-                    NOMBRE = txtNombre.Text.Trim(),
-                    DIRECCION = txtDireccion.Text.Trim(),
-                    CELULAR = txtCelular.Text.Trim()
-                };
-                Temp_Compra_Controller.Actualizar_Proveedor(compra);
-            }*/
+                if (result != DialogResult.Yes) return;
+
+                DataTable Proveedor = Proveedor_Controller.Cargar_Proveedor(RTN);
+                int? Id_Proveedor = null;
+                if (Proveedor.Rows.Count > 0)
+                    Id_Proveedor = Convert.ToInt32(Proveedor.Rows[0]["ID_PROVEEDOR"]);
+                Temp_Compra_Controller.Modificar_Proveedor(Id_Compra.Value, Id_Proveedor, RTN, Nombre, Direccion, Celular);
+            }
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
-
-        /*
-        private void Limpiar_Campos()
-        {
-            txtNombre.Clear();
-            txtDireccion.Clear();
-            txtCelular.Clear();
-        }
-
         private void txtRTN_TextChanged(object sender, EventArgs e)
         {
-            /*if (compraActual == null) return;
+            if (!Elegir) return;
+            string RTN = txtRTN.Text.Trim();
+            DataTable Proveedor;
 
-            proveedorSeleccionado = Proveedor_Controller.Cargar_Proveedor(txtRTN.Text.Trim());
-
-            if (proveedorSeleccionado != null)
+            Proveedor = Proveedor_Controller.Cargar_Proveedor(RTN);
+            if (Proveedor.Rows.Count > 0)
             {
-                txtNombre.Text = proveedorSeleccionado.NOMBRE;
-                txtDireccion.Text = proveedorSeleccionado.DIRECCION;
-                txtCelular.Text = proveedorSeleccionado.CELULAR;
+                txtNombre.Text = Proveedor.Rows[0]["NOMBRE"].ToString();
+                txtDireccion.Text = Proveedor.Rows[0]["DIRECCION"].ToString();
+                txtCelular.Text = Proveedor.Rows[0]["CELULAR"].ToString();
             }
             else
             {
-                Limpiar_Campos();
+                Proveedor = Temp_Compra_Controller.Cargar_Compra(Id_Compra.Value);
+                if (Proveedor.Rows[0]["RTN"].ToString() == RTN)
+                {
+                    txtNombre.Text = Proveedor.Rows[0]["NOMBRE"].ToString();
+                    txtDireccion.Text = Proveedor.Rows[0]["DIRECCION"].ToString();
+                    txtCelular.Text = Proveedor.Rows[0]["CELULAR"].ToString();
+                }
+                else
+                {
+                    txtNombre.Clear();
+                    txtDireccion.Clear();
+                    txtCelular.Clear();
+                }
             }
         }
-        */
-        }
     }
+}

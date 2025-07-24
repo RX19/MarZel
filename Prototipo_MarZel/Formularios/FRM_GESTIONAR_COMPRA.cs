@@ -19,8 +19,7 @@ namespace Prototipo_MarZel.Formularios
         private readonly Tipo_ISV_Controller Tipo_ISV_Controller = new Tipo_ISV_Controller();
         private readonly Temp_Compra_Controller Temp_Compra_Controller = new Temp_Compra_Controller();
         private readonly Producto_Controller Producto_Controller = new Producto_Controller();
-        //private readonly Proveedor_Controller Proveedor_controller = new Proveedor_Controller();
-
+        
         public FRM_GESTIONAR_COMPRA()
         {
             InitializeComponent();
@@ -124,9 +123,11 @@ namespace Prototipo_MarZel.Formularios
                 txtDescripcion.Text = Producto.Rows[0]["DESCRIPCION"].ToString();
                 txtCosto.Text = Producto.Rows[0]["COSTO"].ToString();
                 cmbTiposISV.SelectedValue = Producto.Rows[0]["ID_ISV"];
+                cmbTiposISV.Invalidate();
                 txtPrecioCompleto.Text = Producto.Rows[0]["PRECIO_COMPLETO"].ToString();
                 txtPrecioUnitario.Text = Producto.Rows[0]["PRECIO_UNITARIO"].ToString();
                 cmbCategorias.SelectedValue = Producto.Rows[0]["ID_CATEGORIA"];
+                cmbCategorias.Invalidate();
             }
             else
             {
@@ -278,18 +279,12 @@ namespace Prototipo_MarZel.Formularios
 
         private void btnRTN_Click(object sender, EventArgs e)
         {
-            /*DataTable Proveedor = Temp_Compra_Controller.Cargar_Compra(Id_Compra);
-            string? rtn = Proveedor.Rows[0]["DESCRIPCION"].ToString();
+            DataTable Proveedor = Temp_Compra_Controller.Cargar_Compra(Id_Compra);
+            string rtn = Proveedor.Rows[0]["RTN"].ToString();
             
-            FRM_GESTIONAR_PROVEEDOR frm_gestionar_proveedor = new FRM_GESTIONAR_PROVEEDOR(rtn);
+            FRM_GESTIONAR_PROVEEDOR frm_gestionar_proveedor = new FRM_GESTIONAR_PROVEEDOR(rtn, Id_Compra);
             if (frm_gestionar_proveedor.ShowDialog() == DialogResult.OK)
-               Cargar_Datos_Compra();*/
+               Cargar_Datos_Compra();
         }
-
-        /*private void btnGuardar_Click(object sender, EventArgs e)
-        {
-            Compra_Controller Compra_Controller = new Compra_Controller();
-            Compra_Controller.Registrar_Compra();
-        }*/
     }
 }

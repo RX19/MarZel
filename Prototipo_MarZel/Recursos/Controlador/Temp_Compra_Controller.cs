@@ -59,21 +59,10 @@ namespace Prototipo_MarZel
             Temp_Compra_DAO.Agregar_Detalle(Id_Compra, Id_Producto, Codigo_Barra, Descripcion, Cantidad, Costo, Descuento,
                 Importe, Id_ISV, Precio_Completo, Precio_Unitario, Id_Categoria, Fecha_Creacion);
         }
+
+        public void Modificar_Proveedor(int Id_Compra, int? Id_Proveedor, string RTN, string Nombre, string Direccion, string Celular)
+        {
+            Temp_Compra_DAO.Modificar_Proveedor(Id_Compra, Id_Proveedor, RTN, Nombre, Direccion, Celular);
+        }
     }
 }
-        /*public Temp_Compra Cargar_Calculos()
-        {
-            return Temp_Compra_DAO.Cargar_Calculos();
-        }
-
-        public Temp_Compra Cargar_Compra()
-        {
-            return Temp_Compra_DAO.Cargar_Compra();
-        }
-
-        public void Actualizar_Proveedor(Temp_Compra compra)
-        {
-            Temp_Compra_DAO.Actualizar_Proveedor(compra);
-        }
-    }
-}*/
