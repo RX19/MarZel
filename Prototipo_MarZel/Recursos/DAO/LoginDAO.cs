@@ -28,7 +28,7 @@ namespace Prototipo_MarZel.Recursos.DAO
         public DataTable ObtenerInformacionUsuario(string nombreUsuario)
         {
             string query = "SELECT Nombre, Correo FROM TBL_Usuarios WHERE Usuario = "+"'"+nombreUsuario+"'";
-            return conexion.EjecutarConsulta(query);
+            return conexion.EjecutarConsulta(query, null);
             
         }
     }

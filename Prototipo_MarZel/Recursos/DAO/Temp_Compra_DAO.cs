@@ -6,33 +6,29 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Prototipo_MarZel
 {
-    public class Temp_Compra_DAO
+    public class Temp_Compra_DAO : Temp_Compra_Base
     {
-        private readonly ConexionBD conexion = new ConexionBD();
-
         // Elimina registros de ambas tablas temporales
-        public void Eliminar_Registros_Temporales()
+        public override void Eliminar_Registros_Temporales()
         {
-            using SqlConnection con = conexion.AbrirConexion();
+            ConexionBD conexion = new ConexionBD();
             string query = string.Empty;
-            SqlCommand cmd = new SqlCommand();
-
-            query = "DELETE FROM TEMP_DETALLES_COMPRA";
-            cmd = new SqlCommand(query, con);
-            cmd.ExecuteNonQuery();
 
             query = "DELETE FROM TEMP_COMPRAS";
-            cmd = new SqlCommand(query, con);
-            cmd.ExecuteNonQuery();
+            conexion.EjecutarComando(query, null);
+
+            query = "DELETE FROM TEMP_DETALLES_COMPRA";
+            conexion.EjecutarComando(query, null);
+
         }
 
         // Agregar un registro en TEMP_COMPRAS.
-        public void Agregar_Compra(Compra Compra)
+        public override void Agregar_Compra(int Id_Compra)
         {
-            using SqlConnection con = conexion.AbrirConexion();
+            ConexionBD conexion = new ConexionBD();
             String query = string.Empty;
 
-            if (Compra.ID_COMPRA == 0)
+            if (Id_Compra == 0)
             {
                 query = @"
                 INSERT INTO TEMP_COMPRAS (
@@ -44,48 +40,28 @@ namespace Prototipo_MarZel
             else
             {
                 query = @"
-                DECLARE @RTN VARCHAR(14), 
-                        @NOMBRE VARCHAR(50), 
-                        @DIRECCION VARCHAR(50), 
-                        @CELULAR VARCHAR(8);
-
-                SELECT 
-                    @RTN = RTN,
-                    @NOMBRE = NOMBRE,
-                    @DIRECCION = DIRECCION,
-                    @CELULAR = CELULAR
-                FROM TBL_PROVEEDORES
-                WHERE ID_PROVEEDOR = @ID_PROVEEDOR;
-
                 INSERT INTO TEMP_COMPRAS (
                     ID_COMPRA, ID_PROVEEDOR, RTN, NOMBRE, DIRECCION, CELULAR, 
                     FECHA, FACTURA, SUBTOTAL, GRAVADO, ISV, EXENTO, TOTAL
-                ) VALUES (
-                    @ID_COMPRA, @ID_PROVEEDOR, @RTN, @NOMBRE, @DIRECCION, @CELULAR, 
-                    @FECHA, @FACTURA, @SUBTOTAL, @GRAVADO, @ISV, @EXENTO, @TOTAL
-                )";
+                )
+                SELECT 
+                    C.ID_COMPRA, C.ID_PROVEEDOR, P.RTN, P.NOMBRE, P.DIRECCION, P.CELULAR,
+                    C.FECHA, C.FACTURA, C.SUBTOTAL, C.GRAVADO, C.ISV, C.EXENTO, C.TOTAL
+                FROM TBL_COMPRAS C
+                INNER JOIN TBL_PROVEEDORES P ON C.ID_PROVEEDOR = P.ID_PROVEEDOR
+                WHERE C.ID_COMPRA = @ID_COMPRA";
             }
-
-            using SqlCommand cmd = new SqlCommand(query, con);
-            if (Compra.ID_COMPRA != 0)
+            SqlParameter[] parametros =
             {
-                cmd.Parameters.AddWithValue("@ID_COMPRA", Compra.ID_COMPRA);
-                cmd.Parameters.AddWithValue("@ID_PROVEEDOR", Compra.ID_PROVEEDOR);
-                cmd.Parameters.AddWithValue("@FECHA", Compra.FECHA);
-                cmd.Parameters.AddWithValue("@FACTURA", Compra.FACTURA);
-                cmd.Parameters.AddWithValue("@SUBTOTAL", Compra.SUBTOTAL);
-                cmd.Parameters.AddWithValue("@GRAVADO", Compra.GRAVADO);
-                cmd.Parameters.AddWithValue("@ISV", Compra.ISV);
-                cmd.Parameters.AddWithValue("@EXENTO", Compra.EXENTO);
-                cmd.Parameters.AddWithValue("@TOTAL", Compra.TOTAL);
-            }
-            cmd.ExecuteNonQuery();
+                new SqlParameter("@ID_COMPRA", Id_Compra)
+            };
+            conexion.EjecutarComando(query, parametros);
         }
 
         //Guarda los detalles de la compra en TEMP_DETALLES_COMPRAS
-        public void Capturar_Detalles(Compra Compra)
+        public override void Capturar_Detalles(int Id_Compra)
         {
-            using SqlConnection con = conexion.AbrirConexion();
+            ConexionBD conexion = new ConexionBD();
             string query = @"
                 INSERT INTO TEMP_DETALLES_COMPRA (
                     ID_COMPRA, ID_PRODUCTO, CODIGO_BARRA, DESCRIPCION, CANTIDAD, 
@@ -99,166 +75,137 @@ namespace Prototipo_MarZel
                 FROM TBL_DETALLES_COMPRA A
                 INNER JOIN TBL_PRODUCTOS B ON A.ID_PRODUCTO = B.ID_PRODUCTO
                 WHERE ID_COMPRA = @ID_COMPRA";
-            using SqlCommand cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@ID_COMPRA", Compra.ID_COMPRA);
-            cmd.ExecuteNonQuery();
-        }
-
-        // Muestra los detalles de compra almacenados en TEMP_DETALLES_COMPRA
-        public List<Temp_Detalle_Compra> Cargar_Detalles()
-        {
-
-            List<Temp_Detalle_Compra> lista_Temp_Detalles_Compra = new();
-
-            using SqlConnection con = conexion.AbrirConexion();
-            string query = @"
-                SELECT  * 
-                FROM    TEMP_DETALLES_COMPRA";
-            using SqlCommand cmd = new SqlCommand(query, con);
-            using SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            SqlParameter[] parametros =
             {
-                var detalle = new Temp_Detalle_Compra
-                {
-                    ID_COMPRA = reader.IsDBNull(0) ? null : reader.GetInt32(0),
-                    ID_PRODUCTO = reader.IsDBNull(1) ? null : reader.GetInt32(1),
-                    CODIGO_BARRA = reader.IsDBNull(2) ? null : reader.GetString(2),
-                    DESCRIPCION = reader.IsDBNull(3) ? null : reader.GetString(3),
-                    CANTIDAD = reader.IsDBNull(4) ? null : reader.GetInt32(4),
-                    COSTO = reader.IsDBNull(5) ? null : reader.GetDecimal(5),
-                    ID_ISV = reader.IsDBNull(6) ? null : reader.GetInt32(6),
-                    DESCUENTO = reader.IsDBNull(7) ? null : reader.GetDecimal(7),
-                    IMPORTE = reader.IsDBNull(8) ? null : reader.GetDecimal(8),
-                    PRECIO_COMPLETO = reader.IsDBNull(9) ? null : reader.GetDecimal(9),
-                    PRECIO_UNITARIO = reader.IsDBNull(10) ? null : reader.GetDecimal(10),
-                    ID_CATEGORIA = reader.IsDBNull(11) ? null : reader.GetInt32(11),
-                    FECHA_CREACION = reader.IsDBNull(12) ? null : reader.GetDateTime(12)
-                };
-                lista_Temp_Detalles_Compra.Add(detalle);
-            }
-            return lista_Temp_Detalles_Compra;
+                new SqlParameter("@ID_COMPRA", Id_Compra)
+            };
+            conexion.EjecutarComando(query, parametros);
         }
 
-        // Actualiza los calculos de la compra almacenados en TEMP_COMPRAS
-        public Temp_Compra Cargar_Calculos()
+        // Carga los detalles de compra desde TEMP_DETALLES_COMPRA
+        public override DataTable Cargar_Detalles(int Id_Compra)
         {
-            Temp_Compra? compra = null;
-            decimal GRAVADO = 0, EXENTO = 0;
-            string query = string.Empty;
-            SqlCommand cmd = null;
-            SqlDataReader reader = null;
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                SELECT  *
+                FROM    TEMP_DETALLES_COMPRA
+                WHERE   ID_COMPRA = @ID_COMPRA";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@ID_COMPRA", Id_Compra)
+            };
+            return conexion.EjecutarConsulta(query, parametros);
+        }
 
-            using SqlConnection con = conexion.AbrirConexion();
+        // Cargar los datos actualizados de la compra desde TEMP_COMPRA.
+        public override DataTable Cargar_Compra(int Id_Compra)
+        {
+            string query = string.Empty;
+            ConexionBD conexion = new ConexionBD();
+            DataTable? resultado = null;
+            SqlParameter[] parametros;
+            
             query = @"
                 SELECT  SUM(CASE WHEN ID_ISV = 1 THEN IMPORTE END) AS GRAVADO,
                         SUM(CASE WHEN ID_ISV = 2 THEN IMPORTE END) AS EXENTO
-                FROM    TEMP_DETALLES_COMPRA";
-            cmd = new SqlCommand(query, con);
-            reader = cmd.ExecuteReader();
-            if (reader.Read())
+                FROM    TEMP_DETALLES_COMPRA
+                WHERE   ID_COMPRA = @ID_COMPRA";
+            parametros = new SqlParameter[]
             {
-                GRAVADO = reader.IsDBNull(0) ? 0 : reader.GetDecimal(0);
-                EXENTO = reader.IsDBNull(1) ? 0 : reader.GetDecimal(1);
-            }
+                new SqlParameter("@ID_COMPRA", Id_Compra)
+            };
+            DataTable result = conexion.EjecutarConsulta(query, parametros);
 
-            decimal SUBTOTAL = GRAVADO + EXENTO;
-            decimal ISV = GRAVADO * 0.15m;
-            decimal TOTAL = SUBTOTAL + ISV;
+            if (result.Rows.Count > 0)
+            {
+                decimal Gravado = result.Rows[0].Field<decimal?>("GRAVADO") ?? 0;
+                decimal Exento = result.Rows[0].Field<decimal?>("EXENTO") ?? 0;
+                decimal Subtotal = Gravado + Exento;
+                decimal ISV = Gravado * 0.15m;
+                decimal Total = Subtotal + ISV;
 
-            reader.Close();
-            query = @"
+                query = @"
                 UPDATE  TEMP_COMPRAS
                 SET     SUBTOTAL = @SUBTOTAL,
                         GRAVADO = @GRAVADO,
                         ISV = @ISV,
                         EXENTO = @EXENTO,
-                        TOTAL = @TOTAL";
-            cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@SUBTOTAL", SUBTOTAL);
-            cmd.Parameters.AddWithValue("@GRAVADO", GRAVADO);
-            cmd.Parameters.AddWithValue("@ISV", ISV);
-            cmd.Parameters.AddWithValue("@EXENTO", EXENTO);
-            cmd.Parameters.AddWithValue("@TOTAL", TOTAL);
-            cmd.ExecuteNonQuery();
-
-            reader.Close();
-            query = @"
-                SELECT  SUBTOTAL, GRAVADO, ISV, EXENTO, TOTAL
-                FROM    TEMP_COMPRAS";
-            cmd = new SqlCommand(query, con);
-            reader = cmd.ExecuteReader();
-            if (reader.Read())
-            {
-                compra = new Temp_Compra
+                        TOTAL = @TOTAL
+                WHERE   ID_COMPRA = @ID_COMPRA";
+                parametros = new SqlParameter[]
                 {
-                    SUBTOTAL = reader.GetDecimal(0),
-                    GRAVADO = reader.GetDecimal(1),
-                    ISV = reader.GetDecimal(2),
-                    EXENTO = reader.GetDecimal(3),
-                    TOTAL = reader.GetDecimal(4)
+                    new SqlParameter("@SUBTOTAL", Subtotal),
+                    new SqlParameter("@GRAVADO", Gravado),
+                    new SqlParameter("@ISV", ISV),
+                    new SqlParameter("@EXENTO", Exento),
+                    new SqlParameter("@TOTAL", Total),
+                    new SqlParameter("@ID_COMPRA", Id_Compra),
                 };
+                conexion.EjecutarComando(query, parametros);
+
+                query = @"
+                SELECT  *
+                FROM    TEMP_COMPRAS
+                WHERE   ID_COMPRA = @ID_COMPRA";
+                parametros = new SqlParameter[]
+                {
+                    new SqlParameter("@ID_COMPRA", Id_Compra)
+                };
+                resultado = conexion.EjecutarConsulta(query, parametros);
             }
-            return compra;
+            return resultado;
         }
 
-        // Verifica si un producto ya está en TEMP_DETALLES_COMPRA
-        public bool Buscar_En_Detalles_Compra(string codigo_barra)
+        public override bool Buscar_En_Detalles_Compra(string codigo_barra)
         {
-            using SqlConnection con = conexion.AbrirConexion();
-            string query = @"SELECT  1 
-                             FROM    TEMP_DETALLES_COMPRA 
-                             WHERE CODIGO_BARRA = @CODIGO_BARRA";
-            using SqlCommand cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@CODIGO_BARRA", codigo_barra);
-            return cmd.ExecuteScalar() != null;
+            ConexionBD conexion = new ConexionBD(); 
+            string query = @"
+                SELECT  1 
+                FROM    TEMP_DETALLES_COMPRA 
+                WHERE   CODIGO_BARRA = @CODIGO_BARRA";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@CODIGO_BARRA", codigo_barra)
+            };
+            return conexion.EjecutarConsulta(query, parametros).Rows.Count > 0;
         }
 
         // Carga un producto desde TEMP_DETALLES_COMPRA usando el código de barras
-        public Temp_Detalle_Compra Cargar_Producto(string Codigo_Barra)
+        public override DataTable Cargar_Producto(string Codigo_Barra)
         {
-            using SqlConnection con = conexion.AbrirConexion();
+            ConexionBD conexion = new ConexionBD();
             string query = @"
                 SELECT  *
                 FROM    TEMP_DETALLES_COMPRA
-                WHERE   CODIGO_BARRA = @CODIGO_BARRA
-            ";
-            using SqlCommand cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@CODIGO_BARRA", Codigo_Barra);
-            using SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+                WHERE   CODIGO_BARRA = @CODIGO_BARRA";
+            SqlParameter[] parametros =
             {
-                return new Temp_Detalle_Compra
-                {
-                    CODIGO_BARRA = reader.GetString(reader.GetOrdinal("CODIGO_BARRA")),
-                    DESCRIPCION = reader.GetString(reader.GetOrdinal("DESCRIPCION")),
-                    COSTO = reader.GetDecimal(reader.GetOrdinal("COSTO")),
-                    ID_ISV = reader.GetInt32(reader.GetOrdinal("ID_ISV")),
-                    PRECIO_UNITARIO = reader.GetDecimal(reader.GetOrdinal("PRECIO_UNITARIO")),
-                    PRECIO_COMPLETO = reader.GetDecimal(reader.GetOrdinal("PRECIO_COMPLETO")),
-                    ID_CATEGORIA = reader.GetInt32(reader.GetOrdinal("ID_CATEGORIA"))
-                };
-            }
-            return null;
+                new SqlParameter("@CODIGO_BARRA", Codigo_Barra)
+            };
+            return conexion.EjecutarConsulta(query, parametros);
         }
 
-        // Verifica si un existe el producto
-        public bool Buscar_En_Productos(string codigo_barra)
+        // Verifica si un producto existe en la tabla TBL_PRODUCTOS
+        public override bool Buscar_En_Productos(string Codigo_Barra)
         {
-            using SqlConnection con = conexion.AbrirConexion();
-            string query = @"SELECT  1 
-                             FROM    TBL_PRODUCTOS 
-                             WHERE CODIGO_BARRA = @CODIGO_BARRA";
-            using SqlCommand cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@CODIGO_BARRA", codigo_barra);
-            return cmd.ExecuteScalar() != null;
+            ConexionBD conexion = new ConexionBD(); 
+            string query = @"
+                SELECT  1 
+                FROM    TBL_PRODUCTOS 
+                WHERE   CODIGO_BARRA = @CODIGO_BARRA";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@CODIGO_BARRA", Codigo_Barra)
+            };
+            return conexion.EjecutarConsulta(query, parametros).Rows.Count > 0;
         }
 
-        // Agrega o actualiza un detalle de compra en la tabla temporal TEMP_DETALLES_COMPRA
-        public void Agregar_Detalle(Temp_Detalle_Compra Detalle_Compra)
+        public override void Agregar_Detalle(int Id_Compra, int? Id_Producto, string Codigo_Barra, string Descripcion, int Cantidad, decimal Costo, 
+        decimal Descuento, decimal Importe, int Id_ISV, decimal Precio_Completo, decimal Precio_Unitario, int Id_Categoria, DateTime Fecha_Creacion)
         {
-            using SqlConnection con = conexion.AbrirConexion();
+            ConexionBD conexion = new ConexionBD();
             string query = string.Empty;
-            SqlCommand cmd = null;
+            SqlParameter[] parametros;
 
             // Verificar si existe el detalle
             query = @"
@@ -266,22 +213,20 @@ namespace Prototipo_MarZel
                 FROM    TEMP_DETALLES_COMPRA
                 WHERE   ID_COMPRA = @ID_COMPRA 
                 AND     CODIGO_BARRA = @CODIGO_BARRA";
-            cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@ID_COMPRA", Detalle_Compra.ID_COMPRA);
-            cmd.Parameters.AddWithValue("@CODIGO_BARRA", Detalle_Compra.CODIGO_BARRA);
-
-            using SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            parametros = new SqlParameter[]
             {
-                // Si existe, actualizar el detalle
-                int cantidad = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
-                decimal descuento = reader.IsDBNull(1) ? 0 : reader.GetDecimal(1);
-                decimal importe = reader.IsDBNull(2) ? 0 : reader.GetDecimal(2);
-                Detalle_Compra.CANTIDAD += cantidad;
-                Detalle_Compra.DESCUENTO += descuento;
-                Detalle_Compra.IMPORTE += importe;
-
-                reader.Close();
+                new SqlParameter("@ID_COMPRA", Id_Compra),
+                new SqlParameter("@CODIGO_BARRA", Codigo_Barra)
+            };
+            
+            DataTable resultado = conexion.EjecutarConsulta(query, parametros);
+            if (resultado.Rows.Count > 0) 
+            {
+                Cantidad += resultado.Rows[0].Field<int>("CANTIDAD");
+                Descuento += resultado.Rows[0].Field<decimal>("DESCUENTO");
+                Importe += resultado.Rows[0].Field<decimal>("IMPORTE");
+            
+                //Actualizar el detalle de la compra.
                 query = @"
                     UPDATE  TEMP_DETALLES_COMPRA
                     SET     DESCRIPCION = @DESCRIPCION,
@@ -296,25 +241,27 @@ namespace Prototipo_MarZel
                             FECHA_CREACION = @FECHA_CREACION
                     WHERE   ID_COMPRA = @ID_COMPRA 
                     AND     CODIGO_BARRA = @CODIGO_BARRA";
-                cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@ID_COMPRA", Detalle_Compra.ID_COMPRA);
-                cmd.Parameters.AddWithValue("@CODIGO_BARRA", Detalle_Compra.CODIGO_BARRA);
-                cmd.Parameters.AddWithValue("@DESCRIPCION", Detalle_Compra.DESCRIPCION);
-                cmd.Parameters.AddWithValue("@CANTIDAD", Detalle_Compra.CANTIDAD);
-                cmd.Parameters.AddWithValue("@COSTO", Detalle_Compra.COSTO);
-                cmd.Parameters.AddWithValue("@DESCUENTO", Detalle_Compra.DESCUENTO);
-                cmd.Parameters.AddWithValue("@IMPORTE", Detalle_Compra.IMPORTE);
-                cmd.Parameters.AddWithValue("@ID_ISV", Detalle_Compra.ID_ISV);
-                cmd.Parameters.AddWithValue("@PRECIO_COMPLETO", Detalle_Compra.PRECIO_COMPLETO);
-                cmd.Parameters.AddWithValue("@PRECIO_UNITARIO", Detalle_Compra.PRECIO_UNITARIO);
-                cmd.Parameters.AddWithValue("@ID_CATEGORIA", Detalle_Compra.ID_CATEGORIA);
-                cmd.Parameters.AddWithValue("@FECHA_CREACION", Detalle_Compra.FECHA_CREACION);
-                cmd.ExecuteNonQuery();
+                parametros = new SqlParameter[]
+                {
+                    new SqlParameter("DESCRIPCION", Descripcion),
+                    new SqlParameter("CANTIDAD", Cantidad),
+                    new SqlParameter("COSTO", Costo),
+                    new SqlParameter("DESCUENTO", Descuento),
+                    new SqlParameter("IMPORTE", Importe),
+                    new SqlParameter("ID_ISV", Id_ISV),
+                    new SqlParameter("PRECIO_COMPLETO", Precio_Completo),
+                    new SqlParameter("PRECIO_UNITARIO", Precio_Unitario),
+                    new SqlParameter("ID_CATEGORIA", Id_Categoria),
+                    new SqlParameter("FECHA_CREACION", Fecha_Creacion),
+                    new SqlParameter("ID_COMPRA", Id_Compra),
+                    new SqlParameter("@CODIGO_BARRA", Codigo_Barra)
+                };
+                conexion.EjecutarComando(query, parametros);
+
             }
             else
             {
                 // Si no existe, insertar un nuevo detalle
-                reader.Close();
                 query = @"
                     INSERT INTO TEMP_DETALLES_COMPRA (
                         ID_COMPRA, ID_PRODUCTO, CODIGO_BARRA, DESCRIPCION, CANTIDAD,
@@ -323,23 +270,32 @@ namespace Prototipo_MarZel
                         @ID_COMPRA, @ID_PRODUCTO, @CODIGO_BARRA, @DESCRIPCION, @CANTIDAD,
                         @COSTO, @DESCUENTO, @IMPORTE, @ID_ISV, @PRECIO_COMPLETO, @PRECIO_UNITARIO, @ID_CATEGORIA, @FECHA_CREACION
                     )";
-                cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@ID_COMPRA", Detalle_Compra.ID_COMPRA);
-                cmd.Parameters.AddWithValue("@ID_PRODUCTO", Detalle_Compra.ID_PRODUCTO ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@CODIGO_BARRA", Detalle_Compra.CODIGO_BARRA);
-                cmd.Parameters.AddWithValue("@DESCRIPCION", Detalle_Compra.DESCRIPCION);
-                cmd.Parameters.AddWithValue("@CANTIDAD", Detalle_Compra.CANTIDAD);
-                cmd.Parameters.AddWithValue("@COSTO", Detalle_Compra.COSTO);
-                cmd.Parameters.AddWithValue("@DESCUENTO", Detalle_Compra.DESCUENTO);
-                cmd.Parameters.AddWithValue("@IMPORTE", Detalle_Compra.IMPORTE);
-                cmd.Parameters.AddWithValue("@ID_ISV", Detalle_Compra.ID_ISV);
-                cmd.Parameters.AddWithValue("@PRECIO_COMPLETO", Detalle_Compra.PRECIO_COMPLETO);
-                cmd.Parameters.AddWithValue("@PRECIO_UNITARIO", Detalle_Compra.PRECIO_UNITARIO);
-                cmd.Parameters.AddWithValue("@ID_CATEGORIA", Detalle_Compra.ID_CATEGORIA);
-                cmd.Parameters.AddWithValue("@FECHA_CREACION", Detalle_Compra.FECHA_CREACION);
-                cmd.ExecuteNonQuery();
-
+                parametros = new SqlParameter[]
+                {
+                    new SqlParameter("ID_COMPRA", Id_Compra),
+                    new SqlParameter("@ID_PRODUCTO", Id_Producto ?? (object)DBNull.Value),
+                    new SqlParameter("@CODIGO_BARRA", Codigo_Barra),
+                    new SqlParameter("DESCRIPCION", Descripcion),
+                    new SqlParameter("CANTIDAD", Cantidad),
+                    new SqlParameter("COSTO", Costo),
+                    new SqlParameter("DESCUENTO", Descuento),
+                    new SqlParameter("IMPORTE", Importe),
+                    new SqlParameter("ID_ISV", Id_ISV),
+                    new SqlParameter("PRECIO_COMPLETO", Precio_Completo),
+                    new SqlParameter("PRECIO_UNITARIO", Precio_Unitario),
+                    new SqlParameter("ID_CATEGORIA", Id_Categoria),
+                    new SqlParameter("FECHA_CREACION", Fecha_Creacion),
+                };
+                conexion.EjecutarComando(query, parametros);
             }
+
+        }
+    }
+}
+        /*/ Actualiza los calculos de la compra almacenados en TEMP_COMPRAS
+        public Temp_Compra Cargar_Calculos()
+        {
+            
         }
 
         public Temp_Compra Cargar_Compra()
@@ -386,4 +342,4 @@ namespace Prototipo_MarZel
             cmd.ExecuteNonQuery();
         }
     }
-}
+}*/

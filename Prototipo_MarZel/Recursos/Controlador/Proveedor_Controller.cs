@@ -1,49 +1,64 @@
-﻿using System.Data;
+﻿using Prototipo_MarZel.Recursos.Modelos;
+using System.Data;
 
 namespace Prototipo_MarZel
 {
     public class Proveedor_Controller
     {
-        private readonly Proveedor_DAO dao = new Proveedor_DAO();
+        private Proveedor_Base Proveedor_DAO;
 
-        public List<Proveedor> Obtener_Proveedores()
+        public Proveedor_Controller()
         {
-            return dao.Obtener_Proveedores();
+            Proveedor_DAO = new Proveedor_DAO();
         }
 
-        public bool Existe_RTN(string rtn)
+        public DataTable Cargar_Proveedores()
         {
-            return dao.Existe_RTN(rtn);
+            return Proveedor_DAO.Cargar_Proveedores();
         }
 
-        public void Agregar_Proveedor(Proveedor proveedor)
-        { 
-            dao.Agregar_Proveedor(proveedor);
+        public void Eliminar_Proveedor(int Id_Proveedor) 
+        {
+            Proveedor_DAO.Eliminar_Proveedor(Id_Proveedor);
         }
 
-        public void Actualizar_Proveedor(Proveedor proveedor)
+        public DataTable Buscar_En_Proveedores(string filtro)
         {
-            dao.Actualizar_Proveedor(proveedor);
+            return Proveedor_DAO.Buscar_En_Proveedores(filtro);
         }
 
-        public void Eliminar_Proveedor(int id_proveedor)
+        public void Agregar_Proveedor(string RTN, string Nombre, string Direccion, string Celular, int Cant_Compras, decimal Importe)
         {
-            dao.Eliminar_Proveedor(id_proveedor);
+            Proveedor_DAO.Agregar_Proveedor(RTN, Nombre, Direccion, Celular, Cant_Compras, Importe);
         }
 
-        public List<Proveedor> Buscar_Proveedor(string texto)
+        public void Modificar_Proveedor(int Id_Proveedor, string RTN, string Nombre, string Direccion, string Celular)
         {
-            return dao.Buscar_Proveedor(texto);
+            Proveedor_DAO.Modificar_Proveedor(Id_Proveedor, RTN, Nombre, Direccion, Celular);
         }
 
-        public Proveedor Cargar_Proveedor(string rtn)
+        public DataTable Cargar_Proveedor(int Id_Proveedor)
         {
-            return dao.Cargar_Proveedor(rtn);
-        }
-
-        public string Obtener_Nombre_Proveedor()
-        {
-            return dao.Obtener_Nombre_Proveedor();
+            return Proveedor_DAO.Cargar_Proveedor(Id_Proveedor);
         }
     }
 }
+        /*public bool Existe_RTN(string rtn)
+        {
+            return Proveedor_DAO.Existe_RTN(rtn);
+        }*/
+
+        /*public List<Proveedor> Buscar_Proveedor(string texto)
+        {
+            return Proveedor_DAO.Buscar_Proveedor(texto);
+        }*/
+
+        /*public Proveedor Cargar_Proveedor(string rtn)
+        {
+            return Proveedor_DAO.Cargar_Proveedor(rtn);
+        }*/
+
+        /*public string Obtener_Nombre_Proveedor()
+        {
+            return Proveedor_DAO.Obtener_Nombre_Proveedor();
+        }*/

@@ -4,13 +4,13 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Prototipo_MarZel
 {
-    public class ProductoDAO : ProductoBase
+    public class Producto_DAO : Producto_Base
     {
         public override DataTable ObtenerTodos()
         {
             ConexionBD conexion = new ConexionBD();
             string query = "SELECT * FROM " + Tabla;
-            return conexion.EjecutarConsulta(query);
+            return conexion.EjecutarConsulta(query, null);
         }
 
         public override DataTable ObtenerProductos()
@@ -22,8 +22,9 @@ namespace Prototipo_MarZel
                                 TBL_PRODUCTOS.EXISTENCIA
                             FROM TBL_PRODUCTOS  
                             INNER JOIN TBL_CATEGORIAS_PRODUCTO ON TBL_PRODUCTOS.ID_CATEGORIA = TBL_CATEGORIAS_PRODUCTO.ID_CATEGORIA";
-            return conexion.EjecutarConsulta(query);
+            return conexion.EjecutarConsulta(query, null);
         }
+
         public override DataTable ObtenerProducto(string filtro)
         {
             ConexionBD conexion = new ConexionBD();
@@ -41,7 +42,7 @@ namespace Prototipo_MarZel
                             INNER JOIN TBL_CATEGORIAS_PRODUCTO C ON P.ID_CATEGORIA = C.ID_CATEGORIA
                             WHERE P.DESCRIPCION LIKE " + "'" + filtro + "'" + " OR P.CODIGO_BARRA LIKE " + "'" + filtro + "'";
 
-            return conexion.EjecutarConsulta(query);
+            return conexion.EjecutarConsulta(query, null);
         }
 
         public override void ModificarProducto(string codigo, string desc, int id, decimal PU, decimal PC)
@@ -66,51 +67,33 @@ namespace Prototipo_MarZel
             conexion.EjecutarComando(query, parametros);
 
         }
-    }
 
-    public class Producto_DAO
-    {
-        private readonly ConexionBD conexion = new ConexionBD();
-        public Producto Cargar_Producto(string Codigo_Barra)
+        public override DataTable Cargar_Producto(string Codigo_Barra)
         {
-            using SqlConnection con = conexion.AbrirConexion();
-            string query = @"
+            ConexionBD conexion = new ConexionBD();
+            string query = @$"
                 SELECT  *
                 FROM    TBL_PRODUCTOS
-                WHERE   CODIGO_BARRA = @CODIGO_BARRA
-            ";
-            using SqlCommand cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@CODIGO_BARRA", Codigo_Barra);
-            using SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+                WHERE   CODIGO_BARRA = @CODIGO_BARRA";
+            SqlParameter[] parametros =
             {
-                return new Producto
-                {
-                    CODIGO_BARRA = reader.GetString(reader.GetOrdinal("CODIGO_BARRA")),
-                    DESCRIPCION = reader.GetString(reader.GetOrdinal("DESCRIPCION")),
-                    ID_ISV = reader.GetInt32(reader.GetOrdinal("ID_ISV")),
-                    PRECIO_UNITARIO = reader.GetDecimal(reader.GetOrdinal("PRECIO_UNITARIO")),
-                    PRECIO_COMPLETO = reader.GetDecimal(reader.GetOrdinal("PRECIO_COMPLETO")),
-                    ID_CATEGORIA = reader.GetInt32(reader.GetOrdinal("ID_CATEGORIA"))
-                };
-            }
-            return null;
+                new SqlParameter("@CODIGO_BARRA", Codigo_Barra)
+            };
+            return conexion.EjecutarConsulta(query, parametros);
         }
 
-        public int? Buscar_ID(string codigo_barra)
+        public override int? Buscar_Id_Producto(string Codigo_Barra)
         {
-            int? Id_Producto = null;
-            using SqlConnection con = conexion.AbrirConexion();
-            string query = @"
-                SELECT  ID_PRODUCTO
-                FROM    TBL_PRODUCTOS
-                WHERE   CODIGO_BARRA = @CODIGO_BARRA
-            ";
-            using SqlCommand cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@CODIGO_BARRA", codigo_barra);
-
-            object result = cmd.ExecuteScalar();
-            return result != null ? (int?)Convert.ToInt32(result) : null;
+            ConexionBD conexion = new ConexionBD();
+            string query = @"SELECT ID_PRODUCTO 
+                             FROM " + Tabla + 
+                             " WHERE CODIGO_BARRA = @CODIGO_BARRA";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@CODIGO_BARRA", Codigo_Barra)
+            };
+            DataTable resultado = conexion.EjecutarConsulta(query, parametros);
+            return resultado.Rows.Count > 0 ? Convert.ToInt32(resultado.Rows[0]["ID_PRODUCTO"]) : (int?)null;
         }
     }
 }

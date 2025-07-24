@@ -56,7 +56,6 @@
             txtRTN.TabIndex = 0;
             txtRTN.Text = "";
             txtRTN.TrailingIcon = null;
-            txtRTN.TextChanged += txtRTN_TextChanged;
             // 
             // txtNombre
             // 

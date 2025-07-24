@@ -5,52 +5,65 @@ namespace Prototipo_MarZel
 {
     public class Temp_Compra_Controller
     {
-        private readonly Temp_Compra_DAO Temp_Compra_DAO = new Temp_Compra_DAO();
-        
+        private Temp_Compra_Base Temp_Compra_DAO;
+
+        public Temp_Compra_Controller()
+        {
+            Temp_Compra_DAO = new Temp_Compra_DAO();
+        }
+
         public void Eliminar_Registros_Temporales()
         {
             Temp_Compra_DAO.Eliminar_Registros_Temporales();
         }
 
-        public void Agregar_Compra(Compra Compra)
+        public void Agregar_Compra(int Id_Compra)
         {
-            Temp_Compra_DAO.Agregar_Compra(Compra);
+            Temp_Compra_DAO.Agregar_Compra(Id_Compra);
         }
 
-        public void Capturar_Detalles(Compra Compra)
+        public void Capturar_Detalles(int Id_Compra)
         {
-            Temp_Compra_DAO.Capturar_Detalles(Compra);
+            Temp_Compra_DAO.Capturar_Detalles(Id_Compra);
         }
 
-        public List<Temp_Detalle_Compra> Cargar_Detalles()
+        public DataTable Cargar_Detalles(int Id_Compra)
         {
-            return Temp_Compra_DAO.Cargar_Detalles();
+            return Temp_Compra_DAO.Cargar_Detalles(Id_Compra);
         }
 
-        public Temp_Compra Cargar_Calculos()
+        public DataTable Cargar_Compra(int Id_Compra)
         {
-            return Temp_Compra_DAO.Cargar_Calculos();
+            return Temp_Compra_DAO.Cargar_Compra(Id_Compra);
         }
 
-        public bool Buscar_En_Detalles_Compra(string codigo_barra)
+        public bool Buscar_En_Detalles_Compra(string Codigo_Barra)
         {
-            return Temp_Compra_DAO.Buscar_En_Detalles_Compra(codigo_barra);
+            return Temp_Compra_DAO.Buscar_En_Detalles_Compra(Codigo_Barra);
         }
 
-
-        public Temp_Detalle_Compra Cargar_Producto(string Codigo_Barra)
+        public DataTable Cargar_Producto(string Codigo_Barra)
         {
             return Temp_Compra_DAO.Cargar_Producto(Codigo_Barra);
         }
 
-        public bool Buscar_En_Productos(string codigo_barra)
+        public bool Buscar_En_Productos(string Codigo_Barra)
         {
-            return Temp_Compra_DAO.Buscar_En_Productos(codigo_barra);
+            return Temp_Compra_DAO.Buscar_En_Productos(Codigo_Barra);
         }
 
-        public void Agregar_Detalle(Temp_Detalle_Compra Detalle_Compra)
+        public void Agregar_Detalle(int Id_Compra, int? Id_Producto, string Codigo_Barra, string Descripcion, int Cantidad,
+            decimal Costo, decimal Descuento, decimal Importe, int Id_ISV, decimal Precio_Completo, decimal Precio_Unitario,
+            int Id_Categoria, DateTime Fecha_Creacion)
         {
-            Temp_Compra_DAO.Agregar_Detalle(Detalle_Compra);
+            Temp_Compra_DAO.Agregar_Detalle(Id_Compra, Id_Producto, Codigo_Barra, Descripcion, Cantidad, Costo, Descuento,
+                Importe, Id_ISV, Precio_Completo, Precio_Unitario, Id_Categoria, Fecha_Creacion);
+        }
+    }
+}
+        /*public Temp_Compra Cargar_Calculos()
+        {
+            return Temp_Compra_DAO.Cargar_Calculos();
         }
 
         public Temp_Compra Cargar_Compra()
@@ -63,4 +76,4 @@ namespace Prototipo_MarZel
             Temp_Compra_DAO.Actualizar_Proveedor(compra);
         }
     }
-}
+}*/

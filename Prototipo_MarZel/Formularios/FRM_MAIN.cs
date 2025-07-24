@@ -15,7 +15,7 @@ namespace Prototipo_MarZel
         LoginController LoginController = new LoginController();
         FRM_CLIENTES frm_clientes = new FRM_CLIENTES();
 
-        private ProductoController productoController = new ProductoController();
+        private Producto_Controller Producto_Controller = new Producto_Controller();
 
         public FRM_MAIN(string usuario)
         {
@@ -80,7 +80,7 @@ namespace Prototipo_MarZel
             if (MTBC_MENU.SelectedTab == TP_PRODUCTOS)
             {
                 // Verificar productos sin existencia
-                DataTable productos = productoController.ObtenerProductosPorDescripcion();
+                DataTable productos = Producto_Controller.ObtenerProductosPorDescripcion();
                 var productosSinExistencia = new List<string>();
                 foreach (DataRow row in productos.Rows)
                 {

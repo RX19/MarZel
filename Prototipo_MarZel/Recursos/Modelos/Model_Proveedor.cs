@@ -1,21 +1,24 @@
-﻿using System.Data;
+﻿using Org.BouncyCastle.Asn1.X500;
+using Org.BouncyCastle.Tls.Crypto.Impl;
+using System.Data;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Prototipo_MarZel
 {
-    public class Proveedor
+    public abstract class Proveedor_Base
     {
-        public int ID_PROVEEDOR { get; set; }
+        public static string Tabla = "TBL_PROVEEDORES";
 
-        public string RTN { get; set; } = string.Empty;
+        public abstract DataTable Cargar_Proveedores();
 
-        public string NOMBRE { get; set; } = string.Empty; 
+        public abstract void Eliminar_Proveedor(int Id_Proveedor);
 
-        public string DIRECCION { get; set; } = string.Empty;
+        public abstract DataTable Buscar_En_Proveedores(string filtro);
 
-        public string CELULAR { get; set; } = string.Empty;
+        public abstract void Agregar_Proveedor(string RTN, string Nombre, string Direccion, string Celular, int Cant_Compras, decimal Importe);
 
-        public int CANT_COMPRAS { get; set; }
+        public abstract void Modificar_Proveedor(int Id_Proveedor, string RTN, string Nombre, string Direccion, string Celular);
 
-        public decimal IMPORTE { get; set; }
+        public abstract DataTable Cargar_Proveedor(int Id_Proveedor);
     }
 }

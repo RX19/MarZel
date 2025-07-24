@@ -7,7 +7,8 @@ namespace Prototipo_MarZel
     public class ConexionBD
     {
         //Cambiar Robber por servidor de la bd :v
-        private readonly string cadenaConexion = "server=127.0.0.1,1433; database=MARZEL; User ID=sa; Password=yourStrong#Password;";
+        private readonly string cadenaConexion = "server=(localdb)\\MSSQLLocalDB; database=MarZel; integrated security=true";
+
         public SqlConnection AbrirConexion()
         {
             SqlConnection conexion = new SqlConnection(cadenaConexion);
@@ -15,7 +16,7 @@ namespace Prototipo_MarZel
             return conexion;
         }
 
-        public DataTable EjecutarConsulta(string query)
+        /*public DataTable EjecutarConsulta(string query)
         {
             //Habilitar para debugar, acabo de perder 2 horas porque mandaba un query mal :v
             //MessageBox.Show(query, "Consulta SQL");
@@ -27,9 +28,23 @@ namespace Prototipo_MarZel
                 adaptador.Fill(tabla);
                 return tabla;
             }
+        }*/
+
+        public DataTable EjecutarConsulta(string query, SqlParameter[]? parametros)
+        {
+            using (SqlConnection conexion = AbrirConexion())
+            {
+                SqlCommand comando = new SqlCommand(query, conexion);
+                if (parametros != null)
+                    comando.Parameters.AddRange(parametros);
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                DataTable tabla = new DataTable();
+                adaptador.Fill(tabla);
+                return tabla;
+            }
         }
 
-        public int EjecutarComando(string query, SqlParameter[] parametros)
+        public int EjecutarComando(string query, SqlParameter[]? parametros)
         {
             using (SqlConnection conexion = AbrirConexion())
             {

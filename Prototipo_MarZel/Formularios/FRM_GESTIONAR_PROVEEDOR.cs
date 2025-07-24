@@ -14,35 +14,40 @@ namespace Prototipo_MarZel.Formularios
     public partial class FRM_GESTIONAR_PROVEEDOR : MaterialSkin.Controls.MaterialForm
     {
         Proveedor_Controller Proveedor_Controller = new Proveedor_Controller();
-        Temp_Compra_Controller Temp_Compra_Controller = new Temp_Compra_Controller();
-
-        private Proveedor? proveedorActual = null;
-        private Temp_Compra? compraActual = null;
-        private Proveedor? proveedorSeleccionado = null;
+        int? Id_Proveedor = null;
+        //Temp_Compra_Controller Temp_Compra_Controller = new Temp_Compra_Controller();
+        //private Proveedor? proveedorActual = null;
+        //private Temp_Compra? compraActual = null;
+        //private Proveedor? proveedorSeleccionado = null;*/
 
         public FRM_GESTIONAR_PROVEEDOR()
         {
             InitializeComponent();
         }
 
-        public FRM_GESTIONAR_PROVEEDOR(Proveedor proveedor)
+        public FRM_GESTIONAR_PROVEEDOR(int Id_Proveedor)
         {
             InitializeComponent();
-            proveedorActual = proveedor;
-            txtRTN.Text = proveedor.RTN;
-            txtNombre.Text = proveedor.NOMBRE;
-            txtDireccion.Text = proveedor.DIRECCION;
-            txtCelular.Text = proveedor.CELULAR;
+            this.Id_Proveedor = Id_Proveedor;
+            DataTable Proveedor = Proveedor_Controller.Cargar_Proveedor(Id_Proveedor);
+            txtRTN.Text = Proveedor.Rows[0]["RTN"].ToString();
+            txtNombre.Text = Proveedor.Rows[0]["NOMBRE"].ToString();
+            txtDireccion.Text = Proveedor.Rows[0]["DIRECCION"].ToString();
+            txtCelular.Text = Proveedor.Rows[0]["CELULAR"].ToString();
+
+            //DataTable Proveedor = Proveedor_Controller.Cargar_Proveedor(rtn);
         }
 
-        public FRM_GESTIONAR_PROVEEDOR(Temp_Compra Compra)
+        public FRM_GESTIONAR_PROVEEDOR(string rtn)
         {
             InitializeComponent();
-            compraActual = Compra;
-            txtRTN.Text = Compra.RTN;
-            txtNombre.Text = Compra.NOMBRE;
-            txtDireccion.Text = Compra.DIRECCION;
-            txtCelular.Text = Compra.CELULAR;
+            //DataTable Proveedor = Proveedor_Controller.Cargar_Proveedor(rtn);
+        }
+
+        private void FRM_GESTIONAR_PROVEEDOR_Load(object sender, EventArgs e)
+        {
+            /*if (elegir) { btnGuardar.Text = "ELEGIR"; }
+            else { btnGuardar.Text = "GUARDAR"; }*/
         }
 
         private bool Verificar_Campos()
@@ -63,7 +68,7 @@ namespace Prototipo_MarZel.Formularios
                 return false;
             }
 
-            if (proveedorActual == null && compraActual == null)
+            /*if (proveedorActual == null && compraActual == null)
             {
                 if (Proveedor_Controller.Existe_RTN(rtn))
                 {
@@ -78,50 +83,35 @@ namespace Prototipo_MarZel.Formularios
                     MessageBox.Show("El R.T.N. ingresado ya existe. Por favor, ingrese un R.T.N. diferente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
-            }
+            }*/
 
             return true;
-
         }
-
+   
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (!Verificar_Campos()) return;
 
-            if (compraActual == null)
+            DialogResult result = MessageBox.Show(
+            "¿Desea guardar los cambios?", "Confirmación",
+            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result != DialogResult.Yes) return;
+
+            string RTN = txtRTN.Text.Trim();
+            string Nombre = txtNombre.Text.Trim();
+            string Direccion = txtDireccion.Text.Trim();
+            string Celular = txtCelular.Text.Trim();
+
+            if (Id_Proveedor == null)
             {
-                DialogResult result = MessageBox.Show(
-                "¿Desea guardar los cambios?", "Confirmación",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result != DialogResult.Yes) return;
-
-                if (proveedorActual == null)
-                {
-                    Proveedor nuevoProveedor = new Proveedor
-                    {
-                        RTN = txtRTN.Text.Trim(),
-                        NOMBRE = txtNombre.Text.Trim(),
-                        DIRECCION = txtDireccion.Text.Trim(),
-                        CELULAR = txtCelular.Text.Trim(),
-                        CANT_COMPRAS = 0,
-                        IMPORTE = 0.00m
-                    };
-
-                    Proveedor_Controller.Agregar_Proveedor(nuevoProveedor);
-
-                }
-                else
-                {
-
-                    proveedorActual.RTN = txtRTN.Text.Trim();
-                    proveedorActual.NOMBRE = txtNombre.Text.Trim();
-                    proveedorActual.DIRECCION = txtDireccion.Text.Trim();
-                    proveedorActual.CELULAR = txtCelular.Text.Trim();
-
-                    Proveedor_Controller.Actualizar_Proveedor(proveedorActual);
-                }
+                Proveedor_Controller.Agregar_Proveedor(RTN, Nombre, Direccion, Celular, 0, 0);
             }
+            else
+            {
+                Proveedor_Controller.Modificar_Proveedor(Id_Proveedor.Value, RTN, Nombre, Direccion, Celular);
+            }
+            /*}
             else
             {
                 DialogResult result = MessageBox.Show(
@@ -139,11 +129,13 @@ namespace Prototipo_MarZel.Formularios
                     CELULAR = txtCelular.Text.Trim()
                 };
                 Temp_Compra_Controller.Actualizar_Proveedor(compra);
-            }
+            }*/
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
+
+        /*
         private void Limpiar_Campos()
         {
             txtNombre.Clear();
@@ -153,7 +145,7 @@ namespace Prototipo_MarZel.Formularios
 
         private void txtRTN_TextChanged(object sender, EventArgs e)
         {
-            if (compraActual == null) return;
+            /*if (compraActual == null) return;
 
             proveedorSeleccionado = Proveedor_Controller.Cargar_Proveedor(txtRTN.Text.Trim());
 
@@ -168,17 +160,6 @@ namespace Prototipo_MarZel.Formularios
                 Limpiar_Campos();
             }
         }
-
-        private void FRM_GESTIONAR_PROVEEDOR_Load(object sender, EventArgs e)
-        {
-            if (compraActual == null)
-            {
-               btnGuardar.Text = "GUARDAR";
-            }
-            else
-            {
-                btnGuardar.Text = "ELEGIR";
-            }
+        */
         }
     }
-}

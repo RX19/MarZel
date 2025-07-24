@@ -17,8 +17,8 @@ namespace Prototipo_MarZel
 
     public partial class FRM_PRODUCTOS : MaterialSkin.Controls.MaterialForm
     {
-        ProductoController productoController = new ProductoController();
-        CategoriaController CategoriaController = new CategoriaController();
+        Producto_Controller Producto_Controller = new Producto_Controller();
+        Categoria_Producto_Controller Categoria_Producto_Controller = new Categoria_Producto_Controller();
         public FRM_PRODUCTOS()
         {
             InitializeComponent();
@@ -52,7 +52,7 @@ namespace Prototipo_MarZel
             try
             {
                 // Obtener y filtrar productos
-                DataTable tablaCompleta = productoController.ObtenerProductosPorDescripcion();
+                DataTable tablaCompleta = Producto_Controller.ObtenerProductosPorDescripcion();
                 DataTable soloProductos = new DataTable();
                 soloProductos.Columns.Add("PRODUCTO", typeof(string));
                 soloProductos.Columns.Add("EXISTENCIA", typeof(int));
@@ -123,7 +123,7 @@ namespace Prototipo_MarZel
             {
                 DataGridViewRow fila = DVC_PRODUCTOS.Rows[e.RowIndex];
                 string nombreProducto = fila.Cells["PRODUCTO"].Value?.ToString();
-                DataTable tabla_express = productoController.ObtenerProducto(nombreProducto);
+                DataTable tabla_express = Producto_Controller.ObtenerProducto(nombreProducto);
                 DataRow datos = tabla_express.Rows[0];
                 TXT_CODIGO_B.Text = datos["CODIGO_BARRA"].ToString();
                 TXT_DESC.Text = datos["DESCRIPCION"].ToString();
@@ -176,12 +176,12 @@ namespace Prototipo_MarZel
 
         private void BTN_WARD_Click(object sender, EventArgs e)
         {
-            DataTable dt = CategoriaController.ObtenerCategoriaPorId(CBX_CATEGORIA.Text);
+            DataTable dt = Categoria_Producto_Controller.ObtenerCategoriaPorId(CBX_CATEGORIA.Text);
             if (dt.Rows.Count > 0)
             {
                 string idCategoria = dt.Rows[0]["ID_PRODUCTO"].ToString();
 
-                productoController.ModificarProducto(
+                Producto_Controller.ModificarProducto(
                     TXT_CODIGO_B.Text,
                     TXT_DESC.Text,
                     Convert.ToInt32(idCategoria),
@@ -208,7 +208,7 @@ namespace Prototipo_MarZel
                 return;
             }
 
-            DataTable tabla_express = productoController.ObtenerProducto(textoBusquedaP);
+            DataTable tabla_express = Producto_Controller.ObtenerProducto(textoBusquedaP);
 
             if (tabla_express != null && tabla_express.Rows.Count > 0)
             {

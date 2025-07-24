@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Prototipo_MarZel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+03cc52457f53e4d5c0dbff8205a8b5645daa98c2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a3cf63193654d5be5d9d0abc73b795b6c24a553e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Prototipo_MarZel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Prototipo_MarZel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

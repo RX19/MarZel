@@ -1,14 +1,21 @@
-﻿using System.Data;
+﻿using Prototipo_MarZel.Recursos.Modelos;
+using System.Data;
 
 namespace Prototipo_MarZel
 {
     public class Tipo_ISV_Controller
     {
-        private readonly Tipo_ISV_DAO dao = new Tipo_ISV_DAO();
+        private Tipo_ISV_Base Tipo_ISV_DAO;
 
-        public List<Tipo_ISV> Cargar_Tipos_ISV()
+        public Tipo_ISV_Controller()
         {
-            return dao.Cargar_Tipos_ISV();
+            Tipo_ISV_DAO = new Tipo_ISV_DAO();
         }
+        
+        public DataTable Cargar_Tipos_ISV()
+        {
+            return Tipo_ISV_DAO.Cargar_Tipos_ISV();
+        }
+
     }
 }

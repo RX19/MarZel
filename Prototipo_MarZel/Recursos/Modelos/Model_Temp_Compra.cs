@@ -2,33 +2,26 @@
 
 namespace Prototipo_MarZel
 {
-    public class Temp_Compra
+    public abstract class Temp_Compra_Base
     {
+        public abstract void Eliminar_Registros_Temporales();
 
-        public int? ID_COMPRA { get; set; }
+        public abstract void Agregar_Compra(int Id_Compra);
 
-        public int? ID_PROVEEDOR { get; set; }
+        public abstract void Capturar_Detalles(int Id_Compra);
 
-        public string? RTN { get; set; }
+        public abstract DataTable Cargar_Detalles(int Id_Compra);
 
-        public string? NOMBRE { get; set; }
+        public abstract DataTable Cargar_Compra(int Id_Compra);
 
-        public string? DIRECCION { get; set; }
+        public abstract bool Buscar_En_Detalles_Compra(string Codigo_Barra);
 
-        public string? CELULAR { get; set; }
+        public abstract DataTable Cargar_Producto(string Codigo_Barra);
 
-        public DateTime? FECHA { get; set; }
+        public abstract bool Buscar_En_Productos(string Codigo_Barra);
 
-        public string? FACTURA { get; set; }
-
-        public decimal? SUBTOTAL { get; set; }
-
-        public decimal? GRAVADO { get; set; }
-
-        public decimal? ISV { get; set; }
-
-        public decimal? EXENTO { get; set; }
-
-        public decimal? TOTAL { get; set; }
+        public abstract void Agregar_Detalle(int Id_Compra, int? Id_Producto, string Codigo_Barra, string Descripcion, int Cantidad,
+            decimal Costo, decimal Descuento, decimal Importe, int Id_ISV, decimal Precio_Completo, decimal Precio_Unitario,
+            int Id_Categoria, DateTime Fecha_Creacion);
     }
 }

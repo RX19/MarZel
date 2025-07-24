@@ -1,14 +1,20 @@
-﻿using System.Data;
+﻿using Prototipo_MarZel.Recursos.Modelos;
+using System.Data;
 
 namespace Prototipo_MarZel
 {
     public class Compra_Controller
     {
-        private readonly Compra_DAO dao = new Compra_DAO();
+        private Compra_Base Compra_DAO;
 
-        public List<Compra> Obtener_Compras()
+        public Compra_Controller()
         {
-            return dao.Obtener_Compras();
+            Compra_DAO = new Compra_DAO();
+        }
+
+        public DataTable Cargar_Compras()
+        {
+            return Compra_DAO.Cargar_Compras();
         }
     }
 }
