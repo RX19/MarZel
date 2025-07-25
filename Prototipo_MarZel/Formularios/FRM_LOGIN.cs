@@ -13,7 +13,7 @@ namespace Prototipo_MarZel.Formularios
 {
     public partial class FRM_LOGIN : MaterialSkin.Controls.MaterialForm
     {
-        private readonly LoginController loginController = new LoginController();
+        private readonly Login_Controller loginController = new Login_Controller();
         public string usuario;
         private string contrasena;
         public FRM_LOGIN()

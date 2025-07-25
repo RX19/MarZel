@@ -12,7 +12,7 @@ namespace Prototipo_MarZel
     {
         FRM_PRODUCTOS frm_productos = new FRM_PRODUCTOS();
         FRM_USUARIOS frm_usuarios = new FRM_USUARIOS();
-        LoginController LoginController = new LoginController();
+        Login_Controller LoginController = new Login_Controller();
         FRM_CLIENTES frm_clientes = new FRM_CLIENTES();
 
         private Producto_Controller Producto_Controller = new Producto_Controller();
