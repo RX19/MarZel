@@ -276,3 +276,4 @@ C:\Users\rusbe\source\repos\RX19\MarZel\Prototipo_MarZel\obj\Debug\net8.0-window
 C:\Users\rusbe\source\repos\RX19\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.Formularios.FRM_PROVEEDORES.resources
 C:\Users\Roberto\source\repos\RX19\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.Formularios.FRM_GESTIONAR_CLIENTE.resources
 C:\Users\Roberto\source\repos\RX19\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.Formularios.FRM_GESTIONAR_COMPRA.resources
+C:\Users\mmaradiaga\Source\Repos\MarZel\Prototipo_MarZel\obj\Debug\net8.0-windows\Prototipo_MarZel.Formularios.FRM_GESTIONAR_CLIENTE.resources

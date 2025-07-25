@@ -95,6 +95,7 @@ namespace Prototipo_MarZel.Formularios
             txtTotal.Text = compra.Rows[0]["TOTAL"].ToString();
 
             //Actualiza el proveedor y demas campos.
+
             txtNombre.Text = compra.Rows[0]["NOMBRE"].ToString();
             txtFactura.Text = compra.Rows[0]["FACTURA"].ToString();
             dtpFecha.Value = Convert.ToDateTime(compra.Rows[0]["FECHA"]);
@@ -359,7 +360,11 @@ namespace Prototipo_MarZel.Formularios
 
             if (Id_Compra == 0)
             {
-                Compra_Controller.Agregar_Compra(Id_Compra);
+                Compra_Controller.Agregar_Compra();
+            }
+            else
+            {
+                Compra_Controller.Actualizar_Compra(Id_Compra);
             }
             this.Close();
         }

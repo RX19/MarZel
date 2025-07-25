@@ -7,7 +7,7 @@ namespace Prototipo_MarZel
     public class ConexionBD
     {
         //Cambiar Robber por servidor de la bd :v
-        private readonly string cadenaConexion = "server=KURO\\SQLEXPRESS; database=MarZel; integrated security=true"; 
+        private readonly string cadenaConexion = "server=(localdb)\\MSSQLLocalDB; database=MarZel; integrated security=true"; 
         
         public SqlConnection AbrirConexion()
         {

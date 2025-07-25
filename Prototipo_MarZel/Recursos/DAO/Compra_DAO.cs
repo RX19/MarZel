@@ -25,6 +25,23 @@ namespace Prototipo_MarZel
             return conexion.EjecutarConsulta(query, parametros);
         }
 
+        public override DataTable Cargar_Compra(int Id_Compra)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                SELECT  C.*, P.RTN, P.NOMBRE, P.DIRECCION,
+                        P.CELULAR, P.CANT_COMPRAS, P.IMPORTE
+                FROM    TBL_COMPRAS C
+                INNER JOIN TBL_PROVEEDORES P 
+                ON      C.ID_PROVEEDOR = P.ID_PROVEEDOR
+                WHERE   C.ID_COMPRA = @ID_COMPRA";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@ID_COMPRA", Id_Compra)
+            };
+            return conexion.EjecutarConsulta(query, parametros);
+        }
+
         public override void Guardar_Proveedor()
         {
             Proveedor_Controller Proveedor_Controller = new Proveedor_Controller();
@@ -104,7 +121,7 @@ namespace Prototipo_MarZel
             Temp_Compra_Controller.Asignar_ID_Compra(Id_Compra);
         }
 
-        public override void Procesar_Detalles()
+        public override void Guardar_Detalles()
         {
             Temp_Compra_Controller Temp_Compra_Controller = new Temp_Compra_Controller();
             Producto_Controller Producto_Controller = new Producto_Controller();
@@ -128,7 +145,7 @@ namespace Prototipo_MarZel
                 decimal Precio_Unitario = Convert.ToDecimal(row["PRECIO_UNITARIO"]);
                 int Id_Categoria = Convert.ToInt32(row["ID_CATEGORIA"]);
                 DateTime Fecha_Creacion = Convert.ToDateTime(row["FECHA_CREACION"]);
-                
+
                 if (row["ID_PRODUCTO"] == DBNull.Value)
                 {
                     // Agregar Nuevo Producto
@@ -175,6 +192,156 @@ namespace Prototipo_MarZel
                 new SqlParameter("@IMPORTE", Importe)
             };
             conexion.EjecutarComando(query, parametros);
+        }
+
+        public override void Actualizar_Proveedor(int Id_Compra)
+        {
+            Proveedor_Controller Proveedor_Controller = new Proveedor_Controller();
+            Compra_Controller Compra_Controller = new Compra_Controller();
+            Temp_Compra_Controller Temp_Compra_Controller = new Temp_Compra_Controller();
+
+            // Obtener valores de la Compra Original.
+            DataTable Compra = Compra_Controller.Cargar_Compra(Id_Compra);
+            int Id_Proveedor_1 = Compra.Rows[0].Field<int>("ID_PROVEEDOR");
+            string Rtn_1 = Compra.Rows[0].Field<string>("RTN") ?? "";
+            string Nombre_1 = Compra.Rows[0].Field<string>("NOMBRE") ?? "";
+            string Direccion_1 = Compra.Rows[0].Field<string>("DIRECCION") ?? "";
+            string Celular_1 = Compra.Rows[0].Field<string>("CELULAR") ?? "";
+            int Cant_Compras_1 = Compra.Rows[0].Field<int>("CANT_COMPRAS");
+            decimal Importe_1 = Compra.Rows[0].Field<decimal>("IMPORTE");
+            decimal Total_1 = Compra.Rows[0].Field<decimal>("TOTAL");
+            Cant_Compras_1 -= 1;
+            Importe_1 = (Importe_1 - Total_1);
+
+            //Actualizar Proveedor Original.
+            Proveedor_Controller.Modificar_Proveedor(Id_Proveedor_1, Rtn_1, Nombre_1, Direccion_1, Celular_1, Cant_Compras_1, Importe_1);
+
+            //Actualizar Nuevo Proveedor
+            Guardar_Proveedor();
+        }
+
+        public override void Actualizar_Compra(int Id_Compra_Original)
+        {
+            ConexionBD conexion = new ConexionBD();
+            Temp_Compra_Controller Temp_Compra_Controller = new Temp_Compra_Controller();
+            Compra_Controller Compra_Controller = new Compra_Controller();
+
+            //Obtener Datos de la Compra
+            DataTable Temp_Compra = Temp_Compra_Controller.Cargar_Compra();
+            int Id_Compra = Id_Compra_Original;
+            int Id_Proveedor = Temp_Compra.Rows[0].Field<int>("ID_PROVEEDOR");
+            DateTime Fecha = Temp_Compra.Rows[0].Field<DateTime>("FECHA");
+            string Factura = Temp_Compra.Rows[0].Field<string>("FACTURA") ?? "";
+            decimal Subtotal = Temp_Compra.Rows[0].Field<decimal>("SUBTOTAL");
+            decimal Gravado = Temp_Compra.Rows[0].Field<decimal>("GRAVADO");
+            decimal Isv = Temp_Compra.Rows[0].Field<decimal>("ISV");
+            decimal Exento = Temp_Compra.Rows[0].Field<decimal>("EXENTO");
+            decimal Total = Temp_Compra.Rows[0].Field<decimal>("TOTAL");
+
+            string query = @"
+                UPDATE TBL_COMPRAS 
+                SET ID_PROVEEDOR = @ID_PROVEEDOR,
+                    FECHA = @FECHA,
+                    FACTURA = @FACTURA,
+                    SUBTOTAL = @SUBTOTAL,
+                    GRAVADO = @GRAVADO,
+                    ISV = @ISV,
+                    EXENTO = @EXENTO,
+                    TOTAL = @TOTAL
+                WHERE ID_COMPRA = @ID_COMPRA";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@ID_PROVEEDOR", Id_Proveedor),
+                new SqlParameter("@FECHA", Fecha),
+                new SqlParameter("@FACTURA", Factura),
+                new SqlParameter("@SUBTOTAL", Subtotal),
+                new SqlParameter("@GRAVADO", Gravado),
+                new SqlParameter("@ISV", Isv),
+                new SqlParameter("@EXENTO", Exento),
+                new SqlParameter("@TOTAL", Total),
+                new SqlParameter("@ID_COMPRA", Id_Compra)
+            };
+            conexion.EjecutarComando(query, parametros);
+        }
+
+        public override DataTable Cargar_Detalles(int Id_Compra)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                SELECT DC.*, P.EXISTENCIA 
+                FROM    TBL_DETALLES_COMPRA DC,
+                        TBL_PRODUCTOS P
+                WHERE   DC.ID_PRODUCTO = P.ID_PRODUCTO
+                AND     DC.ID_COMPRA = @ID_COMPRA";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@ID_COMPRA", Id_Compra)
+            };
+            return conexion.EjecutarConsulta(query, parametros);
+        }
+
+        public override void Eliminar_Detalles(int Id_Compra)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                DELETE FROM TBL_DETALLES_COMPRA
+                WHERE ID_COMPRA = @ID_COMPRA";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@ID_COMPRA", Id_Compra)
+            };
+            conexion.EjecutarComando(query, parametros);
+        }
+
+        public override bool Buscar_En_Detalles_Compra(string Codigo_Barra)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                SELECT  1 
+                FROM    TBL_DETALLES_COMPRA 
+                WHERE   CODIGO_BARRA = @CODIGO_BARRA";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@CODIGO_BARRA", Codigo_Barra)
+            };
+            return conexion.EjecutarConsulta(query, parametros).Rows.Count > 0;
+        }
+
+        public override void Actualizar_Detalles(int Id_Compra)
+        {
+            Compra_Controller Compra_Controller = new Compra_Controller();
+            Temp_Compra_Controller Temp_Compra_Controller = new Temp_Compra_Controller();
+            DataTable detalles;
+            ConexionBD conexion = new ConexionBD();
+            string query = string.Empty;
+
+            //Obtener Registros de TBL_Detalles_Compra
+            detalles = Compra_Controller.Cargar_Detalles(Id_Compra);
+            foreach (DataRow row in detalles.Rows)
+            {
+                // Disminuir las cantidades compradas
+                int Id_Producto = Convert.ToInt32(row["ID_PRODUCTO"]);
+                int Existencia = Convert.ToInt32(row["EXISTENCIA"]);
+                int Cantidad = Convert.ToInt32(row["CANTIDAD"]);
+                Existencia -= Cantidad;
+
+                query = @"
+                    UPDATE TBL_PRODUCTOS
+                    SET EXISTENCIA = @EXISTENCIA
+                    WHERE ID_PRODUCTO = @ID_PRODUCTO";
+                SqlParameter[] parametros =
+                {
+                    new SqlParameter("@EXISTENCIA", Existencia),
+                    new SqlParameter("@ID_PRODUCTO", Id_Producto)
+                };
+                conexion.EjecutarComando(query, parametros);
+            }
+
+            //Eliminar Los Detalles de Compra Originales.
+            Compra_Controller.Eliminar_Detalles(Id_Compra);
+
+            //Agregar los detalles de Compra Actuales.
+            Guardar_Detalles();
         }
     }
 }
