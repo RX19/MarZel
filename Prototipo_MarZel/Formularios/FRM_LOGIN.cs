@@ -27,6 +27,24 @@ namespace Prototipo_MarZel.Formularios
 
             //await Transiciones.FadeInAsync(this);
             materialButton1.Focus();
+
+            // Test low stock alert
+            /*var existenciaController = new Existencia_Controller();
+            var dt = existenciaController.ObtenerProductosBajaExistencia();
+            string mensaje;
+            if (dt.Rows.Count > 0)
+            {
+                mensaje = "Productos con existencia menor a 10:\n";
+                foreach (DataRow row in dt.Rows)
+                {
+                    mensaje += $"- {row["PRODUCTO"]}: {row["EXISTENCIA"]}\n";
+                }
+            }
+            else
+            {
+                mensaje = "No hay artículos con existencia por debajo de 10.";
+            }
+            MessageBox.Show(mensaje, "Alerta de Existencia", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
         }
 
         private void materialTextBox1_TextChanged(object sender, EventArgs e)
