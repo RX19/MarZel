@@ -189,7 +189,7 @@ namespace Prototipo_MarZel
                     await Task.Delay(15);
                 }
                 this.Opacity = 1.0;
-                MTBC_MENU.SelectedTab = TP_COMPRAS;
+                MTBC_MENU.SelectedTab = TP_CLIENTES;
             }
 
         }
