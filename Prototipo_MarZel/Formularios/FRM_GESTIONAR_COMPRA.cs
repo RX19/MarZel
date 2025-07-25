@@ -81,13 +81,13 @@ namespace Prototipo_MarZel.Formularios
         public void Cargar_Datos_Compra()
         {
             //Actualiza los detalles de la compra.
-            DataTable Detalles_Compra = Temp_Compra_Controller.Cargar_Detalles(Id_Compra);
+            DataTable Detalles_Compra = Temp_Compra_Controller.Cargar_Detalles();
             dgvDetallesCompra.DataSource = null;
             dgvDetallesCompra.DataSource = Detalles_Compra;
             dgvDetallesCompra.ClearSelection();
 
             //Actualiza los resultados finales.
-            DataTable compra = Temp_Compra_Controller.Cargar_Compra(Id_Compra);
+            DataTable compra = Temp_Compra_Controller.Cargar_Compra();
             txtSubtotal.Text = compra.Rows[0]["SUBTOTAL"].ToString();
             txtGravado.Text = compra.Rows[0]["GRAVADO"].ToString();
             txtISV.Text = compra.Rows[0]["ISV"].ToString();
@@ -96,6 +96,7 @@ namespace Prototipo_MarZel.Formularios
 
             //Actualiza el proveedor y demas campos.
             txtNombre.Text = compra.Rows[0]["NOMBRE"].ToString();
+            txtFactura.Text = compra.Rows[0]["FACTURA"].ToString();
             dtpFecha.Value = Convert.ToDateTime(compra.Rows[0]["FECHA"]);
             txtCodigoBarra.Clear();
             Limpiar_Campos();
@@ -282,10 +283,10 @@ namespace Prototipo_MarZel.Formularios
 
         private void btnRTN_Click(object sender, EventArgs e)
         {
-            DataTable Proveedor = Temp_Compra_Controller.Cargar_Compra(Id_Compra);
-            string rtn = Proveedor.Rows[0]["RTN"].ToString();
+            DataTable Proveedor = Temp_Compra_Controller.Cargar_Compra();
+            string rtn = Proveedor.Rows[0]["RTN"].ToString() ?? "";
 
-            FRM_GESTIONAR_PROVEEDOR frm_gestionar_proveedor = new FRM_GESTIONAR_PROVEEDOR(rtn, Id_Compra);
+            FRM_GESTIONAR_PROVEEDOR frm_gestionar_proveedor = new FRM_GESTIONAR_PROVEEDOR(rtn);
             if (frm_gestionar_proveedor.ShowDialog() == DialogResult.OK)
                 Cargar_Datos_Compra();
         }
@@ -295,7 +296,7 @@ namespace Prototipo_MarZel.Formularios
             string Nombre = txtNombre.Text.Trim();
             string Factura = txtFactura.Text.Trim();
 
-            DataTable Detalles = Temp_Compra_Controller.Cargar_Detalles(Id_Compra);
+            DataTable Detalles = Temp_Compra_Controller.Cargar_Detalles();
             if (Detalles.Rows.Count == 0)
             {
                 MessageBox.Show("Debe ingresar al menos un producto.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -306,7 +307,7 @@ namespace Prototipo_MarZel.Formularios
             if (string.IsNullOrWhiteSpace(Nombre))
             {
                 MessageBox.Show("Debe ingresar un Proveedor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                FRM_GESTIONAR_PROVEEDOR frm_gestionar_proveedor = new FRM_GESTIONAR_PROVEEDOR(null, Id_Compra);
+                FRM_GESTIONAR_PROVEEDOR frm_gestionar_proveedor = new FRM_GESTIONAR_PROVEEDOR(string.Empty);
                 if (frm_gestionar_proveedor.ShowDialog() == DialogResult.OK)
                     Cargar_Datos_Compra();
                 return false;
@@ -330,7 +331,7 @@ namespace Prototipo_MarZel.Formularios
             }
             else
             {
-                DataTable Compra = Temp_Compra_Controller.Cargar_Compra(Id_Compra);
+                DataTable Compra = Temp_Compra_Controller.Cargar_Compra();
                 if (Temp_Compra_Controller.Existe_Factura(Factura) && Factura != Compra.Rows[0]["Factura"].ToString())
                 {
                     MessageBox.Show("La factura ingresada ya existe. Por favor, ingrese una factura diferente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -360,6 +361,7 @@ namespace Prototipo_MarZel.Formularios
             {
                 Compra_Controller.Agregar_Compra(Id_Compra);
             }
+            this.Close();
         }
 
         private void dtpFecha_ValueChanged(object sender, EventArgs e)

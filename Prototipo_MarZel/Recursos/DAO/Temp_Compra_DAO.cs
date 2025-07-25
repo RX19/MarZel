@@ -21,7 +21,6 @@ namespace Prototipo_MarZel
 
             query = "DELETE FROM TEMP_DETALLES_COMPRA";
             conexion.EjecutarComando(query, null);
-
         }
 
         // Agregar un registro en TEMP_COMPRAS.
@@ -85,22 +84,17 @@ namespace Prototipo_MarZel
         }
 
         // Carga los detalles de compra desde TEMP_DETALLES_COMPRA
-        public override DataTable Cargar_Detalles(int Id_Compra)
+        public override DataTable Cargar_Detalles()
         {
             ConexionBD conexion = new ConexionBD();
             string query = @"
                 SELECT  *
-                FROM    TEMP_DETALLES_COMPRA
-                WHERE   ID_COMPRA = @ID_COMPRA";
-            SqlParameter[] parametros =
-            {
-                new SqlParameter("@ID_COMPRA", Id_Compra)
-            };
-            return conexion.EjecutarConsulta(query, parametros);
+                FROM    TEMP_DETALLES_COMPRA";
+            return conexion.EjecutarConsulta(query, null);
         }
 
         // Cargar los datos actualizados de la compra desde TEMP_COMPRA.
-        public override DataTable Cargar_Compra(int Id_Compra)
+        public override DataTable Cargar_Compra()
         {
             string query = string.Empty;
             ConexionBD conexion = new ConexionBD();
@@ -110,13 +104,8 @@ namespace Prototipo_MarZel
             query = @"
                 SELECT  SUM(CASE WHEN ID_ISV = 1 THEN IMPORTE END) AS GRAVADO,
                         SUM(CASE WHEN ID_ISV = 2 THEN IMPORTE END) AS EXENTO
-                FROM    TEMP_DETALLES_COMPRA
-                WHERE   ID_COMPRA = @ID_COMPRA";
-            parametros = new SqlParameter[]
-            {
-                new SqlParameter("@ID_COMPRA", Id_Compra)
-            };
-            DataTable result = conexion.EjecutarConsulta(query, parametros);
+                FROM    TEMP_DETALLES_COMPRA";
+            DataTable result = conexion.EjecutarConsulta(query, null);
 
             if (result.Rows.Count > 0)
             {
@@ -132,28 +121,21 @@ namespace Prototipo_MarZel
                         GRAVADO = @GRAVADO,
                         ISV = @ISV,
                         EXENTO = @EXENTO,
-                        TOTAL = @TOTAL
-                WHERE   ID_COMPRA = @ID_COMPRA";
+                        TOTAL = @TOTAL";
                 parametros = new SqlParameter[]
                 {
                     new SqlParameter("@SUBTOTAL", Subtotal),
                     new SqlParameter("@GRAVADO", Gravado),
                     new SqlParameter("@ISV", ISV),
                     new SqlParameter("@EXENTO", Exento),
-                    new SqlParameter("@TOTAL", Total),
-                    new SqlParameter("@ID_COMPRA", Id_Compra),
+                    new SqlParameter("@TOTAL", Total)
                 };
                 conexion.EjecutarComando(query, parametros);
 
                 query = @"
                 SELECT  *
-                FROM    TEMP_COMPRAS
-                WHERE   ID_COMPRA = @ID_COMPRA";
-                parametros = new SqlParameter[]
-                {
-                    new SqlParameter("@ID_COMPRA", Id_Compra)
-                };
-                resultado = conexion.EjecutarConsulta(query, parametros);
+                FROM    TEMP_COMPRAS";
+                resultado = conexion.EjecutarConsulta(query, null);
             }
             return resultado;
         }
@@ -213,11 +195,9 @@ namespace Prototipo_MarZel
             query = @"
                 SELECT  CANTIDAD, DESCUENTO, COSTO
                 FROM    TEMP_DETALLES_COMPRA
-                WHERE   ID_COMPRA = @ID_COMPRA 
-                AND     CODIGO_BARRA = @CODIGO_BARRA";
+                WHERE   CODIGO_BARRA = @CODIGO_BARRA";
             parametros = new SqlParameter[]
             {
-                new SqlParameter("@ID_COMPRA", Id_Compra),
                 new SqlParameter("@CODIGO_BARRA", Codigo_Barra)
             };
 
@@ -241,8 +221,7 @@ namespace Prototipo_MarZel
                             PRECIO_UNITARIO = @PRECIO_UNITARIO,
                             ID_CATEGORIA = @ID_CATEGORIA,
                             FECHA_CREACION = @FECHA_CREACION
-                    WHERE   ID_COMPRA = @ID_COMPRA 
-                    AND     CODIGO_BARRA = @CODIGO_BARRA";
+                    WHERE   CODIGO_BARRA = @CODIGO_BARRA";
                 parametros = new SqlParameter[]
                 {
                     new SqlParameter("DESCRIPCION", Descripcion),
@@ -255,7 +234,6 @@ namespace Prototipo_MarZel
                     new SqlParameter("PRECIO_UNITARIO", Precio_Unitario),
                     new SqlParameter("ID_CATEGORIA", Id_Categoria),
                     new SqlParameter("FECHA_CREACION", Fecha_Creacion),
-                    new SqlParameter("ID_COMPRA", Id_Compra),
                     new SqlParameter("@CODIGO_BARRA", Codigo_Barra)
                 };
                 conexion.EjecutarComando(query, parametros);
@@ -293,7 +271,7 @@ namespace Prototipo_MarZel
 
         }
 
-        public override void Modificar_Proveedor(int Id_Compra, int? Id_Proveedor, string RTN, string Nombre, string Direccion, string Celular)
+        public override void Modificar_Proveedor(int? Id_Proveedor, string RTN, string Nombre, string Direccion, string Celular)
         {
             ConexionBD conexion = new ConexionBD();
             string query = @"
@@ -302,16 +280,14 @@ namespace Prototipo_MarZel
                     RTN = @RTN,
                     NOMBRE = @NOMBRE,
                     DIRECCION = @DIRECCION,
-                    CELULAR = @CELULAR
-                WHERE ID_COMPRA = @ID_COMPRA";
+                    CELULAR = @CELULAR";
             SqlParameter[] parametros =
             {
                 new SqlParameter("@ID_PROVEEDOR", (object)Id_Proveedor ?? DBNull.Value),
                 new SqlParameter("@RTN", RTN),
                 new SqlParameter("@NOMBRE", Nombre),
                 new SqlParameter("@DIRECCION", Direccion),
-                new SqlParameter("@CELULAR", Celular),
-                new SqlParameter("@ID_COMPRA", Id_Compra)
+                new SqlParameter("@CELULAR", Celular)
             };
             conexion.EjecutarComando(query, parametros);
         }
@@ -348,33 +324,54 @@ namespace Prototipo_MarZel
             conexion.EjecutarComando(query, parametros);
         }
 
-        public override void Asignar_ID_Proveedor(int Id_Compra, int Id_Proveedor)
+        public override void Asignar_ID_Proveedor(int Id_Proveedor)
         {
             ConexionBD conexion = new ConexionBD();
             string query = @"
                 UPDATE TEMP_COMPRAS
-                SET ID_PROVEEDOR = @ID_PROVEEDOR
-                WHERE ID_COMPRA = @ID_COMPRA";
+                SET ID_PROVEEDOR = @ID_PROVEEDOR";
             SqlParameter[] parametros =
             {
-                new SqlParameter("@ID_PROVEEDOR", Id_Proveedor),
+                new SqlParameter("@ID_PROVEEDOR", Id_Proveedor)
+            };
+            conexion.EjecutarComando(query, parametros);
+        }
+
+        public override void Asignar_ID_Compra(int Id_Compra)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = string.Empty;
+            SqlParameter[] parametros;
+
+            query = @"
+                UPDATE TEMP_COMPRAS
+                SET ID_COMPRA = @ID_COMPRA";
+            parametros = new SqlParameter[]
+            {
+                new SqlParameter("@ID_COMPRA", Id_Compra)
+            };
+            conexion.EjecutarComando(query, parametros);
+
+            query = @"
+                UPDATE TEMP_DETALLES_COMPRA
+                SET ID_COMPRA = @ID_COMPRA";
+            parametros = new SqlParameter[]
+            {
                 new SqlParameter("@ID_COMPRA", Id_Compra)
             };
             conexion.EjecutarComando(query, parametros);
         }
 
-        public override void Asignar_ID_Producto(int Id_Compra, int Id_Producto, string Codigo_Barra)
+        public override void Asignar_ID_Producto(int Id_Producto, string Codigo_Barra)
         {
             ConexionBD conexion = new ConexionBD();
             string query = @"
-                UPDATE TEMP_DETALLES_COMPRA
+                UPDATE  TEMP_DETALLES_COMPRA
                 SET     ID_PRODUCTO = @ID_PRODUCTO
-                WHERE   ID_COMPRA = @ID_COMPRA
-                AND     CODIGO_BARRA = @CODIGO_BARRA";
+                WHERE   CODIGO_BARRA = @CODIGO_BARRA";
             SqlParameter[] parametros =
             {
                 new SqlParameter("@ID_PRODUCTO", Id_Producto),
-                new SqlParameter("@ID_COMPRA", Id_Compra),
                 new SqlParameter("@CODIGO_BARRA", Codigo_Barra)
             };
             conexion.EjecutarComando(query, parametros);

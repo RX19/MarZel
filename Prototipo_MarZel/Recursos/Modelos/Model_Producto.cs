@@ -15,6 +15,8 @@ namespace Prototipo_MarZel
         public abstract void ModificarProducto(string codigo,string desc,int id,decimal PU, decimal PC);
         // Pendiente : Insertar, Actualizar, Eliminar...
 
+        public abstract DataTable Cargar_Producto(int Id_Producto);
+
         public abstract DataTable Cargar_Producto(string Codigo_Barra);
 
         public abstract int? Buscar_Id_Producto(string Codigo_Barra);
@@ -22,5 +24,7 @@ namespace Prototipo_MarZel
         public abstract void Agregar_Producto(string Codigo_Barra, string Descripcion, int Id_ISV, decimal Precio_Completo, 
             decimal Precio_Unitario, int Id_Categoria, int Existencia);
 
+        public abstract void Modificar_Producto(int Id_Producto, string Codigo_Barra, string Descripcion, int Id_ISV, decimal Precio_Completo,
+            decimal Precio_Unitario, int Id_Categoria, int Existencia);
     }
 }

@@ -18,7 +18,6 @@ namespace Prototipo_MarZel.Formularios
         Temp_Compra_Controller Temp_Compra_Controller = new Temp_Compra_Controller();
         bool Elegir = false;
         int? Id_Proveedor = null;
-        int? Id_Compra = null;
 
         public FRM_GESTIONAR_PROVEEDOR()
         {
@@ -36,10 +35,9 @@ namespace Prototipo_MarZel.Formularios
             txtCelular.Text = Proveedor.Rows[0]["CELULAR"].ToString();
         }
 
-        public FRM_GESTIONAR_PROVEEDOR(string RTN, int Id_Compra)
+        public FRM_GESTIONAR_PROVEEDOR(string RTN)
         {
             InitializeComponent();
-            this.Id_Compra = Id_Compra;
             Elegir = true;
             if (RTN == "N/A")
             {
@@ -75,7 +73,7 @@ namespace Prototipo_MarZel.Formularios
                 return false;
             }
 
-            if (Id_Compra == null)
+            if (!Elegir)
             {
                 if (Id_Proveedor == null)
                 {
@@ -137,7 +135,7 @@ namespace Prototipo_MarZel.Formularios
                 int? Id_Proveedor = null;
                 if (Proveedor.Rows.Count > 0)
                     Id_Proveedor = Convert.ToInt32(Proveedor.Rows[0]["ID_PROVEEDOR"]);
-                Temp_Compra_Controller.Modificar_Proveedor(Id_Compra.Value, Id_Proveedor, RTN, Nombre, Direccion, Celular);
+                Temp_Compra_Controller.Modificar_Proveedor(Id_Proveedor, RTN, Nombre, Direccion, Celular);
             }
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -158,7 +156,7 @@ namespace Prototipo_MarZel.Formularios
             }
             else
             {
-                Proveedor = Temp_Compra_Controller.Cargar_Compra(Id_Compra.Value);
+                Proveedor = Temp_Compra_Controller.Cargar_Compra();
                 if (Proveedor.Rows[0]["RTN"].ToString() == RTN)
                 {
                     txtNombre.Text = Proveedor.Rows[0]["NOMBRE"].ToString();

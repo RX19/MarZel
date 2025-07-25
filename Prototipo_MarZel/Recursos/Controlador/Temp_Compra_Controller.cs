@@ -27,14 +27,14 @@ namespace Prototipo_MarZel
             Temp_Compra_DAO.Capturar_Detalles(Id_Compra);
         }
 
-        public DataTable Cargar_Detalles(int Id_Compra)
+        public DataTable Cargar_Detalles()
         {
-            return Temp_Compra_DAO.Cargar_Detalles(Id_Compra);
+            return Temp_Compra_DAO.Cargar_Detalles();
         }
 
-        public DataTable Cargar_Compra(int Id_Compra)
+        public DataTable Cargar_Compra()
         {
-            return Temp_Compra_DAO.Cargar_Compra(Id_Compra);
+            return Temp_Compra_DAO.Cargar_Compra();
         }
 
         public bool Buscar_En_Detalles_Compra(string Codigo_Barra)
@@ -60,9 +60,9 @@ namespace Prototipo_MarZel
                 Importe, Id_ISV, Precio_Completo, Precio_Unitario, Id_Categoria, Fecha_Creacion);
         }
 
-        public void Modificar_Proveedor(int Id_Compra, int? Id_Proveedor, string RTN, string Nombre, string Direccion, string Celular)
+        public void Modificar_Proveedor(int? Id_Proveedor, string RTN, string Nombre, string Direccion, string Celular)
         {
-            Temp_Compra_DAO.Modificar_Proveedor(Id_Compra, Id_Proveedor, RTN, Nombre, Direccion, Celular);
+            Temp_Compra_DAO.Modificar_Proveedor(Id_Proveedor, RTN, Nombre, Direccion, Celular);
         }
 
         public bool Existe_Factura(string Factura)
@@ -75,14 +75,19 @@ namespace Prototipo_MarZel
             Temp_Compra_DAO.Completar_Compra(Id_Compra, Factura, Fecha);
         }
 
-        public void Asignar_ID_Proveedor(int Id_Compra, int Id_Proveedor)
+        public void Asignar_ID_Proveedor(int Id_Proveedor)
         {
-            Temp_Compra_DAO.Asignar_ID_Proveedor(Id_Compra,Id_Proveedor);
+            Temp_Compra_DAO.Asignar_ID_Proveedor(Id_Proveedor);
         }
 
-        public void Asignar_ID_Producto(int Id_Compra, int Id_Producto, string Codigo_Barra)
+        public void Asignar_ID_Compra(int Id_Compra)
         {
-            Temp_Compra_DAO.Asignar_ID_Producto(Id_Compra, Id_Producto, Codigo_Barra);
+            Temp_Compra_DAO.Asignar_ID_Compra(Id_Compra);
+        }
+
+        public void Asignar_ID_Producto(int Id_Producto, string Codigo_Barra)
+        {
+            Temp_Compra_DAO.Asignar_ID_Producto(Id_Producto, Codigo_Barra);
         }
 
         public void Modificar_Detalle(int Id_Compra, int? Id_Producto, string Codigo_Barra, string Descripcion, int Cantidad,

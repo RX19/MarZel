@@ -68,6 +68,20 @@ namespace Prototipo_MarZel
 
         }
 
+        public override DataTable Cargar_Producto(int Id_Producto)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @$"
+                SELECT  *
+                FROM    TBL_PRODUCTOS
+                WHERE   ID_PRODUCTO = @ID_PRODUCTO";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@ID_PRODUCTO", Id_Producto)
+            };
+            return conexion.EjecutarConsulta(query, parametros);
+        }
+
         public override DataTable Cargar_Producto(string Codigo_Barra)
         {
             ConexionBD conexion = new ConexionBD();
@@ -115,6 +129,34 @@ namespace Prototipo_MarZel
                 new SqlParameter("@PRECIO_UNITARIO", Precio_Unitario),
                 new SqlParameter("@ID_CATEGORIA", Id_Categoria),
                 new SqlParameter("@EXISTENCIA", Existencia)
+            };
+            conexion.EjecutarComando(query, parametros);
+        }
+
+        public override void Modificar_Producto(int Id_Producto, string Codigo_Barra, string Descripcion, int Id_ISV, decimal Precio_Completo,
+            decimal Precio_Unitario, int Id_Categoria, int Existencia)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @$"
+                UPDATE TBL_PRODUCTOS
+                SET     CODIGO_BARRA = @CODIGO_BARRA,
+                        DESCRIPCION = @DESCRIPCION,
+                        ID_ISV = @ID_ISV,
+                        PRECIO_COMPLETO = @PRECIO_COMPLETO,
+                        PRECIO_UNITARIO = @PRECIO_UNITARIO,
+                        ID_CATEGORIA = @ID_CATEGORIA,
+                        EXISTENCIA = @EXISTENCIA
+                WHERE   ID_PRODUCTO = @ID_PRODUCTO";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@CODIGO_BARRA",Codigo_Barra),
+                new SqlParameter("@DESCRIPCION",Descripcion),
+                new SqlParameter("@ID_ISV",Id_ISV),
+                new SqlParameter("@PRECIO_COMPLETO",Precio_Completo),
+                new SqlParameter("@PRECIO_UNITARIO",Precio_Unitario),
+                new SqlParameter("@ID_CATEGORIA",Id_Categoria),
+                new SqlParameter("@EXISTENCIA",Existencia),
+                new SqlParameter("@ID_PRODUCTO",Id_Producto),
             };
             conexion.EjecutarComando(query, parametros);
         }
