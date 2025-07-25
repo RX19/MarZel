@@ -173,6 +173,25 @@ namespace Prototipo_MarZel
                 MTBC_MENU.SelectedTab = TP_COMPRAS;
             }
 
+            if (MTBC_MENU.SelectedTab == TP_CLIENTES)
+            {
+                for (double i = 1.0; i >= 0.2; i -= 0.05)
+                {
+                    this.Opacity = i;
+                    await Task.Delay(15);
+                }
+                this.Visible = false;
+                frm_clientes.ShowDialog();
+                this.Visible = true;
+                for (double i = 0.2; i <= 1.0; i += 0.05)
+                {
+                    this.Opacity = i;
+                    await Task.Delay(15);
+                }
+                this.Opacity = 1.0;
+                MTBC_MENU.SelectedTab = TP_COMPRAS;
+            }
+
         }
 
         private void BTN_PRUEBA_Click(object sender, EventArgs e)

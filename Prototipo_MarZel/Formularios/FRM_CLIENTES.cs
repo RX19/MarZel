@@ -1,100 +1,97 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Prototipo_MarZel.Formularios
 {
     public partial class FRM_CLIENTES : MaterialSkin.Controls.MaterialForm
     {
-        private string currentRTN = string.Empty;
+        private readonly Cliente_Controller Cliente_Controller = new Cliente_Controller();
 
         public FRM_CLIENTES()
         {
             InitializeComponent();
         }
+        public void Cargar_Clientes()
+        {
+            DataTable Clientes = Cliente_Controller.Cargar_Clientes();
+            dgvClientes.DataSource = null;
+            dgvClientes.DataSource = Clientes;
+            dgvClientes.Columns["ID_CLIENTE"].Visible = false;
+            dgvClientes.ClearSelection();
+            txtBuscar.Clear();
+        }
 
         private void FRM_CLIENTES_Load(object sender, EventArgs e)
         {
+            Cargar_Clientes();
 
+            //----------------------------------------------------------------
+            // Diseño del formulario para diferentes tamaños de pantalla.
+            int positionx = (this.Width - 974) / 2;
+            dgvClientes.Width = this.Width - 100;
+            dgvClientes.Height = this.Height - 250;
+
+            dgvClientes.Location = new Point(50, 200);
+            lblBuscar.Location = new Point(positionx, 124);
+            txtBuscar.Location = new Point(positionx + 69, 108);
+            btnAgregarCliente.Location = new Point(positionx + 434, 115);
+            btnEditarCliente.Location = new Point(positionx + 624, 115);
+            btnEliminarCliente.Location = new Point(positionx + 798, 115);
+            //----------------------------------------------------------------
         }
 
-        private void materialButton2_Click(object sender, EventArgs e)
+        private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
-            this.Close();
+            FRM_GESTIONAR_CLIENTE frm_gestionar_cliente = new FRM_GESTIONAR_CLIENTE();
+
+            if (frm_gestionar_cliente.ShowDialog() == DialogResult.OK)
+                Cargar_Clientes();
         }
 
-        private void materialButton3_Click(object sender, EventArgs e)
+        private void btnEditarCliente_Click(object sender, EventArgs e)
         {
-            string rtn = TXT_RTN.Text.Trim();
-            if (!string.IsNullOrEmpty(rtn))
+            if (dgvClientes.CurrentRow == null) return;
+
+            int Id_Cliente = Convert.ToInt32(dgvClientes.CurrentRow.Cells["ID_CLIENTE"].Value);
+            FRM_GESTIONAR_CLIENTE frm_gestionar_cliente = new FRM_GESTIONAR_CLIENTE(Id_Cliente);
+
+            if (frm_gestionar_cliente.ShowDialog() == DialogResult.OK)
+                Cargar_Clientes();
+        }
+
+        private void btnEliminarCliente_Click(object sender, EventArgs e)
+        {
+            if (dgvClientes.CurrentRow == null) return;
+
+            int Id_Cliente = Convert.ToInt32(dgvClientes.CurrentRow.Cells["ID_CLIENTE"].Value);
+            DialogResult resultado = MessageBox.Show(
+                "¿Está seguro que desea eliminar al cliente?",
+                "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (resultado == DialogResult.Yes)
             {
-                currentRTN = rtn;
-                BuscarClientePorRTN(rtn);
+                Cliente_Controller.Eliminar_Cliente(Id_Cliente);
+                Cargar_Clientes();
             }
         }
 
-        private void BuscarClientePorRTN(string rtn)
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            var controller = new clientecontroller();
-            var cliente = controller.BuscarCliente(rtn);
+            string filtro = txtBuscar.Text.Trim();
 
-            if (cliente != null)
+            if (string.IsNullOrEmpty(filtro))
             {
-                TXT_NAME.Text = cliente.Nombre;
-                TXT_DIR.Text = cliente.Direccion;
-                TXT_CEL.Text = cliente.Celular;
-                materialButton1.Enabled = true;
-                TXT_NAME.Enabled = true;
-                TXT_DIR.Enabled = true;
-                TXT_CEL.Enabled = true;
-            }
-            else
-            {
-                MessageBox.Show("Cliente no encontrado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                TXT_NAME.Text = string.Empty;
-                TXT_DIR.Text = string.Empty;
-                TXT_CEL.Text = string.Empty;
-                materialButton1.Enabled = false;
-                TXT_NAME.Enabled = false;
-                TXT_DIR.Enabled = false;
-                TXT_CEL.Enabled = false;
-            }
-        }
-
-        private void materialButton1_Click(object sender, EventArgs e)
-        {
-            var controller = new clientecontroller();
-            var cliente = new model_cliente
-            {
-                RTN = currentRTN,
-                Nombre = TXT_NAME.Text.Trim(),
-                Direccion = TXT_DIR.Text.Trim(),
-                Celular = TXT_CEL.Text.Trim()
-            };
-
-            bool actualizado = controller.ModificarCliente(cliente);
-            if (actualizado)
-            {
-                MessageBox.Show(
-                    $"Cliente modificado correctamente:\n\n" +
-                    $"RTN: {cliente.RTN}\n" +
-                    $"Nombre: {cliente.Nombre}\n" +
-                    $"Dirección: {cliente.Direccion}\n" +
-                    $"Celular: {cliente.Celular}",
-                    "Modificación Exitosa",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
+                Cargar_Clientes();
             }
             else
             {
-                MessageBox.Show("No se pudo actualizar el cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DataTable Resultados_De_Busqueda = Cliente_Controller.Buscar_En_Clientes(filtro);
+                dgvClientes.DataSource = null;
+                dgvClientes.DataSource = Resultados_De_Busqueda;
+                dgvClientes.Columns["ID_CLIENTE"].Visible = false;
+                dgvClientes.ClearSelection();
             }
         }
     }
