@@ -262,5 +262,13 @@ namespace Prototipo_MarZel
                 CargarHistorialMovimientos();
             }
         }
+
+        private void BTN_FILTRAR_Click(object sender, EventArgs e)
+        {    
+            string filtro = TXT_FILTRO_PRODUCTO.Text.Trim();
+            DataTable movimientosFiltrados = movimientoController.FiltrarPorProducto(filtro);
+            DVC_HISTORIAL.DataSource = movimientosFiltrados;
+        }
+    }
     }
 }

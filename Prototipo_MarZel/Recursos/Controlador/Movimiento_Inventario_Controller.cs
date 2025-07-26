@@ -6,16 +6,18 @@ namespace Prototipo_MarZel.Recursos.Controlador
 {
     public class Movimiento_Inventario_Controller
     {
-        private Movimiento_Inventario_Base Movimiento_DAO;
-
-        public Movimiento_Inventario_Controller()
-        {
-            Movimiento_DAO = new Movimiento_Inventario_DAO();
-        }
+        private Movimiento_Inventario_DAO Movimiento_DAO;
+       
 
         public DataTable ObtenerMovimientos()
         {
             return Movimiento_DAO.ObtenerTodos();
+        }
+
+        // método para filtrar
+        public DataTable FiltrarPorProducto(string nombreProducto)
+        {
+            return Movimiento_DAO.FiltrarPorProducto(nombreProducto);   
         }
     }
 }
