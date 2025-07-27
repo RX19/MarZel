@@ -7,7 +7,7 @@ namespace Prototipo_MarZel
 {
     public class Compra_DAO : Compra_Base
     {
-        private Movimiento_Inventario_DAO Movimiento_DAO;
+        
 
         public override DataTable Cargar_Compras()
         {

@@ -269,6 +269,6 @@ namespace Prototipo_MarZel
             DataTable movimientosFiltrados = movimientoController.FiltrarPorProducto(filtro);
             DVC_HISTORIAL.DataSource = movimientosFiltrados;
         }
-    }
+    
     }
 }
