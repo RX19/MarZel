@@ -1,0 +1,27 @@
+name: Enviar a QA desde MAIN
+
+on:
+  workflow_dispatch:  # Se ejecuta manualmente
+
+jobs:
+  deploy:
+    name: Enviar código a rama QA
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repositorio
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Configurar Git
+      run: |
+       git config user.name "Deploy QA Bot"
+       git config user.email "pipeline-QA@example.com"
+
+
+    - name: Cambiar a rama QA y hacer merge de MAIN
+      run: |
+        git checkout qa
+        git merge origin/main --no-ff -m "Merge desde main a qa [automático]"
+        git push origin qa
