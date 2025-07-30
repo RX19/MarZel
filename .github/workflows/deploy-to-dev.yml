@@ -1,0 +1,26 @@
+name: Enviar a DEV desde MAIN
+
+on:
+  workflow_dispatch:  #ejecuta manualmente
+
+jobs:
+  deploy:
+    name: Enviar código a rama DEV
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repositorio
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  
+
+    - name: Configurar Git
+      run: |
+       git config user.name "Pipeline DEV"
+       git config user.email "pipeline-dev@example.com"
+
+    - name: Cambiar a rama DEV y hacer merge de MAIN
+      run: |
+        git checkout dev
+        git merge origin/main --no-ff -m "Merge desde main a dev [automático]"
+        git push origin dev
