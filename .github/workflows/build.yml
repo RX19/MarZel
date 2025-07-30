@@ -1,0 +1,26 @@
+name: Build WinForms App (.NET Framework)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+
+jobs:
+  build:
+    name: Build on Windows
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Restore NuGet packages
+      run: nuget restore Prototipo_MarZel.sln
+
+    - name: Build solution
+      run: msbuild Prototipo_MarZel.sln /p:Configuration=Release
