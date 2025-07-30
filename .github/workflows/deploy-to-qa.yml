@@ -16,7 +16,7 @@ jobs:
 
     - name: Obtener rama QA
       run: |
-        git fetch origin qa:qa
+        git fetch origin QA:QA
         
     - name: Configurar Git
       run: |
@@ -25,6 +25,6 @@ jobs:
 
     - name: Cambiar a rama QA y hacer merge desde MAIN
       run: |
-        git checkout qa
+        git checkout QA
         git merge origin/main --no-ff -m "Merge desde main a qa [automático]"
-        git push origin qa
+        git push origin QA
