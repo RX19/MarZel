@@ -25,10 +25,10 @@ jobs:
        git config user.email "pipeline-dev@example.com"
 
 
-    - name: Cambiar a rama QA y hacer merge desde MAIN
+    - name: Cambiar a rama DEV y hacer merge desde MAIN
       run: |
         git checkout DEV
-        git merge origin/main --no-ff -m "Merge desde main a qa [automático]"
+        git merge origin/main --no-ff -m "Merge desde main a DEV [automático]"
         git push origin DEV
  
  
