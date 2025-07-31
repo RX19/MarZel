@@ -2,9 +2,9 @@ name: Build WinForms App (.NET Framework)
 
 on:
   push:
-    branches: [main]
+    branches: [main,DEV,QA]
   pull_request:
-    branches: [main]
+    branches: [main,DEV,QA]
 
 
 jobs:

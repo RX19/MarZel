@@ -24,11 +24,9 @@ jobs:
        git config user.name "Pipeline DEV"
        git config user.email "pipeline-dev@example.com"
 
-    - name: Forzar DEV a que sea igual a MAIN
+    - name: Cambiar a rama DEV y hacer merge desde MAIN
       run: |
-        git fetch origin
-        git checkout main
-        git branch -f DEV
-        git push origin +DEV
-
+        git checkout DEV
+        git merge origin/main --no-ff -m "Merge desde main a DEV [automático]"
+        git push origin DEV
  
