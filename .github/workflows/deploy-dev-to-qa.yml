@@ -1,0 +1,32 @@
+name: Enviar a QA desde DEV
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Enviar código a rama QA desde DEV
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repositorio
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Obtener rama QA
+      run: |
+        git fetch origin QA:QA
+
+        
+    - name: Configurar Git
+      run: |
+       git config user.name "Pipeline DEV"
+       git config user.email "pipeline-dev@example.com"
+
+    - name: Cambiar a rama QA y hacer merge desde DEV
+      run: |
+        git checkout QA
+        git merge origin/DEV --no-ff -m "Merge desde DEV a QA [automático]"
+        git push origin QA
+ 
