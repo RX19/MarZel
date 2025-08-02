@@ -84,7 +84,15 @@ namespace Prototipo_MarZel.Formularios
             DataTable Detalles_Compra = Temp_Compra_Controller.Cargar_Detalles();
             dgvDetallesCompra.DataSource = null;
             dgvDetallesCompra.DataSource = Detalles_Compra;
+            dgvDetallesCompra.Sort(dgvDetallesCompra.Columns["FECHA_CREACION"], ListSortDirection.Descending);
             dgvDetallesCompra.ClearSelection();
+            dgvDetallesCompra.Columns["ID_COMPRA"].Visible = false;
+            dgvDetallesCompra.Columns["ID_PRODUCTO"].Visible = false;
+            dgvDetallesCompra.Columns["PRECIO_COMPLETO"].Visible = false;
+            dgvDetallesCompra.Columns["PRECIO_UNITARIO"].Visible = false;
+            dgvDetallesCompra.Columns["ID_ISV"].Visible = false;
+            dgvDetallesCompra.Columns["ID_CATEGORIA"].Visible = false;
+            dgvDetallesCompra.Columns["FECHA_CREACION"].Visible = false;
 
             //Actualiza los resultados finales.
             DataTable compra = Temp_Compra_Controller.Cargar_Compra();
@@ -112,11 +120,48 @@ namespace Prototipo_MarZel.Formularios
             Cargar_Categorias();
             Cargar_Tipos_ISV();
             Cargar_Datos_Compra();
+            
+            if (Id_Compra == 0) btnEliminar.Visible = false;
+            else btnEliminar.Visible = true;
         }
 
         private void FRM_GESTIONAR_COMPRA_Load(object sender, EventArgs e)
         {
             Inicializar_Compra();
+
+            //----------------------------------------------------------------
+            //Diseño del formulario para diferentes tamaños de pantalla.
+            int position_y;
+            dgvDetallesCompra.Width = this.Width - 585;
+            dgvDetallesCompra.Height = this.Height - 165;
+
+            position_y = (this.Height - 203 - 245 - 165) / 2;
+            txtCodigoBarra.Location = new Point(20, position_y + 203);
+            txtDescripcion.Location = new Point(240, position_y + 203);
+
+            txtCantidad.Location = new Point(57, position_y + 268);
+            txtCosto.Location = new Point(172, position_y + 268);
+            txtDescuento.Location = new Point(287, position_y + 268);
+            txtImporte.Location = new Point(407, position_y + 268);
+
+            txtPrecioCompleto.Location = new Point(57, position_y + 333);
+            txtPrecioUnitario.Location = new Point(192, position_y + 333);
+            cmbTiposISV.Location = new Point(327, position_y + 333);
+
+            cmbCategorias.Location = new Point(57, position_y + 398);
+            txtAgregarDetalle.Location = new Point(443, position_y + 405);
+
+
+            position_y = (this.Height - 165);
+            dgvDetallesCompra.Location = new Point(565, 115);
+            txtSubtotal.Location = new Point(57, position_y);
+            txtGravado.Location = new Point(172, position_y);
+            txtExento.Location = new Point(287, position_y);
+            txtISV.Location = new Point(402, position_y);
+            txtTotal.Location = new Point(172, position_y + 65);
+            btnGuardar.Location = new Point(402, position_y + 72);
+            btnEliminar.Location = new Point(57, position_y + 72);
+            //----------------------------------------------------------------
         }
 
         private void txtCodigoBarra_TextChanged(object sender, EventArgs e)
@@ -372,6 +417,28 @@ namespace Prototipo_MarZel.Formularios
         private void dtpFecha_ValueChanged(object sender, EventArgs e)
         {
             Completar_Compra();
+        }
+
+        private void dgvDetallesCompra_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvDetallesCompra.Columns[e.ColumnIndex].Name == "Editar" && e.RowIndex >= 0)
+            {
+                string CodigoBarra = dgvDetallesCompra.Rows[e.RowIndex].Cells["CODIGO_BARRA"].Value.ToString() ?? "";
+                FRM_GESTIONAR_PRODUCTO_COMPRA frm_gestionar_producto_compra = new FRM_GESTIONAR_PRODUCTO_COMPRA(CodigoBarra, Id_Compra);
+                frm_gestionar_producto_compra.ShowDialog();
+                Cargar_Datos_Compra();
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "¿Desea eliminar esta compra?", "Confirmación",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result != DialogResult.Yes) return;
+            Compra_Controller.Eliminar_Compra(Id_Compra);
+            this.Close();            
         }
     }
 }

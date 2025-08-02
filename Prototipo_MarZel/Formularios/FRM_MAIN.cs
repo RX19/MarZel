@@ -2,6 +2,7 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using Prototipo_MarZel.Formularios;
 using Prototipo_MarZel.Recursos.Controlador;
+using Prototipo_MarZel.Recursos.DAO;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -14,6 +15,8 @@ namespace Prototipo_MarZel
         FRM_USUARIOS frm_usuarios = new FRM_USUARIOS();
         Login_Controller LoginController = new Login_Controller();
         FRM_CLIENTES frm_clientes = new FRM_CLIENTES();
+        int Id_Usuario;
+        string Nombre_Usuario;
 
         private Producto_Controller Producto_Controller = new Producto_Controller();
 
@@ -39,6 +42,8 @@ namespace Prototipo_MarZel
             DataRow fila = tabla_express.Rows[0];
             LBL_NOMBRE.Text = fila["Nombre"].ToString();
             LBL_CORREO.Text = fila["Correo"].ToString();
+            Id_Usuario = Convert.ToInt32(fila["Id_Usuario"]);
+            Nombre_Usuario = fila["Nombre"].ToString() ?? "";
 
         }
         private async Task FadeOutAsync(Form form)
@@ -70,7 +75,29 @@ namespace Prototipo_MarZel
             fondo.SendToBack();
             this.WindowState = FormWindowState.Maximized;
             this.MaximizeBox = false;
+            //esto es el servicio de correos totalmente funcional, pero no se usa por el momento.
+            /*
+            Existencia_DAO existenciaDao = new Existencia_DAO();
+            DataTable productosBajos = existenciaDao.ObtenerProductosBajaExistencia();
 
+            if (productosBajos.Rows.Count > 0)
+            {
+                try
+                {
+                    string texto = "Adjunto se encuentra la lista de productos con baja existencia.";
+                    string destinatario = "zelayaroberto@rocketmail.com"; //cambiar esto por el LBL_CORREO :v
+                    string rutaPDF = Path.Combine(Application.StartupPath, "ProductosBajos.pdf");
+                    PDFHelper.GenerarPDFDesdeDataTable(productosBajos, rutaPDF);
+                    CorreoHelper.EnviarCorreo(texto, destinatario, rutaPDF);
+
+                    MessageBox.Show("Se ah enviado un correo con los productos con bajas Existencias.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al enviar el correo:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            */
 
 
         }
@@ -170,7 +197,7 @@ namespace Prototipo_MarZel
                     await Task.Delay(15);
                 }
                 this.Opacity = 1.0;
-                MTBC_MENU.SelectedTab = TP_COMPRAS;
+                MTBC_MENU.SelectedTab = TP_INICIO;
             }
 
             if (MTBC_MENU.SelectedTab == TP_CLIENTES)
@@ -189,7 +216,27 @@ namespace Prototipo_MarZel
                     await Task.Delay(15);
                 }
                 this.Opacity = 1.0;
-                MTBC_MENU.SelectedTab = TP_CLIENTES;
+                MTBC_MENU.SelectedTab = TP_INICIO;
+            }
+
+            if (MTBC_MENU.SelectedTab == TP_VENTAS)
+            {
+                for (double i = 1.0; i >= 0.2; i -= 0.05)
+                {
+                    this.Opacity = i;
+                    await Task.Delay(15);
+                }
+                this.Visible = false;
+                FRM_VENTAS frm_ventas = new FRM_VENTAS(Id_Usuario, Nombre_Usuario);
+                frm_ventas.ShowDialog();
+                this.Visible = true;
+                for (double i = 0.2; i <= 1.0; i += 0.05)
+                {
+                    this.Opacity = i;
+                    await Task.Delay(15);
+                }
+                this.Opacity = 1.0;
+                MTBC_MENU.SelectedTab = TP_INICIO;
             }
 
         }

@@ -53,6 +53,7 @@
             txtBuscar.TabIndex = 11;
             txtBuscar.Text = "";
             txtBuscar.TrailingIcon = null;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
             // lblBuscar
             // 

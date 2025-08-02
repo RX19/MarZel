@@ -40,14 +40,14 @@ namespace Prototipo_MarZel
             return conexion.EjecutarConsulta(query, parametros);
         }
 
-        public override void Agregar_Cliente(string RTN, string Nombre, string Direccion, string Celular, int Cant_Ventas, decimal Importe)
+        public override void Agregar_Cliente(string RTN, string Nombre, string Direccion, string Celular, int Cant_Compras, decimal Importe)
         {
             ConexionBD conexion = new ConexionBD();
             string query = @"
                 INSERT INTO TBL_CLIENTES (
-                    RTN, NOMBRE, DIRECCION, CELULAR, CANT_VENTAS, IMPORTE
+                    RTN, NOMBRE, DIRECCION, CELULAR, CANT_COMPRAS, IMPORTE
                 ) VALUES (
-                    @RTN, @NOMBRE, @DIRECCION, @CELULAR, @CANT_VENTAS, @IMPORTE
+                    @RTN, @NOMBRE, @DIRECCION, @CELULAR, @CANT_COMPRAS, @IMPORTE
                 )";
             SqlParameter[] parametros =
             {
@@ -55,7 +55,7 @@ namespace Prototipo_MarZel
                 new SqlParameter("@NOMBRE", Nombre),
                 new SqlParameter("@DIRECCION", Direccion),
                 new SqlParameter("@CELULAR", Celular),
-                new SqlParameter("@CANT_VENTAS", Cant_Ventas),
+                new SqlParameter("@CANT_COMPRAS", Cant_Compras),
                 new SqlParameter("@IMPORTE", Importe)
             };
             conexion.EjecutarComando(query, parametros);
@@ -82,7 +82,7 @@ namespace Prototipo_MarZel
             conexion.EjecutarComando(query, parametros);
         }
 
-        public override void Modificar_Cliente(int Id_Cliente, string RTN, string Nombre, string Direccion, string Celular, int Cant_Ventas, decimal Importe)
+        public override void Modificar_Cliente(int Id_Cliente, string RTN, string Nombre, string Direccion, string Celular, int Cant_Compras, decimal Importe)
         {
             ConexionBD conexion = new ConexionBD();
             string query = @"
@@ -91,7 +91,7 @@ namespace Prototipo_MarZel
                     NOMBRE = @NOMBRE,
                     DIRECCION = @DIRECCION,
                     CELULAR = @CELULAR,
-                    CANT_VENTAS = @CANT_VENTAS,
+                    CANT_COMPRAS = @CANT_COMPRAS,
                     IMPORTE = @IMPORTE
                 WHERE ID_CLIENTE = @ID_CLIENTE";
             SqlParameter[] parametros =
@@ -101,7 +101,7 @@ namespace Prototipo_MarZel
                 new SqlParameter("@NOMBRE", Nombre),
                 new SqlParameter("@DIRECCION", Direccion),
                 new SqlParameter("@CELULAR", Celular),
-                new SqlParameter("@CANT_VENTAS", Cant_Ventas),
+                new SqlParameter("@CANT_COMPRAS", Cant_Compras),
                 new SqlParameter("@IMPORTE", Importe)
             };
             conexion.EjecutarComando(query, parametros);

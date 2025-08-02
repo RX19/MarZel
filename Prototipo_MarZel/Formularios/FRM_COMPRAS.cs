@@ -26,8 +26,6 @@ namespace Prototipo_MarZel.Formularios
             dgvCompras.DataSource = compras;
             dgvCompras.Columns["ID_COMPRA"].Visible = false;
             dgvCompras.Columns["ID_PROVEEDOR"].Visible = false;
-            dgvCompras.Columns["SUBTOTAL"].Visible = false;
-            dgvCompras.Columns["FECHA"].DisplayIndex = 0;
             dgvCompras.ClearSelection();
             txtBuscar.Clear();
         }
@@ -65,6 +63,25 @@ namespace Prototipo_MarZel.Formularios
             FRM_GESTIONAR_COMPRA frm_gestionar_compra = new FRM_GESTIONAR_COMPRA(ID_Compra);
             frm_gestionar_compra.ShowDialog();
             Cargar_Compras();
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            string filtro = txtBuscar.Text.Trim();
+
+            if (string.IsNullOrEmpty(filtro))
+            {
+                Cargar_Compras();
+            }
+            else
+            {
+                DataTable Resultados_De_Busqueda = Compra_Controller.Buscar_En_Compras(filtro);
+                dgvCompras.DataSource = null;
+                dgvCompras.DataSource = Resultados_De_Busqueda;
+                dgvCompras.Columns["ID_COMPRA"].Visible = false;
+                dgvCompras.Columns["ID_PROVEEDOR"].Visible = false;
+                dgvCompras.ClearSelection();
+            }
         }
     }
 }

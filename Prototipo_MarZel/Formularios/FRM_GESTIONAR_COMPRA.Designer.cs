@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             txtCodigoBarra = new MaterialSkin.Controls.MaterialTextBox();
             txtDescripcion = new MaterialSkin.Controls.MaterialTextBox();
             txtCantidad = new MaterialSkin.Controls.MaterialTextBox();
@@ -39,6 +40,7 @@
             cmbTiposISV = new MaterialSkin.Controls.MaterialComboBox();
             cmbCategorias = new MaterialSkin.Controls.MaterialComboBox();
             dgvDetallesCompra = new DataGridView();
+            Editar = new DataGridViewLinkColumn();
             txtAgregarDetalle = new MaterialSkin.Controls.MaterialButton();
             txtSubtotal = new MaterialSkin.Controls.MaterialTextBox();
             txtGravado = new MaterialSkin.Controls.MaterialTextBox();
@@ -50,6 +52,7 @@
             dtpFecha = new DateTimePicker();
             btnGuardar = new MaterialSkin.Controls.MaterialButton();
             txtFactura = new MaterialSkin.Controls.MaterialTextBox();
+            btnEliminar = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)dgvDetallesCompra).BeginInit();
             SuspendLayout();
             // 
@@ -61,12 +64,12 @@
             txtCodigoBarra.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtCodigoBarra.Hint = "Código de Barra";
             txtCodigoBarra.LeadingIcon = null;
-            txtCodigoBarra.Location = new Point(32, 221);
+            txtCodigoBarra.Location = new Point(20, 220);
             txtCodigoBarra.MaxLength = 50;
             txtCodigoBarra.MouseState = MaterialSkin.MouseState.OUT;
             txtCodigoBarra.Multiline = false;
             txtCodigoBarra.Name = "txtCodigoBarra";
-            txtCodigoBarra.Size = new Size(100, 50);
+            txtCodigoBarra.Size = new Size(205, 50);
             txtCodigoBarra.TabIndex = 0;
             txtCodigoBarra.Text = "";
             txtCodigoBarra.TrailingIcon = null;
@@ -80,12 +83,12 @@
             txtDescripcion.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtDescripcion.Hint = "Descripción";
             txtDescripcion.LeadingIcon = null;
-            txtDescripcion.Location = new Point(148, 221);
+            txtDescripcion.Location = new Point(240, 220);
             txtDescripcion.MaxLength = 50;
             txtDescripcion.MouseState = MaterialSkin.MouseState.OUT;
             txtDescripcion.Multiline = false;
             txtDescripcion.Name = "txtDescripcion";
-            txtDescripcion.Size = new Size(100, 50);
+            txtDescripcion.Size = new Size(310, 50);
             txtDescripcion.TabIndex = 1;
             txtDescripcion.Text = "";
             txtDescripcion.TrailingIcon = null;
@@ -98,7 +101,7 @@
             txtCantidad.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtCantidad.Hint = "Cantidad";
             txtCantidad.LeadingIcon = null;
-            txtCantidad.Location = new Point(32, 289);
+            txtCantidad.Location = new Point(57, 285);
             txtCantidad.MaxLength = 50;
             txtCantidad.MouseState = MaterialSkin.MouseState.OUT;
             txtCantidad.Multiline = false;
@@ -117,7 +120,7 @@
             txtCosto.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtCosto.Hint = "Costo";
             txtCosto.LeadingIcon = null;
-            txtCosto.Location = new Point(148, 289);
+            txtCosto.Location = new Point(172, 285);
             txtCosto.MaxLength = 50;
             txtCosto.MouseState = MaterialSkin.MouseState.OUT;
             txtCosto.Multiline = false;
@@ -136,12 +139,12 @@
             txtPrecioCompleto.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtPrecioCompleto.Hint = "Precio Comp.";
             txtPrecioCompleto.LeadingIcon = null;
-            txtPrecioCompleto.Location = new Point(32, 362);
+            txtPrecioCompleto.Location = new Point(57, 350);
             txtPrecioCompleto.MaxLength = 50;
             txtPrecioCompleto.MouseState = MaterialSkin.MouseState.OUT;
             txtPrecioCompleto.Multiline = false;
             txtPrecioCompleto.Name = "txtPrecioCompleto";
-            txtPrecioCompleto.Size = new Size(100, 50);
+            txtPrecioCompleto.Size = new Size(120, 50);
             txtPrecioCompleto.TabIndex = 4;
             txtPrecioCompleto.Text = "";
             txtPrecioCompleto.TrailingIcon = null;
@@ -154,12 +157,12 @@
             txtDescuento.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtDescuento.Hint = "Descuento";
             txtDescuento.LeadingIcon = null;
-            txtDescuento.Location = new Point(264, 289);
+            txtDescuento.Location = new Point(287, 285);
             txtDescuento.MaxLength = 50;
             txtDescuento.MouseState = MaterialSkin.MouseState.OUT;
             txtDescuento.Multiline = false;
             txtDescuento.Name = "txtDescuento";
-            txtDescuento.Size = new Size(100, 50);
+            txtDescuento.Size = new Size(105, 50);
             txtDescuento.TabIndex = 4;
             txtDescuento.Text = "";
             txtDescuento.TrailingIcon = null;
@@ -174,7 +177,7 @@
             txtImporte.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtImporte.Hint = "Importe";
             txtImporte.LeadingIcon = null;
-            txtImporte.Location = new Point(370, 289);
+            txtImporte.Location = new Point(407, 285);
             txtImporte.MaxLength = 50;
             txtImporte.MouseState = MaterialSkin.MouseState.OUT;
             txtImporte.Multiline = false;
@@ -192,12 +195,12 @@
             txtPrecioUnitario.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtPrecioUnitario.Hint = "Precio Unit.";
             txtPrecioUnitario.LeadingIcon = null;
-            txtPrecioUnitario.Location = new Point(148, 362);
+            txtPrecioUnitario.Location = new Point(192, 350);
             txtPrecioUnitario.MaxLength = 50;
             txtPrecioUnitario.MouseState = MaterialSkin.MouseState.OUT;
             txtPrecioUnitario.Multiline = false;
             txtPrecioUnitario.Name = "txtPrecioUnitario";
-            txtPrecioUnitario.Size = new Size(100, 50);
+            txtPrecioUnitario.Size = new Size(120, 50);
             txtPrecioUnitario.TabIndex = 6;
             txtPrecioUnitario.Text = "";
             txtPrecioUnitario.TrailingIcon = null;
@@ -217,11 +220,11 @@
             cmbTiposISV.Hint = "ISV";
             cmbTiposISV.IntegralHeight = false;
             cmbTiposISV.ItemHeight = 43;
-            cmbTiposISV.Location = new Point(486, 290);
+            cmbTiposISV.Location = new Point(327, 350);
             cmbTiposISV.MaxDropDownItems = 4;
             cmbTiposISV.MouseState = MaterialSkin.MouseState.OUT;
             cmbTiposISV.Name = "cmbTiposISV";
-            cmbTiposISV.Size = new Size(121, 49);
+            cmbTiposISV.Size = new Size(180, 49);
             cmbTiposISV.StartIndex = 0;
             cmbTiposISV.TabIndex = 7;
             // 
@@ -240,22 +243,54 @@
             cmbCategorias.Hint = "Categoría";
             cmbCategorias.IntegralHeight = false;
             cmbCategorias.ItemHeight = 43;
-            cmbCategorias.Location = new Point(264, 363);
+            cmbCategorias.Location = new Point(57, 415);
             cmbCategorias.MaxDropDownItems = 4;
             cmbCategorias.MouseState = MaterialSkin.MouseState.OUT;
             cmbCategorias.Name = "cmbCategorias";
-            cmbCategorias.Size = new Size(121, 49);
+            cmbCategorias.Size = new Size(215, 49);
             cmbCategorias.StartIndex = 0;
             cmbCategorias.TabIndex = 8;
             // 
             // dgvDetallesCompra
             // 
-            dgvDetallesCompra.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDetallesCompra.Location = new Point(685, 103);
+            dgvDetallesCompra.AllowUserToAddRows = false;
+            dgvDetallesCompra.AllowUserToDeleteRows = false;
+            dgvDetallesCompra.AllowUserToResizeColumns = false;
+            dgvDetallesCompra.AllowUserToResizeRows = false;
+            dgvDetallesCompra.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDetallesCompra.BackgroundColor = SystemColors.InactiveCaption;
+            dgvDetallesCompra.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvDetallesCompra.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvDetallesCompra.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvDetallesCompra.Columns.AddRange(new DataGridViewColumn[] { Editar });
+            dgvDetallesCompra.Location = new Point(565, 115);
             dgvDetallesCompra.Name = "dgvDetallesCompra";
+            dgvDetallesCompra.ReadOnly = true;
+            dgvDetallesCompra.RowHeadersVisible = false;
             dgvDetallesCompra.RowHeadersWidth = 51;
-            dgvDetallesCompra.Size = new Size(497, 168);
+            dgvDetallesCompra.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dgvDetallesCompra.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvDetallesCompra.Size = new Size(750, 168);
             dgvDetallesCompra.TabIndex = 9;
+            dgvDetallesCompra.CellContentClick += dgvDetallesCompra_CellContentClick;
+            // 
+            // Editar
+            // 
+            Editar.ActiveLinkColor = SystemColors.ControlText;
+            Editar.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            Editar.HeaderText = "Editar";
+            Editar.Name = "Editar";
+            Editar.ReadOnly = true;
+            Editar.Text = "Editar";
+            Editar.UseColumnTextForLinkValue = true;
+            Editar.Width = 50;
             // 
             // txtAgregarDetalle
             // 
@@ -264,7 +299,7 @@
             txtAgregarDetalle.Depth = 0;
             txtAgregarDetalle.HighEmphasis = true;
             txtAgregarDetalle.Icon = null;
-            txtAgregarDetalle.Location = new Point(406, 376);
+            txtAgregarDetalle.Location = new Point(443, 422);
             txtAgregarDetalle.Margin = new Padding(4, 6, 4, 6);
             txtAgregarDetalle.MouseState = MaterialSkin.MouseState.HOVER;
             txtAgregarDetalle.Name = "txtAgregarDetalle";
@@ -286,7 +321,7 @@
             txtSubtotal.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtSubtotal.Hint = "Subtotal";
             txtSubtotal.LeadingIcon = null;
-            txtSubtotal.Location = new Point(32, 484);
+            txtSubtotal.Location = new Point(57, 500);
             txtSubtotal.MaxLength = 50;
             txtSubtotal.MouseState = MaterialSkin.MouseState.OUT;
             txtSubtotal.Multiline = false;
@@ -305,7 +340,7 @@
             txtGravado.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtGravado.Hint = "Gravado";
             txtGravado.LeadingIcon = null;
-            txtGravado.Location = new Point(148, 484);
+            txtGravado.Location = new Point(172, 500);
             txtGravado.MaxLength = 50;
             txtGravado.MouseState = MaterialSkin.MouseState.OUT;
             txtGravado.Multiline = false;
@@ -324,7 +359,7 @@
             txtExento.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtExento.Hint = "Exento";
             txtExento.LeadingIcon = null;
-            txtExento.Location = new Point(264, 483);
+            txtExento.Location = new Point(287, 500);
             txtExento.MaxLength = 50;
             txtExento.MouseState = MaterialSkin.MouseState.OUT;
             txtExento.Multiline = false;
@@ -343,7 +378,7 @@
             txtISV.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtISV.Hint = "I.S.V.";
             txtISV.LeadingIcon = null;
-            txtISV.Location = new Point(370, 483);
+            txtISV.Location = new Point(402, 500);
             txtISV.MaxLength = 50;
             txtISV.MouseState = MaterialSkin.MouseState.OUT;
             txtISV.Multiline = false;
@@ -362,12 +397,12 @@
             txtTotal.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtTotal.Hint = "Total";
             txtTotal.LeadingIcon = null;
-            txtTotal.Location = new Point(476, 484);
+            txtTotal.Location = new Point(172, 565);
             txtTotal.MaxLength = 50;
             txtTotal.MouseState = MaterialSkin.MouseState.OUT;
             txtTotal.Multiline = false;
             txtTotal.Name = "txtTotal";
-            txtTotal.Size = new Size(100, 50);
+            txtTotal.Size = new Size(215, 50);
             txtTotal.TabIndex = 15;
             txtTotal.Text = "";
             txtTotal.TrailingIcon = null;
@@ -379,7 +414,7 @@
             btnRTN.Depth = 0;
             btnRTN.HighEmphasis = true;
             btnRTN.Icon = null;
-            btnRTN.Location = new Point(22, 131);
+            btnRTN.Location = new Point(20, 160);
             btnRTN.Margin = new Padding(4, 6, 4, 6);
             btnRTN.MouseState = MaterialSkin.MouseState.HOVER;
             btnRTN.Name = "btnRTN";
@@ -401,12 +436,12 @@
             txtNombre.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtNombre.Hint = "Nombre";
             txtNombre.LeadingIcon = null;
-            txtNombre.Location = new Point(93, 123);
+            txtNombre.Location = new Point(100, 153);
             txtNombre.MaxLength = 50;
             txtNombre.MouseState = MaterialSkin.MouseState.OUT;
             txtNombre.Multiline = false;
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(285, 50);
+            txtNombre.Size = new Size(250, 50);
             txtNombre.TabIndex = 17;
             txtNombre.Text = "";
             txtNombre.TrailingIcon = null;
@@ -414,9 +449,9 @@
             // dtpFecha
             // 
             dtpFecha.Format = DateTimePickerFormat.Short;
-            dtpFecha.Location = new Point(554, 136);
+            dtpFecha.Location = new Point(455, 115);
             dtpFecha.Name = "dtpFecha";
-            dtpFecha.Size = new Size(96, 23);
+            dtpFecha.Size = new Size(95, 23);
             dtpFecha.TabIndex = 18;
             dtpFecha.Value = new DateTime(2025, 7, 21, 11, 24, 57, 0);
             dtpFecha.ValueChanged += dtpFecha_ValueChanged;
@@ -428,7 +463,7 @@
             btnGuardar.Depth = 0;
             btnGuardar.HighEmphasis = true;
             btnGuardar.Icon = null;
-            btnGuardar.Location = new Point(594, 497);
+            btnGuardar.Location = new Point(414, 572);
             btnGuardar.Margin = new Padding(4, 6, 4, 6);
             btnGuardar.MouseState = MaterialSkin.MouseState.HOVER;
             btnGuardar.Name = "btnGuardar";
@@ -449,21 +484,42 @@
             txtFactura.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtFactura.Hint = "No. Factura";
             txtFactura.LeadingIcon = null;
-            txtFactura.Location = new Point(395, 123);
+            txtFactura.Location = new Point(365, 153);
             txtFactura.MaxLength = 50;
             txtFactura.MouseState = MaterialSkin.MouseState.OUT;
             txtFactura.Multiline = false;
             txtFactura.Name = "txtFactura";
-            txtFactura.Size = new Size(153, 50);
+            txtFactura.Size = new Size(185, 50);
             txtFactura.TabIndex = 20;
             txtFactura.Text = "";
             txtFactura.TrailingIcon = null;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnEliminar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnEliminar.Depth = 0;
+            btnEliminar.HighEmphasis = true;
+            btnEliminar.Icon = null;
+            btnEliminar.Location = new Point(57, 572);
+            btnEliminar.Margin = new Padding(4, 6, 4, 6);
+            btnEliminar.MouseState = MaterialSkin.MouseState.HOVER;
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.NoAccentTextColor = Color.Empty;
+            btnEliminar.Size = new Size(88, 36);
+            btnEliminar.TabIndex = 21;
+            btnEliminar.Text = "ELIMINAR";
+            btnEliminar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnEliminar.UseAccentColor = false;
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // FRM_GESTIONAR_COMPRA
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1213, 591);
+            ClientSize = new Size(1330, 641);
+            Controls.Add(btnEliminar);
             Controls.Add(txtFactura);
             Controls.Add(btnGuardar);
             Controls.Add(dtpFecha);
@@ -522,5 +578,7 @@
         private DateTimePicker dtpFecha;
         private MaterialSkin.Controls.MaterialButton btnGuardar;
         private MaterialSkin.Controls.MaterialTextBox txtFactura;
+        private DataGridViewLinkColumn Editar;
+        private MaterialSkin.Controls.MaterialButton btnEliminar;
     }
 }

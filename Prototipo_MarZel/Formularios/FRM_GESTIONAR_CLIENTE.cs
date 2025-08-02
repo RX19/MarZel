@@ -15,11 +15,9 @@ namespace Prototipo_MarZel.Formularios
     public partial class FRM_GESTIONAR_CLIENTE : MaterialSkin.Controls.MaterialForm
     {
         Cliente_Controller Cliente_Controller = new Cliente_Controller();
-        // If you have a Temp_Venta_Controller, uncomment the next line:
-        // Temp_Venta_Controller Temp_Venta_Controller = new Temp_Venta_Controller();
+        Temp_Venta_Controller Temp_Venta_Controller = new Temp_Venta_Controller();
         bool Elegir = false;
         int? Id_Cliente = null;
-        int? Id_Venta = null;
 
         public FRM_GESTIONAR_CLIENTE()
         {
@@ -37,10 +35,9 @@ namespace Prototipo_MarZel.Formularios
             txtCelular.Text = Cliente.Rows[0]["CELULAR"].ToString();
         }
 
-        public FRM_GESTIONAR_CLIENTE(string RTN, int Id_Venta)
+        public FRM_GESTIONAR_CLIENTE(string RTN)
         {
             InitializeComponent();
-            this.Id_Venta = Id_Venta;
             Elegir = true;
             if (RTN == "N/A")
             {
@@ -75,7 +72,7 @@ namespace Prototipo_MarZel.Formularios
                 return false;
             }
 
-            if (Id_Venta == null)
+            if (!Elegir)
             {
                 if (Id_Cliente == null)
                 {
@@ -103,7 +100,7 @@ namespace Prototipo_MarZel.Formularios
         {
             if (!Verificar_Campos()) return;
 
-            string RTN = txtRTN.Text.Trim();
+            string Rtn = txtRTN.Text.Trim();
             string Nombre = txtNombre.Text.Trim();
             string Direccion = txtDireccion.Text.Trim();
             string Celular = txtCelular.Text.Trim();
@@ -118,11 +115,11 @@ namespace Prototipo_MarZel.Formularios
 
                 if (Id_Cliente == null)
                 {
-                    Cliente_Controller.Agregar_Cliente(RTN, Nombre, Direccion, Celular, 0, 0);
+                    Cliente_Controller.Agregar_Cliente(Rtn, Nombre, Direccion, Celular, 0, 0);
                 }
                 else
                 {
-                    Cliente_Controller.Modificar_Cliente(Id_Cliente.Value, RTN, Nombre, Direccion, Celular);
+                    Cliente_Controller.Modificar_Cliente(Id_Cliente.Value, Rtn, Nombre, Direccion, Celular);
                 }
             }
             else
@@ -133,12 +130,11 @@ namespace Prototipo_MarZel.Formularios
 
                 if (result != DialogResult.Yes) return;
 
-                DataTable Cliente = Cliente_Controller.Cargar_Cliente(RTN);
+                DataTable Cliente = Cliente_Controller.Cargar_Cliente(Rtn);
                 int? Id_Cliente = null;
                 if (Cliente.Rows.Count > 0)
                     Id_Cliente = Convert.ToInt32(Cliente.Rows[0]["ID_CLIENTE"]);
-                // If you have a Temp_Venta_Controller, use the following line:
-                // Temp_Venta_Controller.Modificar_Cliente(Id_Venta.Value, Id_Cliente, RTN, Nombre, Direccion, Celular);
+                Temp_Venta_Controller.Modificar_Cliente(Id_Cliente, Rtn, Nombre, Direccion, Celular);
             }
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -147,22 +143,31 @@ namespace Prototipo_MarZel.Formularios
         private void txtRTN_TextChanged(object sender, EventArgs e)
         {
             if (!Elegir) return;
-            string RTN = txtRTN.Text.Trim();
+            string Rtn = txtRTN.Text.Trim();
             DataTable Cliente;
 
-            Cliente = Cliente_Controller.Cargar_Cliente(RTN);
+            Cliente = Cliente_Controller.Cargar_Cliente(Rtn);
             if (Cliente.Rows.Count > 0)
             {
                 txtNombre.Text = Cliente.Rows[0]["NOMBRE"].ToString();
                 txtDireccion.Text = Cliente.Rows[0]["DIRECCION"].ToString();
                 txtCelular.Text = Cliente.Rows[0]["CELULAR"].ToString();
             }
-            // If you have a Temp_Venta_Controller, you can add similar logic as needed.
             else
             {
-                txtNombre.Clear();
-                txtDireccion.Clear();
-                txtCelular.Clear();
+                Cliente = Temp_Venta_Controller.Cargar_Venta();
+                if (Cliente.Rows[0]["RTN"].ToString() == Rtn)
+                {
+                    txtNombre.Text = Cliente.Rows[0]["NOMBRE_CLIENTE"].ToString();
+                    txtDireccion.Text = Cliente.Rows[0]["DIRECCION"].ToString();
+                    txtCelular.Text = Cliente.Rows[0]["CELULAR"].ToString();
+                }
+                else
+                {
+                    txtNombre.Clear();
+                    txtDireccion.Clear();
+                    txtCelular.Clear();
+                }
             }
         }
 

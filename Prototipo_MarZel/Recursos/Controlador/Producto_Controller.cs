@@ -59,5 +59,10 @@ namespace Prototipo_MarZel
             Producto_DAO.Modificar_Producto(Id_Producto, Codigo_Barra, Descripcion, Id_ISV, Precio_Completo,
             Precio_Unitario, Id_Categoria, Existencia);
         }
+
+        public void Disminuir_Existencia(int Id_Producto, int Existencia)
+        {
+            Producto_DAO.Disminuir_Existencia(Id_Producto, Existencia);
+        }
     }
 }

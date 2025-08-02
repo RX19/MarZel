@@ -26,5 +26,7 @@ namespace Prototipo_MarZel
 
         public abstract void Modificar_Producto(int Id_Producto, string Codigo_Barra, string Descripcion, int Id_ISV, decimal Precio_Completo,
             decimal Precio_Unitario, int Id_Categoria, int Existencia);
+
+        public abstract void Disminuir_Existencia(int Id_Producto, int Existencia);
     }
 }

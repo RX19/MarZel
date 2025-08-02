@@ -100,7 +100,7 @@ namespace Prototipo_MarZel
         {
             ConexionBD conexion = new ConexionBD();
             string query = @"SELECT ID_PRODUCTO 
-                             FROM " + Tabla + 
+                             FROM " + Tabla +
                              " WHERE CODIGO_BARRA = @CODIGO_BARRA";
             SqlParameter[] parametros =
             {
@@ -157,6 +157,20 @@ namespace Prototipo_MarZel
                 new SqlParameter("@ID_CATEGORIA",Id_Categoria),
                 new SqlParameter("@EXISTENCIA",Existencia),
                 new SqlParameter("@ID_PRODUCTO",Id_Producto),
+            };
+            conexion.EjecutarComando(query, parametros);
+        }
+
+        public override void Disminuir_Existencia(int Id_Producto, int Existencia)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"UPDATE TBL_PRODUCTOS
+                             SET EXISTENCIA = @EXISTENCIA
+                             WHERE ID_PRODUCTO = @ID_PRODUCTO";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@EXISTENCIA", Existencia),
+                new SqlParameter("@ID_PRODUCTO", Id_Producto)
             };
             conexion.EjecutarComando(query, parametros);
         }

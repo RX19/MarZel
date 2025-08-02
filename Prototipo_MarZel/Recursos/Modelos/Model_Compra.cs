@@ -31,5 +31,9 @@ namespace Prototipo_MarZel
         public abstract void Actualizar_Compra(int Id_Compra);
 
         public abstract void Actualizar_Detalles(int Id_Compra);
+
+        public abstract DataTable Buscar_En_Compras(string filtro);
+
+        public abstract void Eliminar_Compra(int Id_Compra);
     }
 }

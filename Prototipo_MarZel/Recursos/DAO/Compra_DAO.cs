@@ -7,12 +7,17 @@ namespace Prototipo_MarZel
 {
     public class Compra_DAO : Compra_Base
     {
-        
+
 
         public override DataTable Cargar_Compras()
         {
             ConexionBD conexion = new ConexionBD();
-            string query = $"SELECT * FROM {Tabla}";
+            string query = @"
+                SELECT  C.ID_COMPRA, C.ID_PROVEEDOR, P.NOMBRE, C.FECHA, 
+                        C.FACTURA, C.GRAVADO, C.ISV, C.EXENTO, C.TOTAL
+                FROM    TBL_COMPRAS C
+                INNER JOIN TBL_PROVEEDORES P 
+                ON      C.ID_PROVEEDOR = P.ID_PROVEEDOR";
             return conexion.EjecutarConsulta(query, null);
         }
 
@@ -170,7 +175,6 @@ namespace Prototipo_MarZel
                 }
 
                 // Agregar a Detalles de Compra.
-                MessageBox.Show($"pause, id_Compra: {Id_Compra}");
                 Compra_Controller.Agregar_Detalle(Id_Compra, Id_Producto, Cantidad, Costo, Descuento, Importe);
             }
         }
@@ -196,11 +200,10 @@ namespace Prototipo_MarZel
             conexion.EjecutarComando(query, parametros);
         }
 
-        public override void Actualizar_Proveedor(int Id_Compra)
+        private void Disminuir_Cantidades_Proveedor(int Id_Compra)
         {
             Proveedor_Controller Proveedor_Controller = new Proveedor_Controller();
             Compra_Controller Compra_Controller = new Compra_Controller();
-            Temp_Compra_Controller Temp_Compra_Controller = new Temp_Compra_Controller();
 
             // Obtener valores de la Compra Original.
             DataTable Compra = Compra_Controller.Cargar_Compra(Id_Compra);
@@ -217,6 +220,12 @@ namespace Prototipo_MarZel
 
             //Actualizar Proveedor Original.
             Proveedor_Controller.Modificar_Proveedor(Id_Proveedor_1, Rtn_1, Nombre_1, Direccion_1, Celular_1, Cant_Compras_1, Importe_1);
+
+
+        }
+        public override void Actualizar_Proveedor(int Id_Compra)
+        {
+            Disminuir_Cantidades_Proveedor(Id_Compra);
 
             //Actualizar Nuevo Proveedor
             Guardar_Proveedor();
@@ -309,8 +318,10 @@ namespace Prototipo_MarZel
             return conexion.EjecutarConsulta(query, parametros).Rows.Count > 0;
         }
 
-        public override void Actualizar_Detalles(int Id_Compra)
+        private void Disminuir_Cantidades_Productos(int Id_Compra)
         {
+
+            // Eliminar Detalles de Compra
             Compra_Controller Compra_Controller = new Compra_Controller();
             Temp_Compra_Controller Temp_Compra_Controller = new Temp_Compra_Controller();
             DataTable detalles;
@@ -341,9 +352,52 @@ namespace Prototipo_MarZel
 
             //Eliminar Los Detalles de Compra Originales.
             Compra_Controller.Eliminar_Detalles(Id_Compra);
+        }
+
+        public override void Actualizar_Detalles(int Id_Compra)
+        {
+            Disminuir_Cantidades_Productos(Id_Compra);
 
             //Agregar los detalles de Compra Actuales.
             Guardar_Detalles();
+        }
+
+        public override DataTable Buscar_En_Compras(string filtro)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                SELECT  C.ID_COMPRA, C.ID_PROVEEDOR, P.NOMBRE, C.FECHA, 
+                        C.FACTURA, C.GRAVADO, C.ISV, C.EXENTO, C.TOTAL
+                FROM    TBL_COMPRAS C
+                INNER JOIN TBL_PROVEEDORES P 
+                ON      C.ID_PROVEEDOR = P.ID_PROVEEDOR
+                WHERE   C.FACTURA LIKE @FILTRO
+                OR      P.NOMBRE LIKE @FILTRO";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@FILTRO", "%" + filtro + "%")
+            };
+            return conexion.EjecutarConsulta(query, parametros);
+        }
+
+        public override void Eliminar_Compra(int Id_Compra)
+        {
+            // Eliminar Detalles de Compra
+            Disminuir_Cantidades_Productos(Id_Compra);
+
+            // Actualizar Proveedor
+            Disminuir_Cantidades_Proveedor(Id_Compra);
+
+            // Eliminar Compra
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                DELETE FROM TBL_COMPRAS 
+                WHERE ID_COMPRA = @ID_COMPRA";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@ID_COMPRA", Id_Compra)
+            };
+            conexion.EjecutarComando(query, parametros);
         }
     }
 }

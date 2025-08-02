@@ -144,10 +144,10 @@ namespace Prototipo_MarZel.Formularios
         private void txtRTN_TextChanged(object sender, EventArgs e)
         {
             if (!Elegir) return;
-            string RTN = txtRTN.Text.Trim();
+            string Rtn = txtRTN.Text.Trim();
             DataTable Proveedor;
 
-            Proveedor = Proveedor_Controller.Cargar_Proveedor(RTN);
+            Proveedor = Proveedor_Controller.Cargar_Proveedor(Rtn);
             if (Proveedor.Rows.Count > 0)
             {
                 txtNombre.Text = Proveedor.Rows[0]["NOMBRE"].ToString();
@@ -157,7 +157,7 @@ namespace Prototipo_MarZel.Formularios
             else
             {
                 Proveedor = Temp_Compra_Controller.Cargar_Compra();
-                if (Proveedor.Rows[0]["RTN"].ToString() == RTN)
+                if (Proveedor.Rows[0]["RTN"].ToString() == Rtn)
                 {
                     txtNombre.Text = Proveedor.Rows[0]["NOMBRE"].ToString();
                     txtDireccion.Text = Proveedor.Rows[0]["DIRECCION"].ToString();

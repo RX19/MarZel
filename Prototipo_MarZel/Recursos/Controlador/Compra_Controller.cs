@@ -61,5 +61,14 @@ namespace Prototipo_MarZel
             Compra_DAO.Actualizar_Detalles(Id_Compra);
         }
 
+        public DataTable Buscar_En_Compras(string filtro)
+        {
+            return Compra_DAO.Buscar_En_Compras(filtro);
+        }
+
+        public void Eliminar_Compra(int Id_Compra)
+        {
+            Compra_DAO.Eliminar_Compra(Id_Compra);
+        }
     }
 }

@@ -97,5 +97,18 @@ namespace Prototipo_MarZel
             Temp_Compra_DAO.Modificar_Detalle(Id_Compra, Id_Producto, Codigo_Barra, Descripcion, Cantidad, Costo, Descuento,
                 Importe, Id_ISV, Precio_Completo, Precio_Unitario, Id_Categoria, Fecha_Creacion);
         }
+
+        public void Modificar_Detalle(int Id_Compra, int? Id_Producto, string Codigo_Barra_1, string Codigo_Barra, string Descripcion, int Cantidad,
+            decimal Costo, decimal Descuento, decimal Importe, int Id_ISV, decimal Precio_Completo, decimal Precio_Unitario,
+            int Id_Categoria, DateTime Fecha_Creacion)
+        {
+            Temp_Compra_DAO.Modificar_Detalle(Id_Compra, Id_Producto, Codigo_Barra_1, Codigo_Barra, Descripcion, Cantidad, Costo, Descuento,
+                Importe, Id_ISV, Precio_Completo, Precio_Unitario, Id_Categoria, Fecha_Creacion);
+        }
+
+        public void Eliminar_Detalle(string Codigo_Barra)
+        {
+            Temp_Compra_DAO.Eliminar_Detalle(Codigo_Barra);
+        }
     }
 }

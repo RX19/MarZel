@@ -88,8 +88,22 @@ namespace Prototipo_MarZel
         {
             ConexionBD conexion = new ConexionBD();
             string query = @"
-                SELECT  *
-                FROM    TEMP_DETALLES_COMPRA";
+                SELECT  TDC.ID_COMPRA,
+                        TDC.ID_PRODUCTO,
+                        TDC.CODIGO_BARRA,
+                        TDC.DESCRIPCION,
+                        TDC.CANTIDAD,
+                        TDC.COSTO,
+                        TI.DESCRIPCION AS ISV,
+                        TDC.DESCUENTO,
+                        TDC.IMPORTE,
+                        TDC.ID_ISV,
+                        TDC.PRECIO_COMPLETO,
+                        TDC.PRECIO_UNITARIO,
+                        TDC.ID_CATEGORIA,
+                        TDC.FECHA_CREACION
+                FROM    TEMP_DETALLES_COMPRA TDC
+                INNER JOIN TBL_TIPOS_ISV TI ON TDC.ID_ISV = TI.ID_ISV";
             return conexion.EjecutarConsulta(query, null);
         }
 
@@ -100,7 +114,7 @@ namespace Prototipo_MarZel
             ConexionBD conexion = new ConexionBD();
             DataTable? resultado = null;
             SqlParameter[] parametros;
-            
+
             query = @"
                 SELECT  SUM(CASE WHEN ID_ISV = 1 THEN IMPORTE END) AS GRAVADO,
                         SUM(CASE WHEN ID_ISV = 2 THEN IMPORTE END) AS EXENTO
@@ -142,7 +156,7 @@ namespace Prototipo_MarZel
 
         public override bool Buscar_En_Detalles_Compra(string codigo_barra)
         {
-            ConexionBD conexion = new ConexionBD(); 
+            ConexionBD conexion = new ConexionBD();
             string query = @"
                 SELECT  1 
                 FROM    TEMP_DETALLES_COMPRA 
@@ -172,7 +186,7 @@ namespace Prototipo_MarZel
         // Verifica si un producto existe en la tabla TBL_PRODUCTOS
         public override bool Buscar_En_Productos(string Codigo_Barra)
         {
-            ConexionBD conexion = new ConexionBD(); 
+            ConexionBD conexion = new ConexionBD();
             string query = @"
                 SELECT  1 
                 FROM    TBL_PRODUCTOS 
@@ -184,7 +198,7 @@ namespace Prototipo_MarZel
             return conexion.EjecutarConsulta(query, parametros).Rows.Count > 0;
         }
 
-        public override void Agregar_Detalle(int Id_Compra, int? Id_Producto, string Codigo_Barra, string Descripcion, int Cantidad, decimal Costo, 
+        public override void Agregar_Detalle(int Id_Compra, int? Id_Producto, string Codigo_Barra, string Descripcion, int Cantidad, decimal Costo,
         decimal Descuento, decimal Importe, int Id_ISV, decimal Precio_Completo, decimal Precio_Unitario, int Id_Categoria, DateTime Fecha_Creacion)
         {
             ConexionBD conexion = new ConexionBD();
@@ -202,7 +216,7 @@ namespace Prototipo_MarZel
             };
 
             DataTable resultado = conexion.EjecutarConsulta(query, parametros);
-            if (resultado.Rows.Count > 0) 
+            if (resultado.Rows.Count > 0)
             {
                 Cantidad += resultado.Rows[0].Field<int>("CANTIDAD");
                 Descuento += resultado.Rows[0].Field<decimal>("DESCUENTO");
@@ -283,7 +297,7 @@ namespace Prototipo_MarZel
                     CELULAR = @CELULAR";
             SqlParameter[] parametros =
             {
-                new SqlParameter("@ID_PROVEEDOR", (object)Id_Proveedor ?? DBNull.Value),
+                new SqlParameter("@ID_PROVEEDOR", Id_Proveedor ?? (object)DBNull.Value),
                 new SqlParameter("@RTN", RTN),
                 new SqlParameter("@NOMBRE", Nombre),
                 new SqlParameter("@DIRECCION", Direccion),
@@ -410,6 +424,59 @@ namespace Prototipo_MarZel
                 new SqlParameter("ID_CATEGORIA", Id_Categoria),
                 new SqlParameter("FECHA_CREACION", Fecha_Creacion),
                 new SqlParameter("ID_COMPRA", Id_Compra),
+                new SqlParameter("@CODIGO_BARRA", Codigo_Barra)
+            };
+            conexion.EjecutarComando(query, parametros);
+        }
+
+        public override void Modificar_Detalle(int Id_Compra, int? Id_Producto, string Codigo_Barra_1, string Codigo_Barra, string Descripcion, int Cantidad, decimal Costo,
+        decimal Descuento, decimal Importe, int Id_ISV, decimal Precio_Completo, decimal Precio_Unitario, int Id_Categoria, DateTime Fecha_Creacion)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                UPDATE  TEMP_DETALLES_COMPRA
+                SET     ID_PRODUCTO = @ID_PRODUCTO,
+                        CODIGO_BARRA = @CODIGO_BARRA,   
+                        DESCRIPCION = @DESCRIPCION,
+                        CANTIDAD = @CANTIDAD,
+                        COSTO = @COSTO,
+                        DESCUENTO = @DESCUENTO,
+                        IMPORTE = @IMPORTE, 
+                        ID_ISV = @ID_ISV,
+                        PRECIO_COMPLETO = @PRECIO_COMPLETO,
+                        PRECIO_UNITARIO = @PRECIO_UNITARIO,
+                        ID_CATEGORIA = @ID_CATEGORIA,
+                        FECHA_CREACION = @FECHA_CREACION
+                WHERE   ID_COMPRA = @ID_COMPRA
+                AND     CODIGO_BARRA = @CODIGO_BARRA_1";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@ID_PRODUCTO", (object)Id_Producto ?? DBNull.Value),
+                new SqlParameter("@CODIGO_BARRA", Codigo_Barra),
+                new SqlParameter("DESCRIPCION", Descripcion),
+                new SqlParameter("CANTIDAD", Cantidad),
+                new SqlParameter("COSTO", Costo),
+                new SqlParameter("DESCUENTO", Descuento),
+                new SqlParameter("IMPORTE", Importe),
+                new SqlParameter("ID_ISV", Id_ISV),
+                new SqlParameter("PRECIO_COMPLETO", Precio_Completo),
+                new SqlParameter("PRECIO_UNITARIO", Precio_Unitario),
+                new SqlParameter("ID_CATEGORIA", Id_Categoria),
+                new SqlParameter("FECHA_CREACION", Fecha_Creacion),
+                new SqlParameter("ID_COMPRA", Id_Compra),
+                new SqlParameter("@CODIGO_BARRA_1", Codigo_Barra_1)
+            };
+            conexion.EjecutarComando(query, parametros);
+        }
+
+        public override void Eliminar_Detalle(string Codigo_Barra)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                DELETE FROM TEMP_DETALLES_COMPRA
+                WHERE CODIGO_BARRA = @CODIGO_BARRA";
+            SqlParameter[] parametros =
+            {
                 new SqlParameter("@CODIGO_BARRA", Codigo_Barra)
             };
             conexion.EjecutarComando(query, parametros);

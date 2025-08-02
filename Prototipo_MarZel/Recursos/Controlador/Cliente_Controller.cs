@@ -27,9 +27,9 @@ namespace Prototipo_MarZel
             return Cliente_DAO.Buscar_En_Clientes(filtro);
         }
 
-        public void Agregar_Cliente(string RTN, string Nombre, string Direccion, string Celular, int Cant_Ventas, decimal Importe)
+        public void Agregar_Cliente(string RTN, string Nombre, string Direccion, string Celular, int Cant_Compras, decimal Importe)
         {
-            Cliente_DAO.Agregar_Cliente(RTN, Nombre, Direccion, Celular, Cant_Ventas, Importe);
+            Cliente_DAO.Agregar_Cliente(RTN, Nombre, Direccion, Celular, Cant_Compras, Importe);
         }
 
         public void Modificar_Cliente(int Id_Cliente, string RTN, string Nombre, string Direccion, string Celular)
@@ -37,9 +37,9 @@ namespace Prototipo_MarZel
             Cliente_DAO.Modificar_Cliente(Id_Cliente, RTN, Nombre, Direccion, Celular);
         }
 
-        public void Modificar_Cliente(int Id_Cliente, string RTN, string Nombre, string Direccion, string Celular, int Cant_Ventas, decimal Importe)
+        public void Modificar_Cliente(int Id_Cliente, string RTN, string Nombre, string Direccion, string Celular, int Cant_Compras, decimal Importe)
         {
-            Cliente_DAO.Modificar_Cliente(Id_Cliente, RTN, Nombre, Direccion, Celular, Cant_Ventas, Importe);
+            Cliente_DAO.Modificar_Cliente(Id_Cliente, RTN, Nombre, Direccion, Celular, Cant_Compras, Importe);
         }
 
         public DataTable Cargar_Cliente(int Id_Cliente)

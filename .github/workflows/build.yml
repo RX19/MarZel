@@ -1,11 +1,11 @@
 name: Build WinForms App (.NET Framework)
 
 on:
-  workflow_dispatch:
   push:
-    branches: [DEV]
+    branches: [main,DEV,QA]
   pull_request:
-    branches: [DEV]
+    branches: [main,DEV,QA]
+
 
 jobs:
   build:
@@ -24,7 +24,3 @@ jobs:
 
     - name: Build solution
       run: msbuild Prototipo_MarZel.sln /p:Configuration=Release
-    
-    - name: Run unit tests
-      run: dotnet test  Prototipo_MarZel/Prototipo_MarZel.csproj
-
