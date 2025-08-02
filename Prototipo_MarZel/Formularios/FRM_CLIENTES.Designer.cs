@@ -65,7 +65,7 @@
             btnEditarCliente.Depth = 0;
             btnEditarCliente.HighEmphasis = true;
             btnEditarCliente.Icon = null;
-            btnEditarCliente.Location = new Point(743, 166);
+            btnEditarCliente.Location = new Point(767, 167);
             btnEditarCliente.Margin = new Padding(6, 10, 6, 10);
             btnEditarCliente.MouseState = MaterialSkin.MouseState.HOVER;
             btnEditarCliente.Name = "btnEditarCliente";
