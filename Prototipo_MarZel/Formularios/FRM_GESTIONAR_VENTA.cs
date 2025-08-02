@@ -40,12 +40,12 @@ namespace Prototipo_MarZel.Formularios
             DataTable Detalles_Venta = Temp_Venta_Controller.Cargar_Detalles();
             dgvDetallesVenta.DataSource = null;
             dgvDetallesVenta.DataSource = Detalles_Venta;
-            /*dgvDetallesVenta.Columns["ID_VENTA"].Visible = false;
+            dgvDetallesVenta.Columns["ID_VENTA"].Visible = false;
             dgvDetallesVenta.Columns["ID_PRODUCTO"].Visible = false;
             dgvDetallesVenta.Columns["PRECIO_COMPLETO"].Visible = false;
             dgvDetallesVenta.Columns["PRECIO_UNITARIO"].Visible = false;
             dgvDetallesVenta.Columns["ID_ISV"].Visible = false;
-            dgvDetallesVenta.Columns["FECHA_CREACION"].Visible = false;*/
+            dgvDetallesVenta.Columns["FECHA_CREACION"].Visible = false;
             dgvDetallesVenta.ClearSelection();
 
             //Actualiza los resultados finales.

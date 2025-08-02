@@ -15,7 +15,7 @@ namespace Prototipo_MarZel
         FRM_USUARIOS frm_usuarios = new FRM_USUARIOS();
         Login_Controller LoginController = new Login_Controller();
         FRM_CLIENTES frm_clientes = new FRM_CLIENTES();
-        int Id_Usuario;
+        int Id_Usuario; 
         string Nombre_Usuario;
 
         private Producto_Controller Producto_Controller = new Producto_Controller();
@@ -115,13 +115,6 @@ namespace Prototipo_MarZel
                     {
                         productosSinExistencia.Add(row["Producto"].ToString());
                     }
-                }
-
-                if (productosSinExistencia.Count > 0)
-                {
-                    string mensaje = "Los siguientes productos se quedaron sin existencia:\n\n" +
-                                     string.Join("\n", productosSinExistencia);
-                    MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
                 for (double i = 1.0; i >= 0.2; i -= 0.05)
@@ -255,6 +248,11 @@ namespace Prototipo_MarZel
             {
                 MessageBox.Show("Error al enviar el correo:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void TP_INICIO_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
