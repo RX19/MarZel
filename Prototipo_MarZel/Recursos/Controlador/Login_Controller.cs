@@ -1,0 +1,20 @@
+using System.Data;
+using Prototipo_MarZel.Recursos.DAO;
+
+namespace Prototipo_MarZel.Recursos.Controlador
+{
+    public class Login_Controller
+    {
+        private readonly LoginDAO loginDAO = new LoginDAO();
+
+        public bool Login(string nombreUsuario, string contrasena)
+        {
+            return loginDAO.ValidarUsuario(nombreUsuario, contrasena);
+        }
+
+        public DataTable ObtenerInformacionUsuario(string nombreUsuario)
+        {
+            return loginDAO.ObtenerInformacionUsuario(nombreUsuario);
+        }
+    }
+}
