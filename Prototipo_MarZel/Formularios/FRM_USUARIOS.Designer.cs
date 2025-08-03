@@ -30,11 +30,13 @@
         {
             BTN_PANEL_CREAR_USUARIO = new MaterialSkin.Controls.MaterialButton();
             DVC_USUARIOS = new DataGridView();
+            BTN_PANEL_ELIMINAR_USUARIO = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)DVC_USUARIOS).BeginInit();
             SuspendLayout();
             // 
             // BTN_PANEL_CREAR_USUARIO
             // 
+            BTN_PANEL_CREAR_USUARIO.AutoSize = false;
             BTN_PANEL_CREAR_USUARIO.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BTN_PANEL_CREAR_USUARIO.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             BTN_PANEL_CREAR_USUARIO.Depth = 0;
@@ -45,7 +47,7 @@
             BTN_PANEL_CREAR_USUARIO.MouseState = MaterialSkin.MouseState.HOVER;
             BTN_PANEL_CREAR_USUARIO.Name = "BTN_PANEL_CREAR_USUARIO";
             BTN_PANEL_CREAR_USUARIO.NoAccentTextColor = Color.Empty;
-            BTN_PANEL_CREAR_USUARIO.Size = new Size(132, 36);
+            BTN_PANEL_CREAR_USUARIO.Size = new Size(153, 36);
             BTN_PANEL_CREAR_USUARIO.TabIndex = 0;
             BTN_PANEL_CREAR_USUARIO.Text = "Crear Usuario";
             BTN_PANEL_CREAR_USUARIO.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -62,11 +64,33 @@
             DVC_USUARIOS.Size = new Size(647, 361);
             DVC_USUARIOS.TabIndex = 1;
             // 
+            // BTN_PANEL_ELIMINAR_USUARIO
+            // 
+            BTN_PANEL_ELIMINAR_USUARIO.AutoSize = false;
+            BTN_PANEL_ELIMINAR_USUARIO.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            BTN_PANEL_ELIMINAR_USUARIO.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            BTN_PANEL_ELIMINAR_USUARIO.Depth = 0;
+            BTN_PANEL_ELIMINAR_USUARIO.HighEmphasis = true;
+            BTN_PANEL_ELIMINAR_USUARIO.Icon = null;
+            BTN_PANEL_ELIMINAR_USUARIO.Location = new Point(27, 160);
+            BTN_PANEL_ELIMINAR_USUARIO.Margin = new Padding(4, 6, 4, 6);
+            BTN_PANEL_ELIMINAR_USUARIO.MouseState = MaterialSkin.MouseState.HOVER;
+            BTN_PANEL_ELIMINAR_USUARIO.Name = "BTN_PANEL_ELIMINAR_USUARIO";
+            BTN_PANEL_ELIMINAR_USUARIO.NoAccentTextColor = Color.Empty;
+            BTN_PANEL_ELIMINAR_USUARIO.Size = new Size(153, 36);
+            BTN_PANEL_ELIMINAR_USUARIO.TabIndex = 2;
+            BTN_PANEL_ELIMINAR_USUARIO.Text = "Eliminar Usuario";
+            BTN_PANEL_ELIMINAR_USUARIO.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            BTN_PANEL_ELIMINAR_USUARIO.UseAccentColor = false;
+            BTN_PANEL_ELIMINAR_USUARIO.UseVisualStyleBackColor = true;
+            BTN_PANEL_ELIMINAR_USUARIO.Click += BTN_PANEL_ELIMINAR_USUARIO_Click;
+            // 
             // FRM_USUARIOS
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(974, 657);
+            Controls.Add(BTN_PANEL_ELIMINAR_USUARIO);
             Controls.Add(DVC_USUARIOS);
             Controls.Add(BTN_PANEL_CREAR_USUARIO);
             Name = "FRM_USUARIOS";
@@ -75,7 +99,6 @@
             Load += FRM_Usuarios_Load;
             ((System.ComponentModel.ISupportInitialize)DVC_USUARIOS).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -83,5 +106,6 @@
         private MaterialSkin.Controls.MaterialRadioButton materialRadioButton1;
         private MaterialSkin.Controls.MaterialButton BTN_PANEL_CREAR_USUARIO;
         private DataGridView DVC_USUARIOS;
+        private MaterialSkin.Controls.MaterialButton BTN_PANEL_ELIMINAR_USUARIO;
     }
 }

@@ -36,5 +36,10 @@ namespace Prototipo_MarZel.Recursos.Controlador
             return dao.Cargar_Usuarios();
         }
 
+        public bool EliminarUsuario(int idUsuario)
+        {
+            return dao.EliminarUsuario(idUsuario) > 0;
+        }
+
     }
 }

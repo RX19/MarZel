@@ -41,5 +41,12 @@ namespace Prototipo_MarZel.Recursos.DAO
             string query = "SELECT * FROM TBL_USUARIOS";
             return conexion.EjecutarConsulta(query, null);
         }
+
+        public int EliminarUsuario(int idUsuario)
+        {
+            string query = "DELETE FROM TBL_USUARIOS WHERE ID_USUARIO = @ID_USUARIO";
+            SqlParameter[] parametros = { new SqlParameter("@ID_USUARIO", idUsuario) };
+            return conexion.EjecutarComando(query, parametros);
+        }
     }
 }

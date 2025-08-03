@@ -42,7 +42,7 @@ namespace Prototipo_MarZel.Formularios
                 await Task.Delay(15);
             }
         }
-       
+
 
         private void FRM_Administrador_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -82,9 +82,9 @@ namespace Prototipo_MarZel.Formularios
             DVC_USUARIOS.DataSource = null;
             DVC_USUARIOS.DataSource = usuarios;
             if (DVC_USUARIOS.Columns.Contains("ID_USUARIO"))
-                DVC_USUARIOS.Columns["ID_USUARIO"].Visible = false; // Oculta la columna ID si no la quieres mostrar
+                DVC_USUARIOS.Columns["ID_USUARIO"].Visible = false;
             DVC_USUARIOS.ClearSelection();
-            // Si tienes un txtBuscar, puedes limpiarlo aquí si lo deseas
+
         }
 
         private async void FRM_Usuarios_Load(object sender, EventArgs e)
@@ -93,6 +93,37 @@ namespace Prototipo_MarZel.Formularios
             this.Opacity = 1.0;
 
             Cargar_Usuarios();
+        }
+
+        private void BTN_PANEL_ELIMINAR_USUARIO_Click(object sender, EventArgs e)
+        {
+            if (DVC_USUARIOS.CurrentRow == null)
+            {
+                MessageBox.Show("Por favor, seleccione un usuario para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int idUsuario = Convert.ToInt32(DVC_USUARIOS.CurrentRow.Cells["ID_USUARIO"].Value);
+
+            DialogResult resultado = MessageBox.Show(
+                "¿Está seguro que desea eliminar este usuario?",
+                "Confirmar Eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (resultado == DialogResult.Yes)
+            {
+                bool exito = usuarioController.EliminarUsuario(idUsuario);
+                if (exito)
+                {
+                    MessageBox.Show("Usuario eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Cargar_Usuarios();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo eliminar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
