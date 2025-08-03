@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Prototipo_MarZel.Recursos.Modelos;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Prototipo_MarZel.Recursos.Modelos;
 
 namespace Prototipo_MarZel.Recursos.DAO
 {
@@ -33,6 +34,12 @@ namespace Prototipo_MarZel.Recursos.DAO
 
             return conexion.EjecutarComando(query, parametros);
 
+        }
+
+        public DataTable Cargar_Usuarios()
+        {
+            string query = "SELECT * FROM TBL_USUARIOS";
+            return conexion.EjecutarConsulta(query, null);
         }
     }
 }

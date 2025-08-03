@@ -1,11 +1,12 @@
 ﻿using Prototipo_MarZel.Recursos.DAO;
+using Prototipo_MarZel.Recursos.DAO;
+using Prototipo_MarZel.Recursos.Modelos;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Prototipo_MarZel.Recursos.Modelos;
-using Prototipo_MarZel.Recursos.DAO;
 
 namespace Prototipo_MarZel.Recursos.Controlador
 {
@@ -28,6 +29,11 @@ namespace Prototipo_MarZel.Recursos.Controlador
             }
 
             return dao.Guardar(u) > 0;
+        }
+
+        public DataTable Cargar_Usuarios()
+        {
+            return dao.Cargar_Usuarios();
         }
 
     }

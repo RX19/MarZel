@@ -42,12 +42,7 @@ namespace Prototipo_MarZel.Formularios
                 await Task.Delay(15);
             }
         }
-        private async void FRM_Administrador_Load(object sender, EventArgs e)
-        {
-            
-            await FadeInAsync(this);
-            this.Opacity = 1.0;
-        }
+       
 
         private void FRM_Administrador_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -69,7 +64,7 @@ namespace Prototipo_MarZel.Formularios
         }
 
 
-       
+
 
         private void BTN_PANEL_CREAR_USUARIO_Click(object sender, EventArgs e)
         {
@@ -79,5 +74,25 @@ namespace Prototipo_MarZel.Formularios
             }
         }
 
+        private readonly UsuarioController usuarioController = new UsuarioController();
+
+        public void Cargar_Usuarios()
+        {
+            DataTable usuarios = usuarioController.Cargar_Usuarios();
+            DVC_USUARIOS.DataSource = null;
+            DVC_USUARIOS.DataSource = usuarios;
+            if (DVC_USUARIOS.Columns.Contains("ID_USUARIO"))
+                DVC_USUARIOS.Columns["ID_USUARIO"].Visible = false; // Oculta la columna ID si no la quieres mostrar
+            DVC_USUARIOS.ClearSelection();
+            // Si tienes un txtBuscar, puedes limpiarlo aquí si lo deseas
+        }
+
+        private async void FRM_Usuarios_Load(object sender, EventArgs e)
+        {
+            await FadeInAsync(this);
+            this.Opacity = 1.0;
+
+            Cargar_Usuarios();
+        }
     }
 }
