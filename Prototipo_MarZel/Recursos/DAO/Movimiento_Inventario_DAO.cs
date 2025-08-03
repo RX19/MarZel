@@ -4,7 +4,7 @@ using Prototipo_MarZel.Recursos.Modelos;
 
 namespace Prototipo_MarZel.Recursos.DAO
 {
-    public class Movimiento_Inventario_DAO : Movimiento_Inventario_Base
+    public class Movimiento_Inventario_DAO : Modelo_Movimiento_Inventario
     {
         public override DataTable ObtenerTodos()
         {

@@ -3,12 +3,12 @@ using System.Data;
 
 namespace Prototipo_MarZel.Recursos.Modelos
 {
-    public abstract class Movimiento_Inventario_Base
+    public abstract class Modelo_Movimiento_Inventario
     {
         public static string Tabla = "TBL_MOVIMIENTOS_INVENTARIO";
 
         public abstract DataTable ObtenerTodos();
-        // Puedes agregar más métodos abstractos aquí si lo necesitas en el futuro
+        
     }
 
     public class Movimiento_Inventario
