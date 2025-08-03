@@ -44,7 +44,7 @@ namespace Prototipo_MarZel.Formularios
         }
         private async void FRM_Administrador_Load(object sender, EventArgs e)
         {
-            P_CREAR_USUARIO.Visible = false;
+            
             await FadeInAsync(this);
             this.Opacity = 1.0;
         }
@@ -69,39 +69,14 @@ namespace Prototipo_MarZel.Formularios
         }
 
 
-        private void BTN_CREAR_Click(object sender, EventArgs e)
-        {
-
-            string rol = CB_TIPO_USUARIO.Text;
-            int idTipoUsuario = rol == "Administrador" ? 1 : rol == "Vendedor" ? 2 : 0;
-
-            Model_Usuario nuevo = new Model_Usuario
-            {
-                IDENTIDAD = TXT_IDENTIDAD.Text.Trim(),
-                NOMBRE = TXT_NOMBRE.Text.Trim(),
-                CORREO = TXT_CORREO.Text.Trim(),
-                USUARIO = TXT_NOMBRE_USUARIO.Text.Trim(),
-                CONTRASENA = TXT_CONTRASEÑA.Text.Trim(),
-                CELULAR = TXT_CELULAR.Text.Trim(),
-                ID_TIPO = idTipoUsuario
-            };
-
-            UsuarioController ctrl = new UsuarioController();
-            bool exito = ctrl.CrearUsuario(nuevo);
-
-            MessageBox.Show(
-                exito ? "Usuario creado exitosamente." : "Por favor, completa todos los campos correctamente.",
-                exito ? "Éxito" : "Error",
-                MessageBoxButtons.OK,
-                exito ? MessageBoxIcon.Information : MessageBoxIcon.Warning
-            );
-
-
-        }
+       
 
         private void BTN_PANEL_CREAR_USUARIO_Click(object sender, EventArgs e)
         {
-            P_CREAR_USUARIO.Visible = true;
+            using (var frmGestionarUsuario = new FRM_GESTIONAR_USUARIO())
+            {
+                frmGestionarUsuario.ShowDialog();
+            }
         }
 
     }
