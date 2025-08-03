@@ -233,10 +233,6 @@ namespace Prototipo_MarZel
             }
         }
 
-        private void DVC_HISTORIAL_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
 
         private Movimiento_Inventario_Controller movimientoController = new Movimiento_Inventario_Controller();
@@ -264,11 +260,18 @@ namespace Prototipo_MarZel
         }
 
         private void BTN_FILTRAR_Click(object sender, EventArgs e)
-        {    
+        {
             string filtro = TXT_FILTRO_PRODUCTO.Text.Trim();
             DataTable movimientosFiltrados = movimientoController.FiltrarPorProducto(filtro);
             DVC_HISTORIAL.DataSource = movimientosFiltrados;
         }
-    
+
+
+        private void TXT_FILTRO_PRODUCTO_TextChanged(object sender, EventArgs e)
+        {
+            string filtro = TXT_FILTRO_PRODUCTO.Text.Trim();
+            DataTable movimientosFiltrados = movimientoController.FiltrarPorProducto(filtro);
+            DVC_HISTORIAL.DataSource = movimientosFiltrados;
+        }
     }
 }

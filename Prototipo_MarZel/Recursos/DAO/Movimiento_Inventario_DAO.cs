@@ -18,11 +18,10 @@ namespace Prototipo_MarZel.Recursos.DAO
         {
             ConexionBD conexion = new ConexionBD();
             string query = @"
-                SELECT MI.*
-                FROM TBL_MOVIMIENTOS_INVENTARIO MI
-                INNER JOIN TBL_PRODUCTOS P ON MI.ID_PRODUCTO = P.ID_PRODUCTO
-                WHERE P.DESCRIPCION LIKE @NombreProducto";
-                SqlParameter[] parametros = {
+                SELECT *
+                FROM TBL_MOVIMIENTOS_INVENTARIO
+                WHERE NOMBRE_PRODUCTO LIKE @NombreProducto";
+            SqlParameter[] parametros = {
                 new SqlParameter("@NombreProducto", "%" + nombreProducto + "%")
             };
             return conexion.EjecutarConsulta(query, parametros);

@@ -68,8 +68,9 @@
             materialTextBox21 = new MaterialSkin.Controls.MaterialTextBox2();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             TP_HISTORIAL = new TabPage();
+            materialCard3 = new MaterialSkin.Controls.MaterialCard();
+            TXT_FILTRO_PRODUCTO = new MaterialSkin.Controls.MaterialTextBox2();
             BTN_FILTRAR = new MaterialSkin.Controls.MaterialButton();
-            TXT_FILTRO_PRODUCTO = new MaterialSkin.Controls.MaterialTextBox();
             materialCard2 = new MaterialSkin.Controls.MaterialCard();
             DVC_HISTORIAL = new DataGridView();
             MTBC_MENU.SuspendLayout();
@@ -81,6 +82,7 @@
             TP_INSERTAR.SuspendLayout();
             materialCard1.SuspendLayout();
             TP_HISTORIAL.SuspendLayout();
+            materialCard3.SuspendLayout();
             materialCard2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DVC_HISTORIAL).BeginInit();
             SuspendLayout();
@@ -786,8 +788,8 @@
             // 
             // TP_HISTORIAL
             // 
+            TP_HISTORIAL.Controls.Add(materialCard3);
             TP_HISTORIAL.Controls.Add(BTN_FILTRAR);
-            TP_HISTORIAL.Controls.Add(TXT_FILTRO_PRODUCTO);
             TP_HISTORIAL.Controls.Add(materialCard2);
             TP_HISTORIAL.Location = new Point(4, 29);
             TP_HISTORIAL.Name = "TP_HISTORIAL";
@@ -796,6 +798,49 @@
             TP_HISTORIAL.Text = "Historial";
             TP_HISTORIAL.UseVisualStyleBackColor = true;
             // 
+            // materialCard3
+            // 
+            materialCard3.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard3.Controls.Add(TXT_FILTRO_PRODUCTO);
+            materialCard3.Depth = 0;
+            materialCard3.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard3.Location = new Point(27, 14);
+            materialCard3.Margin = new Padding(14);
+            materialCard3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard3.Name = "materialCard3";
+            materialCard3.Padding = new Padding(14);
+            materialCard3.Size = new Size(451, 62);
+            materialCard3.TabIndex = 4;
+            // 
+            // TXT_FILTRO_PRODUCTO
+            // 
+            TXT_FILTRO_PRODUCTO.AnimateReadOnly = false;
+            TXT_FILTRO_PRODUCTO.BackgroundImageLayout = ImageLayout.None;
+            TXT_FILTRO_PRODUCTO.CharacterCasing = CharacterCasing.Normal;
+            TXT_FILTRO_PRODUCTO.Depth = 0;
+            TXT_FILTRO_PRODUCTO.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            TXT_FILTRO_PRODUCTO.HideSelection = true;
+            TXT_FILTRO_PRODUCTO.LeadingIcon = null;
+            TXT_FILTRO_PRODUCTO.Location = new Point(17, 3);
+            TXT_FILTRO_PRODUCTO.MaxLength = 32767;
+            TXT_FILTRO_PRODUCTO.MouseState = MaterialSkin.MouseState.OUT;
+            TXT_FILTRO_PRODUCTO.Name = "TXT_FILTRO_PRODUCTO";
+            TXT_FILTRO_PRODUCTO.PasswordChar = '\0';
+            TXT_FILTRO_PRODUCTO.PrefixSuffixText = null;
+            TXT_FILTRO_PRODUCTO.ReadOnly = false;
+            TXT_FILTRO_PRODUCTO.RightToLeft = RightToLeft.No;
+            TXT_FILTRO_PRODUCTO.SelectedText = "";
+            TXT_FILTRO_PRODUCTO.SelectionLength = 0;
+            TXT_FILTRO_PRODUCTO.SelectionStart = 0;
+            TXT_FILTRO_PRODUCTO.ShortcutsEnabled = true;
+            TXT_FILTRO_PRODUCTO.Size = new Size(419, 48);
+            TXT_FILTRO_PRODUCTO.TabIndex = 3;
+            TXT_FILTRO_PRODUCTO.TabStop = false;
+            TXT_FILTRO_PRODUCTO.TextAlign = HorizontalAlignment.Left;
+            TXT_FILTRO_PRODUCTO.TrailingIcon = null;
+            TXT_FILTRO_PRODUCTO.UseSystemPasswordChar = false;
+            TXT_FILTRO_PRODUCTO.TextChanged += TXT_FILTRO_PRODUCTO_TextChanged;
+            // 
             // BTN_FILTRAR
             // 
             BTN_FILTRAR.AutoSizeMode = AutoSizeMode.GrowAndShrink;
@@ -803,7 +848,7 @@
             BTN_FILTRAR.Depth = 0;
             BTN_FILTRAR.HighEmphasis = true;
             BTN_FILTRAR.Icon = null;
-            BTN_FILTRAR.Location = new Point(486, 28);
+            BTN_FILTRAR.Location = new Point(496, 29);
             BTN_FILTRAR.Margin = new Padding(4, 6, 4, 6);
             BTN_FILTRAR.MouseState = MaterialSkin.MouseState.HOVER;
             BTN_FILTRAR.Name = "BTN_FILTRAR";
@@ -815,23 +860,6 @@
             BTN_FILTRAR.UseAccentColor = false;
             BTN_FILTRAR.UseVisualStyleBackColor = true;
             BTN_FILTRAR.Click += BTN_FILTRAR_Click;
-            // 
-            // TXT_FILTRO_PRODUCTO
-            // 
-            TXT_FILTRO_PRODUCTO.AnimateReadOnly = false;
-            TXT_FILTRO_PRODUCTO.BorderStyle = BorderStyle.None;
-            TXT_FILTRO_PRODUCTO.Depth = 0;
-            TXT_FILTRO_PRODUCTO.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            TXT_FILTRO_PRODUCTO.LeadingIcon = null;
-            TXT_FILTRO_PRODUCTO.Location = new Point(27, 15);
-            TXT_FILTRO_PRODUCTO.MaxLength = 50;
-            TXT_FILTRO_PRODUCTO.MouseState = MaterialSkin.MouseState.OUT;
-            TXT_FILTRO_PRODUCTO.Multiline = false;
-            TXT_FILTRO_PRODUCTO.Name = "TXT_FILTRO_PRODUCTO";
-            TXT_FILTRO_PRODUCTO.Size = new Size(432, 50);
-            TXT_FILTRO_PRODUCTO.TabIndex = 1;
-            TXT_FILTRO_PRODUCTO.Text = "";
-            TXT_FILTRO_PRODUCTO.TrailingIcon = null;
             // 
             // materialCard2
             // 
@@ -879,6 +907,7 @@
             materialCard1.PerformLayout();
             TP_HISTORIAL.ResumeLayout(false);
             TP_HISTORIAL.PerformLayout();
+            materialCard3.ResumeLayout(false);
             materialCard2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)DVC_HISTORIAL).EndInit();
             ResumeLayout(false);
@@ -929,6 +958,7 @@
         private MaterialSkin.Controls.MaterialCard materialCard2;
         private DataGridView DVC_HISTORIAL;
         private MaterialSkin.Controls.MaterialButton BTN_FILTRAR;
-        private MaterialSkin.Controls.MaterialTextBox TXT_FILTRO_PRODUCTO;
+        private MaterialSkin.Controls.MaterialTextBox2 TXT_FILTRO_PRODUCTO;
+        private MaterialSkin.Controls.MaterialCard materialCard3;
     }
 }
