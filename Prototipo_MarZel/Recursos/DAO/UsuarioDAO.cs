@@ -38,7 +38,19 @@ namespace Prototipo_MarZel.Recursos.DAO
 
         public DataTable Cargar_Usuarios()
         {
-            string query = "SELECT * FROM TBL_USUARIOS";
+            string query = @"SELECT
+                                u.ID_USUARIO,
+                                u.IDENTIDAD,
+                                u.NOMBRE,
+                                u.CORREO,
+                                u.USUARIO,
+                                u.CONTRASENA,
+                                u.CELULAR,
+                                t.DESCRIPCION    AS 'TIPO DE USUARIO',
+                                e.DESCRIPCION    AS ESTADO
+                            FROM dbo.TBL_USUARIOS AS u
+                            JOIN dbo.TBL_TIPOS_USUARIO     AS t ON u.ID_TIPO   = t.ID_TIPO
+                            JOIN dbo.TBL_ESTADOS_USUARIO   AS e ON u.ID_ESTADO = e.ID_ESTADO;";
             return conexion.EjecutarConsulta(query, null);
         }
 
@@ -70,6 +82,13 @@ namespace Prototipo_MarZel.Recursos.DAO
                 new SqlParameter("@ID_USUARIO", idUsuario)
             };
             return conexion.EjecutarComando(query, parametros);
+        }
+
+        public DataTable ObtenerUsuarioPorId(int idUsuario)
+        {
+            string query = "SELECT * FROM TBL_USUARIOS WHERE ID_USUARIO = @ID_USUARIO";
+            SqlParameter[] parametros = { new SqlParameter("@ID_USUARIO", idUsuario) };
+            return conexion.EjecutarConsulta(query, parametros);
         }
     }
 }

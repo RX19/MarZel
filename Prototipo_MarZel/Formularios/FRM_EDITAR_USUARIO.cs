@@ -17,13 +17,27 @@ namespace Prototipo_MarZel.Formularios
         public FRM_EDITAR_USUARIO()
         {
             InitializeComponent();
+
+        }
+
+        private void CargarTiposUsuario()
+        {
+            var tiposUsuario = new[]
+            {
+                new { ID = 1, NOMBRE = "Administrador" },
+                new { ID = 2, NOMBRE = "Cajero" }
+            };
+            CB_EDITAR_TIPO_USUARIO.DataSource = tiposUsuario;
+            CB_EDITAR_TIPO_USUARIO.DisplayMember = "NOMBRE";
+            CB_EDITAR_TIPO_USUARIO.ValueMember = "ID";
         }
 
         // Constructor que recibe los datos del usuario
         public FRM_EDITAR_USUARIO(int idUsuario, string identidad, string nombre, string correo, string usuario, string contraseña, string celular, int idTipo)
             : this()
         {
-            // Asigna los valores a los controles del formulario
+            CargarTiposUsuario(); // <-- Pobla primero
+
             this.idUsuario = idUsuario;
             TXT_EDITAR_IDENTIDAD.Text = identidad;
             TXT_EDITAR_NOMBRE.Text = nombre;
@@ -37,6 +51,12 @@ namespace Prototipo_MarZel.Formularios
 
         private void BTN_EDITAR_Click(object sender, EventArgs e)
         {
+            if (CB_EDITAR_TIPO_USUARIO.SelectedValue == null)
+            {
+                MessageBox.Show("Seleccione un tipo de usuario válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string identidad = TXT_EDITAR_IDENTIDAD.Text.Trim();
             string nombre = TXT_EDITAR_NOMBRE.Text.Trim();
             string correo = TXT_EDITAR_CORREO.Text.Trim();

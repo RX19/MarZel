@@ -46,5 +46,10 @@ namespace Prototipo_MarZel.Recursos.Controlador
         {
             return dao.ModificarUsuario(idUsuario, identidad, nombre, correo, usuario, contrasena, celular, idTipo) > 0;
         }
+
+        public DataTable ObtenerUsuarioPorId(int idUsuario)
+        {
+            return dao.ObtenerUsuarioPorId(idUsuario);
+        }
     }
 }

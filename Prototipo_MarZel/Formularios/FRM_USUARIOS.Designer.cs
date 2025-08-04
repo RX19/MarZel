@@ -58,11 +58,13 @@
             // 
             // DVC_USUARIOS
             // 
-            DVC_USUARIOS.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DVC_USUARIOS.ColumnHeadersHeight = 29;
+            DVC_USUARIOS.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             DVC_USUARIOS.Location = new Point(205, 93);
             DVC_USUARIOS.Name = "DVC_USUARIOS";
             DVC_USUARIOS.RowHeadersWidth = 51;
-            DVC_USUARIOS.Size = new Size(647, 361);
+            DVC_USUARIOS.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            DVC_USUARIOS.Size = new Size(974, 381);
             DVC_USUARIOS.TabIndex = 1;
             // 
             // BTN_PANEL_ELIMINAR_USUARIO
@@ -111,13 +113,14 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(974, 657);
+            ClientSize = new Size(1265, 682);
             Controls.Add(BTN_PANEL_EDITAR_USUARIO);
             Controls.Add(BTN_PANEL_ELIMINAR_USUARIO);
             Controls.Add(DVC_USUARIOS);
             Controls.Add(BTN_PANEL_CREAR_USUARIO);
             Name = "FRM_USUARIOS";
             Text = "Usuarios";
+            WindowState = FormWindowState.Maximized;
             FormClosed += FRM_Administrador_FormClosed;
             Load += FRM_Usuarios_Load;
             ((System.ComponentModel.ISupportInitialize)DVC_USUARIOS).EndInit();

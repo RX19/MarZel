@@ -134,19 +134,26 @@ namespace Prototipo_MarZel.Formularios
                 return;
             }
 
-            // Obtén los datos de la fila seleccionada
-            var row = DVC_USUARIOS.CurrentRow;
-            int idUsuario = Convert.ToInt32(row.Cells["ID_USUARIO"].Value);
-            string identidad = row.Cells["IDENTIDAD"].Value?.ToString() ?? "";
-            string nombre = row.Cells["NOMBRE"].Value?.ToString() ?? "";
-            string correo = row.Cells["CORREO"].Value?.ToString() ?? "";
-            string usuario = row.Cells["USUARIO"].Value?.ToString() ?? "";
-            string celular = row.Cells["CELULAR"].Value?.ToString() ?? "";
-            string contraseña = row.Cells["CONTRASENA"].Value?.ToString() ?? "";
-            int idTipo = Convert.ToInt32(row.Cells["ID_TIPO"].Value);
+            int idUsuario = Convert.ToInt32(DVC_USUARIOS.CurrentRow.Cells["ID_USUARIO"].Value);
 
-            // Abre el formulario de edición y pasa los datos
-            using (var frmEditar = new FRM_EDITAR_USUARIO(idUsuario, identidad, nombre, correo, usuario, contraseña, celular, idTipo))
+            // Obtén los datos actualizados desde la base de datos
+            DataTable dtUsuario = usuarioController.ObtenerUsuarioPorId(idUsuario);
+            if (dtUsuario.Rows.Count == 0)
+            {
+                MessageBox.Show("No se encontró el usuario en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DataRow row = dtUsuario.Rows[0];
+            string identidad = row["IDENTIDAD"].ToString();
+            string nombre = row["NOMBRE"].ToString();
+            string correo = row["CORREO"].ToString();
+            string usuario = row["USUARIO"].ToString();
+            string celular = row["CELULAR"].ToString();
+            string contrasena = row["CONTRASENA"].ToString();
+            int idTipo = Convert.ToInt32(row["ID_TIPO"]);
+
+            using (var frmEditar = new FRM_EDITAR_USUARIO(idUsuario, identidad, nombre, correo, usuario, contrasena, celular, idTipo))
             {
                 frmEditar.ShowDialog();
                 Cargar_Usuarios(); // Refresca la tabla después de editar
