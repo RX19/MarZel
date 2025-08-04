@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using Org.BouncyCastle.Asn1.X500;
+using System.Data;
 using System.Data.SqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -6,22 +7,14 @@ namespace Prototipo_MarZel
 {
     public class Producto_DAO : Producto_Base
     {
-        public override DataTable ObtenerTodos()
-        {
-            ConexionBD conexion = new ConexionBD();
-            string query = "SELECT * FROM " + Tabla;
-            return conexion.EjecutarConsulta(query, null);
-        }
-
         public override DataTable ObtenerProductos()
         {
             ConexionBD conexion = new ConexionBD();
-            string query = @"SELECT 
-                                TBL_PRODUCTOS.DESCRIPCION AS PRODUCTO,
-                                TBL_CATEGORIAS_PRODUCTO.DESCRIPCION AS CATEGORIA,
-                                TBL_PRODUCTOS.EXISTENCIA
-                            FROM TBL_PRODUCTOS  
-                            INNER JOIN TBL_CATEGORIAS_PRODUCTO ON TBL_PRODUCTOS.ID_CATEGORIA = TBL_CATEGORIAS_PRODUCTO.ID_CATEGORIA";
+            string query = @$"
+                SELECT  ID_PRODUCTO,
+                        DESCRIPCION AS PRODUCTO,
+                        EXISTENCIA
+                FROM    {Tabla}";
             return conexion.EjecutarConsulta(query, null);
         }
 
@@ -111,14 +104,14 @@ namespace Prototipo_MarZel
         }
 
         public override void Agregar_Producto(string Codigo_Barra, string Descripcion, int Id_ISV, decimal Precio_Completo,
-            decimal Precio_Unitario, int Id_Categoria, int Existencia)
+            decimal Precio_Unitario, int Id_Categoria, decimal Descuento, int Existencia)
         {
             ConexionBD conexion = new ConexionBD();
             string query = @$"
                 INSERT INTO TBL_PRODUCTOS (
-                    CODIGO_BARRA, DESCRIPCION, ID_ISV, PRECIO_COMPLETO, PRECIO_UNITARIO, ID_CATEGORIA, EXISTENCIA
+                    CODIGO_BARRA, DESCRIPCION, ID_ISV, PRECIO_COMPLETO, PRECIO_UNITARIO, ID_CATEGORIA, DESCUENTO, EXISTENCIA
                 ) VALUES (
-                    @CODIGO_BARRA, @DESCRIPCION, @ID_ISV, @PRECIO_COMPLETO, @PRECIO_UNITARIO, @ID_CATEGORIA, @EXISTENCIA
+                    @CODIGO_BARRA, @DESCRIPCION, @ID_ISV, @PRECIO_COMPLETO, @PRECIO_UNITARIO, @ID_CATEGORIA, @DESCUENTO, @EXISTENCIA
                 )";
             SqlParameter[] parametros =
             {
@@ -128,13 +121,14 @@ namespace Prototipo_MarZel
                 new SqlParameter("@PRECIO_COMPLETO", Precio_Completo),
                 new SqlParameter("@PRECIO_UNITARIO", Precio_Unitario),
                 new SqlParameter("@ID_CATEGORIA", Id_Categoria),
+                new SqlParameter("@DESCUENTO", Descuento),
                 new SqlParameter("@EXISTENCIA", Existencia)
             };
             conexion.EjecutarComando(query, parametros);
         }
 
         public override void Modificar_Producto(int Id_Producto, string Codigo_Barra, string Descripcion, int Id_ISV, decimal Precio_Completo,
-            decimal Precio_Unitario, int Id_Categoria, int Existencia)
+            decimal Precio_Unitario, int Id_Categoria, decimal Descuento, int Existencia)
         {
             ConexionBD conexion = new ConexionBD();
             string query = @$"
@@ -145,6 +139,7 @@ namespace Prototipo_MarZel
                         PRECIO_COMPLETO = @PRECIO_COMPLETO,
                         PRECIO_UNITARIO = @PRECIO_UNITARIO,
                         ID_CATEGORIA = @ID_CATEGORIA,
+                        DESCUENTO = @DESCUENTO, 
                         EXISTENCIA = @EXISTENCIA
                 WHERE   ID_PRODUCTO = @ID_PRODUCTO";
             SqlParameter[] parametros =
@@ -155,6 +150,7 @@ namespace Prototipo_MarZel
                 new SqlParameter("@PRECIO_COMPLETO",Precio_Completo),
                 new SqlParameter("@PRECIO_UNITARIO",Precio_Unitario),
                 new SqlParameter("@ID_CATEGORIA",Id_Categoria),
+                new SqlParameter("@DESCUENTO",Descuento),
                 new SqlParameter("@EXISTENCIA",Existencia),
                 new SqlParameter("@ID_PRODUCTO",Id_Producto),
             };
@@ -170,6 +166,33 @@ namespace Prototipo_MarZel
             SqlParameter[] parametros =
             {
                 new SqlParameter("@EXISTENCIA", Existencia),
+                new SqlParameter("@ID_PRODUCTO", Id_Producto)
+            };
+            conexion.EjecutarComando(query, parametros);
+        }
+
+        public override bool existeProducto(string Codigo_Barra)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                SELECT  1 
+                FROM    TBL_PRODUCTOS
+                WHERE   CODIGO_BARRA = @CODIGO_BARRA";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@CODIGO_BARRA", Codigo_Barra)
+            };
+            DataTable resultado = conexion.EjecutarConsulta(query, parametros);
+            return resultado.Rows.Count > 0;
+        }
+
+        public override void Eliminar_Producto(int Id_Producto)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"DELETE FROM TBL_PRODUCTOS
+                             WHERE ID_PRODUCTO = @ID_PRODUCTO";
+            SqlParameter[] parametros =
+            {
                 new SqlParameter("@ID_PRODUCTO", Id_Producto)
             };
             conexion.EjecutarComando(query, parametros);

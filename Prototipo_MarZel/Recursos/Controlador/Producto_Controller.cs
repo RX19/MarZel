@@ -13,7 +13,7 @@ namespace Prototipo_MarZel
 
         public DataTable ObtenerProductos()
         {
-            return Producto_DAO.ObtenerTodos();
+            return Producto_DAO.ObtenerProductos();
         }
 
         public DataTable ObtenerProductosPorDescripcion()
@@ -47,22 +47,32 @@ namespace Prototipo_MarZel
         }
 
         public void Agregar_Producto(string Codigo_Barra, string Descripcion, int Id_ISV, decimal Precio_Completo,
-            decimal Precio_Unitario, int Id_Categoria, int Existencia)
+            decimal Precio_Unitario, int Id_Categoria, decimal Descuento, int Existencia)
         {
             Producto_DAO.Agregar_Producto(Codigo_Barra, Descripcion, Id_ISV, Precio_Completo,
-            Precio_Unitario, Id_Categoria, Existencia);
+            Precio_Unitario, Id_Categoria, Descuento, Existencia);
         }
 
         public void Modificar_Producto(int Id_Producto, string Codigo_Barra, string Descripcion, int Id_ISV, decimal Precio_Completo,
-            decimal Precio_Unitario, int Id_Categoria, int Existencia)
+            decimal Precio_Unitario, int Id_Categoria, decimal Descuento, int Existencia)
         {
             Producto_DAO.Modificar_Producto(Id_Producto, Codigo_Barra, Descripcion, Id_ISV, Precio_Completo,
-            Precio_Unitario, Id_Categoria, Existencia);
+            Precio_Unitario, Id_Categoria, Descuento, Existencia);
         }
 
         public void Disminuir_Existencia(int Id_Producto, int Existencia)
         {
             Producto_DAO.Disminuir_Existencia(Id_Producto, Existencia);
+        }
+
+        public bool existeProducto(string Codigo_Barra)
+        {
+            return Producto_DAO.existeProducto(Codigo_Barra);
+        }
+
+        public void Eliminar_Producto(int Id_Producto)
+        {
+            Producto_DAO.Eliminar_Producto(Id_Producto);
         }
     }
 }

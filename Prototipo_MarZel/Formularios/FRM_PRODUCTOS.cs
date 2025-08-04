@@ -20,6 +20,9 @@ namespace Prototipo_MarZel
     {
         Producto_Controller Producto_Controller = new Producto_Controller();
         Categoria_Producto_Controller Categoria_Producto_Controller = new Categoria_Producto_Controller();
+        Tipo_ISV_Controller Tipo_ISV_Controller = new Tipo_ISV_Controller();
+        int Id_Producto;
+
         public FRM_PRODUCTOS()
         {
             InitializeComponent();
@@ -27,9 +30,8 @@ namespace Prototipo_MarZel
             //this.ControlBox = false;         // Quita los tres botones (cerrar, minimizar, maximizar)
             this.MaximizeBox = false;        // Impide maximizar
             this.Hide();
-
-
         }
+
         private async Task FadeOutAsync(Form form)
         {
             for (double i = 1.0; i >= 0; i -= 0.05)
@@ -38,6 +40,7 @@ namespace Prototipo_MarZel
                 await Task.Delay(15);
             }
         }
+
         private async Task FadeInAsync(Form form)
         {
             form.Opacity = 0;
@@ -48,28 +51,48 @@ namespace Prototipo_MarZel
             }
         }
 
+        private void Cargar_Categorias()
+        {
+            DataTable Categorias = Categoria_Producto_Controller.Cargar_Categorias();
+            CBX_CATEGORIA.DataSource = null;
+            CBX_CATEGORIA.DataSource = Categorias;
+            CBX_CATEGORIA.DisplayMember = "DESCRIPCION";
+            CBX_CATEGORIA.ValueMember = "ID_CATEGORIA";
+            CBX_CATEGORIA.SelectedIndex = -1;
+        }
+
+        private void Cargar_Tipos_ISV()
+        {
+            DataTable Tipos_ISV = Tipo_ISV_Controller.Cargar_Tipos_ISV();
+            CBX_TIPOISV.DataSource = null;
+            CBX_TIPOISV.DataSource = Tipos_ISV;
+            CBX_TIPOISV.DisplayMember = "DESCRIPCION";
+            CBX_TIPOISV.ValueMember = "ID_ISV";
+            CBX_TIPOISV.SelectedIndex = -1;
+        }
+
         public void CargarDatos()
         {
             try
             {
                 // Obtener y filtrar productos
-                DataTable tablaCompleta = Producto_Controller.ObtenerProductosPorDescripcion();
-                DataTable soloProductos = new DataTable();
-                soloProductos.Columns.Add("PRODUCTO", typeof(string));
-                soloProductos.Columns.Add("EXISTENCIA", typeof(int));
-                foreach (DataRow row in tablaCompleta.Rows)
-                {
-                    soloProductos.Rows.Add(row["PRODUCTO"], row["EXISTENCIA"]);
-                }
-                DVC_PRODUCTOS.DataSource = soloProductos;
-                // Obtener categorías para el ComboBox
-                List<String> soloCategoria = new List<string>();
-                foreach (DataRow row in tablaCompleta.Rows)
-                {
-                    soloCategoria.Add(row["CATEGORIA"].ToString());
-                }
-                CBX_CATEGORIA.DataSource = soloCategoria.Distinct().ToList();
-                CBX_CATEGORIA.SelectedIndex = -1;
+                DataTable productos = Producto_Controller.ObtenerProductos();
+                DVC_PRODUCTOS.DataSource = null;
+                DVC_PRODUCTOS.DataSource = productos;
+                DVC_PRODUCTOS.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                DVC_PRODUCTOS.Columns["ID_PRODUCTO"].Visible = false;
+                DVC_PRODUCTOS.ClearSelection();
+                Cargar_Categorias();
+                Cargar_Tipos_ISV();
+                TXT_CODIGO_B.Enabled = false;
+                TXT_DESC.Enabled = false;
+                CBX_CATEGORIA.Enabled = false;
+                CBX_TIPOISV.Enabled = false;
+                TXT_EXISTENCIA.Enabled = false;
+                TXT_PU.Enabled = false;
+                TXT_PC.Enabled = false;
+                TXT_DESCUENTO.Enabled = false;
+                LimpiarCampos();
             }
             catch (Exception ex)
             {
@@ -82,8 +105,8 @@ namespace Prototipo_MarZel
             await FadeInAsync(this);
             this.Opacity = 1.0;
             CargarDatos();
-            DVC_PRODUCTOS.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
+
         private void FRM_PRODUCTOS_FormClosed(object sender, FormClosedEventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
@@ -102,134 +125,141 @@ namespace Prototipo_MarZel
                 Application.Exit();
             }
         }
+
         public void LimpiarCampos()
         {
             TXT_CODIGO_B.Text = string.Empty;
             TXT_DESC.Text = string.Empty;
-            TXT_ISV.Text = string.Empty;
-            TXT_CANTIDAD.Text = string.Empty;
+            TXT_EXISTENCIA.Text = string.Empty;
             TXT_PU.Text = string.Empty;
             TXT_PC.Text = string.Empty;
-            TXT_BUSCA.Text = string.Empty;
+            TXT_DESCUENTO.Text = string.Empty;
             CBX_CATEGORIA.SelectedIndex = -1;
             CBX_CATEGORIA.Invalidate();
-            CBX_CATEGORIA.Update();
-
-        }
-
-        private async void DVC_PRODUCTOS_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            LimpiarCampos();
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow fila = DVC_PRODUCTOS.Rows[e.RowIndex];
-                string nombreProducto = fila.Cells["PRODUCTO"].Value?.ToString();
-                DataTable tabla_express = Producto_Controller.ObtenerProducto(nombreProducto);
-                DataRow datos = tabla_express.Rows[0];
-                TXT_CODIGO_B.Text = datos["CODIGO_BARRA"].ToString();
-                TXT_DESC.Text = datos["DESCRIPCION"].ToString();
-                TXT_ISV.Text = datos["ID_ISV"].ToString();
-                TXT_CANTIDAD.Text = datos["EXISTENCIA"].ToString();
-                TXT_PU.Text = datos["PRECIO_UNITARIO"].ToString();
-                TXT_PC.Text = datos["PRECIO_COMPLETO"].ToString();
-                string categoria = datos["CATEGORIA"].ToString();
-                if (tabla_express.Rows.Count > 0)
-                {
-                    int index = CBX_CATEGORIA.FindStringExact(categoria.Trim());
-                    //:v
-                    //MessageBox.Show("qwerty "+index);
-                    if (index >= 0)
-                    {
-                        CBX_CATEGORIA.SelectedIndex = index;
-                        //debugado de panas :v
-                        //MessageBox.Show("Categoria seleccionada: " + categoria, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        CBX_CATEGORIA.SelectedIndex = -1;
-                    }
-                    //debugado de panas 2 :v
-                    /*
-                    DataTable dt = CategoriaController.ObtenerCategoriaPorId(CBX_CATEGORIA.Text);
-
-                    if (dt.Rows.Count > 0)
-                    {
-                        string idCategoria = dt.Rows[0]["ID"].ToString();
-                        MessageBox.Show("ID de categoría: " + idCategoria);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se encontró la categoría.");
-                    }
-                    */
-
-                    CBX_CATEGORIA.Invalidate();
-                    CBX_CATEGORIA.Update();
-
-                }
-            }
+            CBX_TIPOISV.SelectedIndex = -1;
+            CBX_TIPOISV.Invalidate();
         }
 
         private void BTN_CANCEL_Click(object sender, EventArgs e)
         {
+            TXT_BUSCA.Text = string.Empty;
+            DVC_PRODUCTOS.ClearSelection();
             LimpiarCampos();
+        }
+
+        private bool verificar()
+        {
+            if (string.IsNullOrWhiteSpace(TXT_CODIGO_B.Text))
+            {
+                MessageBox.Show("Debe ingresar un código de barra.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCodigoBarra.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(TXT_DESC.Text))
+            {
+                MessageBox.Show("Debe ingresar una descripción.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDescripcion.Focus();
+                return false;
+            }
+
+            if (CBX_TIPOISV.SelectedIndex < 0)
+            {
+                MessageBox.Show("Debe seleccionar un tipo de ISV.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CBX_TIPOISV.Focus();
+                return false;
+            }
+
+            if (CBX_CATEGORIA.SelectedIndex < 0)
+            {
+                MessageBox.Show("Debe seleccionar una categoría.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CBX_CATEGORIA.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(TXT_PU.Text) || !decimal.TryParse(TXT_PU.Text, out decimal precio_unit) || precio_unit < 0)
+            {
+                MessageBox.Show("Debe ingresar un precio unitario válido mayor a 0.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TXT_PU.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(TXT_PC.Text) || !decimal.TryParse(TXT_PC.Text, out decimal precio_comp) || precio_comp < 0)
+            {
+                MessageBox.Show("Debe ingresar un precio completo válido mayor a 0.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TXT_PC.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(TXT_DESCUENTO.Text) || !decimal.TryParse(TXT_DESCUENTO.Text, out decimal descuento) || descuento < 0)
+            {
+                MessageBox.Show("Debe ingresar un descuento válido mayor a 0.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TXT_DESCUENTO.Focus();
+                return false;
+            }
+
+            return true;
         }
 
         private void BTN_WARD_Click(object sender, EventArgs e)
         {
-            DataTable dt = Categoria_Producto_Controller.ObtenerCategoriaPorId(CBX_CATEGORIA.Text);
-            if (dt.Rows.Count > 0)
-            {
-                string idCategoria = dt.Rows[0]["ID_PRODUCTO"].ToString();
+            if (!verificar()) return;
 
-                Producto_Controller.ModificarProducto(
-                    TXT_CODIGO_B.Text,
-                    TXT_DESC.Text,
-                    Convert.ToInt32(idCategoria),
-                    Convert.ToDecimal(TXT_PU.Text),
-                    Convert.ToDecimal(TXT_PC.Text)
-                );
+            Producto_Controller.Modificar_Producto(
+                Id_Producto,
+                TXT_CODIGO_B.Text,
+                TXT_DESC.Text,
+                Convert.ToInt32(CBX_TIPOISV.SelectedValue),
+                Convert.ToDecimal(TXT_PC.Text),
+                Convert.ToDecimal(TXT_PU.Text),
+                Convert.ToInt32(CBX_CATEGORIA.SelectedValue),
+                Convert.ToDecimal(TXT_DESCUENTO.Text),
+                Convert.ToInt32(TXT_EXISTENCIA.Text)
+            );
 
-                CargarDatos();
-                LimpiarCampos();
-                MessageBox.Show("Producto modificado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Por favor seleccione datos correctos");
-            }
+            CargarDatos();
+            TXT_BUSCA.Text = string.Empty;
+            LimpiarCampos();
+            MessageBox.Show("Producto modificado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void TXT_BUSCA_TextChanged(object sender, EventArgs e)
         {
             string textoBusquedaP = TXT_BUSCA.Text.Trim();
-            if (string.IsNullOrWhiteSpace(textoBusquedaP))
-            {
-                LimpiarCampos();
-                return;
-            }
-
-            DataTable tabla_express = Producto_Controller.ObtenerProducto(textoBusquedaP);
+            DVC_PRODUCTOS.ClearSelection();
+            LimpiarCampos();
+            DataTable tabla_express = Producto_Controller.Cargar_Producto(textoBusquedaP);
 
             if (tabla_express != null && tabla_express.Rows.Count > 0)
             {
                 DataRow datos = tabla_express.Rows[0];
                 TXT_CODIGO_B.Text = datos["CODIGO_BARRA"].ToString();
                 TXT_DESC.Text = datos["DESCRIPCION"].ToString();
-                TXT_ISV.Text = datos["ID_ISV"].ToString();
-                TXT_CANTIDAD.Text = datos["EXISTENCIA"].ToString();
+                TXT_EXISTENCIA.Text = datos["EXISTENCIA"].ToString();
                 TXT_PU.Text = datos["PRECIO_UNITARIO"].ToString();
                 TXT_PC.Text = datos["PRECIO_COMPLETO"].ToString();
-
-                string categoria = datos["CATEGORIA"].ToString();
-                int index = CBX_CATEGORIA.FindStringExact(categoria.Trim());
-                CBX_CATEGORIA.SelectedIndex = index >= 0 ? index : -1;
+                TXT_DESCUENTO.Text = datos["DESCUENTO"].ToString();
+                CBX_CATEGORIA.SelectedValue = datos["ID_CATEGORIA"];
                 CBX_CATEGORIA.Invalidate();
-                CBX_CATEGORIA.Update();
+                CBX_TIPOISV.SelectedValue = datos["ID_ISV"];
+                CBX_TIPOISV.Invalidate();
+                TXT_CODIGO_B.Enabled = true;
+                TXT_DESC.Enabled = true;
+                CBX_CATEGORIA.Enabled = true;
+                CBX_TIPOISV.Enabled = true;
+                TXT_PU.Enabled = true;
+                TXT_PC.Enabled = true;
+                TXT_DESCUENTO.Enabled = true;
             }
             else
             {
-                LimpiarCampos();
+                TXT_CODIGO_B.Enabled = false;
+                TXT_DESC.Enabled = false;
+                CBX_CATEGORIA.Enabled = false;
+                CBX_TIPOISV.Enabled = false;
+                TXT_PU.Enabled = false;
+                TXT_PC.Enabled = false;
+                TXT_DESCUENTO.Enabled = false;
             }
         }
 
@@ -261,14 +291,183 @@ namespace Prototipo_MarZel
             {
                 CargarHistorialMovimientos();
             }
+            else if (MTBC_MENU.SelectedTab == TP_INSERTAR)
+            {
+                CargarCategorias();
+                CargarTipos_ISV();
+                txtCodigoBarra.Text = string.Empty;
+                txtDescripcion.Text = string.Empty;
+                txtPrecioUnitario.Text = string.Empty;
+                txtPrecioCompleto.Text = string.Empty;
+                txtDescuento.Text = string.Empty;
+                txtExistencia.Text = string.Empty;
+                cmbCaregorias.SelectedIndex = -1;
+                cmbCaregorias.Invalidate();
+                cmbTiposISV.SelectedIndex = -1;
+                cmbTiposISV.Invalidate();
+            }
         }
 
         private void BTN_FILTRAR_Click(object sender, EventArgs e)
-        {    
+        {
             string filtro = TXT_FILTRO_PRODUCTO.Text.Trim();
             DataTable movimientosFiltrados = movimientoController.FiltrarPorProducto(filtro);
             DVC_HISTORIAL.DataSource = movimientosFiltrados;
         }
-    
+
+        private bool verificar_nuevo()
+        {
+            if (string.IsNullOrWhiteSpace(txtCodigoBarra.Text))
+            {
+                MessageBox.Show("Debe ingresar un código de barra.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCodigoBarra.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtDescripcion.Text))
+            {
+                MessageBox.Show("Debe ingresar una descripción.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDescripcion.Focus();
+                return false;
+            }
+
+            if (cmbTiposISV.SelectedIndex < 0)
+            {
+                MessageBox.Show("Debe seleccionar un tipo de ISV.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CBX_TIPOISV.Focus();
+                return false;
+            }
+
+            if (cmbCaregorias.SelectedIndex < 0)
+            {
+                MessageBox.Show("Debe seleccionar una categoría.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CBX_CATEGORIA.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtPrecioUnitario.Text) || !decimal.TryParse(txtPrecioUnitario.Text, out decimal precio_unit) || precio_unit < 0)
+            {
+                MessageBox.Show("Debe ingresar un precio unitario válido mayor a 0.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPrecioUnitario.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtPrecioCompleto.Text) || !decimal.TryParse(txtPrecioCompleto.Text, out decimal precio_comp) || precio_comp < 0)
+            {
+                MessageBox.Show("Debe ingresar un precio completo válido mayor a 0.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPrecioCompleto.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtDescuento.Text) || !decimal.TryParse(txtDescuento.Text, out decimal descuento) || descuento < 0)
+            {
+                MessageBox.Show("Debe ingresar un descuento válido mayor a 0.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDescuento.Focus();
+                return false;
+            }
+
+            if (Producto_Controller.existeProducto(txtCodigoBarra.Text))
+            {
+                MessageBox.Show("El código de barra ya existe. Por favor, ingrese uno diferente.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCodigoBarra.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        private void CargarCategorias()
+        {
+            DataTable Categorias = Categoria_Producto_Controller.Cargar_Categorias();
+            cmbCaregorias.DataSource = null;
+            cmbCaregorias.DataSource = Categorias;
+            cmbCaregorias.DisplayMember = "DESCRIPCION";
+            cmbCaregorias.ValueMember = "ID_CATEGORIA";
+            cmbCaregorias.SelectedIndex = -1;
+        }
+
+        private void CargarTipos_ISV()
+        {
+            DataTable Tipos_ISV = Tipo_ISV_Controller.Cargar_Tipos_ISV();
+            cmbTiposISV.DataSource = null;
+            cmbTiposISV.DataSource = Tipos_ISV;
+            cmbTiposISV.DisplayMember = "DESCRIPCION";
+            cmbTiposISV.ValueMember = "ID_ISV";
+            cmbTiposISV.SelectedIndex = -1;
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (!verificar_nuevo()) return;
+
+            Producto_Controller.Agregar_Producto(
+                txtCodigoBarra.Text,
+                txtDescripcion.Text,
+                Convert.ToInt32(cmbTiposISV.SelectedValue),
+                Convert.ToDecimal(txtPrecioCompleto.Text),
+                Convert.ToDecimal(txtPrecioUnitario.Text),
+                Convert.ToInt32(cmbCaregorias.SelectedValue),
+                Convert.ToDecimal(txtDescuento.Text),
+                Convert.ToInt32(txtExistencia.Text)
+            );
+
+            CargarDatos();
+            MTBC_MENU.SelectedTab = TP_MODIFICAR;
+        }
+
+        private void DVC_PRODUCTOS_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            LimpiarCampos();
+            Id_Producto = Convert.ToInt32(DVC_PRODUCTOS.CurrentRow.Cells["ID_PRODUCTO"].Value);
+            //MessageBox.Show($"{Id_Producto}");
+            DataTable tabla_express = Producto_Controller.Cargar_Producto(Id_Producto);
+            TXT_CODIGO_B.Text = tabla_express.Rows[0]["CODIGO_BARRA"].ToString() ?? "";
+            TXT_DESC.Text = tabla_express.Rows[0]["DESCRIPCION"].ToString() ?? "";
+            TXT_EXISTENCIA.Text = tabla_express.Rows[0]["EXISTENCIA"].ToString() ?? "0";
+            TXT_PU.Text = tabla_express.Rows[0]["PRECIO_UNITARIO"].ToString() ?? "0.00";
+            TXT_PC.Text = tabla_express.Rows[0]["PRECIO_COMPLETO"].ToString() ?? "0.00";
+            TXT_DESCUENTO.Text = tabla_express.Rows[0]["DESCUENTO"].ToString() ?? "0.00";
+            CBX_CATEGORIA.SelectedValue = tabla_express.Rows[0]["ID_CATEGORIA"];
+            CBX_CATEGORIA.Invalidate();
+            CBX_TIPOISV.SelectedValue = tabla_express.Rows[0]["ID_ISV"];
+            CBX_TIPOISV.Invalidate();
+            TXT_CODIGO_B.Enabled = true;
+            TXT_DESC.Enabled = true;
+            CBX_CATEGORIA.Enabled = true;
+            CBX_TIPOISV.Enabled = true;
+            TXT_PU.Enabled = true;
+            TXT_PC.Enabled = true;
+            TXT_DESCUENTO.Enabled = true;
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            CargarDatos();
+            MTBC_MENU.SelectedTab = TP_MODIFICAR;
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (DVC_PRODUCTOS.CurrentRow == null) return;
+
+            int Id_Producto = Convert.ToInt32(DVC_PRODUCTOS.CurrentRow.Cells["ID_PRODUCTO"].Value);
+            DialogResult resultado = MessageBox.Show(
+                "¿Está seguro que desea eliminar el producto?",
+                "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (resultado == DialogResult.Yes)
+            {
+                try
+                {
+                    Producto_Controller.Eliminar_Producto(Id_Producto);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("No es posible eliminar el producto, ya que esta siendo utilizado.",
+                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                CargarDatos();
+            }
+        }
     }
 }

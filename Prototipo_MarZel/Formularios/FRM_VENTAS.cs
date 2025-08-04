@@ -60,6 +60,7 @@ namespace Prototipo_MarZel.Formularios
         private void btnAgregarVenta_Click(object sender, EventArgs e)
         {
             FRM_GESTIONAR_VENTA frm_gestionar_venta = new FRM_GESTIONAR_VENTA(Id_Usuario, Nombre_Usuario);
+            this.Hide();
             frm_gestionar_venta.ShowDialog();
             Cargar_Ventas();
         }
@@ -70,8 +71,28 @@ namespace Prototipo_MarZel.Formularios
 
             int Id_Venta = Venta_Controller.Cargar_Ventas().Rows[dgvVentas.CurrentRow.Index].Field<int>("ID_VENTA");
             FRM_GESTIONAR_VENTA frm_gestionar_venta = new FRM_GESTIONAR_VENTA(Id_Usuario, Nombre_Usuario, Id_Venta);
+            this.Hide();
             frm_gestionar_venta.ShowDialog();
             Cargar_Ventas();
+        }
+
+        private void FRM_VENTAS_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show(
+                "¿Desea volver al menú principal?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (resultado == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            else
+            {
+                Application.Exit();
+            }
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Prototipo_MarZel.Recursos.Controlador
 {
     public class Movimiento_Inventario_Controller
     {
-        private Movimiento_Inventario_DAO Movimiento_DAO;
+        private readonly Movimiento_Inventario_DAO Movimiento_DAO = new();
        
 
         public DataTable ObtenerMovimientos()
