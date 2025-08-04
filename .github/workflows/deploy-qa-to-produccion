@@ -26,5 +26,5 @@ jobs:
     - name: Cambiar a rama produccion y hacer merge desde QA
       run: |
         git checkout produccion
-        git merge origin/QA --no-ff -m "Merge desde qa a produccion [automático]"
+        git merge origin/qa --no-ff -m "Merge desde qa a produccion [automático]"
         git push origin produccion
