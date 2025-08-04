@@ -1,4 +1,4 @@
-name: Enviar a produccion desde qa
+name: Enviar a produccion desde QA
 
 on:
   workflow_dispatch:
@@ -23,8 +23,8 @@ jobs:
         git config user.name "Deploy Bot"
         git config user.email "deploy-bot@noreply.github.com"
 
-    - name: Cambiar a rama produccion y hacer merge desde qa
+    - name: Cambiar a rama produccion y hacer merge desde QA
       run: |
         git checkout produccion
-        git merge origin/qa --no-ff -m "Merge desde qa a produccion [automático]"
+        git merge origin/QA --no-ff -m "Merge desde qa a produccion [automático]"
         git push origin produccion
