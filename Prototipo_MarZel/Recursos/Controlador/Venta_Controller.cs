@@ -66,5 +66,10 @@ namespace Prototipo_MarZel
         {
             Venta_DAO.Eliminar_Venta(Id_Venta);
         }
+
+        public DataTable ObtenerUltimoFolio()
+        {
+            return Venta_DAO.ObtenerUltimoFolio();
+        }
     }
 }

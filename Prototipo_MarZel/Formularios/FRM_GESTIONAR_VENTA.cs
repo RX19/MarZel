@@ -82,6 +82,34 @@ namespace Prototipo_MarZel.Formularios
             Inicializar_Venta();
         }
 
+        public static string MostrarInputBox(string prompt, string title)
+        {
+            Form inputForm = new Form()
+            {
+                Width = 400,
+                Height = 150,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = title,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+
+            Label label = new Label() { Left = 10, Top = 20, Text = prompt, Width = 360 };
+            TextBox textBox = new TextBox() { Left = 10, Top = 50, Width = 360 };
+            Button buttonOk = new Button() { Text = "Aceptar", Left = 220, Width = 75, Top = 80, DialogResult = DialogResult.OK };
+            Button buttonCancel = new Button() { Text = "Cancelar", Left = 300, Width = 75, Top = 80, DialogResult = DialogResult.Cancel };
+
+            inputForm.Controls.Add(label);
+            inputForm.Controls.Add(textBox);
+            inputForm.Controls.Add(buttonOk);
+            inputForm.Controls.Add(buttonCancel);
+
+            inputForm.AcceptButton = buttonOk;
+            inputForm.CancelButton = buttonCancel;
+
+            return inputForm.ShowDialog() == DialogResult.OK ? textBox.Text : null;
+        }
+
+
         private void txtCodigoBarra_TextChanged(object sender, EventArgs e)
         {
             string Codigo_Barra = txtCodigoBarra.Text.Trim();
@@ -156,6 +184,38 @@ namespace Prototipo_MarZel.Formularios
             else
             {
                 Venta_Controller.Actualizar_Venta(Id_Venta);
+            }
+            DataTable Venta = Temp_Venta_Controller.Cargar_Venta();
+            DataRow fila = Venta.Rows[0];
+            string Ultimafactura = fila["FACTURA"].ToString();
+
+            DialogResult respuesta = MessageBox.Show(
+                "¿Desea enviar la factura por correo electrónico?",
+                "Enviar factura",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (respuesta == DialogResult.Yes)
+            {
+                string correo = MostrarInputBox("Ingrese el correo del cliente:", "Correo electrónico");
+
+                if (!string.IsNullOrWhiteSpace(correo))
+                {
+                    try
+                    {
+                        FacturaService.EnviarFacturaPorCorreo(Ultimafactura, correo);
+                        MessageBox.Show("Factura enviada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error al enviar la factura: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se ingreso ningun correo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             this.Close();
         }
