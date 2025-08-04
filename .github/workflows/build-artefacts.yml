@@ -2,6 +2,7 @@
 name: Build WinForms App (.NET Framework)
 
 on:
+  workflow_dispatch:
   push:
     branches: [produccion]
   pull_request:
