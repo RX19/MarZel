@@ -75,5 +75,24 @@ namespace Prototipo_MarZel.Formularios
             frm_gestionar_venta.ShowDialog();
             Cargar_Ventas();
         }
+
+        private void FRM_VENTAS_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show(
+                "¿Desea volver al menú principal?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (resultado == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            else
+            {
+                Application.Exit();
+            }
+        }
     }
 }
