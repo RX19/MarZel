@@ -179,6 +179,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FRM_CLIENTES";
             WindowState = FormWindowState.Maximized;
+            FormClosed += FRM_CLIENTES_FormClosed;
             Load += FRM_CLIENTES_Load;
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
             ResumeLayout(false);

@@ -94,5 +94,24 @@ namespace Prototipo_MarZel.Formularios
                 dgvClientes.ClearSelection();
             }
         }
+
+        private void FRM_CLIENTES_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show(
+                "¿Desea volver al menú principal?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (resultado == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            else
+            {
+                Application.Exit();
+            }
+        }
     }
 }
