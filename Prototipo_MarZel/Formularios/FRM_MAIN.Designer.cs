@@ -45,6 +45,7 @@
             TP_CLIENTES = new TabPage();
             TP_COMPRAS = new TabPage();
             TP_VENTAS = new TabPage();
+            TP_REPORTES = new TabPage();
             MTBC_MENU.SuspendLayout();
             TP_INICIO.SuspendLayout();
             materialCard1.SuspendLayout();
@@ -60,6 +61,7 @@
             MTBC_MENU.Controls.Add(TP_CLIENTES);
             MTBC_MENU.Controls.Add(TP_COMPRAS);
             MTBC_MENU.Controls.Add(TP_VENTAS);
+            MTBC_MENU.Controls.Add(TP_REPORTES);
             MTBC_MENU.Depth = 0;
             MTBC_MENU.Dock = DockStyle.Fill;
             MTBC_MENU.Location = new Point(3, 80);
@@ -120,10 +122,10 @@
             materialCard1.Depth = 0;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
             materialCard1.Location = new Point(121, 74);
-            materialCard1.Margin = new Padding(14, 14, 14, 14);
+            materialCard1.Margin = new Padding(14);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
-            materialCard1.Padding = new Padding(14, 14, 14, 14);
+            materialCard1.Padding = new Padding(14);
             materialCard1.Size = new Size(823, 414);
             materialCard1.TabIndex = 0;
             // 
@@ -220,7 +222,7 @@
             TP_PRODUCTOS.Margin = new Padding(3, 2, 3, 2);
             TP_PRODUCTOS.Name = "TP_PRODUCTOS";
             TP_PRODUCTOS.Padding = new Padding(3, 2, 3, 2);
-            TP_PRODUCTOS.Size = new Size(1094, 515);
+            TP_PRODUCTOS.Size = new Size(1095, 515);
             TP_PRODUCTOS.TabIndex = 2;
             TP_PRODUCTOS.Text = "Productos";
             // 
@@ -229,7 +231,7 @@
             TP_ADMIN.Location = new Point(4, 29);
             TP_ADMIN.Margin = new Padding(3, 2, 3, 2);
             TP_ADMIN.Name = "TP_ADMIN";
-            TP_ADMIN.Size = new Size(1094, 515);
+            TP_ADMIN.Size = new Size(1095, 515);
             TP_ADMIN.TabIndex = 3;
             TP_ADMIN.Text = "Usuarios";
             TP_ADMIN.UseVisualStyleBackColor = true;
@@ -240,7 +242,7 @@
             TP_PROVEEDORES.Margin = new Padding(3, 4, 3, 4);
             TP_PROVEEDORES.Name = "TP_PROVEEDORES";
             TP_PROVEEDORES.Padding = new Padding(3, 4, 3, 4);
-            TP_PROVEEDORES.Size = new Size(1094, 515);
+            TP_PROVEEDORES.Size = new Size(1095, 515);
             TP_PROVEEDORES.TabIndex = 4;
             TP_PROVEEDORES.Text = "Proveedores";
             TP_PROVEEDORES.UseVisualStyleBackColor = true;
@@ -248,10 +250,10 @@
             // TP_CLIENTES
             // 
             TP_CLIENTES.Location = new Point(4, 29);
-            TP_CLIENTES.Margin = new Padding(2, 2, 2, 2);
+            TP_CLIENTES.Margin = new Padding(2);
             TP_CLIENTES.Name = "TP_CLIENTES";
-            TP_CLIENTES.Padding = new Padding(2, 2, 2, 2);
-            TP_CLIENTES.Size = new Size(1094, 515);
+            TP_CLIENTES.Padding = new Padding(2);
+            TP_CLIENTES.Size = new Size(1095, 515);
             TP_CLIENTES.TabIndex = 6;
             TP_CLIENTES.Text = "Clientes";
             TP_CLIENTES.UseVisualStyleBackColor = true;
@@ -262,7 +264,7 @@
             TP_COMPRAS.Margin = new Padding(3, 4, 3, 4);
             TP_COMPRAS.Name = "TP_COMPRAS";
             TP_COMPRAS.Padding = new Padding(3, 4, 3, 4);
-            TP_COMPRAS.Size = new Size(1094, 515);
+            TP_COMPRAS.Size = new Size(1095, 515);
             TP_COMPRAS.TabIndex = 5;
             TP_COMPRAS.Text = "Compras";
             TP_COMPRAS.UseVisualStyleBackColor = true;
@@ -272,10 +274,19 @@
             TP_VENTAS.Location = new Point(4, 29);
             TP_VENTAS.Margin = new Padding(3, 4, 3, 4);
             TP_VENTAS.Name = "TP_VENTAS";
-            TP_VENTAS.Size = new Size(1094, 515);
+            TP_VENTAS.Size = new Size(1095, 515);
             TP_VENTAS.TabIndex = 7;
             TP_VENTAS.Text = "Ventas";
             TP_VENTAS.UseVisualStyleBackColor = true;
+            // 
+            // TP_REPORTES
+            // 
+            TP_REPORTES.Location = new Point(4, 29);
+            TP_REPORTES.Name = "TP_REPORTES";
+            TP_REPORTES.Size = new Size(1095, 515);
+            TP_REPORTES.TabIndex = 8;
+            TP_REPORTES.Text = "Reportes";
+            TP_REPORTES.UseVisualStyleBackColor = true;
             // 
             // FRM_MAIN
             // 
@@ -321,5 +332,6 @@
         private MaterialSkin.Controls.MaterialButton BTN_PRUEBA;
         private TabPage TP_CLIENTES;
         private TabPage TP_VENTAS;
+        private TabPage TP_REPORTES;
     }
 }

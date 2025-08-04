@@ -51,7 +51,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(WV_Reportes);
             Name = "FRM_REPORTES";
-            Text = "FRM_REPORTES";
+            FormClosed += FRM_REPORTES_FormClosed;
             Load += FRM_REPORTES_Load;
             ((System.ComponentModel.ISupportInitialize)WV_Reportes).EndInit();
             ResumeLayout(false);

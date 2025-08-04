@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace Prototipo_MarZel
 {
+    //''
     public partial class FRM_MAIN : MaterialSkin.Controls.MaterialForm
     {
         FRM_PRODUCTOS frm_productos = new FRM_PRODUCTOS();
@@ -47,7 +48,6 @@ namespace Prototipo_MarZel
             Id_Usuario = Convert.ToInt32(fila["Id_Usuario"]);
             id_tipo_usuario = Convert.ToInt32(fila["ID_TIPO"]);
             Nombre_Usuario = fila["Nombre"].ToString() ?? "";
-            //frm_reportes.ShowDialog();
 
         }
         private async Task FadeOutAsync(Form form)
@@ -79,8 +79,6 @@ namespace Prototipo_MarZel
             fondo.SendToBack();
             this.WindowState = FormWindowState.Maximized;
             this.MaximizeBox = false;
-            //esto es el servicio de correos totalmente funcional, pero no se usa por el momento.
-            
             Existencia_DAO existenciaDao = new Existencia_DAO();
             DataTable productosBajos = existenciaDao.ObtenerProductosBajaExistencia();
             if (id_tipo_usuario == 1)
@@ -263,6 +261,25 @@ namespace Prototipo_MarZel
                 this.Opacity = 1.0;
                 MTBC_MENU.SelectedTab = TP_INICIO;
             }
+            if (MTBC_MENU.SelectedTab == TP_REPORTES)
+            {
+                for (double i = 1.0; i >= 0.2; i -= 0.05)
+                {
+                    this.Opacity = i;
+                    await Task.Delay(15);
+                }
+                this.Visible = false;
+                frm_reportes.ShowDialog();
+                this.Visible = true;
+                for (double i = 0.2; i <= 1.0; i += 0.05)
+                {
+                    this.Opacity = i;
+                    await Task.Delay(15);
+                }
+                this.Opacity = 1.0;
+                MTBC_MENU.SelectedTab = TP_INICIO;
+            }
+
 
         }
 
