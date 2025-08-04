@@ -15,6 +15,7 @@ namespace Prototipo_MarZel
         FRM_USUARIOS frm_usuarios = new FRM_USUARIOS();
         Login_Controller LoginController = new Login_Controller();
         FRM_CLIENTES frm_clientes = new FRM_CLIENTES();
+        FRM_REPORTES frm_reportes = new FRM_REPORTES();
         int Id_Usuario; 
         string Nombre_Usuario;
         int id_tipo_usuario;
@@ -46,6 +47,7 @@ namespace Prototipo_MarZel
             Id_Usuario = Convert.ToInt32(fila["Id_Usuario"]);
             id_tipo_usuario = Convert.ToInt32(fila["ID_TIPO"]);
             Nombre_Usuario = fila["Nombre"].ToString() ?? "";
+            //frm_reportes.ShowDialog();
 
         }
         private async Task FadeOutAsync(Form form)
