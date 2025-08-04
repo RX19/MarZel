@@ -322,7 +322,7 @@ namespace Prototipo_MarZel.Formularios
                 Id_Compra, Id_Producto, Codigo_Barra, Descripcion, Cantidad, Costo, Descuento,
                 Importe, Id_ISV, Precio_Completo, Precio_Unitario, Id_Categoria, Fecha_Creacion
             );
-
+            Completar_Compra();
             Cargar_Datos_Compra();
 
         }
