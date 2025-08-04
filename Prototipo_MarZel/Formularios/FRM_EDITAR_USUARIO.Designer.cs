@@ -73,19 +73,19 @@
             materialCard1.Controls.Add(materialLabel14);
             materialCard1.Depth = 0;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(28, 114);
-            materialCard1.Margin = new Padding(14, 13, 14, 13);
+            materialCard1.Location = new Point(35, 142);
+            materialCard1.Margin = new Padding(18, 16, 18, 16);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
-            materialCard1.Padding = new Padding(14, 13, 14, 13);
-            materialCard1.Size = new Size(786, 553);
+            materialCard1.Padding = new Padding(18, 16, 18, 16);
+            materialCard1.Size = new Size(982, 691);
             materialCard1.TabIndex = 19;
             // 
             // materialCheckbox4
             // 
             materialCheckbox4.AutoSize = true;
             materialCheckbox4.Depth = 0;
-            materialCheckbox4.Location = new Point(431, 440);
+            materialCheckbox4.Location = new Point(539, 550);
             materialCheckbox4.Margin = new Padding(0);
             materialCheckbox4.MouseLocation = new Point(-1, -1);
             materialCheckbox4.MouseState = MaterialSkin.MouseState.HOVER;
@@ -101,7 +101,7 @@
             // 
             materialCheckbox5.AutoSize = true;
             materialCheckbox5.Depth = 0;
-            materialCheckbox5.Location = new Point(266, 440);
+            materialCheckbox5.Location = new Point(332, 550);
             materialCheckbox5.Margin = new Padding(0);
             materialCheckbox5.MouseLocation = new Point(-1, -1);
             materialCheckbox5.MouseState = MaterialSkin.MouseState.HOVER;
@@ -117,7 +117,7 @@
             // 
             materialCheckbox6.AutoSize = true;
             materialCheckbox6.Depth = 0;
-            materialCheckbox6.Location = new Point(37, 440);
+            materialCheckbox6.Location = new Point(46, 550);
             materialCheckbox6.Margin = new Padding(0);
             materialCheckbox6.MouseLocation = new Point(-1, -1);
             materialCheckbox6.MouseState = MaterialSkin.MouseState.HOVER;
@@ -136,8 +136,8 @@
             BTN_EDITAR.Depth = 0;
             BTN_EDITAR.HighEmphasis = true;
             BTN_EDITAR.Icon = null;
-            BTN_EDITAR.Location = new Point(504, 488);
-            BTN_EDITAR.Margin = new Padding(5);
+            BTN_EDITAR.Location = new Point(630, 610);
+            BTN_EDITAR.Margin = new Padding(6, 6, 6, 6);
             BTN_EDITAR.MouseState = MaterialSkin.MouseState.HOVER;
             BTN_EDITAR.Name = "BTN_EDITAR";
             BTN_EDITAR.NoAccentTextColor = Color.Empty;
@@ -154,7 +154,8 @@
             materialLabel8.AutoSize = true;
             materialLabel8.Depth = 0;
             materialLabel8.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel8.Location = new Point(37, 322);
+            materialLabel8.Location = new Point(46, 402);
+            materialLabel8.Margin = new Padding(4, 0, 4, 0);
             materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel8.Name = "materialLabel8";
             materialLabel8.Size = new Size(112, 19);
@@ -176,11 +177,12 @@
             CB_EDITAR_TIPO_USUARIO.IntegralHeight = false;
             CB_EDITAR_TIPO_USUARIO.ItemHeight = 43;
             CB_EDITAR_TIPO_USUARIO.Items.AddRange(new object[] { "Administrador", "Vendedor" });
-            CB_EDITAR_TIPO_USUARIO.Location = new Point(37, 367);
+            CB_EDITAR_TIPO_USUARIO.Location = new Point(46, 459);
+            CB_EDITAR_TIPO_USUARIO.Margin = new Padding(4, 4, 4, 4);
             CB_EDITAR_TIPO_USUARIO.MaxDropDownItems = 4;
             CB_EDITAR_TIPO_USUARIO.MouseState = MaterialSkin.MouseState.OUT;
             CB_EDITAR_TIPO_USUARIO.Name = "CB_EDITAR_TIPO_USUARIO";
-            CB_EDITAR_TIPO_USUARIO.Size = new Size(151, 49);
+            CB_EDITAR_TIPO_USUARIO.Size = new Size(188, 49);
             CB_EDITAR_TIPO_USUARIO.StartIndex = 0;
             CB_EDITAR_TIPO_USUARIO.TabIndex = 12;
             // 
@@ -191,12 +193,13 @@
             TXT_EDITAR_CELULAR.Depth = 0;
             TXT_EDITAR_CELULAR.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_EDITAR_CELULAR.LeadingIcon = null;
-            TXT_EDITAR_CELULAR.Location = new Point(321, 251);
+            TXT_EDITAR_CELULAR.Location = new Point(401, 314);
+            TXT_EDITAR_CELULAR.Margin = new Padding(4, 4, 4, 4);
             TXT_EDITAR_CELULAR.MaxLength = 50;
             TXT_EDITAR_CELULAR.MouseState = MaterialSkin.MouseState.OUT;
             TXT_EDITAR_CELULAR.Multiline = false;
             TXT_EDITAR_CELULAR.Name = "TXT_EDITAR_CELULAR";
-            TXT_EDITAR_CELULAR.Size = new Size(250, 50);
+            TXT_EDITAR_CELULAR.Size = new Size(312, 50);
             TXT_EDITAR_CELULAR.TabIndex = 11;
             TXT_EDITAR_CELULAR.Text = "";
             TXT_EDITAR_CELULAR.TrailingIcon = null;
@@ -208,12 +211,13 @@
             TXT_EDITAR_CONTRASEÑA.Depth = 0;
             TXT_EDITAR_CONTRASEÑA.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_EDITAR_CONTRASEÑA.LeadingIcon = null;
-            TXT_EDITAR_CONTRASEÑA.Location = new Point(321, 153);
+            TXT_EDITAR_CONTRASEÑA.Location = new Point(401, 191);
+            TXT_EDITAR_CONTRASEÑA.Margin = new Padding(4, 4, 4, 4);
             TXT_EDITAR_CONTRASEÑA.MaxLength = 50;
             TXT_EDITAR_CONTRASEÑA.MouseState = MaterialSkin.MouseState.OUT;
             TXT_EDITAR_CONTRASEÑA.Multiline = false;
             TXT_EDITAR_CONTRASEÑA.Name = "TXT_EDITAR_CONTRASEÑA";
-            TXT_EDITAR_CONTRASEÑA.Size = new Size(250, 50);
+            TXT_EDITAR_CONTRASEÑA.Size = new Size(312, 50);
             TXT_EDITAR_CONTRASEÑA.TabIndex = 10;
             TXT_EDITAR_CONTRASEÑA.Text = "";
             TXT_EDITAR_CONTRASEÑA.TrailingIcon = null;
@@ -225,12 +229,13 @@
             TXT_EDITAR_NOMBRE_USUARIO.Depth = 0;
             TXT_EDITAR_NOMBRE_USUARIO.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_EDITAR_NOMBRE_USUARIO.LeadingIcon = null;
-            TXT_EDITAR_NOMBRE_USUARIO.Location = new Point(321, 44);
+            TXT_EDITAR_NOMBRE_USUARIO.Location = new Point(401, 55);
+            TXT_EDITAR_NOMBRE_USUARIO.Margin = new Padding(4, 4, 4, 4);
             TXT_EDITAR_NOMBRE_USUARIO.MaxLength = 50;
             TXT_EDITAR_NOMBRE_USUARIO.MouseState = MaterialSkin.MouseState.OUT;
             TXT_EDITAR_NOMBRE_USUARIO.Multiline = false;
             TXT_EDITAR_NOMBRE_USUARIO.Name = "TXT_EDITAR_NOMBRE_USUARIO";
-            TXT_EDITAR_NOMBRE_USUARIO.Size = new Size(250, 50);
+            TXT_EDITAR_NOMBRE_USUARIO.Size = new Size(312, 50);
             TXT_EDITAR_NOMBRE_USUARIO.TabIndex = 9;
             TXT_EDITAR_NOMBRE_USUARIO.Text = "";
             TXT_EDITAR_NOMBRE_USUARIO.TrailingIcon = null;
@@ -242,12 +247,13 @@
             TXT_EDITAR_CORREO.Depth = 0;
             TXT_EDITAR_CORREO.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_EDITAR_CORREO.LeadingIcon = null;
-            TXT_EDITAR_CORREO.Location = new Point(37, 251);
+            TXT_EDITAR_CORREO.Location = new Point(46, 314);
+            TXT_EDITAR_CORREO.Margin = new Padding(4, 4, 4, 4);
             TXT_EDITAR_CORREO.MaxLength = 50;
             TXT_EDITAR_CORREO.MouseState = MaterialSkin.MouseState.OUT;
             TXT_EDITAR_CORREO.Multiline = false;
             TXT_EDITAR_CORREO.Name = "TXT_EDITAR_CORREO";
-            TXT_EDITAR_CORREO.Size = new Size(245, 50);
+            TXT_EDITAR_CORREO.Size = new Size(306, 50);
             TXT_EDITAR_CORREO.TabIndex = 8;
             TXT_EDITAR_CORREO.Text = "";
             TXT_EDITAR_CORREO.TrailingIcon = null;
@@ -259,12 +265,13 @@
             TXT_EDITAR_IDENTIDAD.Depth = 0;
             TXT_EDITAR_IDENTIDAD.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_EDITAR_IDENTIDAD.LeadingIcon = null;
-            TXT_EDITAR_IDENTIDAD.Location = new Point(37, 153);
+            TXT_EDITAR_IDENTIDAD.Location = new Point(46, 191);
+            TXT_EDITAR_IDENTIDAD.Margin = new Padding(4, 4, 4, 4);
             TXT_EDITAR_IDENTIDAD.MaxLength = 50;
             TXT_EDITAR_IDENTIDAD.MouseState = MaterialSkin.MouseState.OUT;
             TXT_EDITAR_IDENTIDAD.Multiline = false;
             TXT_EDITAR_IDENTIDAD.Name = "TXT_EDITAR_IDENTIDAD";
-            TXT_EDITAR_IDENTIDAD.Size = new Size(245, 50);
+            TXT_EDITAR_IDENTIDAD.Size = new Size(306, 50);
             TXT_EDITAR_IDENTIDAD.TabIndex = 7;
             TXT_EDITAR_IDENTIDAD.Text = "";
             TXT_EDITAR_IDENTIDAD.TrailingIcon = null;
@@ -276,12 +283,13 @@
             TXT_EDITAR_NOMBRE.Depth = 0;
             TXT_EDITAR_NOMBRE.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_EDITAR_NOMBRE.LeadingIcon = null;
-            TXT_EDITAR_NOMBRE.Location = new Point(37, 44);
+            TXT_EDITAR_NOMBRE.Location = new Point(46, 55);
+            TXT_EDITAR_NOMBRE.Margin = new Padding(4, 4, 4, 4);
             TXT_EDITAR_NOMBRE.MaxLength = 50;
             TXT_EDITAR_NOMBRE.MouseState = MaterialSkin.MouseState.OUT;
             TXT_EDITAR_NOMBRE.Multiline = false;
             TXT_EDITAR_NOMBRE.Name = "TXT_EDITAR_NOMBRE";
-            TXT_EDITAR_NOMBRE.Size = new Size(245, 50);
+            TXT_EDITAR_NOMBRE.Size = new Size(306, 50);
             TXT_EDITAR_NOMBRE.TabIndex = 6;
             TXT_EDITAR_NOMBRE.Text = "";
             TXT_EDITAR_NOMBRE.TrailingIcon = null;
@@ -291,7 +299,8 @@
             materialLabel9.AutoSize = true;
             materialLabel9.Depth = 0;
             materialLabel9.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel9.Location = new Point(321, 216);
+            materialLabel9.Location = new Point(401, 270);
+            materialLabel9.Margin = new Padding(4, 0, 4, 0);
             materialLabel9.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel9.Name = "materialLabel9";
             materialLabel9.Size = new Size(50, 19);
@@ -303,7 +312,8 @@
             materialLabel10.AutoSize = true;
             materialLabel10.Depth = 0;
             materialLabel10.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel10.Location = new Point(321, 114);
+            materialLabel10.Location = new Point(401, 142);
+            materialLabel10.Margin = new Padding(4, 0, 4, 0);
             materialLabel10.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel10.Name = "materialLabel10";
             materialLabel10.Size = new Size(82, 19);
@@ -315,7 +325,8 @@
             materialLabel11.AutoSize = true;
             materialLabel11.Depth = 0;
             materialLabel11.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel11.Location = new Point(321, 14);
+            materialLabel11.Location = new Point(401, 18);
+            materialLabel11.Margin = new Padding(4, 0, 4, 0);
             materialLabel11.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel11.Name = "materialLabel11";
             materialLabel11.Size = new Size(136, 19);
@@ -327,7 +338,8 @@
             materialLabel12.AutoSize = true;
             materialLabel12.Depth = 0;
             materialLabel12.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel12.Location = new Point(37, 216);
+            materialLabel12.Location = new Point(46, 270);
+            materialLabel12.Margin = new Padding(4, 0, 4, 0);
             materialLabel12.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel12.Name = "materialLabel12";
             materialLabel12.Size = new Size(47, 19);
@@ -339,7 +351,8 @@
             materialLabel13.AutoSize = true;
             materialLabel13.Depth = 0;
             materialLabel13.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel13.Location = new Point(37, 114);
+            materialLabel13.Location = new Point(46, 142);
+            materialLabel13.Margin = new Padding(4, 0, 4, 0);
             materialLabel13.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel13.Name = "materialLabel13";
             materialLabel13.Size = new Size(67, 19);
@@ -351,7 +364,8 @@
             materialLabel14.AutoSize = true;
             materialLabel14.Depth = 0;
             materialLabel14.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel14.Location = new Point(37, 14);
+            materialLabel14.Location = new Point(46, 18);
+            materialLabel14.Margin = new Padding(4, 0, 4, 0);
             materialLabel14.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel14.Name = "materialLabel14";
             materialLabel14.Size = new Size(57, 19);
@@ -360,11 +374,14 @@
             // 
             // FRM_EDITAR_USUARIO
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(873, 705);
+            ClientSize = new Size(1091, 881);
             Controls.Add(materialCard1);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "FRM_EDITAR_USUARIO";
+            Padding = new Padding(4, 80, 4, 4);
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Editar Usuario";
             materialCard1.ResumeLayout(false);
             materialCard1.PerformLayout();

@@ -73,19 +73,19 @@
             P_CREAR_USUARIO.Controls.Add(materialLabel2);
             P_CREAR_USUARIO.Depth = 0;
             P_CREAR_USUARIO.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            P_CREAR_USUARIO.Location = new Point(17, 99);
-            P_CREAR_USUARIO.Margin = new Padding(14, 13, 14, 13);
+            P_CREAR_USUARIO.Location = new Point(21, 124);
+            P_CREAR_USUARIO.Margin = new Padding(18, 16, 18, 16);
             P_CREAR_USUARIO.MouseState = MaterialSkin.MouseState.HOVER;
             P_CREAR_USUARIO.Name = "P_CREAR_USUARIO";
-            P_CREAR_USUARIO.Padding = new Padding(14, 13, 14, 13);
-            P_CREAR_USUARIO.Size = new Size(756, 556);
+            P_CREAR_USUARIO.Padding = new Padding(18, 16, 18, 16);
+            P_CREAR_USUARIO.Size = new Size(945, 695);
             P_CREAR_USUARIO.TabIndex = 2;
             // 
             // materialCheckbox3
             // 
             materialCheckbox3.AutoSize = true;
             materialCheckbox3.Depth = 0;
-            materialCheckbox3.Location = new Point(431, 442);
+            materialCheckbox3.Location = new Point(539, 552);
             materialCheckbox3.Margin = new Padding(0);
             materialCheckbox3.MouseLocation = new Point(-1, -1);
             materialCheckbox3.MouseState = MaterialSkin.MouseState.HOVER;
@@ -101,7 +101,7 @@
             // 
             materialCheckbox2.AutoSize = true;
             materialCheckbox2.Depth = 0;
-            materialCheckbox2.Location = new Point(266, 442);
+            materialCheckbox2.Location = new Point(332, 552);
             materialCheckbox2.Margin = new Padding(0);
             materialCheckbox2.MouseLocation = new Point(-1, -1);
             materialCheckbox2.MouseState = MaterialSkin.MouseState.HOVER;
@@ -117,7 +117,7 @@
             // 
             materialCheckbox1.AutoSize = true;
             materialCheckbox1.Depth = 0;
-            materialCheckbox1.Location = new Point(37, 442);
+            materialCheckbox1.Location = new Point(46, 552);
             materialCheckbox1.Margin = new Padding(0);
             materialCheckbox1.MouseLocation = new Point(-1, -1);
             materialCheckbox1.MouseState = MaterialSkin.MouseState.HOVER;
@@ -136,8 +136,8 @@
             BTN_CREAR.Depth = 0;
             BTN_CREAR.HighEmphasis = true;
             BTN_CREAR.Icon = null;
-            BTN_CREAR.Location = new Point(504, 490);
-            BTN_CREAR.Margin = new Padding(5);
+            BTN_CREAR.Location = new Point(630, 612);
+            BTN_CREAR.Margin = new Padding(6, 6, 6, 6);
             BTN_CREAR.MouseState = MaterialSkin.MouseState.HOVER;
             BTN_CREAR.Name = "BTN_CREAR";
             BTN_CREAR.NoAccentTextColor = Color.Empty;
@@ -154,7 +154,8 @@
             materialLabel1.AutoSize = true;
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(37, 324);
+            materialLabel1.Location = new Point(46, 405);
+            materialLabel1.Margin = new Padding(4, 0, 4, 0);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
             materialLabel1.Size = new Size(112, 19);
@@ -176,11 +177,12 @@
             CB_TIPO_USUARIO.IntegralHeight = false;
             CB_TIPO_USUARIO.ItemHeight = 43;
             CB_TIPO_USUARIO.Items.AddRange(new object[] { "Administrador", "Cajero" });
-            CB_TIPO_USUARIO.Location = new Point(37, 367);
+            CB_TIPO_USUARIO.Location = new Point(46, 459);
+            CB_TIPO_USUARIO.Margin = new Padding(4, 4, 4, 4);
             CB_TIPO_USUARIO.MaxDropDownItems = 4;
             CB_TIPO_USUARIO.MouseState = MaterialSkin.MouseState.OUT;
             CB_TIPO_USUARIO.Name = "CB_TIPO_USUARIO";
-            CB_TIPO_USUARIO.Size = new Size(151, 49);
+            CB_TIPO_USUARIO.Size = new Size(188, 49);
             CB_TIPO_USUARIO.StartIndex = 0;
             CB_TIPO_USUARIO.TabIndex = 12;
             // 
@@ -191,12 +193,13 @@
             TXT_CELULAR.Depth = 0;
             TXT_CELULAR.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_CELULAR.LeadingIcon = null;
-            TXT_CELULAR.Location = new Point(321, 251);
+            TXT_CELULAR.Location = new Point(401, 314);
+            TXT_CELULAR.Margin = new Padding(4, 4, 4, 4);
             TXT_CELULAR.MaxLength = 50;
             TXT_CELULAR.MouseState = MaterialSkin.MouseState.OUT;
             TXT_CELULAR.Multiline = false;
             TXT_CELULAR.Name = "TXT_CELULAR";
-            TXT_CELULAR.Size = new Size(250, 50);
+            TXT_CELULAR.Size = new Size(312, 50);
             TXT_CELULAR.TabIndex = 11;
             TXT_CELULAR.Text = "";
             TXT_CELULAR.TrailingIcon = null;
@@ -208,12 +211,13 @@
             TXT_CONTRASEÑA.Depth = 0;
             TXT_CONTRASEÑA.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_CONTRASEÑA.LeadingIcon = null;
-            TXT_CONTRASEÑA.Location = new Point(321, 153);
+            TXT_CONTRASEÑA.Location = new Point(401, 191);
+            TXT_CONTRASEÑA.Margin = new Padding(4, 4, 4, 4);
             TXT_CONTRASEÑA.MaxLength = 50;
             TXT_CONTRASEÑA.MouseState = MaterialSkin.MouseState.OUT;
             TXT_CONTRASEÑA.Multiline = false;
             TXT_CONTRASEÑA.Name = "TXT_CONTRASEÑA";
-            TXT_CONTRASEÑA.Size = new Size(250, 50);
+            TXT_CONTRASEÑA.Size = new Size(312, 50);
             TXT_CONTRASEÑA.TabIndex = 10;
             TXT_CONTRASEÑA.Text = "";
             TXT_CONTRASEÑA.TrailingIcon = null;
@@ -225,12 +229,13 @@
             TXT_NOMBRE_USUARIO.Depth = 0;
             TXT_NOMBRE_USUARIO.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_NOMBRE_USUARIO.LeadingIcon = null;
-            TXT_NOMBRE_USUARIO.Location = new Point(321, 44);
+            TXT_NOMBRE_USUARIO.Location = new Point(401, 55);
+            TXT_NOMBRE_USUARIO.Margin = new Padding(4, 4, 4, 4);
             TXT_NOMBRE_USUARIO.MaxLength = 50;
             TXT_NOMBRE_USUARIO.MouseState = MaterialSkin.MouseState.OUT;
             TXT_NOMBRE_USUARIO.Multiline = false;
             TXT_NOMBRE_USUARIO.Name = "TXT_NOMBRE_USUARIO";
-            TXT_NOMBRE_USUARIO.Size = new Size(250, 50);
+            TXT_NOMBRE_USUARIO.Size = new Size(312, 50);
             TXT_NOMBRE_USUARIO.TabIndex = 9;
             TXT_NOMBRE_USUARIO.Text = "";
             TXT_NOMBRE_USUARIO.TrailingIcon = null;
@@ -242,12 +247,13 @@
             TXT_CORREO.Depth = 0;
             TXT_CORREO.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_CORREO.LeadingIcon = null;
-            TXT_CORREO.Location = new Point(37, 251);
+            TXT_CORREO.Location = new Point(46, 314);
+            TXT_CORREO.Margin = new Padding(4, 4, 4, 4);
             TXT_CORREO.MaxLength = 50;
             TXT_CORREO.MouseState = MaterialSkin.MouseState.OUT;
             TXT_CORREO.Multiline = false;
             TXT_CORREO.Name = "TXT_CORREO";
-            TXT_CORREO.Size = new Size(245, 50);
+            TXT_CORREO.Size = new Size(306, 50);
             TXT_CORREO.TabIndex = 8;
             TXT_CORREO.Text = "";
             TXT_CORREO.TrailingIcon = null;
@@ -259,12 +265,13 @@
             TXT_IDENTIDAD.Depth = 0;
             TXT_IDENTIDAD.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_IDENTIDAD.LeadingIcon = null;
-            TXT_IDENTIDAD.Location = new Point(37, 153);
+            TXT_IDENTIDAD.Location = new Point(46, 191);
+            TXT_IDENTIDAD.Margin = new Padding(4, 4, 4, 4);
             TXT_IDENTIDAD.MaxLength = 50;
             TXT_IDENTIDAD.MouseState = MaterialSkin.MouseState.OUT;
             TXT_IDENTIDAD.Multiline = false;
             TXT_IDENTIDAD.Name = "TXT_IDENTIDAD";
-            TXT_IDENTIDAD.Size = new Size(245, 50);
+            TXT_IDENTIDAD.Size = new Size(306, 50);
             TXT_IDENTIDAD.TabIndex = 7;
             TXT_IDENTIDAD.Text = "";
             TXT_IDENTIDAD.TrailingIcon = null;
@@ -276,12 +283,13 @@
             TXT_NOMBRE.Depth = 0;
             TXT_NOMBRE.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_NOMBRE.LeadingIcon = null;
-            TXT_NOMBRE.Location = new Point(37, 44);
+            TXT_NOMBRE.Location = new Point(46, 55);
+            TXT_NOMBRE.Margin = new Padding(4, 4, 4, 4);
             TXT_NOMBRE.MaxLength = 50;
             TXT_NOMBRE.MouseState = MaterialSkin.MouseState.OUT;
             TXT_NOMBRE.Multiline = false;
             TXT_NOMBRE.Name = "TXT_NOMBRE";
-            TXT_NOMBRE.Size = new Size(245, 50);
+            TXT_NOMBRE.Size = new Size(306, 50);
             TXT_NOMBRE.TabIndex = 6;
             TXT_NOMBRE.Text = "";
             TXT_NOMBRE.TrailingIcon = null;
@@ -291,7 +299,8 @@
             materialLabel7.AutoSize = true;
             materialLabel7.Depth = 0;
             materialLabel7.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel7.Location = new Point(321, 218);
+            materialLabel7.Location = new Point(401, 272);
+            materialLabel7.Margin = new Padding(4, 0, 4, 0);
             materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel7.Name = "materialLabel7";
             materialLabel7.Size = new Size(50, 19);
@@ -303,7 +312,8 @@
             materialLabel6.AutoSize = true;
             materialLabel6.Depth = 0;
             materialLabel6.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel6.Location = new Point(321, 108);
+            materialLabel6.Location = new Point(401, 135);
+            materialLabel6.Margin = new Padding(4, 0, 4, 0);
             materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel6.Name = "materialLabel6";
             materialLabel6.Size = new Size(82, 19);
@@ -315,7 +325,8 @@
             materialLabel5.AutoSize = true;
             materialLabel5.Depth = 0;
             materialLabel5.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel5.Location = new Point(321, 16);
+            materialLabel5.Location = new Point(401, 20);
+            materialLabel5.Margin = new Padding(4, 0, 4, 0);
             materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel5.Name = "materialLabel5";
             materialLabel5.Size = new Size(136, 19);
@@ -327,7 +338,8 @@
             materialLabel4.AutoSize = true;
             materialLabel4.Depth = 0;
             materialLabel4.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel4.Location = new Point(37, 218);
+            materialLabel4.Location = new Point(46, 272);
+            materialLabel4.Margin = new Padding(4, 0, 4, 0);
             materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel4.Name = "materialLabel4";
             materialLabel4.Size = new Size(47, 19);
@@ -339,7 +351,8 @@
             materialLabel3.AutoSize = true;
             materialLabel3.Depth = 0;
             materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel3.Location = new Point(37, 116);
+            materialLabel3.Location = new Point(46, 145);
+            materialLabel3.Margin = new Padding(4, 0, 4, 0);
             materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel3.Name = "materialLabel3";
             materialLabel3.Size = new Size(67, 19);
@@ -351,7 +364,8 @@
             materialLabel2.AutoSize = true;
             materialLabel2.Depth = 0;
             materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(37, 16);
+            materialLabel2.Location = new Point(46, 20);
+            materialLabel2.Margin = new Padding(4, 0, 4, 0);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
             materialLabel2.Size = new Size(57, 19);
@@ -360,13 +374,16 @@
             // 
             // FRM_GESTIONAR_USUARIO
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(800, 724);
+            ClientSize = new Size(1000, 905);
             Controls.Add(P_CREAR_USUARIO);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "FRM_GESTIONAR_USUARIO";
+            Padding = new Padding(4, 80, 4, 4);
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Crear Usuario";
             Load += FRM_GESTIONAR_USUARIO_Load;
             P_CREAR_USUARIO.ResumeLayout(false);

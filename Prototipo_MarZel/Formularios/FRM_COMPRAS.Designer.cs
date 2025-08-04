@@ -155,7 +155,7 @@
             Padding = new Padding(4, 107, 4, 5);
             Sizable = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FRM_COMPRAS";
+            Text = "Compras";
             WindowState = FormWindowState.Maximized;
             FormClosed += FRM_COMPRAS_FormClosed;
             Load += FRM_COMPRAS_Load;

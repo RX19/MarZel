@@ -177,7 +177,7 @@
             Name = "FRM_CLIENTES";
             Padding = new Padding(4, 106, 4, 5);
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FRM_CLIENTES";
+            Text = "Clientes";
             WindowState = FormWindowState.Maximized;
             FormClosed += FRM_CLIENTES_FormClosed;
             Load += FRM_CLIENTES_Load;

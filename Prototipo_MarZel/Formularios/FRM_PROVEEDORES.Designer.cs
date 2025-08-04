@@ -176,7 +176,7 @@
             Name = "FRM_PROVEEDORES";
             Padding = new Padding(4, 107, 4, 5);
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FRM_PROVEEDORES";
+            Text = "Proveedores";
             WindowState = FormWindowState.Maximized;
             FormClosed += FRM_PROVEEDORES_FormClosed;
             Load += FRM_PROVEEDORES_Load;
