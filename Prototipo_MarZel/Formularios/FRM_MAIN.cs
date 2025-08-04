@@ -126,7 +126,8 @@ namespace Prototipo_MarZel
             if (id_tipo_usuario == 2)
             {
                 if (TP_ADMIN.Parent != null)
-                    MTBC_MENU.TabPages.Remove(TP_ADMIN); 
+                    MTBC_MENU.TabPages.Remove(TP_ADMIN);
+                    MTBC_MENU.TabPages.Remove(TP_REPORTES);
             }
         }
       
