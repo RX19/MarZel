@@ -91,6 +91,7 @@ namespace Prototipo_MarZel
                 TXT_EXISTENCIA.Enabled = false;
                 TXT_PU.Enabled = false;
                 TXT_PC.Enabled = false;
+                TXT_DESCUENTO.Enabled = false;
                 LimpiarCampos();
             }
             catch (Exception ex)
@@ -132,6 +133,7 @@ namespace Prototipo_MarZel
             TXT_EXISTENCIA.Text = string.Empty;
             TXT_PU.Text = string.Empty;
             TXT_PC.Text = string.Empty;
+            TXT_DESCUENTO.Text = string.Empty;
             CBX_CATEGORIA.SelectedIndex = -1;
             CBX_CATEGORIA.Invalidate();
             CBX_TIPOISV.SelectedIndex = -1;
@@ -189,6 +191,13 @@ namespace Prototipo_MarZel
                 return false;
             }
 
+            if (string.IsNullOrWhiteSpace(TXT_DESCUENTO.Text) || !decimal.TryParse(TXT_DESCUENTO.Text, out decimal descuento) || descuento < 0)
+            {
+                MessageBox.Show("Debe ingresar un descuento válido mayor a 0.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TXT_DESCUENTO.Focus();
+                return false;
+            }
+
             return true;
         }
 
@@ -204,6 +213,7 @@ namespace Prototipo_MarZel
                 Convert.ToDecimal(TXT_PC.Text),
                 Convert.ToDecimal(TXT_PU.Text),
                 Convert.ToInt32(CBX_CATEGORIA.SelectedValue),
+                Convert.ToDecimal(TXT_DESCUENTO.Text),
                 Convert.ToInt32(TXT_EXISTENCIA.Text)
             );
 
@@ -228,6 +238,7 @@ namespace Prototipo_MarZel
                 TXT_EXISTENCIA.Text = datos["EXISTENCIA"].ToString();
                 TXT_PU.Text = datos["PRECIO_UNITARIO"].ToString();
                 TXT_PC.Text = datos["PRECIO_COMPLETO"].ToString();
+                TXT_DESCUENTO.Text = datos["DESCUENTO"].ToString();
                 CBX_CATEGORIA.SelectedValue = datos["ID_CATEGORIA"];
                 CBX_CATEGORIA.Invalidate();
                 CBX_TIPOISV.SelectedValue = datos["ID_ISV"];
@@ -238,6 +249,7 @@ namespace Prototipo_MarZel
                 CBX_TIPOISV.Enabled = true;
                 TXT_PU.Enabled = true;
                 TXT_PC.Enabled = true;
+                TXT_DESCUENTO.Enabled = true;
             }
             else
             {
@@ -247,6 +259,7 @@ namespace Prototipo_MarZel
                 CBX_TIPOISV.Enabled = false;
                 TXT_PU.Enabled = false;
                 TXT_PC.Enabled = false;
+                TXT_DESCUENTO.Enabled = false;
             }
         }
 
@@ -282,6 +295,16 @@ namespace Prototipo_MarZel
             {
                 CargarCategorias();
                 CargarTipos_ISV();
+                txtCodigoBarra.Text = string.Empty;
+                txtDescripcion.Text = string.Empty;
+                txtPrecioUnitario.Text = string.Empty;
+                txtPrecioCompleto.Text = string.Empty;
+                txtDescuento.Text = string.Empty;
+                txtExistencia.Text = string.Empty;
+                cmbCaregorias.SelectedIndex = -1;
+                cmbCaregorias.Invalidate();
+                cmbTiposISV.SelectedIndex = -1;
+                cmbTiposISV.Invalidate();
             }
         }
 
@@ -336,6 +359,13 @@ namespace Prototipo_MarZel
                 return false;
             }
 
+            if (string.IsNullOrWhiteSpace(txtDescuento.Text) || !decimal.TryParse(txtDescuento.Text, out decimal descuento) || descuento < 0)
+            {
+                MessageBox.Show("Debe ingresar un descuento válido mayor a 0.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDescuento.Focus();
+                return false;
+            }
+
             if (Producto_Controller.existeProducto(txtCodigoBarra.Text))
             {
                 MessageBox.Show("El código de barra ya existe. Por favor, ingrese uno diferente.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -377,6 +407,7 @@ namespace Prototipo_MarZel
                 Convert.ToDecimal(txtPrecioCompleto.Text),
                 Convert.ToDecimal(txtPrecioUnitario.Text),
                 Convert.ToInt32(cmbCaregorias.SelectedValue),
+                Convert.ToDecimal(txtDescuento.Text),
                 Convert.ToInt32(txtExistencia.Text)
             );
 
@@ -395,6 +426,7 @@ namespace Prototipo_MarZel
             TXT_EXISTENCIA.Text = tabla_express.Rows[0]["EXISTENCIA"].ToString() ?? "0";
             TXT_PU.Text = tabla_express.Rows[0]["PRECIO_UNITARIO"].ToString() ?? "0.00";
             TXT_PC.Text = tabla_express.Rows[0]["PRECIO_COMPLETO"].ToString() ?? "0.00";
+            TXT_DESCUENTO.Text = tabla_express.Rows[0]["DESCUENTO"].ToString() ?? "0.00";
             CBX_CATEGORIA.SelectedValue = tabla_express.Rows[0]["ID_CATEGORIA"];
             CBX_CATEGORIA.Invalidate();
             CBX_TIPOISV.SelectedValue = tabla_express.Rows[0]["ID_ISV"];
@@ -405,6 +437,37 @@ namespace Prototipo_MarZel
             CBX_TIPOISV.Enabled = true;
             TXT_PU.Enabled = true;
             TXT_PC.Enabled = true;
+            TXT_DESCUENTO.Enabled = true;
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            CargarDatos();
+            MTBC_MENU.SelectedTab = TP_MODIFICAR;
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (DVC_PRODUCTOS.CurrentRow == null) return;
+
+            int Id_Producto = Convert.ToInt32(DVC_PRODUCTOS.CurrentRow.Cells["ID_PRODUCTO"].Value);
+            DialogResult resultado = MessageBox.Show(
+                "¿Está seguro que desea eliminar el producto?",
+                "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (resultado == DialogResult.Yes)
+            {
+                try
+                {
+                    Producto_Controller.Eliminar_Producto(Id_Producto);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("No es posible eliminar el producto, ya que esta siendo utilizado.",
+                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                CargarDatos();
+            }
         }
     }
 }

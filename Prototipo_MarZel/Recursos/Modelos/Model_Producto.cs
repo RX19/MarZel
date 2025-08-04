@@ -20,13 +20,15 @@ namespace Prototipo_MarZel
         public abstract int? Buscar_Id_Producto(string Codigo_Barra);
 
         public abstract void Agregar_Producto(string Codigo_Barra, string Descripcion, int Id_ISV, decimal Precio_Completo,
-            decimal Precio_Unitario, int Id_Categoria, int Existencia);
+            decimal Precio_Unitario, int Id_Categoria, decimal Descuento, int Existencia);
 
         public abstract void Modificar_Producto(int Id_Producto, string Codigo_Barra, string Descripcion, int Id_ISV, decimal Precio_Completo,
-            decimal Precio_Unitario, int Id_Categoria, int Existencia);
+            decimal Precio_Unitario, int Id_Categoria, decimal Descuento, int Existencia);
 
-        public abstract void Disminuir_Existencia(int Id_Producto, int Existencia); 
+        public abstract void Disminuir_Existencia(int Id_Producto, int Existencia);
 
         public abstract bool existeProducto(string Codigo_Barra);
+
+        public abstract void Eliminar_Producto(int Id_Producto);
     }
 }

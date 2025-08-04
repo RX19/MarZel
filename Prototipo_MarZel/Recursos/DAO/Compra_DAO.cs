@@ -150,13 +150,14 @@ namespace Prototipo_MarZel
                 decimal Importe = Convert.ToDecimal(row["IMPORTE"]);
                 decimal Precio_Completo = Convert.ToDecimal(row["PRECIO_COMPLETO"]);
                 decimal Precio_Unitario = Convert.ToDecimal(row["PRECIO_UNITARIO"]);
+                decimal Desc = 0.0m;
                 int Id_Categoria = Convert.ToInt32(row["ID_CATEGORIA"]);
                 DateTime Fecha_Creacion = Convert.ToDateTime(row["FECHA_CREACION"]);
 
                 if (row["ID_PRODUCTO"] == DBNull.Value)
                 {
                     // Agregar Nuevo Producto
-                    Producto_Controller.Agregar_Producto(Codigo_Barra, Descripcion, Id_ISV, Precio_Completo, Precio_Unitario, Id_Categoria, Cantidad);
+                    Producto_Controller.Agregar_Producto(Codigo_Barra, Descripcion, Id_ISV, Precio_Completo, Precio_Unitario, Id_Categoria, Desc, Cantidad);
 
                     // Actualiza Id_Producto en la tabla temporal.
                     DataTable Producto = Producto_Controller.Cargar_Producto(Codigo_Barra);
@@ -171,7 +172,7 @@ namespace Prototipo_MarZel
                     int Existencia = Producto.Rows[0].Field<int>("EXISTENCIA") + Cantidad;
 
                     //Actualizar Producto.
-                    Producto_Controller.Modificar_Producto(Id_Producto, Codigo_Barra, Descripcion, Id_ISV, Precio_Completo, Precio_Unitario, Id_Categoria, Existencia);
+                    Producto_Controller.Modificar_Producto(Id_Producto, Codigo_Barra, Descripcion, Id_ISV, Precio_Completo, Precio_Unitario, Id_Categoria, Desc, Existencia);
                 }
 
                 // Agregar a Detalles de Compra.

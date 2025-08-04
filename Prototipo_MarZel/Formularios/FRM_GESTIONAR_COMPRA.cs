@@ -120,7 +120,7 @@ namespace Prototipo_MarZel.Formularios
             Cargar_Categorias();
             Cargar_Tipos_ISV();
             Cargar_Datos_Compra();
-            
+
             if (Id_Compra == 0) btnEliminar.Visible = false;
             else btnEliminar.Visible = true;
         }
@@ -385,8 +385,6 @@ namespace Prototipo_MarZel.Formularios
                     return false;
                 }
             }
-
-
             return true;
         }
 
@@ -411,7 +409,9 @@ namespace Prototipo_MarZel.Formularios
             {
                 Compra_Controller.Actualizar_Compra(Id_Compra);
             }
-            this.Close();
+            this.Hide();
+            FRM_COMPRAS frm_compras = new FRM_COMPRAS();
+            frm_compras.ShowDialog();
         }
 
         private void dtpFecha_ValueChanged(object sender, EventArgs e)
@@ -438,7 +438,9 @@ namespace Prototipo_MarZel.Formularios
 
             if (result != DialogResult.Yes) return;
             Compra_Controller.Eliminar_Compra(Id_Compra);
-            this.Close();            
+            this.Hide();
+            FRM_COMPRAS frm_compras = new FRM_COMPRAS();
+            frm_compras.ShowDialog();
         }
     }
 }
