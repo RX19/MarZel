@@ -44,15 +44,8 @@ namespace Prototipo_MarZel.Recursos.Controlador
 
             var builder = new BodyBuilder
             {
-                TextBody = $@"
-                            Estimado cliente,
-
-                            Gracias por su compra con MarZel. Adjunto encontrará la factura correspondiente a su compra número #{numeroFactura}, realizada el {fecha:dd/MM/yyyy}.
-
-                            Le agradecemos por confiar en nosotros. Si tiene alguna duda o necesita asistencia adicional, no dude en contactarnos.
-
-                            Atentamente,
-                            El equipo de MarZel."
+                TextBody = $@"Estimado cliente,Gracias por su compra con MarZel. Adjunto encontrará la factura correspondiente a su compra número #{numeroFactura}, realizada el {fecha:dd/MM/yyyy}.Le agradecemos por confiar en nosotros. Si tiene alguna duda o necesita asistencia adicional, no dude en contactarnos.
+                              Atentamente,El equipo de MarZel."
             };
 
             if (!string.IsNullOrEmpty(rutaAdjunto) && File.Exists(rutaAdjunto))
