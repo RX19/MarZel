@@ -1,5 +1,5 @@
 
-name: Build WinForms App (.NET Framework)
+name: Build WinForms App (produccion)
 
 on:
   workflow_dispatch:
