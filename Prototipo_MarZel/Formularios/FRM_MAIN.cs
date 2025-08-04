@@ -17,7 +17,7 @@ namespace Prototipo_MarZel
         Login_Controller LoginController = new Login_Controller();
         FRM_CLIENTES frm_clientes = new FRM_CLIENTES();
         FRM_REPORTES frm_reportes = new FRM_REPORTES();
-        int Id_Usuario; 
+        int Id_Usuario;
         string Nombre_Usuario;
         int id_tipo_usuario;
 
@@ -127,10 +127,12 @@ namespace Prototipo_MarZel
             {
                 if (TP_ADMIN.Parent != null)
                     MTBC_MENU.TabPages.Remove(TP_ADMIN);
-                    MTBC_MENU.TabPages.Remove(TP_REPORTES);
+                MTBC_MENU.TabPages.Remove(TP_REPORTES);
             }
+
+
         }
-      
+
 
         private async void MTBC_MENU_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -285,6 +287,11 @@ namespace Prototipo_MarZel
         }
 
         private void TP_INICIO_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LBL_NOMBRE_USU_Click(object sender, EventArgs e)
         {
 
         }

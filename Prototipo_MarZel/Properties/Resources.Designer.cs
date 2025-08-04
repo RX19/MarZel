@@ -63,6 +63,26 @@ namespace Prototipo_MarZel.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BCO_2bbc7e4f_2df1_4946_b439_331ede1fc8a7 {
+            get {
+                object obj = ResourceManager.GetObject("BCO.2bbc7e4f-2df1-4946-b439-331ede1fc8a7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BCO_56019ea9_71c5_44e7_beee_5bbda2b91839 {
+            get {
+                object obj = ResourceManager.GetObject("BCO.56019ea9-71c5-44e7-beee-5bbda2b91839", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Usuario {
             get {
                 object obj = ResourceManager.GetObject("Usuario", resourceCulture);

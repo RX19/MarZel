@@ -31,13 +31,16 @@
             MTBC_MENU = new MaterialSkin.Controls.MaterialTabControl();
             TP_INICIO = new TabPage();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
-            LBL_CORREO = new MaterialSkin.Controls.MaterialLabel();
-            LBL_NOMBRE = new MaterialSkin.Controls.MaterialLabel();
-            LBL_CORREO_USU = new MaterialSkin.Controls.MaterialLabel();
-            LBL_NOMBRE_USU = new MaterialSkin.Controls.MaterialLabel();
-            LBL_USUARIO = new MaterialSkin.Controls.MaterialLabel();
-            LBL_USUARIO_USU = new MaterialSkin.Controls.MaterialLabel();
+            tableLayoutPanel1 = new TableLayoutPanel();
             PB_Foto = new PictureBox();
+            materialCard2 = new MaterialSkin.Controls.MaterialCard();
+            LBL_BIENVENIDA = new MaterialSkin.Controls.MaterialLabel();
+            LBL_USUARIO = new MaterialSkin.Controls.MaterialLabel();
+            LBL_CORREO = new MaterialSkin.Controls.MaterialLabel();
+            LBL_CORREO_USU = new MaterialSkin.Controls.MaterialLabel();
+            LBL_USUARIO_USU = new MaterialSkin.Controls.MaterialLabel();
+            LBL_NOMBRE = new MaterialSkin.Controls.MaterialLabel();
+            LBL_NOMBRE_USU = new MaterialSkin.Controls.MaterialLabel();
             TP_PRODUCTOS = new TabPage();
             TP_ADMIN = new TabPage();
             TP_PROVEEDORES = new TabPage();
@@ -48,7 +51,9 @@
             MTBC_MENU.SuspendLayout();
             TP_INICIO.SuspendLayout();
             materialCard1.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PB_Foto).BeginInit();
+            materialCard2.SuspendLayout();
             SuspendLayout();
             // 
             // MTBC_MENU
@@ -90,107 +95,154 @@
             // materialCard1
             // 
             materialCard1.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard1.Controls.Add(LBL_CORREO);
-            materialCard1.Controls.Add(LBL_NOMBRE);
-            materialCard1.Controls.Add(LBL_CORREO_USU);
-            materialCard1.Controls.Add(LBL_NOMBRE_USU);
-            materialCard1.Controls.Add(LBL_USUARIO);
-            materialCard1.Controls.Add(LBL_USUARIO_USU);
-            materialCard1.Controls.Add(PB_Foto);
+            materialCard1.Controls.Add(tableLayoutPanel1);
             materialCard1.Depth = 0;
+            materialCard1.Dock = DockStyle.Fill;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(121, 74);
+            materialCard1.Location = new Point(3, 2);
             materialCard1.Margin = new Padding(14);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
             materialCard1.Padding = new Padding(14);
-            materialCard1.Size = new Size(823, 414);
+            materialCard1.Size = new Size(1089, 511);
             materialCard1.TabIndex = 0;
             // 
-            // LBL_CORREO
+            // tableLayoutPanel1
             // 
-            LBL_CORREO.AutoSize = true;
-            LBL_CORREO.Depth = 0;
-            LBL_CORREO.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LBL_CORREO.Location = new Point(571, 267);
-            LBL_CORREO.MouseState = MaterialSkin.MouseState.HOVER;
-            LBL_CORREO.Name = "LBL_CORREO";
-            LBL_CORREO.Size = new Size(107, 19);
-            LBL_CORREO.TabIndex = 8;
-            LBL_CORREO.Text = "materialLabel1";
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Controls.Add(PB_Foto, 0, 0);
+            tableLayoutPanel1.Controls.Add(materialCard2, 1, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(14, 14);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 80.6451645F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Size = new Size(1061, 483);
+            tableLayoutPanel1.TabIndex = 9;
             // 
-            // LBL_NOMBRE
+            // PB_Foto
             // 
-            LBL_NOMBRE.AutoSize = true;
-            LBL_NOMBRE.Depth = 0;
-            LBL_NOMBRE.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LBL_NOMBRE.Location = new Point(571, 181);
-            LBL_NOMBRE.MouseState = MaterialSkin.MouseState.HOVER;
-            LBL_NOMBRE.Name = "LBL_NOMBRE";
-            LBL_NOMBRE.Size = new Size(107, 19);
-            LBL_NOMBRE.TabIndex = 6;
-            LBL_NOMBRE.Text = "materialLabel1";
+            PB_Foto.BackColor = Color.Transparent;
+            PB_Foto.BackgroundImageLayout = ImageLayout.Zoom;
+            PB_Foto.Dock = DockStyle.Fill;
+            PB_Foto.Image = Properties.Resources.BCO_2bbc7e4f_2df1_4946_b439_331ede1fc8a7;
+            PB_Foto.Location = new Point(3, 2);
+            PB_Foto.Margin = new Padding(3, 2, 3, 2);
+            PB_Foto.Name = "PB_Foto";
+            PB_Foto.Size = new Size(524, 479);
+            PB_Foto.SizeMode = PictureBoxSizeMode.StretchImage;
+            PB_Foto.TabIndex = 0;
+            PB_Foto.TabStop = false;
             // 
-            // LBL_CORREO_USU
+            // materialCard2
             // 
-            LBL_CORREO_USU.AutoSize = true;
-            LBL_CORREO_USU.Depth = 0;
-            LBL_CORREO_USU.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LBL_CORREO_USU.Location = new Point(490, 267);
-            LBL_CORREO_USU.MouseState = MaterialSkin.MouseState.HOVER;
-            LBL_CORREO_USU.Name = "LBL_CORREO_USU";
-            LBL_CORREO_USU.Size = new Size(51, 19);
-            LBL_CORREO_USU.TabIndex = 5;
-            LBL_CORREO_USU.Text = "Correo:";
+            materialCard2.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard2.Controls.Add(LBL_BIENVENIDA);
+            materialCard2.Controls.Add(LBL_USUARIO);
+            materialCard2.Controls.Add(LBL_CORREO);
+            materialCard2.Controls.Add(LBL_CORREO_USU);
+            materialCard2.Controls.Add(LBL_USUARIO_USU);
+            materialCard2.Controls.Add(LBL_NOMBRE);
+            materialCard2.Controls.Add(LBL_NOMBRE_USU);
+            materialCard2.Depth = 0;
+            materialCard2.Dock = DockStyle.Fill;
+            materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard2.Location = new Point(544, 14);
+            materialCard2.Margin = new Padding(14);
+            materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard2.Name = "materialCard2";
+            materialCard2.Padding = new Padding(14);
+            materialCard2.Size = new Size(503, 455);
+            materialCard2.TabIndex = 1;
             // 
-            // LBL_NOMBRE_USU
+            // LBL_BIENVENIDA
             // 
-            LBL_NOMBRE_USU.AutoSize = true;
-            LBL_NOMBRE_USU.Depth = 0;
-            LBL_NOMBRE_USU.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LBL_NOMBRE_USU.Location = new Point(490, 181);
-            LBL_NOMBRE_USU.MouseState = MaterialSkin.MouseState.HOVER;
-            LBL_NOMBRE_USU.Name = "LBL_NOMBRE_USU";
-            LBL_NOMBRE_USU.Size = new Size(61, 19);
-            LBL_NOMBRE_USU.TabIndex = 3;
-            LBL_NOMBRE_USU.Text = "Nombre:";
+            LBL_BIENVENIDA.AutoSize = true;
+            LBL_BIENVENIDA.Depth = 0;
+            LBL_BIENVENIDA.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            LBL_BIENVENIDA.Location = new Point(98, 53);
+            LBL_BIENVENIDA.MouseState = MaterialSkin.MouseState.HOVER;
+            LBL_BIENVENIDA.Name = "LBL_BIENVENIDA";
+            LBL_BIENVENIDA.Size = new Size(262, 19);
+            LBL_BIENVENIDA.TabIndex = 9;
+            LBL_BIENVENIDA.Text = "Bienvenido- Marzel-Papeleria-Internet";
             // 
             // LBL_USUARIO
             // 
             LBL_USUARIO.AutoSize = true;
             LBL_USUARIO.Depth = 0;
             LBL_USUARIO.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LBL_USUARIO.Location = new Point(571, 82);
+            LBL_USUARIO.Location = new Point(98, 179);
             LBL_USUARIO.MouseState = MaterialSkin.MouseState.HOVER;
             LBL_USUARIO.Name = "LBL_USUARIO";
             LBL_USUARIO.Size = new Size(107, 19);
             LBL_USUARIO.TabIndex = 2;
             LBL_USUARIO.Text = "materialLabel1";
             // 
+            // LBL_CORREO
+            // 
+            LBL_CORREO.AutoSize = true;
+            LBL_CORREO.Depth = 0;
+            LBL_CORREO.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            LBL_CORREO.Location = new Point(98, 382);
+            LBL_CORREO.MouseState = MaterialSkin.MouseState.HOVER;
+            LBL_CORREO.Name = "LBL_CORREO";
+            LBL_CORREO.Size = new Size(107, 19);
+            LBL_CORREO.TabIndex = 8;
+            LBL_CORREO.Text = "materialLabel1";
+            // 
+            // LBL_CORREO_USU
+            // 
+            LBL_CORREO_USU.AutoSize = true;
+            LBL_CORREO_USU.Depth = 0;
+            LBL_CORREO_USU.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            LBL_CORREO_USU.Location = new Point(17, 382);
+            LBL_CORREO_USU.MouseState = MaterialSkin.MouseState.HOVER;
+            LBL_CORREO_USU.Name = "LBL_CORREO_USU";
+            LBL_CORREO_USU.Size = new Size(51, 19);
+            LBL_CORREO_USU.TabIndex = 5;
+            LBL_CORREO_USU.Text = "Correo:";
+            // 
             // LBL_USUARIO_USU
             // 
             LBL_USUARIO_USU.AutoSize = true;
             LBL_USUARIO_USU.Depth = 0;
             LBL_USUARIO_USU.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LBL_USUARIO_USU.Location = new Point(490, 82);
+            LBL_USUARIO_USU.Location = new Point(17, 179);
             LBL_USUARIO_USU.MouseState = MaterialSkin.MouseState.HOVER;
             LBL_USUARIO_USU.Name = "LBL_USUARIO_USU";
             LBL_USUARIO_USU.Size = new Size(59, 19);
             LBL_USUARIO_USU.TabIndex = 1;
             LBL_USUARIO_USU.Text = "Usuario:";
             // 
-            // PB_Foto
+            // LBL_NOMBRE
             // 
-            PB_Foto.BackColor = Color.Black;
-            PB_Foto.BackgroundImageLayout = ImageLayout.Zoom;
-            PB_Foto.Image = Properties.Resources.Usuario;
-            PB_Foto.Location = new Point(17, 18);
-            PB_Foto.Margin = new Padding(3, 2, 3, 2);
-            PB_Foto.Name = "PB_Foto";
-            PB_Foto.Size = new Size(408, 366);
-            PB_Foto.SizeMode = PictureBoxSizeMode.StretchImage;
-            PB_Foto.TabIndex = 0;
-            PB_Foto.TabStop = false;
+            LBL_NOMBRE.AutoSize = true;
+            LBL_NOMBRE.Depth = 0;
+            LBL_NOMBRE.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            LBL_NOMBRE.Location = new Point(98, 279);
+            LBL_NOMBRE.MouseState = MaterialSkin.MouseState.HOVER;
+            LBL_NOMBRE.Name = "LBL_NOMBRE";
+            LBL_NOMBRE.Size = new Size(107, 19);
+            LBL_NOMBRE.TabIndex = 6;
+            LBL_NOMBRE.Text = "materialLabel1";
+            // 
+            // LBL_NOMBRE_USU
+            // 
+            LBL_NOMBRE_USU.AutoSize = true;
+            LBL_NOMBRE_USU.Depth = 0;
+            LBL_NOMBRE_USU.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            LBL_NOMBRE_USU.Location = new Point(17, 279);
+            LBL_NOMBRE_USU.MouseState = MaterialSkin.MouseState.HOVER;
+            LBL_NOMBRE_USU.Name = "LBL_NOMBRE_USU";
+            LBL_NOMBRE_USU.Size = new Size(61, 19);
+            LBL_NOMBRE_USU.TabIndex = 3;
+            LBL_NOMBRE_USU.Text = "Nombre:";
+            LBL_NOMBRE_USU.Click += LBL_NOMBRE_USU_Click;
             // 
             // TP_PRODUCTOS
             // 
@@ -286,8 +338,10 @@
             MTBC_MENU.ResumeLayout(false);
             TP_INICIO.ResumeLayout(false);
             materialCard1.ResumeLayout(false);
-            materialCard1.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)PB_Foto).EndInit();
+            materialCard2.ResumeLayout(false);
+            materialCard2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -309,5 +363,8 @@
         private TabPage TP_CLIENTES;
         private TabPage TP_VENTAS;
         private TabPage TP_REPORTES;
+        private TableLayoutPanel tableLayoutPanel1;
+        private MaterialSkin.Controls.MaterialCard materialCard2;
+        private MaterialSkin.Controls.MaterialLabel LBL_BIENVENIDA;
     }
 }
