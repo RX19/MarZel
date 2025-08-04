@@ -33,5 +33,6 @@ namespace Prototipo_MarZel
         public abstract void Eliminar_Detalles(int Id_Venta);
 
         public abstract void Eliminar_Venta(int Id_Venta);
+        public abstract DataTable ObtenerUltimoFolio();
     }
 }

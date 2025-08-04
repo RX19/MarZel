@@ -76,7 +76,7 @@ namespace Prototipo_MarZel.Formularios
             int cantidad = Convert.ToInt32(txtCantidad.Text);
             decimal descuento = Convert.ToDecimal(txtDescuento.Text);
             txtPrecio.Text = precio.ToString("0.00");
-            txtImporte.Text = ((cantidad * precio) - descuento).ToString("0.00");
+            txtImporte.Text = (cantidad * (precio - descuento)).ToString("0.00");
         }
 
         private void optPrecioUnitario_CheckedChanged(object sender, EventArgs e)

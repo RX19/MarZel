@@ -42,12 +42,7 @@ namespace Prototipo_MarZel.Formularios
                 await Task.Delay(15);
             }
         }
-        private async void FRM_Administrador_Load(object sender, EventArgs e)
-        {
-            P_CREAR_USUARIO.Visible = false;
-            await FadeInAsync(this);
-            this.Opacity = 1.0;
-        }
+
 
         private void FRM_Administrador_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -69,40 +64,100 @@ namespace Prototipo_MarZel.Formularios
         }
 
 
-        private void BTN_CREAR_Click(object sender, EventArgs e)
-        {
 
-            string rol = CB_TIPO_USUARIO.Text;
-            int idTipoUsuario = rol == "Administrador" ? 1 : rol == "Vendedor" ? 2 : 0;
-
-            Model_Usuario nuevo = new Model_Usuario
-            {
-                IDENTIDAD = TXT_IDENTIDAD.Text.Trim(),
-                NOMBRE = TXT_NOMBRE.Text.Trim(),
-                CORREO = TXT_CORREO.Text.Trim(),
-                USUARIO = TXT_NOMBRE_USUARIO.Text.Trim(),
-                CONTRASENA = TXT_CONTRASEÑA.Text.Trim(),
-                CELULAR = TXT_CELULAR.Text.Trim(),
-                ID_TIPO = idTipoUsuario
-            };
-
-            UsuarioController ctrl = new UsuarioController();
-            bool exito = ctrl.CrearUsuario(nuevo);
-
-            MessageBox.Show(
-                exito ? "Usuario creado exitosamente." : "Por favor, completa todos los campos correctamente.",
-                exito ? "Éxito" : "Error",
-                MessageBoxButtons.OK,
-                exito ? MessageBoxIcon.Information : MessageBoxIcon.Warning
-            );
-
-
-        }
 
         private void BTN_PANEL_CREAR_USUARIO_Click(object sender, EventArgs e)
         {
-            P_CREAR_USUARIO.Visible = true;
+            using (var frmGestionarUsuario = new FRM_GESTIONAR_USUARIO())
+            {
+                frmGestionarUsuario.ShowDialog();
+            }
         }
 
+        private readonly UsuarioController usuarioController = new UsuarioController();
+
+        public void Cargar_Usuarios()
+        {
+            DataTable usuarios = usuarioController.Cargar_Usuarios();
+            DVC_USUARIOS.DataSource = null;
+            DVC_USUARIOS.DataSource = usuarios;
+            if (DVC_USUARIOS.Columns.Contains("ID_USUARIO"))
+                DVC_USUARIOS.Columns["ID_USUARIO"].Visible = false;
+            DVC_USUARIOS.ClearSelection();
+
+        }
+
+        private async void FRM_Usuarios_Load(object sender, EventArgs e)
+        {
+            await FadeInAsync(this);
+            this.Opacity = 1.0;
+
+            Cargar_Usuarios();
+        }
+
+        private void BTN_PANEL_ELIMINAR_USUARIO_Click(object sender, EventArgs e)
+        {
+            if (DVC_USUARIOS.CurrentRow == null)
+            {
+                MessageBox.Show("Por favor, seleccione un usuario para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int idUsuario = Convert.ToInt32(DVC_USUARIOS.CurrentRow.Cells["ID_USUARIO"].Value);
+
+            DialogResult resultado = MessageBox.Show(
+                "¿Está seguro que desea eliminar este usuario?",
+                "Confirmar Eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (resultado == DialogResult.Yes)
+            {
+                bool exito = usuarioController.EliminarUsuario(idUsuario);
+                if (exito)
+                {
+                    MessageBox.Show("Usuario eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Cargar_Usuarios();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo eliminar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void BTN_PANEL_EDITAR_USUARIO_Click(object sender, EventArgs e)
+        {
+            if (DVC_USUARIOS.CurrentRow == null)
+            {
+                MessageBox.Show("Por favor, seleccione un usuario para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int idUsuario = Convert.ToInt32(DVC_USUARIOS.CurrentRow.Cells["ID_USUARIO"].Value);
+
+            // Obtén los datos actualizados desde la base de datos
+            DataTable dtUsuario = usuarioController.ObtenerUsuarioPorId(idUsuario);
+            if (dtUsuario.Rows.Count == 0)
+            {
+                MessageBox.Show("No se encontró el usuario en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DataRow row = dtUsuario.Rows[0];
+            string identidad = row["IDENTIDAD"].ToString();
+            string nombre = row["NOMBRE"].ToString();
+            string correo = row["CORREO"].ToString();
+            string usuario = row["USUARIO"].ToString();
+            string celular = row["CELULAR"].ToString();
+            string contrasena = row["CONTRASENA"].ToString();
+            int idTipo = Convert.ToInt32(row["ID_TIPO"]);
+
+            using (var frmEditar = new FRM_EDITAR_USUARIO(idUsuario, identidad, nombre, correo, usuario, contrasena, celular, idTipo))
+            {
+                frmEditar.ShowDialog();
+                Cargar_Usuarios(); // Refresca la tabla después de editar
+            }
+        }
     }
 }

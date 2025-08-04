@@ -157,7 +157,7 @@
             Name = "FRM_LOGIN";
             Padding = new Padding(3, 63, 3, 3);
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "INICIO DE SESION";
+            Text = "Inicio de Sesion";
             Load += FRM_LOGIN_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

@@ -44,12 +44,13 @@
             txtBuscar.Depth = 0;
             txtBuscar.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtBuscar.LeadingIcon = null;
-            txtBuscar.Location = new Point(350, 108);
+            txtBuscar.Location = new Point(500, 180);
+            txtBuscar.Margin = new Padding(4, 5, 4, 5);
             txtBuscar.MaxLength = 50;
             txtBuscar.MouseState = MaterialSkin.MouseState.OUT;
             txtBuscar.Multiline = false;
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(350, 50);
+            txtBuscar.Size = new Size(500, 50);
             txtBuscar.TabIndex = 11;
             txtBuscar.Text = "";
             txtBuscar.TrailingIcon = null;
@@ -60,7 +61,8 @@
             lblBuscar.AutoSize = true;
             lblBuscar.Depth = 0;
             lblBuscar.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblBuscar.Location = new Point(281, 124);
+            lblBuscar.Location = new Point(401, 207);
+            lblBuscar.Margin = new Padding(4, 0, 4, 0);
             lblBuscar.MouseState = MaterialSkin.MouseState.HOVER;
             lblBuscar.Name = "lblBuscar";
             lblBuscar.Size = new Size(54, 19);
@@ -84,15 +86,17 @@
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvCompras.ColumnHeadersHeight = 34;
             dgvCompras.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvCompras.Location = new Point(50, 200);
+            dgvCompras.Location = new Point(71, 333);
+            dgvCompras.Margin = new Padding(4, 5, 4, 5);
             dgvCompras.Name = "dgvCompras";
             dgvCompras.ReadOnly = true;
             dgvCompras.RowHeadersVisible = false;
             dgvCompras.RowHeadersWidth = 51;
             dgvCompras.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dgvCompras.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCompras.Size = new Size(1200, 450);
+            dgvCompras.Size = new Size(1714, 750);
             dgvCompras.TabIndex = 8;
             // 
             // btnEditarCompra
@@ -102,8 +106,8 @@
             btnEditarCompra.Depth = 0;
             btnEditarCompra.HighEmphasis = true;
             btnEditarCompra.Icon = null;
-            btnEditarCompra.Location = new Point(882, 115);
-            btnEditarCompra.Margin = new Padding(4, 6, 4, 6);
+            btnEditarCompra.Location = new Point(1260, 192);
+            btnEditarCompra.Margin = new Padding(6, 10, 6, 10);
             btnEditarCompra.MouseState = MaterialSkin.MouseState.HOVER;
             btnEditarCompra.Name = "btnEditarCompra";
             btnEditarCompra.NoAccentTextColor = Color.Empty;
@@ -122,8 +126,8 @@
             btnAgregarCompra.Depth = 0;
             btnAgregarCompra.HighEmphasis = true;
             btnAgregarCompra.Icon = null;
-            btnAgregarCompra.Location = new Point(715, 115);
-            btnAgregarCompra.Margin = new Padding(4, 6, 4, 6);
+            btnAgregarCompra.Location = new Point(1021, 192);
+            btnAgregarCompra.Margin = new Padding(6, 10, 6, 10);
             btnAgregarCompra.MouseState = MaterialSkin.MouseState.HOVER;
             btnAgregarCompra.Name = "btnAgregarCompra";
             btnAgregarCompra.NoAccentTextColor = Color.Empty;
@@ -137,20 +141,23 @@
             // 
             // FRM_COMPRAS
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1300, 700);
+            ClientSize = new Size(1857, 1167);
             Controls.Add(txtBuscar);
             Controls.Add(lblBuscar);
             Controls.Add(dgvCompras);
             Controls.Add(btnEditarCompra);
             Controls.Add(btnAgregarCompra);
+            Margin = new Padding(4, 5, 4, 5);
             MaximizeBox = false;
             Name = "FRM_COMPRAS";
+            Padding = new Padding(4, 107, 4, 5);
             Sizable = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FRM_COMPRAS";
+            Text = "Compras";
             WindowState = FormWindowState.Maximized;
+            FormClosed += FRM_COMPRAS_FormClosed;
             Load += FRM_COMPRAS_Load;
             ((System.ComponentModel.ISupportInitialize)dgvCompras).EndInit();
             ResumeLayout(false);

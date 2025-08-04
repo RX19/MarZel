@@ -40,12 +40,13 @@ namespace Prototipo_MarZel.Formularios
             DataTable Detalles_Venta = Temp_Venta_Controller.Cargar_Detalles();
             dgvDetallesVenta.DataSource = null;
             dgvDetallesVenta.DataSource = Detalles_Venta;
-            /*dgvDetallesVenta.Columns["ID_VENTA"].Visible = false;
+            dgvDetallesVenta.Columns["ID_VENTA"].Visible = false;
             dgvDetallesVenta.Columns["ID_PRODUCTO"].Visible = false;
             dgvDetallesVenta.Columns["PRECIO_COMPLETO"].Visible = false;
             dgvDetallesVenta.Columns["PRECIO_UNITARIO"].Visible = false;
             dgvDetallesVenta.Columns["ID_ISV"].Visible = false;
-            dgvDetallesVenta.Columns["FECHA_CREACION"].Visible = false;*/
+            dgvDetallesVenta.Columns["FECHA_CREACION"].Visible = false;
+            dgvDetallesVenta.Columns["EXISTENCIA"].Visible = false;
             dgvDetallesVenta.ClearSelection();
 
             //Actualiza los resultados finales.
@@ -82,6 +83,34 @@ namespace Prototipo_MarZel.Formularios
             Inicializar_Venta();
         }
 
+        public static string MostrarInputBox(string prompt, string title)
+        {
+            Form inputForm = new Form()
+            {
+                Width = 400,
+                Height = 150,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = title,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+
+            Label label = new Label() { Left = 10, Top = 20, Text = prompt, Width = 360 };
+            TextBox textBox = new TextBox() { Left = 10, Top = 50, Width = 360 };
+            Button buttonOk = new Button() { Text = "Aceptar", Left = 220, Width = 75, Top = 80, DialogResult = DialogResult.OK };
+            Button buttonCancel = new Button() { Text = "Cancelar", Left = 300, Width = 75, Top = 80, DialogResult = DialogResult.Cancel };
+
+            inputForm.Controls.Add(label);
+            inputForm.Controls.Add(textBox);
+            inputForm.Controls.Add(buttonOk);
+            inputForm.Controls.Add(buttonCancel);
+
+            inputForm.AcceptButton = buttonOk;
+            inputForm.CancelButton = buttonCancel;
+
+            return inputForm.ShowDialog() == DialogResult.OK ? textBox.Text : null;
+        }
+
+
         private void txtCodigoBarra_TextChanged(object sender, EventArgs e)
         {
             string Codigo_Barra = txtCodigoBarra.Text.Trim();
@@ -100,8 +129,8 @@ namespace Prototipo_MarZel.Formularios
                 {
                     int Cantidad = Producto.Rows[0].Field<int>("CANTIDAD") + 1;
                     decimal Precio = Producto.Rows[0].Field<decimal>("PRECIO");
-                    decimal Descuento = 0m;
-                    decimal Importe = (Precio * Cantidad) - Descuento;
+                    decimal Descuento = Producto.Rows[0].Field<decimal>("DESCUENTO");
+                    decimal Importe = Cantidad * (Precio - Descuento);
                     Existencia -= 1;
                     DateTime Fecha_Creacion = DateTime.Now;
 
@@ -131,7 +160,7 @@ namespace Prototipo_MarZel.Formularios
                     decimal Precio = Precio_Unitario;
                     decimal Precio_Completo = Producto.Rows[0].Field<decimal>("PRECIO_COMPLETO");
                     int Id_ISV = Producto.Rows[0].Field<int>("ID_ISV");
-                    decimal Descuento = 0m;
+                    decimal Descuento = Producto.Rows[0].Field<decimal>("DESCUENTO");
                     decimal Importe = (Precio * Cantidad) - Descuento;
                     Existencia -= 1;
                     DateTime Fecha_Creacion = DateTime.Now;
@@ -157,7 +186,41 @@ namespace Prototipo_MarZel.Formularios
             {
                 Venta_Controller.Actualizar_Venta(Id_Venta);
             }
-            this.Close();
+            DataTable Venta = Temp_Venta_Controller.Cargar_Venta();
+            DataRow fila = Venta.Rows[0];
+            string Ultimafactura = fila["FACTURA"].ToString();
+
+            DialogResult respuesta = MessageBox.Show(
+                "¿Desea enviar la factura por correo electrónico?",
+                "Enviar factura",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (respuesta == DialogResult.Yes)
+            {
+                string correo = MostrarInputBox("Ingrese el correo del cliente:", "Correo electrónico");
+
+                if (!string.IsNullOrWhiteSpace(correo))
+                {
+                    try
+                    {
+                        FacturaService.EnviarFacturaPorCorreo(Ultimafactura, correo);
+                        MessageBox.Show("Factura enviada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error al enviar la factura: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se ingreso ningun correo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            this.Hide();
+            FRM_VENTAS frm_ventas = new FRM_VENTAS(Id_Usuario, Nombre_Usuario);
+            frm_ventas.ShowDialog();
         }
 
         private void btnRTN_Click(object sender, EventArgs e)
@@ -178,7 +241,9 @@ namespace Prototipo_MarZel.Formularios
 
             if (result != DialogResult.Yes) return;
             Venta_Controller.Eliminar_Venta(Id_Venta);
-            this.Close();
+            this.Hide();
+            FRM_VENTAS frm_ventas = new FRM_VENTAS(Id_Usuario, Nombre_Usuario);
+            frm_ventas.ShowDialog();
         }
 
         private void dgvDetallesVenta_CellContentClick(object sender, DataGridViewCellEventArgs e)

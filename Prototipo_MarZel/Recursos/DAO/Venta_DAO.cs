@@ -9,6 +9,16 @@ namespace Prototipo_MarZel
 {
     public class Venta_DAO : Venta_Base
     {
+        public override DataTable ObtenerUltimoFolio()
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                            SELECT TOP 1 FACTURA 
+                            FROM TBL_VENTAS 
+                            ORDER BY ID_VENTA DESC";
+            return conexion.EjecutarConsulta(query, null);
+         
+        }
         public override DataTable Cargar_Ventas()
         {
             ConexionBD conexion = new ConexionBD();
@@ -348,6 +358,8 @@ namespace Prototipo_MarZel
             conexion.EjecutarComando(query, parametros);
         }
 
+
+
         public override void Eliminar_Venta(int Id_Venta)
         {
             // Eliminar Detalles de Compra
@@ -367,5 +379,7 @@ namespace Prototipo_MarZel
             };
             conexion.EjecutarComando(query, parametros);
         }
+
+      
     }
 }

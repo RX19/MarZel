@@ -9,14 +9,17 @@ using System.Windows.Forms;
 
 namespace Prototipo_MarZel
 {
+    //''
     public partial class FRM_MAIN : MaterialSkin.Controls.MaterialForm
     {
         FRM_PRODUCTOS frm_productos = new FRM_PRODUCTOS();
         FRM_USUARIOS frm_usuarios = new FRM_USUARIOS();
         Login_Controller LoginController = new Login_Controller();
         FRM_CLIENTES frm_clientes = new FRM_CLIENTES();
-        int Id_Usuario;
+        FRM_REPORTES frm_reportes = new FRM_REPORTES();
+        int Id_Usuario; 
         string Nombre_Usuario;
+        int id_tipo_usuario;
 
         private Producto_Controller Producto_Controller = new Producto_Controller();
 
@@ -43,6 +46,7 @@ namespace Prototipo_MarZel
             LBL_NOMBRE.Text = fila["Nombre"].ToString();
             LBL_CORREO.Text = fila["Correo"].ToString();
             Id_Usuario = Convert.ToInt32(fila["Id_Usuario"]);
+            id_tipo_usuario = Convert.ToInt32(fila["ID_TIPO"]);
             Nombre_Usuario = fila["Nombre"].ToString() ?? "";
 
         }
@@ -75,32 +79,58 @@ namespace Prototipo_MarZel
             fondo.SendToBack();
             this.WindowState = FormWindowState.Maximized;
             this.MaximizeBox = false;
-            //esto es el servicio de correos totalmente funcional, pero no se usa por el momento.
-            /*
             Existencia_DAO existenciaDao = new Existencia_DAO();
             DataTable productosBajos = existenciaDao.ObtenerProductosBajaExistencia();
-
-            if (productosBajos.Rows.Count > 0)
+            if (id_tipo_usuario == 1)
             {
-                try
+                if (productosBajos.Rows.Count > 0)
                 {
-                    string texto = "Adjunto se encuentra la lista de productos con baja existencia.";
-                    string destinatario = "zelayaroberto@rocketmail.com"; //cambiar esto por el LBL_CORREO :v
-                    string rutaPDF = Path.Combine(Application.StartupPath, "ProductosBajos.pdf");
-                    PDFHelper.GenerarPDFDesdeDataTable(productosBajos, rutaPDF);
-                    CorreoHelper.EnviarCorreo(texto, destinatario, rutaPDF);
+                    DialogResult respuesta = MessageBox.Show(
+                        "Se han detectado productos con baja existencia.\n¿Desea recibir un correo con la lista de estos productos?",
+                        "Productos con baja existencia",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
 
-                    MessageBox.Show("Se ah enviado un correo con los productos con bajas Existencias.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al enviar el correo:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            string texto = "Adjunto se encuentra la lista de productos con baja existencia.";
+                            string destinatario = LBL_CORREO.Text;
+                            string rutaPDF = Path.Combine(Application.StartupPath, "ProductosBajos.pdf");
+
+                            PDFHelper.GenerarPDFDesdeDataTable(productosBajos, rutaPDF);
+                            CorreoHelper.EnviarCorreo(texto, destinatario, rutaPDF);
+
+                            MessageBox.Show(
+                                "Se ha enviado un correo con los productos con bajas existencias.",
+                                "Éxito",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information
+                            );
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(
+                                "Error al enviar el correo:\n" + ex.Message,
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                            );
+                        }
+                    }
                 }
             }
-            */
 
-
+            if (id_tipo_usuario == 2)
+            {
+                if (TP_ADMIN.Parent != null)
+                    MTBC_MENU.TabPages.Remove(TP_ADMIN);
+                    MTBC_MENU.TabPages.Remove(TP_REPORTES);
+            }
         }
+      
 
         private async void MTBC_MENU_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -117,19 +147,13 @@ namespace Prototipo_MarZel
                     }
                 }
 
-                if (productosSinExistencia.Count > 0)
-                {
-                    string mensaje = "Los siguientes productos se quedaron sin existencia:\n\n" +
-                                     string.Join("\n", productosSinExistencia);
-                    MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-
                 for (double i = 1.0; i >= 0.2; i -= 0.05)
                 {
                     this.Opacity = i;
                     await Task.Delay(15);
                 }
                 this.Visible = false;
+                FRM_PRODUCTOS fRM_PRODUCTOS = new FRM_PRODUCTOS();
                 frm_productos.ShowDialog();
                 this.Visible = true;
                 for (double i = 0.2; i <= 1.0; i += 0.05)
@@ -238,23 +262,31 @@ namespace Prototipo_MarZel
                 this.Opacity = 1.0;
                 MTBC_MENU.SelectedTab = TP_INICIO;
             }
+            if (MTBC_MENU.SelectedTab == TP_REPORTES)
+            {
+                for (double i = 1.0; i >= 0.2; i -= 0.05)
+                {
+                    this.Opacity = i;
+                    await Task.Delay(15);
+                }
+                this.Visible = false;
+                frm_reportes.ShowDialog();
+                this.Visible = true;
+                for (double i = 0.2; i <= 1.0; i += 0.05)
+                {
+                    this.Opacity = i;
+                    await Task.Delay(15);
+                }
+                this.Opacity = 1.0;
+                MTBC_MENU.SelectedTab = TP_INICIO;
+            }
+
 
         }
 
-        private void BTN_PRUEBA_Click(object sender, EventArgs e)
+        private void TP_INICIO_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string texto = "Este es un correo de prueba desde el botón.";
-                string destinatario = "e1a8lbyje@mozmail.com";//LBL_CORREO.Text; // Correo Prueba
 
-                CorreoHelper.EnviarCorreo(texto, destinatario);
-                MessageBox.Show("Correo enviado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al enviar el correo:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
     }
 }
