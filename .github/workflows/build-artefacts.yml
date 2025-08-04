@@ -1,6 +1,33 @@
 
-- name: Upload build artifacts
-  uses: actions/upload-artifact@v4
-  with:
-    name: WinFormsApp
-    path: '**/bin/Release/'
+name: Build WinForms App (.NET Framework)
+
+on:
+  push:
+    branches: [produccion]
+  pull_request:
+    branches: [produccion]
+
+
+jobs:
+  build:
+    name: Build on Windows
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Restore NuGet packages
+      run: nuget restore Prototipo_MarZel.sln
+
+    - name: Build solution
+      run: msbuild Prototipo_MarZel.sln /p:Configuration=Release
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: WinFormsApp
+        path: '**/bin/Release/'
