@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using Org.BouncyCastle.Asn1.X500;
+using System.Data;
 using System.Data.SqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -6,22 +7,14 @@ namespace Prototipo_MarZel
 {
     public class Producto_DAO : Producto_Base
     {
-        public override DataTable ObtenerTodos()
-        {
-            ConexionBD conexion = new ConexionBD();
-            string query = "SELECT * FROM " + Tabla;
-            return conexion.EjecutarConsulta(query, null);
-        }
-
         public override DataTable ObtenerProductos()
         {
             ConexionBD conexion = new ConexionBD();
-            string query = @"SELECT 
-                                TBL_PRODUCTOS.DESCRIPCION AS PRODUCTO,
-                                TBL_CATEGORIAS_PRODUCTO.DESCRIPCION AS CATEGORIA,
-                                TBL_PRODUCTOS.EXISTENCIA
-                            FROM TBL_PRODUCTOS  
-                            INNER JOIN TBL_CATEGORIAS_PRODUCTO ON TBL_PRODUCTOS.ID_CATEGORIA = TBL_CATEGORIAS_PRODUCTO.ID_CATEGORIA";
+            string query = @$"
+                SELECT  ID_PRODUCTO,
+                        DESCRIPCION AS PRODUCTO,
+                        EXISTENCIA
+                FROM    {Tabla}";
             return conexion.EjecutarConsulta(query, null);
         }
 
@@ -173,6 +166,21 @@ namespace Prototipo_MarZel
                 new SqlParameter("@ID_PRODUCTO", Id_Producto)
             };
             conexion.EjecutarComando(query, parametros);
+        }
+
+        public override bool existeProducto(string Codigo_Barra)
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = @"
+                SELECT  1 
+                FROM    TBL_PRODUCTOS
+                WHERE   CODIGO_BARRA = @CODIGO_BARRA";
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("@CODIGO_BARRA", Codigo_Barra)
+            };
+            DataTable resultado = conexion.EjecutarConsulta(query, parametros);
+            return resultado.Rows.Count > 0;
         }
     }
 }

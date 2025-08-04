@@ -51,6 +51,7 @@ namespace Prototipo_MarZel.Formularios
         private void btnAgregarCompra_Click(object sender, EventArgs e)
         {
             FRM_GESTIONAR_COMPRA frm_gestionar_compra = new FRM_GESTIONAR_COMPRA();
+            this.Hide();
             frm_gestionar_compra.ShowDialog();
             Cargar_Compras();
         }
@@ -61,6 +62,7 @@ namespace Prototipo_MarZel.Formularios
 
             int ID_Compra = Compra_Controller.Cargar_Compras().Rows[dgvCompras.CurrentRow.Index].Field<int>("ID_COMPRA");
             FRM_GESTIONAR_COMPRA frm_gestionar_compra = new FRM_GESTIONAR_COMPRA(ID_Compra);
+            this.Hide();
             frm_gestionar_compra.ShowDialog();
             Cargar_Compras();
         }

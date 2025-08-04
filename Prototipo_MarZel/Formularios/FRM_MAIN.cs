@@ -123,6 +123,7 @@ namespace Prototipo_MarZel
                     await Task.Delay(15);
                 }
                 this.Visible = false;
+                FRM_PRODUCTOS fRM_PRODUCTOS = new FRM_PRODUCTOS();
                 frm_productos.ShowDialog();
                 this.Visible = true;
                 for (double i = 0.2; i <= 1.0; i += 0.05)

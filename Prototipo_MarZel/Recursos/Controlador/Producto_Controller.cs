@@ -13,7 +13,7 @@ namespace Prototipo_MarZel
 
         public DataTable ObtenerProductos()
         {
-            return Producto_DAO.ObtenerTodos();
+            return Producto_DAO.ObtenerProductos();
         }
 
         public DataTable ObtenerProductosPorDescripcion()
@@ -63,6 +63,11 @@ namespace Prototipo_MarZel
         public void Disminuir_Existencia(int Id_Producto, int Existencia)
         {
             Producto_DAO.Disminuir_Existencia(Id_Producto, Existencia);
+        }
+
+        public bool existeProducto(string Codigo_Barra)
+        {
+            return Producto_DAO.existeProducto(Codigo_Barra);
         }
     }
 }
