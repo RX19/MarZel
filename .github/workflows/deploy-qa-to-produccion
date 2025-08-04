@@ -1,0 +1,30 @@
+name: Enviar a produccion desde qa
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Enviar código a rama produccion
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repositorio
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Obtener rama produccion
+      run: |
+        git fetch origin produccion:produccion
+        
+    - name: Configurar Git
+      run: |
+        git config user.name "Deploy Bot"
+        git config user.email "deploy-bot@noreply.github.com"
+
+    - name: Cambiar a rama produccion y hacer merge desde qa
+      run: |
+        git checkout produccion
+        git merge origin/qa --no-ff -m "Merge desde qa a produccion [automático]"
+        git push origin produccion
