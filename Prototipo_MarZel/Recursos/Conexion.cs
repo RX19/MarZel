@@ -8,7 +8,7 @@ namespace Prototipo_MarZel
     {
         //Cambiar Robber por servidor de la bd :v
         //CAMBIAR LA CADENA DE CONEXION SI USAR TU PROPIO SERVIDOR O DOCKER
-        private readonly string cadenaConexion = "server=(localdb)\\MSSQLLocalDB; database=MarZel; integrated security=true";
+        private readonly string cadenaConexion = "server=ROBBER\\SQLEXPRESS; database=MarZel; integrated security=true";
         //private readonly string cadenaConexion = "server=localhost,1433; database=MarZel; user id=sa; password=yourStrong#Password; TrustServerCertificate=True";
 
 

@@ -1,4 +1,5 @@
-﻿using Prototipo_MarZel.Recursos.Controlador;
+﻿using Microsoft.VisualBasic;
+using Prototipo_MarZel.Recursos.Controlador;
 using Prototipo_MarZel.Recursos.Modelos;
 using System;
 using System.Collections.Generic;
@@ -30,9 +31,21 @@ namespace Prototipo_MarZel.Formularios
                 return;
             }
 
+            if (string.IsNullOrWhiteSpace(TXT_CORREO.Text))
+            {
+                MessageBox.Show("Debe ingresar un correo para enviar el código de verificación.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string codigoGenerado = new Random().Next(100000, 999999).ToString();
+            CorreoHelper.EnviarCorreo("Su codigo es: "+codigoGenerado, TXT_CORREO.Text);
+            string input = Interaction.InputBox("Ingrese el código enviado a su correo:", "Verificación", "");
+
+            if (input != codigoGenerado)
+            {
+                MessageBox.Show("Código incorrecto. Intente nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             int idTipoUsuario = Convert.ToInt32(CB_TIPO_USUARIO.SelectedValue);
-
-
 
             Model_Usuario nuevo = new()
             {
@@ -54,6 +67,7 @@ namespace Prototipo_MarZel.Formularios
                 MessageBoxButtons.OK,
                 exito ? MessageBoxIcon.Information : MessageBoxIcon.Warning
             );
+            //this.Close();
         }
         private void FRM_GESTIONAR_USUARIO_Load(object sender, EventArgs e)
         {

@@ -284,22 +284,6 @@ namespace Prototipo_MarZel
 
         }
 
-        private void BTN_PRUEBA_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string texto = "Este es un correo de prueba desde el botón.";
-                string destinatario = "e1a8lbyje@mozmail.com";//LBL_CORREO.Text; // Correo Prueba
-
-                CorreoHelper.EnviarCorreo(texto, destinatario);
-                MessageBox.Show("Correo enviado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al enviar el correo:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void TP_INICIO_Click(object sender, EventArgs e)
         {
 
