@@ -125,5 +125,32 @@ namespace Prototipo_MarZel.Formularios
                 }
             }
         }
+
+        private void BTN_PANEL_EDITAR_USUARIO_Click(object sender, EventArgs e)
+        {
+            if (DVC_USUARIOS.CurrentRow == null)
+            {
+                MessageBox.Show("Por favor, seleccione un usuario para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Obtén los datos de la fila seleccionada
+            var row = DVC_USUARIOS.CurrentRow;
+            int idUsuario = Convert.ToInt32(row.Cells["ID_USUARIO"].Value);
+            string identidad = row.Cells["IDENTIDAD"].Value?.ToString() ?? "";
+            string nombre = row.Cells["NOMBRE"].Value?.ToString() ?? "";
+            string correo = row.Cells["CORREO"].Value?.ToString() ?? "";
+            string usuario = row.Cells["USUARIO"].Value?.ToString() ?? "";
+            string celular = row.Cells["CELULAR"].Value?.ToString() ?? "";
+            string contraseña = row.Cells["CONTRASENA"].Value?.ToString() ?? "";
+            int idTipo = Convert.ToInt32(row.Cells["ID_TIPO"].Value);
+
+            // Abre el formulario de edición y pasa los datos
+            using (var frmEditar = new FRM_EDITAR_USUARIO(idUsuario, identidad, nombre, correo, usuario, contraseña, celular, idTipo))
+            {
+                frmEditar.ShowDialog();
+                Cargar_Usuarios(); // Refresca la tabla después de editar
+            }
+        }
     }
 }

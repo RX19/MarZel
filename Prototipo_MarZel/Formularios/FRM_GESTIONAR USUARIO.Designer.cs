@@ -147,6 +147,7 @@
             BTN_CREAR.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             BTN_CREAR.UseAccentColor = false;
             BTN_CREAR.UseVisualStyleBackColor = true;
+            BTN_CREAR.Click += BTN_CREAR_Click;
             // 
             // materialLabel1
             // 
@@ -174,7 +175,7 @@
             CB_TIPO_USUARIO.FormattingEnabled = true;
             CB_TIPO_USUARIO.IntegralHeight = false;
             CB_TIPO_USUARIO.ItemHeight = 43;
-            CB_TIPO_USUARIO.Items.AddRange(new object[] { "Administrador", "Vendedor" });
+            CB_TIPO_USUARIO.Items.AddRange(new object[] { "Administrador", "Cajero" });
             CB_TIPO_USUARIO.Location = new Point(37, 367);
             CB_TIPO_USUARIO.MaxDropDownItems = 4;
             CB_TIPO_USUARIO.MouseState = MaterialSkin.MouseState.OUT;

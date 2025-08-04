@@ -17,18 +17,24 @@ namespace Prototipo_MarZel.Formularios
         public FRM_GESTIONAR_USUARIO()
         {
             InitializeComponent();
-            
+
             this.ClientSize = this.GetPreferredSize(Size.Empty);
-        
+
         }
 
         private void BTN_CREAR_Click(object sender, EventArgs e)
         {
+            if (CB_TIPO_USUARIO.SelectedValue == null)
+            {
+                MessageBox.Show("Seleccione un tipo de usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            string rol = CB_TIPO_USUARIO.Text;
-            int idTipoUsuario = rol == "Administrador" ? 1 : rol == "Vendedor" ? 2 : 0;
+            int idTipoUsuario = Convert.ToInt32(CB_TIPO_USUARIO.SelectedValue);
 
-            Model_Usuario nuevo = new Model_Usuario
+
+
+            Model_Usuario nuevo = new()
             {
                 IDENTIDAD = TXT_IDENTIDAD.Text.Trim(),
                 NOMBRE = TXT_NOMBRE.Text.Trim(),
@@ -55,7 +61,16 @@ namespace Prototipo_MarZel.Formularios
             var p = this.GetPreferredSize(Size.Empty);
             this.ClientSize = new Size(p.Width + 20, p.Height + 20);
 
-        }
+            var tiposUsuario = new[]
+            {
+                new { ID = 1, NOMBRE = "Administrador" },
+                new { ID = 2, NOMBRE = "Cajero" }
+            };
+            CB_TIPO_USUARIO.DataSource = tiposUsuario;
+            CB_TIPO_USUARIO.DisplayMember = "NOMBRE";
+            CB_TIPO_USUARIO.ValueMember = "ID";
+            CB_TIPO_USUARIO.SelectedIndex = -1;
 
+        }
     }
 }

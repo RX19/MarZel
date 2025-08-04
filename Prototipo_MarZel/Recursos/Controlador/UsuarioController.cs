@@ -13,6 +13,7 @@ namespace Prototipo_MarZel.Recursos.Controlador
     public class UsuarioController
     {
         private UsuarioDAO dao = new UsuarioDAO();
+        
 
         public bool CrearUsuario(Model_Usuario u)
         {
@@ -22,8 +23,8 @@ namespace Prototipo_MarZel.Recursos.Controlador
                 string.IsNullOrWhiteSpace(u.USUARIO) ||
                 string.IsNullOrWhiteSpace(u.CONTRASENA) ||
                 string.IsNullOrWhiteSpace(u.CELULAR) ||
-                u.ID_TIPO == 0 ||
-                u.ID_ESTADO == 0)
+                u.ID_TIPO == 0 /*||
+                u.ID_ESTADO == 0*/)
             {
                 return false;
             }
@@ -41,5 +42,9 @@ namespace Prototipo_MarZel.Recursos.Controlador
             return dao.EliminarUsuario(idUsuario) > 0;
         }
 
+        public bool ModificarUsuario(int idUsuario, string identidad, string nombre, string correo, string usuario, string contrasena, string celular, int idTipo)
+        {
+            return dao.ModificarUsuario(idUsuario, identidad, nombre, correo, usuario, contrasena, celular, idTipo) > 0;
+        }
     }
 }

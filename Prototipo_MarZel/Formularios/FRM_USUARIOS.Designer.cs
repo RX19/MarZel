@@ -31,6 +31,7 @@
             BTN_PANEL_CREAR_USUARIO = new MaterialSkin.Controls.MaterialButton();
             DVC_USUARIOS = new DataGridView();
             BTN_PANEL_ELIMINAR_USUARIO = new MaterialSkin.Controls.MaterialButton();
+            BTN_PANEL_EDITAR_USUARIO = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)DVC_USUARIOS).BeginInit();
             SuspendLayout();
             // 
@@ -85,16 +86,38 @@
             BTN_PANEL_ELIMINAR_USUARIO.UseVisualStyleBackColor = true;
             BTN_PANEL_ELIMINAR_USUARIO.Click += BTN_PANEL_ELIMINAR_USUARIO_Click;
             // 
+            // BTN_PANEL_EDITAR_USUARIO
+            // 
+            BTN_PANEL_EDITAR_USUARIO.AutoSize = false;
+            BTN_PANEL_EDITAR_USUARIO.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            BTN_PANEL_EDITAR_USUARIO.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            BTN_PANEL_EDITAR_USUARIO.Depth = 0;
+            BTN_PANEL_EDITAR_USUARIO.HighEmphasis = true;
+            BTN_PANEL_EDITAR_USUARIO.Icon = null;
+            BTN_PANEL_EDITAR_USUARIO.Location = new Point(27, 225);
+            BTN_PANEL_EDITAR_USUARIO.Margin = new Padding(4, 6, 4, 6);
+            BTN_PANEL_EDITAR_USUARIO.MouseState = MaterialSkin.MouseState.HOVER;
+            BTN_PANEL_EDITAR_USUARIO.Name = "BTN_PANEL_EDITAR_USUARIO";
+            BTN_PANEL_EDITAR_USUARIO.NoAccentTextColor = Color.Empty;
+            BTN_PANEL_EDITAR_USUARIO.Size = new Size(153, 36);
+            BTN_PANEL_EDITAR_USUARIO.TabIndex = 3;
+            BTN_PANEL_EDITAR_USUARIO.Text = "EDITAR USUARIO";
+            BTN_PANEL_EDITAR_USUARIO.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            BTN_PANEL_EDITAR_USUARIO.UseAccentColor = false;
+            BTN_PANEL_EDITAR_USUARIO.UseVisualStyleBackColor = true;
+            BTN_PANEL_EDITAR_USUARIO.Click += BTN_PANEL_EDITAR_USUARIO_Click;
+            // 
             // FRM_USUARIOS
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(974, 657);
+            Controls.Add(BTN_PANEL_EDITAR_USUARIO);
             Controls.Add(BTN_PANEL_ELIMINAR_USUARIO);
             Controls.Add(DVC_USUARIOS);
             Controls.Add(BTN_PANEL_CREAR_USUARIO);
             Name = "FRM_USUARIOS";
-            Text = "Administrador";
+            Text = "Usuarios";
             FormClosed += FRM_Administrador_FormClosed;
             Load += FRM_Usuarios_Load;
             ((System.ComponentModel.ISupportInitialize)DVC_USUARIOS).EndInit();
@@ -107,5 +130,6 @@
         private MaterialSkin.Controls.MaterialButton BTN_PANEL_CREAR_USUARIO;
         private DataGridView DVC_USUARIOS;
         private MaterialSkin.Controls.MaterialButton BTN_PANEL_ELIMINAR_USUARIO;
+        private MaterialSkin.Controls.MaterialButton BTN_PANEL_EDITAR_USUARIO;
     }
 }

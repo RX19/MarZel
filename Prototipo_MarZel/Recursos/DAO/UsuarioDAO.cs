@@ -18,7 +18,7 @@ namespace Prototipo_MarZel.Recursos.DAO
             string query = @"
                 INSERT INTO TBL_USUARIOS
                 (IDENTIDAD, NOMBRE, CORREO, USUARIO, CONTRASENA, CELULAR, ID_TIPO, ID_ESTADO)
-                VALUES (@Identidad, @Nombre, @Correo, @Usuario, @Contrasena, @Celular, @ID_Tipo, @Id_Estado)";
+                VALUES (@Identidad, @Nombre, @Correo, @Usuario, @Contrasena, @Celular, @ID_Tipo_Usuario, @Estado)";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
@@ -29,7 +29,7 @@ namespace Prototipo_MarZel.Recursos.DAO
                 new SqlParameter("@Contrasena", u.CONTRASENA),
                 new SqlParameter("@Celular", u.CELULAR),
                 new SqlParameter("@ID_Tipo_Usuario", u.ID_TIPO),
-                new SqlParameter("@Estado", u.ID_ESTADO)
+                new SqlParameter("@Estado", 1)
             };
 
             return conexion.EjecutarComando(query, parametros);
@@ -46,6 +46,29 @@ namespace Prototipo_MarZel.Recursos.DAO
         {
             string query = "DELETE FROM TBL_USUARIOS WHERE ID_USUARIO = @ID_USUARIO";
             SqlParameter[] parametros = { new SqlParameter("@ID_USUARIO", idUsuario) };
+            return conexion.EjecutarComando(query, parametros);
+        }
+        public int ModificarUsuario(int idUsuario, string identidad, string nombre, string correo, string usuario, string contrasena, string celular, int idTipo)
+        {
+            string query = @"UPDATE TBL_USUARIOS
+                             SET IDENTIDAD = @IDENTIDAD,
+                                 NOMBRE = @NOMBRE,
+                                 CORREO = @CORREO,
+                                 USUARIO = @USUARIO,
+                                 CONTRASENA = @CONTRASENA,
+                                 CELULAR = @CELULAR,
+                                 ID_TIPO = @ID_TIPO
+                             WHERE ID_USUARIO = @ID_USUARIO";
+            SqlParameter[] parametros = {
+                new SqlParameter("@IDENTIDAD", identidad),
+                new SqlParameter("@NOMBRE", nombre),
+                new SqlParameter("@CORREO", correo),
+                new SqlParameter("@USUARIO", usuario),
+                new SqlParameter("@CONTRASENA", contrasena),
+                new SqlParameter("@CELULAR", celular),
+                new SqlParameter("@ID_TIPO", idTipo),
+                new SqlParameter("@ID_USUARIO", idUsuario)
+            };
             return conexion.EjecutarComando(query, parametros);
         }
     }
