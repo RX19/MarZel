@@ -97,7 +97,7 @@
             MTBC_MENU.Depth = 0;
             MTBC_MENU.Dock = DockStyle.Fill;
             MTBC_MENU.Location = new Point(4, 80);
-            MTBC_MENU.Margin = new Padding(4, 4, 4, 4);
+            MTBC_MENU.Margin = new Padding(4);
             MTBC_MENU.MouseState = MaterialSkin.MouseState.HOVER;
             MTBC_MENU.Multiline = true;
             MTBC_MENU.Name = "MTBC_MENU";
@@ -112,9 +112,9 @@
             TP_MODIFICAR.Controls.Add(MC_FORM);
             TP_MODIFICAR.Controls.Add(MC_PANEL_DATOS);
             TP_MODIFICAR.Location = new Point(4, 34);
-            TP_MODIFICAR.Margin = new Padding(4, 4, 4, 4);
+            TP_MODIFICAR.Margin = new Padding(4);
             TP_MODIFICAR.Name = "TP_MODIFICAR";
-            TP_MODIFICAR.Padding = new Padding(4, 4, 4, 4);
+            TP_MODIFICAR.Padding = new Padding(4);
             TP_MODIFICAR.Size = new Size(1716, 863);
             TP_MODIFICAR.TabIndex = 0;
             TP_MODIFICAR.Text = "Productos";
@@ -145,7 +145,7 @@
             TXT_BUSCA.HideSelection = true;
             TXT_BUSCA.LeadingIcon = null;
             TXT_BUSCA.Location = new Point(18, 16);
-            TXT_BUSCA.Margin = new Padding(4, 4, 4, 4);
+            TXT_BUSCA.Margin = new Padding(4);
             TXT_BUSCA.MaxLength = 32767;
             TXT_BUSCA.MouseState = MaterialSkin.MouseState.OUT;
             TXT_BUSCA.Name = "TXT_BUSCA";
@@ -209,7 +209,7 @@
             CBX_TIPOISV.IntegralHeight = false;
             CBX_TIPOISV.ItemHeight = 43;
             CBX_TIPOISV.Location = new Point(158, 334);
-            CBX_TIPOISV.Margin = new Padding(4, 4, 4, 4);
+            CBX_TIPOISV.Margin = new Padding(4);
             CBX_TIPOISV.MaxDropDownItems = 4;
             CBX_TIPOISV.MouseState = MaterialSkin.MouseState.OUT;
             CBX_TIPOISV.Name = "CBX_TIPOISV";
@@ -225,7 +225,7 @@
             BTN_WARD.HighEmphasis = true;
             BTN_WARD.Icon = null;
             BTN_WARD.Location = new Point(938, 644);
-            BTN_WARD.Margin = new Padding(6, 6, 6, 6);
+            BTN_WARD.Margin = new Padding(6);
             BTN_WARD.MouseState = MaterialSkin.MouseState.HOVER;
             BTN_WARD.Name = "BTN_WARD";
             BTN_WARD.NoAccentTextColor = Color.Empty;
@@ -245,7 +245,7 @@
             BTN_CANCEL.HighEmphasis = true;
             BTN_CANCEL.Icon = null;
             BTN_CANCEL.Location = new Point(486, 644);
-            BTN_CANCEL.Margin = new Padding(6, 6, 6, 6);
+            BTN_CANCEL.Margin = new Padding(6);
             BTN_CANCEL.MouseState = MaterialSkin.MouseState.HOVER;
             BTN_CANCEL.Name = "BTN_CANCEL";
             BTN_CANCEL.NoAccentTextColor = Color.Empty;
@@ -265,7 +265,7 @@
             TXT_PC.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_PC.LeadingIcon = null;
             TXT_PC.Location = new Point(769, 511);
-            TXT_PC.Margin = new Padding(4, 4, 4, 4);
+            TXT_PC.Margin = new Padding(4);
             TXT_PC.MaxLength = 50;
             TXT_PC.MouseState = MaterialSkin.MouseState.OUT;
             TXT_PC.Multiline = false;
@@ -296,7 +296,7 @@
             TXT_PU.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_PU.LeadingIcon = null;
             TXT_PU.Location = new Point(376, 511);
-            TXT_PU.Margin = new Padding(4, 4, 4, 4);
+            TXT_PU.Margin = new Padding(4);
             TXT_PU.MaxLength = 50;
             TXT_PU.MouseState = MaterialSkin.MouseState.OUT;
             TXT_PU.Multiline = false;
@@ -327,7 +327,7 @@
             TXT_EXISTENCIA.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_EXISTENCIA.LeadingIcon = null;
             TXT_EXISTENCIA.Location = new Point(158, 426);
-            TXT_EXISTENCIA.Margin = new Padding(4, 4, 4, 4);
+            TXT_EXISTENCIA.Margin = new Padding(4);
             TXT_EXISTENCIA.MaxLength = 50;
             TXT_EXISTENCIA.MouseState = MaterialSkin.MouseState.OUT;
             TXT_EXISTENCIA.Multiline = false;
@@ -365,7 +365,7 @@
             CBX_CATEGORIA.IntegralHeight = false;
             CBX_CATEGORIA.ItemHeight = 43;
             CBX_CATEGORIA.Location = new Point(158, 236);
-            CBX_CATEGORIA.Margin = new Padding(4, 4, 4, 4);
+            CBX_CATEGORIA.Margin = new Padding(4);
             CBX_CATEGORIA.MaxDropDownItems = 4;
             CBX_CATEGORIA.MouseState = MaterialSkin.MouseState.OUT;
             CBX_CATEGORIA.Name = "CBX_CATEGORIA";
@@ -407,7 +407,7 @@
             TXT_DESC.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TXT_DESC.LeadingIcon = null;
             TXT_DESC.Location = new Point(158, 136);
-            TXT_DESC.Margin = new Padding(4, 4, 4, 4);
+            TXT_DESC.Margin = new Padding(4);
             TXT_DESC.MaxLength = 50;
             TXT_DESC.MouseState = MaterialSkin.MouseState.OUT;
             TXT_DESC.Multiline = false;
@@ -440,7 +440,7 @@
             TXT_CODIGO_B.HideSelection = true;
             TXT_CODIGO_B.LeadingIcon = null;
             TXT_CODIGO_B.Location = new Point(158, 46);
-            TXT_CODIGO_B.Margin = new Padding(4, 4, 4, 4);
+            TXT_CODIGO_B.Margin = new Padding(4);
             TXT_CODIGO_B.MaxLength = 32767;
             TXT_CODIGO_B.MouseState = MaterialSkin.MouseState.OUT;
             TXT_CODIGO_B.Name = "TXT_CODIGO_B";
@@ -499,7 +499,7 @@
             DVC_PRODUCTOS.Dock = DockStyle.Fill;
             DVC_PRODUCTOS.EditMode = DataGridViewEditMode.EditProgrammatically;
             DVC_PRODUCTOS.Location = new Point(18, 16);
-            DVC_PRODUCTOS.Margin = new Padding(4, 4, 4, 4);
+            DVC_PRODUCTOS.Margin = new Padding(4);
             DVC_PRODUCTOS.MultiSelect = false;
             DVC_PRODUCTOS.Name = "DVC_PRODUCTOS";
             DVC_PRODUCTOS.RowHeadersWidth = 51;
@@ -512,10 +512,10 @@
             // 
             TP_INSERTAR.Controls.Add(materialCard1);
             TP_INSERTAR.Location = new Point(4, 34);
-            TP_INSERTAR.Margin = new Padding(4, 4, 4, 4);
+            TP_INSERTAR.Margin = new Padding(4);
             TP_INSERTAR.Name = "TP_INSERTAR";
-            TP_INSERTAR.Padding = new Padding(4, 4, 4, 4);
-            TP_INSERTAR.Size = new Size(1717, 863);
+            TP_INSERTAR.Padding = new Padding(4);
+            TP_INSERTAR.Size = new Size(1716, 863);
             TP_INSERTAR.TabIndex = 1;
             TP_INSERTAR.Text = "Agregar";
             TP_INSERTAR.UseVisualStyleBackColor = true;
@@ -559,7 +559,7 @@
             txtExistencia.HideSelection = true;
             txtExistencia.LeadingIcon = null;
             txtExistencia.Location = new Point(788, 300);
-            txtExistencia.Margin = new Padding(4, 4, 4, 4);
+            txtExistencia.Margin = new Padding(4);
             txtExistencia.MaxLength = 32767;
             txtExistencia.MouseState = MaterialSkin.MouseState.OUT;
             txtExistencia.Name = "txtExistencia";
@@ -606,7 +606,7 @@
             cmbTiposISV.IntegralHeight = false;
             cmbTiposISV.ItemHeight = 43;
             cmbTiposISV.Location = new Point(264, 300);
-            cmbTiposISV.Margin = new Padding(4, 4, 4, 4);
+            cmbTiposISV.Margin = new Padding(4);
             cmbTiposISV.MaxDropDownItems = 4;
             cmbTiposISV.MouseState = MaterialSkin.MouseState.OUT;
             cmbTiposISV.Name = "cmbTiposISV";
@@ -622,7 +622,7 @@
             btnGuardar.HighEmphasis = true;
             btnGuardar.Icon = null;
             btnGuardar.Location = new Point(898, 754);
-            btnGuardar.Margin = new Padding(6, 6, 6, 6);
+            btnGuardar.Margin = new Padding(6);
             btnGuardar.MouseState = MaterialSkin.MouseState.HOVER;
             btnGuardar.Name = "btnGuardar";
             btnGuardar.NoAccentTextColor = Color.Empty;
@@ -642,7 +642,7 @@
             btnCancelar.HighEmphasis = true;
             btnCancelar.Icon = null;
             btnCancelar.Location = new Point(374, 754);
-            btnCancelar.Margin = new Padding(6, 6, 6, 6);
+            btnCancelar.Margin = new Padding(6);
             btnCancelar.MouseState = MaterialSkin.MouseState.HOVER;
             btnCancelar.Name = "btnCancelar";
             btnCancelar.NoAccentTextColor = Color.Empty;
@@ -663,7 +663,7 @@
             txtPrecioCompleto.HideSelection = true;
             txtPrecioCompleto.LeadingIcon = null;
             txtPrecioCompleto.Location = new Point(886, 615);
-            txtPrecioCompleto.Margin = new Padding(4, 4, 4, 4);
+            txtPrecioCompleto.Margin = new Padding(4);
             txtPrecioCompleto.MaxLength = 32767;
             txtPrecioCompleto.MouseState = MaterialSkin.MouseState.OUT;
             txtPrecioCompleto.Name = "txtPrecioCompleto";
@@ -705,7 +705,7 @@
             txtPrecioUnitario.HideSelection = true;
             txtPrecioUnitario.LeadingIcon = null;
             txtPrecioUnitario.Location = new Point(258, 615);
-            txtPrecioUnitario.Margin = new Padding(4, 4, 4, 4);
+            txtPrecioUnitario.Margin = new Padding(4);
             txtPrecioUnitario.MaxLength = 32767;
             txtPrecioUnitario.MouseState = MaterialSkin.MouseState.OUT;
             txtPrecioUnitario.Name = "txtPrecioUnitario";
@@ -752,7 +752,7 @@
             cmbCaregorias.IntegralHeight = false;
             cmbCaregorias.ItemHeight = 43;
             cmbCaregorias.Location = new Point(264, 420);
-            cmbCaregorias.Margin = new Padding(4, 4, 4, 4);
+            cmbCaregorias.Margin = new Padding(4);
             cmbCaregorias.MaxDropDownItems = 4;
             cmbCaregorias.MouseState = MaterialSkin.MouseState.OUT;
             cmbCaregorias.Name = "cmbCaregorias";
@@ -796,7 +796,7 @@
             txtDescripcion.HideSelection = true;
             txtDescripcion.LeadingIcon = null;
             txtDescripcion.Location = new Point(264, 204);
-            txtDescripcion.Margin = new Padding(4, 4, 4, 4);
+            txtDescripcion.Margin = new Padding(4);
             txtDescripcion.MaxLength = 32767;
             txtDescripcion.MouseState = MaterialSkin.MouseState.OUT;
             txtDescripcion.Name = "txtDescripcion";
@@ -838,7 +838,7 @@
             txtCodigoBarra.HideSelection = true;
             txtCodigoBarra.LeadingIcon = null;
             txtCodigoBarra.Location = new Point(264, 99);
-            txtCodigoBarra.Margin = new Padding(4, 4, 4, 4);
+            txtCodigoBarra.Margin = new Padding(4);
             txtCodigoBarra.MaxLength = 32767;
             txtCodigoBarra.MouseState = MaterialSkin.MouseState.OUT;
             txtCodigoBarra.Name = "txtCodigoBarra";
@@ -876,9 +876,9 @@
             TP_HISTORIAL.Controls.Add(BTN_FILTRAR);
             TP_HISTORIAL.Controls.Add(materialCard2);
             TP_HISTORIAL.Location = new Point(4, 34);
-            TP_HISTORIAL.Margin = new Padding(4, 4, 4, 4);
+            TP_HISTORIAL.Margin = new Padding(4);
             TP_HISTORIAL.Name = "TP_HISTORIAL";
-            TP_HISTORIAL.Size = new Size(1717, 863);
+            TP_HISTORIAL.Size = new Size(1716, 863);
             TP_HISTORIAL.TabIndex = 2;
             TP_HISTORIAL.Text = "Historial";
             TP_HISTORIAL.UseVisualStyleBackColor = true;
@@ -890,10 +890,10 @@
             materialCard3.Depth = 0;
             materialCard3.ForeColor = Color.FromArgb(222, 0, 0, 0);
             materialCard3.Location = new Point(34, 18);
-            materialCard3.Margin = new Padding(18, 18, 18, 18);
+            materialCard3.Margin = new Padding(18);
             materialCard3.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard3.Name = "materialCard3";
-            materialCard3.Padding = new Padding(18, 18, 18, 18);
+            materialCard3.Padding = new Padding(18);
             materialCard3.Size = new Size(564, 78);
             materialCard3.TabIndex = 4;
             // 
@@ -907,7 +907,7 @@
             TXT_FILTRO_PRODUCTO.HideSelection = true;
             TXT_FILTRO_PRODUCTO.LeadingIcon = null;
             TXT_FILTRO_PRODUCTO.Location = new Point(21, 4);
-            TXT_FILTRO_PRODUCTO.Margin = new Padding(4, 4, 4, 4);
+            TXT_FILTRO_PRODUCTO.Margin = new Padding(4);
             TXT_FILTRO_PRODUCTO.MaxLength = 32767;
             TXT_FILTRO_PRODUCTO.MouseState = MaterialSkin.MouseState.OUT;
             TXT_FILTRO_PRODUCTO.Name = "TXT_FILTRO_PRODUCTO";
@@ -964,7 +964,7 @@
             // 
             DVC_HISTORIAL.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DVC_HISTORIAL.Location = new Point(21, 21);
-            DVC_HISTORIAL.Margin = new Padding(4, 4, 4, 4);
+            DVC_HISTORIAL.Margin = new Padding(4);
             DVC_HISTORIAL.Name = "DVC_HISTORIAL";
             DVC_HISTORIAL.RowHeadersWidth = 51;
             DVC_HISTORIAL.Size = new Size(1190, 466);
@@ -977,7 +977,7 @@
             ClientSize = new Size(1732, 985);
             Controls.Add(MTBC_MENU);
             DrawerTabControl = MTBC_MENU;
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "FRM_PRODUCTOS";
             Padding = new Padding(4, 80, 4, 4);
             Text = "Productos";

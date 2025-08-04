@@ -388,7 +388,7 @@ namespace Prototipo_MarZel
         {
             LimpiarCampos();
             Id_Producto = Convert.ToInt32(DVC_PRODUCTOS.CurrentRow.Cells["ID_PRODUCTO"].Value);
-            MessageBox.Show($"{Id_Producto}");
+            //MessageBox.Show($"{Id_Producto}");
             DataTable tabla_express = Producto_Controller.Cargar_Producto(Id_Producto);
             TXT_CODIGO_B.Text = tabla_express.Rows[0]["CODIGO_BARRA"].ToString() ?? "";
             TXT_DESC.Text = tabla_express.Rows[0]["DESCRIPCION"].ToString() ?? "";
