@@ -48,15 +48,18 @@ namespace Prototipo_MarZel.Formularios
 
             await WV_Reportes.EnsureCoreWebView2Async();
 
-            string path = Path.Combine(Application.StartupPath, "REPORTES_FINALES.pdf");
+            string documentosPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string path = Path.Combine(documentosPath, "REPORTES_FINALES.pdf");
+
             if (File.Exists(path))
             {
                 WV_Reportes.Source = new Uri("file:///" + path.Replace("\\", "/"));
             }
             else
             {
-                MessageBox.Show("No se encontró el archivo PDF:\n" + path);
+                MessageBox.Show("No se encontró el archivo PDF en Documentos:\n" + path);
             }
+
         }
 
         private void FRM_REPORTES_FormClosed(object sender, FormClosedEventArgs e)
