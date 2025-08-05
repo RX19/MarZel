@@ -34,6 +34,7 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             PB_Foto = new PictureBox();
             materialCard2 = new MaterialSkin.Controls.MaterialCard();
+            materialButton1 = new MaterialSkin.Controls.MaterialButton();
             LBL_BIENVENIDA = new MaterialSkin.Controls.MaterialLabel();
             LBL_USUARIO = new MaterialSkin.Controls.MaterialLabel();
             LBL_CORREO = new MaterialSkin.Controls.MaterialLabel();
@@ -68,13 +69,13 @@
             MTBC_MENU.Controls.Add(TP_REPORTES);
             MTBC_MENU.Depth = 0;
             MTBC_MENU.Dock = DockStyle.Fill;
-            MTBC_MENU.Location = new Point(3, 80);
+            MTBC_MENU.Location = new Point(3, 60);
             MTBC_MENU.Margin = new Padding(3, 2, 3, 2);
             MTBC_MENU.MouseState = MaterialSkin.MouseState.HOVER;
             MTBC_MENU.Multiline = true;
             MTBC_MENU.Name = "MTBC_MENU";
             MTBC_MENU.SelectedIndex = 0;
-            MTBC_MENU.Size = new Size(1103, 548);
+            MTBC_MENU.Size = new Size(1152, 853);
             MTBC_MENU.TabIndex = 1;
             MTBC_MENU.SelectedIndexChanged += MTBC_MENU_SelectedIndexChanged;
             // 
@@ -83,11 +84,11 @@
             TP_INICIO.BackColor = Color.WhiteSmoke;
             TP_INICIO.Controls.Add(materialCard1);
             TP_INICIO.ForeColor = SystemColors.Control;
-            TP_INICIO.Location = new Point(4, 29);
+            TP_INICIO.Location = new Point(4, 24);
             TP_INICIO.Margin = new Padding(3, 2, 3, 2);
             TP_INICIO.Name = "TP_INICIO";
             TP_INICIO.Padding = new Padding(3, 2, 3, 2);
-            TP_INICIO.Size = new Size(1095, 515);
+            TP_INICIO.Size = new Size(1144, 825);
             TP_INICIO.TabIndex = 0;
             TP_INICIO.Text = "Inicio";
             TP_INICIO.Click += TP_INICIO_Click;
@@ -100,11 +101,11 @@
             materialCard1.Dock = DockStyle.Fill;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
             materialCard1.Location = new Point(3, 2);
-            materialCard1.Margin = new Padding(14);
+            materialCard1.Margin = new Padding(12, 10, 12, 10);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
-            materialCard1.Padding = new Padding(14);
-            materialCard1.Size = new Size(1089, 511);
+            materialCard1.Padding = new Padding(12, 10, 12, 10);
+            materialCard1.Size = new Size(1138, 821);
             materialCard1.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -115,13 +116,14 @@
             tableLayoutPanel1.Controls.Add(PB_Foto, 0, 0);
             tableLayoutPanel1.Controls.Add(materialCard2, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(14, 14);
+            tableLayoutPanel1.Location = new Point(12, 10);
+            tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 80.6451645F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(1061, 483);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 362F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 362F));
+            tableLayoutPanel1.Size = new Size(1114, 801);
             tableLayoutPanel1.TabIndex = 9;
             // 
             // PB_Foto
@@ -133,7 +135,7 @@
             PB_Foto.Location = new Point(3, 2);
             PB_Foto.Margin = new Padding(3, 2, 3, 2);
             PB_Foto.Name = "PB_Foto";
-            PB_Foto.Size = new Size(524, 479);
+            PB_Foto.Size = new Size(551, 797);
             PB_Foto.SizeMode = PictureBoxSizeMode.StretchImage;
             PB_Foto.TabIndex = 0;
             PB_Foto.TabStop = false;
@@ -141,6 +143,7 @@
             // materialCard2
             // 
             materialCard2.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard2.Controls.Add(materialButton1);
             materialCard2.Controls.Add(LBL_BIENVENIDA);
             materialCard2.Controls.Add(LBL_USUARIO);
             materialCard2.Controls.Add(LBL_CORREO);
@@ -151,35 +154,57 @@
             materialCard2.Depth = 0;
             materialCard2.Dock = DockStyle.Fill;
             materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard2.Location = new Point(544, 14);
-            materialCard2.Margin = new Padding(14);
+            materialCard2.Location = new Point(569, 10);
+            materialCard2.Margin = new Padding(12, 10, 12, 10);
             materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard2.Name = "materialCard2";
-            materialCard2.Padding = new Padding(14);
-            materialCard2.Size = new Size(503, 455);
+            materialCard2.Padding = new Padding(12, 10, 12, 10);
+            materialCard2.Size = new Size(533, 781);
             materialCard2.TabIndex = 1;
+            // 
+            // materialButton1
+            // 
+            materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton1.Depth = 0;
+            materialButton1.HighEmphasis = true;
+            materialButton1.Icon = null;
+            materialButton1.Location = new Point(44, 708);
+            materialButton1.Margin = new Padding(4, 6, 4, 6);
+            materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton1.Name = "materialButton1";
+            materialButton1.NoAccentTextColor = Color.Empty;
+            materialButton1.Size = new Size(131, 36);
+            materialButton1.TabIndex = 2;
+            materialButton1.Text = "Cerrar Sesion";
+            materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton1.UseAccentColor = false;
+            materialButton1.UseVisualStyleBackColor = true;
+            materialButton1.Click += materialButton1_Click;
             // 
             // LBL_BIENVENIDA
             // 
             LBL_BIENVENIDA.AutoSize = true;
             LBL_BIENVENIDA.Depth = 0;
-            LBL_BIENVENIDA.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LBL_BIENVENIDA.Location = new Point(98, 53);
+            LBL_BIENVENIDA.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
+            LBL_BIENVENIDA.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            LBL_BIENVENIDA.Location = new Point(34, 27);
             LBL_BIENVENIDA.MouseState = MaterialSkin.MouseState.HOVER;
             LBL_BIENVENIDA.Name = "LBL_BIENVENIDA";
-            LBL_BIENVENIDA.Size = new Size(262, 19);
+            LBL_BIENVENIDA.Size = new Size(852, 58);
             LBL_BIENVENIDA.TabIndex = 9;
-            LBL_BIENVENIDA.Text = "Bienvenido- Marzel-Papeleria-Internet";
+            LBL_BIENVENIDA.Text = "Bienvenido - Marzel - Papeleria - Internet";
             // 
             // LBL_USUARIO
             // 
             LBL_USUARIO.AutoSize = true;
             LBL_USUARIO.Depth = 0;
-            LBL_USUARIO.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LBL_USUARIO.Location = new Point(98, 179);
+            LBL_USUARIO.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
+            LBL_USUARIO.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            LBL_USUARIO.Location = new Point(223, 234);
             LBL_USUARIO.MouseState = MaterialSkin.MouseState.HOVER;
             LBL_USUARIO.Name = "LBL_USUARIO";
-            LBL_USUARIO.Size = new Size(107, 19);
+            LBL_USUARIO.Size = new Size(319, 58);
             LBL_USUARIO.TabIndex = 2;
             LBL_USUARIO.Text = "materialLabel1";
             // 
@@ -187,11 +212,12 @@
             // 
             LBL_CORREO.AutoSize = true;
             LBL_CORREO.Depth = 0;
-            LBL_CORREO.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LBL_CORREO.Location = new Point(98, 382);
+            LBL_CORREO.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
+            LBL_CORREO.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            LBL_CORREO.Location = new Point(223, 424);
             LBL_CORREO.MouseState = MaterialSkin.MouseState.HOVER;
             LBL_CORREO.Name = "LBL_CORREO";
-            LBL_CORREO.Size = new Size(107, 19);
+            LBL_CORREO.Size = new Size(319, 58);
             LBL_CORREO.TabIndex = 8;
             LBL_CORREO.Text = "materialLabel1";
             // 
@@ -199,11 +225,12 @@
             // 
             LBL_CORREO_USU.AutoSize = true;
             LBL_CORREO_USU.Depth = 0;
-            LBL_CORREO_USU.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LBL_CORREO_USU.Location = new Point(17, 382);
+            LBL_CORREO_USU.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
+            LBL_CORREO_USU.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            LBL_CORREO_USU.Location = new Point(29, 424);
             LBL_CORREO_USU.MouseState = MaterialSkin.MouseState.HOVER;
             LBL_CORREO_USU.Name = "LBL_CORREO_USU";
-            LBL_CORREO_USU.Size = new Size(51, 19);
+            LBL_CORREO_USU.Size = new Size(155, 58);
             LBL_CORREO_USU.TabIndex = 5;
             LBL_CORREO_USU.Text = "Correo:";
             // 
@@ -211,11 +238,12 @@
             // 
             LBL_USUARIO_USU.AutoSize = true;
             LBL_USUARIO_USU.Depth = 0;
-            LBL_USUARIO_USU.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LBL_USUARIO_USU.Location = new Point(17, 179);
+            LBL_USUARIO_USU.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
+            LBL_USUARIO_USU.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            LBL_USUARIO_USU.Location = new Point(29, 234);
             LBL_USUARIO_USU.MouseState = MaterialSkin.MouseState.HOVER;
             LBL_USUARIO_USU.Name = "LBL_USUARIO_USU";
-            LBL_USUARIO_USU.Size = new Size(59, 19);
+            LBL_USUARIO_USU.Size = new Size(176, 58);
             LBL_USUARIO_USU.TabIndex = 1;
             LBL_USUARIO_USU.Text = "Usuario:";
             // 
@@ -223,11 +251,12 @@
             // 
             LBL_NOMBRE.AutoSize = true;
             LBL_NOMBRE.Depth = 0;
-            LBL_NOMBRE.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LBL_NOMBRE.Location = new Point(98, 279);
+            LBL_NOMBRE.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
+            LBL_NOMBRE.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            LBL_NOMBRE.Location = new Point(223, 326);
             LBL_NOMBRE.MouseState = MaterialSkin.MouseState.HOVER;
             LBL_NOMBRE.Name = "LBL_NOMBRE";
-            LBL_NOMBRE.Size = new Size(107, 19);
+            LBL_NOMBRE.Size = new Size(319, 58);
             LBL_NOMBRE.TabIndex = 6;
             LBL_NOMBRE.Text = "materialLabel1";
             // 
@@ -235,11 +264,12 @@
             // 
             LBL_NOMBRE_USU.AutoSize = true;
             LBL_NOMBRE_USU.Depth = 0;
-            LBL_NOMBRE_USU.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            LBL_NOMBRE_USU.Location = new Point(17, 279);
+            LBL_NOMBRE_USU.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
+            LBL_NOMBRE_USU.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            LBL_NOMBRE_USU.Location = new Point(29, 326);
             LBL_NOMBRE_USU.MouseState = MaterialSkin.MouseState.HOVER;
             LBL_NOMBRE_USU.Name = "LBL_NOMBRE_USU";
-            LBL_NOMBRE_USU.Size = new Size(61, 19);
+            LBL_NOMBRE_USU.Size = new Size(184, 58);
             LBL_NOMBRE_USU.TabIndex = 3;
             LBL_NOMBRE_USU.Text = "Nombre:";
             LBL_NOMBRE_USU.Click += LBL_NOMBRE_USU_Click;
@@ -248,89 +278,87 @@
             // 
             TP_PRODUCTOS.BackColor = Color.WhiteSmoke;
             TP_PRODUCTOS.ForeColor = SystemColors.Control;
-            TP_PRODUCTOS.Location = new Point(4, 29);
+            TP_PRODUCTOS.Location = new Point(4, 24);
             TP_PRODUCTOS.Margin = new Padding(3, 2, 3, 2);
             TP_PRODUCTOS.Name = "TP_PRODUCTOS";
             TP_PRODUCTOS.Padding = new Padding(3, 2, 3, 2);
-            TP_PRODUCTOS.Size = new Size(1095, 515);
+            TP_PRODUCTOS.Size = new Size(1144, 519);
             TP_PRODUCTOS.TabIndex = 2;
             TP_PRODUCTOS.Text = "Productos";
             // 
             // TP_ADMIN
             // 
-            TP_ADMIN.Location = new Point(4, 29);
+            TP_ADMIN.Location = new Point(4, 24);
             TP_ADMIN.Margin = new Padding(3, 2, 3, 2);
             TP_ADMIN.Name = "TP_ADMIN";
-            TP_ADMIN.Size = new Size(1095, 515);
+            TP_ADMIN.Size = new Size(1144, 519);
             TP_ADMIN.TabIndex = 3;
             TP_ADMIN.Text = "Usuarios";
             TP_ADMIN.UseVisualStyleBackColor = true;
             // 
             // TP_PROVEEDORES
             // 
-            TP_PROVEEDORES.Location = new Point(4, 29);
-            TP_PROVEEDORES.Margin = new Padding(3, 4, 3, 4);
+            TP_PROVEEDORES.Location = new Point(4, 24);
             TP_PROVEEDORES.Name = "TP_PROVEEDORES";
-            TP_PROVEEDORES.Padding = new Padding(3, 4, 3, 4);
-            TP_PROVEEDORES.Size = new Size(1095, 515);
+            TP_PROVEEDORES.Padding = new Padding(3);
+            TP_PROVEEDORES.Size = new Size(1144, 519);
             TP_PROVEEDORES.TabIndex = 4;
             TP_PROVEEDORES.Text = "Proveedores";
             TP_PROVEEDORES.UseVisualStyleBackColor = true;
             // 
             // TP_CLIENTES
             // 
-            TP_CLIENTES.Location = new Point(4, 29);
+            TP_CLIENTES.Location = new Point(4, 24);
             TP_CLIENTES.Margin = new Padding(2);
             TP_CLIENTES.Name = "TP_CLIENTES";
             TP_CLIENTES.Padding = new Padding(2);
-            TP_CLIENTES.Size = new Size(1095, 515);
+            TP_CLIENTES.Size = new Size(1144, 519);
             TP_CLIENTES.TabIndex = 6;
             TP_CLIENTES.Text = "Clientes";
             TP_CLIENTES.UseVisualStyleBackColor = true;
             // 
             // TP_COMPRAS
             // 
-            TP_COMPRAS.Location = new Point(4, 29);
-            TP_COMPRAS.Margin = new Padding(3, 4, 3, 4);
+            TP_COMPRAS.Location = new Point(4, 24);
             TP_COMPRAS.Name = "TP_COMPRAS";
-            TP_COMPRAS.Padding = new Padding(3, 4, 3, 4);
-            TP_COMPRAS.Size = new Size(1095, 515);
+            TP_COMPRAS.Padding = new Padding(3);
+            TP_COMPRAS.Size = new Size(1144, 519);
             TP_COMPRAS.TabIndex = 5;
             TP_COMPRAS.Text = "Compras";
             TP_COMPRAS.UseVisualStyleBackColor = true;
             // 
             // TP_VENTAS
             // 
-            TP_VENTAS.Location = new Point(4, 29);
-            TP_VENTAS.Margin = new Padding(3, 4, 3, 4);
+            TP_VENTAS.Location = new Point(4, 24);
             TP_VENTAS.Name = "TP_VENTAS";
-            TP_VENTAS.Size = new Size(1095, 515);
+            TP_VENTAS.Size = new Size(1144, 519);
             TP_VENTAS.TabIndex = 7;
             TP_VENTAS.Text = "Ventas";
             TP_VENTAS.UseVisualStyleBackColor = true;
             // 
             // TP_REPORTES
             // 
-            TP_REPORTES.Location = new Point(4, 29);
+            TP_REPORTES.Location = new Point(4, 24);
+            TP_REPORTES.Margin = new Padding(3, 2, 3, 2);
             TP_REPORTES.Name = "TP_REPORTES";
-            TP_REPORTES.Size = new Size(1095, 515);
+            TP_REPORTES.Size = new Size(1144, 519);
             TP_REPORTES.TabIndex = 8;
             TP_REPORTES.Text = "Reportes";
             TP_REPORTES.UseVisualStyleBackColor = true;
             // 
             // FRM_MAIN
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveBorder;
-            ClientSize = new Size(1109, 630);
+            ClientSize = new Size(1158, 915);
             Controls.Add(MTBC_MENU);
             DrawerTabControl = MTBC_MENU;
             ForeColor = SystemColors.Desktop;
             FormStyle = FormStyles.ActionBar_56;
             Margin = new Padding(3, 2, 3, 2);
             Name = "FRM_MAIN";
-            Padding = new Padding(3, 80, 3, 2);
+            Padding = new Padding(3, 60, 3, 2);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Menu Principal";
             TransparencyKey = SystemColors.ActiveCaptionText;
@@ -366,5 +394,6 @@
         private TableLayoutPanel tableLayoutPanel1;
         private MaterialSkin.Controls.MaterialCard materialCard2;
         private MaterialSkin.Controls.MaterialLabel LBL_BIENVENIDA;
+        private MaterialSkin.Controls.MaterialButton materialButton1;
     }
 }

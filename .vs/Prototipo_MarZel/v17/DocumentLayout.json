@@ -1,34 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Roberto\\source\\repos\\RX19\\MarZel\\",
+  "WorkspaceRootPath": "C:\\Users\\rusbe\\source\\repos\\RX19\\MarZel\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|c:\\users\\roberto\\source\\repos\\rx19\\marzel\\prototipo_marzel\\formularios\\frm_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|solutionrelative:prototipo_marzel\\formularios\\frm_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|c:\\users\\roberto\\source\\repos\\rx19\\marzel\\prototipo_marzel\\formularios\\frm_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|c:\\users\\rusbe\\source\\repos\\rx19\\marzel\\prototipo_marzel\\formularios\\frm_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|solutionrelative:prototipo_marzel\\formularios\\frm_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|c:\\users\\roberto\\source\\repos\\rx19\\marzel\\prototipo_marzel\\formularios\\frm_main.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|solutionrelative:prototipo_marzel\\formularios\\frm_main.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|c:\\users\\rusbe\\source\\repos\\rx19\\marzel\\prototipo_marzel\\formularios\\frm_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|solutionrelative:prototipo_marzel\\formularios\\frm_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|c:\\users\\roberto\\source\\repos\\rx19\\marzel\\prototipo_marzel\\recursos\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|solutionrelative:prototipo_marzel\\recursos\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|c:\\users\\rusbe\\source\\repos\\rx19\\marzel\\prototipo_marzel\\formularios\\frm_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|solutionrelative:prototipo_marzel\\formularios\\frm_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|c:\\users\\roberto\\source\\repos\\rx19\\marzel\\prototipo_marzel\\formularios\\frm_gestionar_producto_venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|solutionrelative:prototipo_marzel\\formularios\\frm_gestionar_producto_venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|c:\\users\\rusbe\\source\\repos\\rx19\\marzel\\prototipo_marzel\\formularios\\frm_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|solutionrelative:prototipo_marzel\\formularios\\frm_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|c:\\users\\roberto\\source\\repos\\rx19\\marzel\\prototipo_marzel\\formularios\\frm_gestionar_compra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|solutionrelative:prototipo_marzel\\formularios\\frm_gestionar_compra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|c:\\users\\roberto\\source\\repos\\rx19\\marzel\\prototipo_marzel\\formularios\\frm_gestionar_venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|solutionrelative:prototipo_marzel\\formularios\\frm_gestionar_venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|c:\\users\\rusbe\\source\\repos\\rx19\\marzel\\prototipo_marzel\\recursos\\dao\\logindao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D02F78B-6E78-411F-A78C-4F314BDC663C}|Prototipo_MarZel\\Prototipo_MarZel.csproj|solutionrelative:prototipo_marzel\\recursos\\dao\\logindao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,8 +30,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 13,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -74,89 +70,66 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FRM_MAIN.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Roberto\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_MAIN.Designer.cs",
-              "RelativeDocumentMoniker": "Prototipo_MarZel\\Formularios\\FRM_MAIN.Designer.cs",
-              "ToolTip": "C:\\Users\\Roberto\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_MAIN.Designer.cs",
-              "RelativeToolTip": "Prototipo_MarZel\\Formularios\\FRM_MAIN.Designer.cs",
-              "ViewState": "AgIAAMUAAAAAAAAAAADgv9EAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "LoginDAO.cs",
+              "DocumentMoniker": "C:\\Users\\rusbe\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Recursos\\DAO\\LoginDAO.cs",
+              "RelativeDocumentMoniker": "Prototipo_MarZel\\Recursos\\DAO\\LoginDAO.cs",
+              "ToolTip": "C:\\Users\\rusbe\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Recursos\\DAO\\LoginDAO.cs",
+              "RelativeToolTip": "Prototipo_MarZel\\Recursos\\DAO\\LoginDAO.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAA5wAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T22:24:45.164Z",
+              "WhenOpened": "2025-08-05T00:32:17.992Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FRM_LOGIN.cs",
+              "DocumentMoniker": "C:\\Users\\rusbe\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_LOGIN.cs",
+              "RelativeDocumentMoniker": "Prototipo_MarZel\\Formularios\\FRM_LOGIN.cs",
+              "ToolTip": "C:\\Users\\rusbe\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_LOGIN.cs",
+              "RelativeToolTip": "Prototipo_MarZel\\Formularios\\FRM_LOGIN.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAIwEEAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-05T00:24:17.503Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "FRM_MAIN.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Roberto\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_MAIN.cs",
-              "RelativeDocumentMoniker": "Prototipo_MarZel\\Formularios\\FRM_MAIN.cs",
-              "ToolTip": "C:\\Users\\Roberto\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_MAIN.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Prototipo_MarZel\\Formularios\\FRM_MAIN.cs [Dise\u00F1o]",
+              "Title": "FRM_LOGIN.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\rusbe\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_LOGIN.cs",
+              "RelativeDocumentMoniker": "Prototipo_MarZel\\Formularios\\FRM_LOGIN.cs",
+              "ToolTip": "C:\\Users\\rusbe\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_LOGIN.cs [Design]",
+              "RelativeToolTip": "Prototipo_MarZel\\Formularios\\FRM_LOGIN.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T22:18:41.771Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FRM_MAIN.cs",
-              "DocumentMoniker": "C:\\Users\\Roberto\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_MAIN.cs",
-              "RelativeDocumentMoniker": "Prototipo_MarZel\\Formularios\\FRM_MAIN.cs",
-              "ToolTip": "C:\\Users\\Roberto\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_MAIN.cs",
-              "RelativeToolTip": "Prototipo_MarZel\\Formularios\\FRM_MAIN.cs",
-              "ViewState": "AgIAAHQAAAAAAAAAAAAiwIcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T22:15:51.887Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-05T00:24:15.606Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Conexion.cs",
-              "DocumentMoniker": "C:\\Users\\Roberto\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Recursos\\Conexion.cs",
-              "RelativeDocumentMoniker": "Prototipo_MarZel\\Recursos\\Conexion.cs",
-              "ToolTip": "C:\\Users\\Roberto\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Recursos\\Conexion.cs",
-              "RelativeToolTip": "Prototipo_MarZel\\Recursos\\Conexion.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAswAoAAABQAAAAAAAAAA==",
+              "Title": "FRM_MAIN.cs",
+              "DocumentMoniker": "C:\\Users\\rusbe\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_MAIN.cs",
+              "RelativeDocumentMoniker": "Prototipo_MarZel\\Formularios\\FRM_MAIN.cs",
+              "ToolTip": "C:\\Users\\rusbe\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_MAIN.cs*",
+              "RelativeToolTip": "Prototipo_MarZel\\Formularios\\FRM_MAIN.cs*",
+              "ViewState": "AgIAAB8BAAAAAAAAAAAwwC4BAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T19:10:40.537Z"
+              "WhenOpened": "2025-08-05T00:22:16.989Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "FRM_GESTIONAR_VENTA.cs",
-              "DocumentMoniker": "C:\\Users\\Roberto\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_GESTIONAR_VENTA.cs",
-              "RelativeDocumentMoniker": "Prototipo_MarZel\\Formularios\\FRM_GESTIONAR_VENTA.cs",
-              "ToolTip": "C:\\Users\\Roberto\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_GESTIONAR_VENTA.cs",
-              "RelativeToolTip": "Prototipo_MarZel\\Formularios\\FRM_GESTIONAR_VENTA.cs",
-              "ViewState": "AgIAAO8AAAAAAAAAAAAiwAMBAAABAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "FRM_MAIN.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\rusbe\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_MAIN.cs",
+              "RelativeDocumentMoniker": "Prototipo_MarZel\\Formularios\\FRM_MAIN.cs",
+              "ToolTip": "C:\\Users\\rusbe\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_MAIN.cs [Design]*",
+              "RelativeToolTip": "Prototipo_MarZel\\Formularios\\FRM_MAIN.cs [Design]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T19:00:41.127Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FRM_GESTIONAR_PRODUCTO_VENTA.cs",
-              "DocumentMoniker": "C:\\Users\\Roberto\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_GESTIONAR_PRODUCTO_VENTA.cs",
-              "RelativeDocumentMoniker": "Prototipo_MarZel\\Formularios\\FRM_GESTIONAR_PRODUCTO_VENTA.cs",
-              "ToolTip": "C:\\Users\\Roberto\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_GESTIONAR_PRODUCTO_VENTA.cs",
-              "RelativeToolTip": "Prototipo_MarZel\\Formularios\\FRM_GESTIONAR_PRODUCTO_VENTA.cs",
-              "ViewState": "AgIAAJEAAAAAAAAAAAAiwKUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T19:00:18.185Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "FRM_GESTIONAR_COMPRA.cs",
-              "DocumentMoniker": "C:\\Users\\Roberto\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_GESTIONAR_COMPRA.cs",
-              "RelativeDocumentMoniker": "Prototipo_MarZel\\Formularios\\FRM_GESTIONAR_COMPRA.cs",
-              "ToolTip": "C:\\Users\\Roberto\\source\\repos\\RX19\\MarZel\\Prototipo_MarZel\\Formularios\\FRM_GESTIONAR_COMPRA.cs",
-              "RelativeToolTip": "Prototipo_MarZel\\Formularios\\FRM_GESTIONAR_COMPRA.cs",
-              "ViewState": "AgIAAKkBAAAAAAAAAAAiwL0BAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T18:59:32.364Z"
+              "WhenOpened": "2025-08-04T23:52:16.899Z",
+              "EditorCaption": " [Design]"
             }
           ]
         },

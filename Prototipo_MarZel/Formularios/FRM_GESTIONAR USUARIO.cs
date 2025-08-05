@@ -67,7 +67,8 @@ namespace Prototipo_MarZel.Formularios
                 MessageBoxButtons.OK,
                 exito ? MessageBoxIcon.Information : MessageBoxIcon.Warning
             );
-            //this.Close();
+            this.Close();
+            
         }
         private void FRM_GESTIONAR_USUARIO_Load(object sender, EventArgs e)
         {

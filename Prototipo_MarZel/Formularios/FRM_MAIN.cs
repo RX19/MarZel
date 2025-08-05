@@ -295,5 +295,13 @@ namespace Prototipo_MarZel
         {
 
         }
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FRM_LOGIN frm_login = new FRM_LOGIN();
+            frm_login.ShowDialog();
+
+        }
     }
 }

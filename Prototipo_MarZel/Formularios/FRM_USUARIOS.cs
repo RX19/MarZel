@@ -71,6 +71,7 @@ namespace Prototipo_MarZel.Formularios
             using (var frmGestionarUsuario = new FRM_GESTIONAR_USUARIO())
             {
                 frmGestionarUsuario.ShowDialog();
+                Cargar_Usuarios();
             }
         }
 
